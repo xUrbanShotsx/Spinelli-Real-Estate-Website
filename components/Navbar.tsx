@@ -64,7 +64,7 @@ export default function Navbar() {
   const solid = scrolled || menuOpen || isLightPage;
 
   const navBg = solid ? "#ffffff" : "transparent";
-  const navBorder = solid ? "1px solid #DAD7CE" : "1px solid transparent";
+  const navBorder = "none";
   const iconColor = solid ? "#5BC2E7" : "#ffffff";
 
   return (
