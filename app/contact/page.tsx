@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import PageHero from "@/components/PageHero";
-import { team } from "@/lib/data";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us | Spinelli Real Estate",
@@ -8,130 +7,162 @@ export const metadata: Metadata = {
     "Contact Spinelli Real Estate — Illawarra's trusted property experts. Call, email or use our enquiry form for any property need.",
 };
 
+const team = [
+  { name: "Paul Spinelli", role: "Principal", phone: "0412 345 678", email: "paul@spinellirealestate.com.au", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
+  { name: "Adam Spinelli", role: "Sales Agent", phone: "0423 456 789", email: "adam@spinellirealestate.com.au", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
+];
+
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        badge="Get in Touch"
-        title="Contact Our Team"
-        subtitle="We'd love to hear from you. Reach out for a free appraisal, property enquiry or any question."
-      />
+      {/* ── Main ── */}
+      <section style={{ backgroundColor: "#ffffff", paddingTop: "120px" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-3 gap-10">
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl border p-8" style={{ borderColor: "#dad7ce" }}>
-                <h2 className="text-2xl font-bold mb-7" style={{ color: "#5BC2E7",  }}>
-                  Send Us an Enquiry
-                </h2>
-                <form className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>First Name</label>
-                      <input type="text" placeholder="Jane" className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none transition-colors" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Last Name</label>
-                      <input type="text" placeholder="Smith" className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none transition-colors" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Email Address</label>
-                      <input type="email" placeholder="jane@example.com" className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none transition-colors" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Phone Number</label>
-                      <input type="tel" placeholder="04xx xxx xxx" className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none transition-colors" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
-                    </div>
+          {/* Page header */}
+          <div className="mb-16">
+            <span className="label-tag">Get in Touch</span>
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
+                color: "#000000",
+                fontWeight: 300,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.0,
+              }}
+            >
+              Let&apos;s Start the<br />Conversation
+            </h1>
+          </div>
+
+          {/* Two-column */}
+          <div className="grid lg:grid-cols-[1fr_400px] gap-20 pb-24">
+
+            {/* Left — Form */}
+            <ContactForm />
+
+            {/* Right — Info */}
+            <div className="flex flex-col gap-12">
+
+              {/* Direct contact */}
+              <div>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#a2b0aa", marginBottom: "20px" }}>
+                  Direct Contact
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Phone</p>
+                    <a
+                      href="tel:0242960047"
+                      style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em" }}
+                      className="transition-opacity hover:opacity-60"
+                    >
+                      02 4296 0047
+                    </a>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Enquiry Type</label>
-                    <select className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none bg-white" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }}>
-                      <option value="">Select an enquiry type...</option>
-                      <option value="appraisal">Free Property Appraisal</option>
-                      <option value="buyer-enquiry">Buyer Enquiry</option>
-                      <option value="rental">Rental Enquiry</option>
-                      <option value="commercial">Commercial Property</option>
-                      <option value="business">Business Sales</option>
-                      <option value="property-management">Property Management</option>
-                      <option value="project">Project / Off the Plan</option>
-                      <option value="developer">Developer Enquiry</option>
-                      <option value="general">General Enquiry</option>
-                    </select>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Email</p>
+                    <a
+                      href="mailto:info@spinellirealestate.com.au"
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#000000" }}
+                      className="transition-opacity hover:opacity-60"
+                    >
+                      info@spinellirealestate.com.au
+                    </a>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Suburb of Interest</label>
-                    <input type="text" placeholder="e.g. Kiama, Wollongong, Shellharbour..." className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>Hours</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#58503c", lineHeight: 1.8 }}>
+                      Mon – Fri &nbsp;&nbsp;8:30am – 5:30pm<br />
+                      Saturday &nbsp;9:00am – 4:00pm
+                    </p>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: "#58503c" }}>Message</label>
-                    <textarea rows={5} placeholder="Tell us how we can help you..." className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none resize-none" style={{ borderColor: "#dad7ce", color: "#5BC2E7" }} />
-                  </div>
-                  <button type="submit" style={{ backgroundColor: "#5BC2E7", color: "#ffffff" }} className="w-full py-3.5 rounded-lg font-semibold text-sm hover:bg-[#3aafdb] transition-colors">
-                    Send Enquiry
-                  </button>
-                  <p className="text-xs text-center" style={{ color: "#7a7265" }}>
-                    By submitting this form you agree to our Privacy Policy. We&apos;ll respond within 1 business day.
-                  </p>
-                </form>
+                </div>
               </div>
-            </div>
 
-            {/* Sidebar */}
-            <div className="space-y-5">
-              {/* Office */}
-              <div className="bg-white rounded-2xl border p-6" style={{ borderColor: "#dad7ce" }}>
-                <h3 className="font-bold text-lg mb-5" style={{ color: "#5BC2E7",  }}>Office Details</h3>
-                <div className="space-y-4">
-                  {[
-                    { icon: "phone", label: "Phone", value: "02 4296 0047", href: "tel:0242960047" },
-                    { icon: "email", label: "Email", value: "info@spinellirealestate.com.au", href: "mailto:info@spinellirealestate.com.au" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#ede9df" }}>
-                        {item.icon === "phone" ? (
-                          <svg className="w-4 h-4" style={{ color: "#2da8d0" }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                        ) : (
-                          <svg className="w-4 h-4" style={{ color: "#2da8d0" }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        )}
-                      </div>
+              <div style={{ height: "1px", backgroundColor: "#E8E5DF" }} />
+
+              {/* Team */}
+              <div>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#a2b0aa", marginBottom: "20px" }}>
+                  Our Team
+                </p>
+                <div className="space-y-8">
+                  {team.map((m) => (
+                    <div key={m.name} className="flex items-center gap-5">
+                      <img
+                        src={m.image}
+                        alt={m.name}
+                        style={{ width: "60px", height: "60px", objectFit: "cover", objectPosition: "top", flexShrink: 0 }}
+                      />
                       <div>
-                        <p className="text-xs uppercase tracking-wide font-semibold mb-0.5" style={{ color: "#7a7265" }}>{item.label}</p>
-                        <a href={item.href} className="text-sm font-medium hover:opacity-70 transition-opacity" style={{ color: "#5BC2E7" }}>{item.value}</a>
+                        <p style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#000000", fontWeight: 400, letterSpacing: "-0.01em", marginBottom: "2px" }}>
+                          {m.name}
+                        </p>
+                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", marginBottom: "6px" }}>
+                          {m.role}
+                        </p>
+                        <a
+                          href={`tel:${m.phone.replace(/\s/g, "")}`}
+                          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7" }}
+                          className="hover:opacity-70 transition-opacity block"
+                        >
+                          {m.phone}
+                        </a>
                       </div>
                     </div>
                   ))}
-                  <div className="pt-3 border-t" style={{ borderColor: "#e8e5df" }}>
-                    <p className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "#7a7265" }}>Office Hours</p>
-                    <p className="text-sm" style={{ color: "#58503c" }}>Mon–Fri: 8:30am – 5:30pm</p>
-                    <p className="text-sm" style={{ color: "#58503c" }}>Sat: 9:00am – 4:00pm</p>
-                  </div>
-                  <div className="pt-3 border-t" style={{ borderColor: "#e8e5df" }}>
-                    <p className="text-xs uppercase tracking-wide font-semibold mb-1" style={{ color: "#7a7265" }}>Service Area</p>
-                    <p className="text-sm" style={{ color: "#58503c" }}>Helensburgh to Nowra</p>
-                  </div>
                 </div>
               </div>
 
-              {/* Team */}
-              {team.map((member) => (
-                <div key={member.name} className="bg-white rounded-2xl border p-5 flex gap-4" style={{ borderColor: "#dad7ce" }}>
-                  <img src={member.image} alt={member.name} className="w-14 h-14 rounded-xl object-cover object-top flex-shrink-0" />
-                  <div>
-                    <p className="font-bold text-sm" style={{ color: "#5BC2E7" }}>{member.name}</p>
-                    <p className="text-xs font-semibold mb-1.5" style={{ color: "#2da8d0" }}>{member.role}</p>
-                    <a href={`tel:${member.phone.replace(/\s/g, "")}`} className="text-xs hover:opacity-70 transition-opacity block" style={{ color: "#7a7265" }}>{member.phone}</a>
-                    <a href={`mailto:${member.email}`} className="text-xs hover:opacity-70 transition-opacity block" style={{ color: "#7a7265" }}>{member.email}</a>
+              <div style={{ height: "1px", backgroundColor: "#E8E5DF" }} />
+
+              {/* Trust signals */}
+              <div className="flex flex-col gap-3">
+                {[
+                  "No-obligation, confidential conversations",
+                  "Response within one business day",
+                  "20+ years Illawarra expertise",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <svg viewBox="0 0 16 16" fill="none" style={{ width: "14px", height: "14px", flexShrink: 0 }}>
+                      <circle cx="8" cy="8" r="7.5" stroke="#5BC2E7" strokeWidth="1" />
+                      <path d="M5 8.5l2 2 4-4" stroke="#5BC2E7" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}>{item}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
             </div>
           </div>
         </div>
       </section>
+
+      {/* ── Full-width image banner ── */}
+      <div style={{ height: "400px", position: "relative", overflow: "hidden" }}>
+        <img
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&h=600&fit=crop&q=85"
+          alt="Illawarra coastline"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%" }}
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)" }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <p
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.5rem, 4vw, 3rem)",
+              color: "#ffffff",
+              fontWeight: 300,
+              letterSpacing: "-0.03em",
+              textAlign: "center",
+            }}
+          >
+            Serving the Illawarra for Over 20 Years
+          </p>
+        </div>
+      </div>
     </>
   );
 }
