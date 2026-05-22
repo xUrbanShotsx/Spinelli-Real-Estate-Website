@@ -13,8 +13,8 @@ export default function SplashScreen() {
     sessionStorage.setItem("spinelli_splash", "1");
 
     setPhase("show");
-    const t1 = setTimeout(() => setPhase("zoom"), 1000);  // pause, then zoom
-    const t2 = setTimeout(() => setPhase("done"), 2200);  // unmount after animation
+    const t1 = setTimeout(() => setPhase("zoom"), 1100);  // pause, then zoom
+    const t2 = setTimeout(() => setPhase("done"), 4000);  // unmount after animation
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -33,7 +33,7 @@ export default function SplashScreen() {
         backgroundColor: "#5BC2E7",
         isolation: "isolate",
         opacity: zooming ? 0 : 1,
-        transition: zooming ? "opacity 0.75s ease 0.35s" : "none",
+        transition: zooming ? "opacity 1.2s ease 1.2s" : "none",
         pointerEvents: "none",
       }}
     >
@@ -43,13 +43,14 @@ export default function SplashScreen() {
         alt=""
         aria-hidden="true"
         style={{
-          width: "200px",
+          width: "320px",
           height: "auto",
           display: "block",
+          transformOrigin: "center center",
           mixBlendMode: "destination-out" as React.CSSProperties["mixBlendMode"],
-          transform: zooming ? "scale(22)" : "scale(1)",
+          transform: zooming ? "scale(20)" : "scale(1)",
           transition: zooming
-            ? "transform 0.9s cubic-bezier(0.22, 1, 0.36, 1)"
+            ? "transform 2s cubic-bezier(0.25, 0.1, 0.25, 1)"
             : "none",
         }}
       />
