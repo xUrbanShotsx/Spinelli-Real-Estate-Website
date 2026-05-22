@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import PropertyCard from "@/components/PropertyCard";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import MarketStats from "@/components/MarketStats";
+import SplashScreen from "@/components/SplashScreen";
 import { residentialSaleProperties, testimonials } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -49,6 +50,8 @@ const services = [
 export default function HomePage() {
   return (
     <>
+      <SplashScreen />
+
       {/* ── Hero ── */}
       <section className="relative flex flex-col justify-center overflow-hidden" style={{ minHeight: "100vh", backgroundColor: "#5BC2E7" }}>
         <div className="absolute inset-0">
