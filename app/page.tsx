@@ -297,22 +297,6 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Trust signals */}
-            <div className="flex flex-wrap gap-x-8 gap-y-3">
-              {[
-                "20+ years local expertise",
-                "No obligation appraisals",
-                "5★ vendor satisfaction",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-2">
-                  <svg viewBox="0 0 16 16" fill="none" style={{ width: "14px", height: "14px", flexShrink: 0 }}>
-                    <circle cx="8" cy="8" r="7.5" stroke="#5BC2E7" strokeWidth="1" />
-                    <path d="M5 8.5l2 2 4-4" stroke="#5BC2E7" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
