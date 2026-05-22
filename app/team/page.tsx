@@ -15,7 +15,7 @@ export default function TeamPage() {
       {/* ── Hero ── */}
       <section className="relative flex items-end" style={{ minHeight: "100svh" }}>
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1800&h=1200&fit=crop&q=85"
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&h=1200&fit=crop&q=85"
           alt="Spinelli Real Estate Team"
           className="absolute inset-0 object-cover"
           style={{ width: "100%", height: "100%" }}

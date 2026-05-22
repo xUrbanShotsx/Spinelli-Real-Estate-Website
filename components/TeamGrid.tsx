@@ -5,8 +5,8 @@ import type { TeamMember } from "@/lib/types";
 function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean }) {
   return (
     <div className="group">
-      {/* Image */}
-      <div className="overflow-hidden" style={{ height: "320px" }}>
+      {/* Image — fixed aspect ratio so all cards identical height */}
+      <div className="overflow-hidden" style={{ aspectRatio: "3/4" }}>
         <img
           src={member.image}
           alt={member.name}
@@ -24,12 +24,12 @@ function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean })
         <h3
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "1.25rem",
+            fontSize: "1.2rem",
             color: "#000000",
             fontWeight: 300,
             letterSpacing: "-0.02em",
             lineHeight: 1.2,
-            marginBottom: "4px",
+            marginBottom: "3px",
           }}
         >
           {member.name}
@@ -46,23 +46,20 @@ function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean })
         >
           {member.role}
         </p>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
-            color: "#7a7265",
-            lineHeight: 1.7,
-          }}
-        >
-          {member.bio}
-        </p>
-        <div className="flex gap-4 mt-4">
+        <div className="flex flex-col gap-1">
           <a
             href={`tel:${member.phone.replace(/\s/g, "")}`}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#000000" }}
-            className="transition-opacity hover:opacity-50"
+            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}
+            className="transition-opacity hover:opacity-60"
           >
             {member.phone}
+          </a>
+          <a
+            href={`mailto:${member.email}`}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}
+            className="transition-opacity hover:opacity-60"
+          >
+            {member.email}
           </a>
         </div>
       </div>
