@@ -94,7 +94,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/spinelli-real-estate"
+                href="https://www.linkedin.com/company/spinelli-real-estate-shellharbour-wollongong/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
