@@ -15,38 +15,32 @@ const featuredSale = residentialSaleProperties.filter((p) => p.featured).slice(0
 
 const services = [
   {
-    title: "Residential Sales",
-    desc: "Expert marketing and negotiation to achieve the best possible result for your home.",
+    title: "Sales",
     href: "/buy",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=85",
   },
   {
-    title: "Commercial Property",
-    desc: "Sales, leasing and investment advice across retail, office and industrial assets.",
+    title: "Commercial",
     href: "/commercial",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&q=85",
   },
   {
-    title: "Business Sales",
-    desc: "Confidential, professional business broking across every sector in the Illawarra.",
+    title: "Business",
     href: "/business",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=85",
   },
   {
     title: "Property Management",
-    desc: "Residential and commercial management with transparent reporting and genuine care.",
     href: "/property-management",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&q=85",
   },
   {
-    title: "Project Sales",
-    desc: "Off-the-plan, small development and project marketing for Illawarra developers.",
+    title: "Projects",
     href: "/projects",
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop&q=85",
   },
   {
     title: "Suburb Guides",
-    desc: "Live market data, lifestyle insights and property statistics for every suburb.",
     href: "/suburbs",
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=85",
   },
@@ -181,7 +175,7 @@ export default function HomePage() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="group relative overflow-hidden block"
+                className="group relative overflow-hidden flex items-center justify-center"
                 style={{ height: "320px" }}
               >
                 {/* Background image */}
@@ -191,39 +185,26 @@ export default function HomePage() {
                   className="absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-105"
                   style={{ width: "100%", height: "100%" }}
                 />
-                {/* Gradient */}
+                {/* Dark shader */}
                 <div
-                  className="absolute inset-0 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.0) 100%)" }}
+                  className="absolute inset-0"
+                  style={{ backgroundColor: "rgba(0,0,0,0.52)" }}
                 />
 
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                {/* Centred content */}
+                <div className="relative flex flex-col items-center gap-4 text-center px-6">
                   <h3
-                    className="mb-1.5"
                     style={{
                       fontFamily: "var(--font-display)",
-                      fontSize: "1.45rem",
+                      fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                       color: "#ffffff",
                       fontWeight: 300,
                       letterSpacing: "-0.02em",
-                      lineHeight: 1.15,
+                      lineHeight: 1.1,
                     }}
                   >
                     {s.title}
                   </h3>
-                  <p
-                    className="mb-4"
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "12px",
-                      color: "rgba(255,255,255,0.6)",
-                      lineHeight: 1.6,
-                      maxWidth: "28ch",
-                    }}
-                  >
-                    {s.desc}
-                  </p>
                   <span
                     className="inline-flex items-center gap-1.5 text-[12px] font-medium transition-all group-hover:gap-2.5"
                     style={{ color: "#5BC2E7", fontFamily: "var(--font-sans)" }}
