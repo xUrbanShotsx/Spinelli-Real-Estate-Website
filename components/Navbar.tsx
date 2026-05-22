@@ -32,7 +32,7 @@ const navItems = [
     label: "About",
     dropdown: [
       { label: "About Us", href: "/about", sub: "Our story & values" },
-      { label: "Meet the Team", href: "/about#team", sub: "The people behind Spinelli" },
+      { label: "Meet the Team", href: "/team", sub: "The people behind Spinelli" },
       { label: "Contact Us", href: "/contact", sub: "Get in touch today" },
     ],
   },
@@ -45,7 +45,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages with no hero — navbar should use blue at the top
-  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management"];
+  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team"];
   const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
