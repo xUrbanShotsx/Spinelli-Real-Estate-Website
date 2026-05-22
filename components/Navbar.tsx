@@ -16,8 +16,7 @@ const navItems = [
     label: "Sell",
     dropdown: [
       { label: "Sell With Us", href: "/sell", sub: "Market-leading results" },
-      { label: "Sold Properties", href: "/sell#sold", sub: "Our recent results" },
-      { label: "Selling Guide", href: "/sell#guide", sub: "Everything you need to know" },
+      { label: "Sold Properties", href: "/sold", sub: "Our recent results" },
     ],
   },
   {
@@ -46,7 +45,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages with no hero — navbar should use blue at the top
-  const lightPages = ["/sell", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management"];
+  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management"];
   const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
