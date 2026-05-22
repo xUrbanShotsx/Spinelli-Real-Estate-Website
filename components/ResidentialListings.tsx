@@ -147,8 +147,8 @@ export default function ResidentialListings({ properties }: { properties: Proper
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
 
-      {/* Header + filters — same horizontal padding as the grid */}
-      <div style={{ paddingLeft: "40px", paddingRight: "40px", maxWidth: "100%" }}>
+      {/* Header + filters */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div
           className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8"
           style={{ borderBottom: "1px solid #E8E5DF" }}
@@ -195,8 +195,8 @@ export default function ResidentialListings({ properties }: { properties: Proper
       {/* Full-width grid */}
       {filtered.length > 0 ? (
         <div
-          className="property-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: "40px", paddingLeft: "40px", paddingRight: "40px" }}
+          className="property-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-5 sm:px-8"
+          style={{ gap: "40px" }}
         >
           {filtered.map((p) => (
             <div

@@ -63,7 +63,7 @@ export default function CommercialListings({ properties }: { properties: Propert
 
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
-      <div style={{ paddingLeft: "40px", paddingRight: "40px" }}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8" style={{ borderBottom: "1px solid #E8E5DF" }}>
           <div>
             <span className="label-tag">Current Listings</span>
