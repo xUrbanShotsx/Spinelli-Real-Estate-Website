@@ -78,7 +78,7 @@ export interface TeamMember {
   role: string;
   phone: string;
   email: string;
-  bio: string;
+  bio?: string;
   image: string;
 }
 
