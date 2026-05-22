@@ -81,12 +81,12 @@ export default function HomePage() {
       </section>
 
       {/* ── Featured Listings ── */}
-      <section className="py-20" style={{ backgroundColor: "#FBF9F3" }}>
+      <section className="py-20" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
               <span className="label-tag">For Sale</span>
-              <h2 className="text-3xl" style={{ color: "#000000" }}>Featured Properties</h2>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>Featured Properties</h2>
             </div>
             <Link href="/buy" className="text-sm font-medium flex items-center gap-1 transition-opacity hover:opacity-60 hidden sm:flex" style={{ color: "#5BC2E7" }}>
               View All
