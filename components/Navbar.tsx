@@ -45,7 +45,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages with no hero — navbar should use blue at the top
-  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team"];
+  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management"];
   const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
