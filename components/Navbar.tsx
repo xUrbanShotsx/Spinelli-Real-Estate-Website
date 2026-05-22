@@ -63,7 +63,7 @@ export default function Navbar() {
 
   const solid = scrolled || menuOpen || isLightPage;
 
-  const navBg = solid ? "#FBF9F3" : "transparent";
+  const navBg = solid ? "#ffffff" : "transparent";
   const navBorder = solid ? "1px solid #DAD7CE" : "1px solid transparent";
   const iconColor = solid ? "#5BC2E7" : "#ffffff";
 
@@ -159,7 +159,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 h-full z-40 flex flex-col overflow-y-auto transition-transform duration-300 ease-in-out"
         style={{
           width: "min(380px, 90vw)",
-          backgroundColor: "#FBF9F3",
+          backgroundColor: "#ffffff",
           borderRight: "1px solid #DAD7CE",
           transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
         }}
