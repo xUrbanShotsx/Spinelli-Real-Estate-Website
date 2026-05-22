@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   {
@@ -42,6 +43,11 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Pages with no hero — navbar should use blue at the top
+  const lightPages = ["/sell", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management"];
+  const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -55,9 +61,11 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  const navBg = scrolled || menuOpen ? "#FBF9F3" : "transparent";
-  const navBorder = scrolled || menuOpen ? "1px solid #DAD7CE" : "1px solid transparent";
-  const iconColor = scrolled || menuOpen ? "#5BC2E7" : "#ffffff";
+  const solid = scrolled || menuOpen || isLightPage;
+
+  const navBg = solid ? "#FBF9F3" : "transparent";
+  const navBorder = solid ? "1px solid #DAD7CE" : "1px solid transparent";
+  const iconColor = solid ? "#5BC2E7" : "#ffffff";
 
   return (
     <>
@@ -103,7 +111,7 @@ export default function Navbar() {
                 style={{
                   height: "80px",
                   width: "auto",
-                  filter: scrolled || menuOpen ? "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)" : "none",
+                  filter: solid ? "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)" : "none",
                 }}
               />
             </Link>
@@ -122,9 +130,9 @@ export default function Navbar() {
               href="/contact?type=appraisal"
               className="text-[12px] font-medium px-4 py-2 transition-all hover:opacity-85"
               style={{
-                backgroundColor: scrolled || menuOpen ? "#5BC2E7" : "rgba(255,255,255,0.12)",
+                backgroundColor: solid ? "#5BC2E7" : "rgba(255,255,255,0.12)",
                 color: "#ffffff",
-                border: scrolled || menuOpen ? "none" : "1px solid rgba(255,255,255,0.3)",
+                border: solid ? "none" : "1px solid rgba(255,255,255,0.3)",
                 fontFamily: "var(--font-sans)",
               }}
             >
