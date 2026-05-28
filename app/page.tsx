@@ -18,7 +18,7 @@ const services = [
   {
     title: "Sales",
     href: "/buy",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=85",
+    image: "/For sale.png",
   },
   {
     title: "Commercial",
