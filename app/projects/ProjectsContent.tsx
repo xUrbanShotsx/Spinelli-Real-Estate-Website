@@ -121,12 +121,16 @@ export default function ProjectsContent() {
     <>
       {/* ── Hero ── */}
       <section className="relative" style={{ height: "100svh", minHeight: "600px" }}>
-        <img
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&h=1000&fit=crop&q=85"
-          alt="Project marketing Illawarra"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 object-cover"
           style={{ width: "100%", height: "100%" }}
-        />
+        >
+          <source src="/project.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.05) 100%)" }} />
 
         {/* Animated hero text */}
