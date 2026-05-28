@@ -61,8 +61,10 @@ export default function ProjectsContent() {
           <source src="/project.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.65) 100%)" }} />
-        <div className="absolute inset-0 flex flex-col justify-end pb-20 px-6 sm:px-10 max-w-screen-2xl mx-auto left-0 right-0">
-          <HeroText />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 7vw, 7rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, textAlign: "center" }}>
+            Where Projects Perform
+          </h1>
         </div>
       </section>
 
