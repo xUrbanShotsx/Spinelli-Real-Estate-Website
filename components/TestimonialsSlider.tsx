@@ -35,7 +35,7 @@ export default function TestimonialsSlider({ testimonials }: { testimonials: Tes
 
   return (
     <section style={{ backgroundColor: "#ffffff" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+      <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 py-20">
 
         {/* Header row */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">

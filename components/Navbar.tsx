@@ -73,7 +73,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{ backgroundColor: navBg, borderBottom: navBorder }}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-[68px] grid grid-cols-3 items-center">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 h-[68px] grid grid-cols-3 items-center">
 
           {/* Left — Menu button */}
           <div className="flex items-center">

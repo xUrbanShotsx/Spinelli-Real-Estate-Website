@@ -14,7 +14,7 @@ const links = [
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: "#ffffff" }}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-10">
+      <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 py-10">
 
         {/* Main row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">

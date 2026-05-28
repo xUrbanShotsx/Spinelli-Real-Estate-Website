@@ -70,7 +70,7 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 w-full" />
+        <div className="relative max-w-screen-2xl mx-auto px-6 sm:px-10 py-24 w-full" />
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
@@ -85,7 +85,7 @@ export default function HomePage() {
 
       {/* ── Featured Listings ── */}
       <section className="py-20" style={{ backgroundColor: "#ffffff" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
           <div className="flex items-end justify-between mb-10">
             <div>
               <span className="label-tag">For Sale</span>
@@ -109,7 +109,7 @@ export default function HomePage() {
       {/* ── Market at a Glance ── */}
       <section style={{ backgroundColor: "#ffffff" }}>
         {/* Header row */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 pt-16 pb-12">
           <div className="grid lg:grid-cols-2 gap-8 items-end">
             <div>
               <span className="label-tag">Illawarra Market</span>
@@ -133,7 +133,7 @@ export default function HomePage() {
         </div>
 
         {/* 4 headline stats — animated on scroll */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
           <MarketStats />
         </div>
 
@@ -142,7 +142,7 @@ export default function HomePage() {
 
       {/* ── Services ── */}
       <section className="py-20" style={{ backgroundColor: "#ffffff" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
