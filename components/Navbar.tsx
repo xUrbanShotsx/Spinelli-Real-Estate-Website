@@ -73,7 +73,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{ backgroundColor: navBg, borderBottom: navBorder }}
       >
-        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 h-[68px] grid grid-cols-3 items-center">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 h-[68px] grid grid-cols-3 items-center overflow-visible">
 
           {/* Left — Menu button */}
           <div className="flex items-center">
@@ -108,7 +108,7 @@ export default function Navbar() {
                 alt="Spinelli Real Estate"
                 className="transition-all duration-300"
                 style={{
-                  height: "80px",
+                  height: "105px",
                   width: "auto",
                   filter: solid ? "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)" : "none",
                 }}
