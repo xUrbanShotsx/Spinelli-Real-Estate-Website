@@ -30,8 +30,8 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 const projects = [
   {
     index: "01",
-    name: "The Residences",
-    suburb: "Thirroul",
+    name: "Elevation 77",
+    suburb: "Shellharbour City Centre",
     type: "Luxury Townhouses",
     units: "12 Homes",
     status: "Sold Out",
