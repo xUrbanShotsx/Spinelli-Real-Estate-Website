@@ -43,7 +43,7 @@ const services = [
   {
     title: "Suburb Guides",
     href: "/suburbs",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=85",
+    image: "/suburb.jpg",
   },
 ];
 
