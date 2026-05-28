@@ -240,7 +240,7 @@ function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: n
         <div className="flex items-start justify-between gap-4">
           <div>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "6px" }}>
-              {project.suburb} — {project.type}
+              {project.suburb}
             </p>
             <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
               {project.name}
