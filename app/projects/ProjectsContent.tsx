@@ -37,7 +37,6 @@ const projects = [
     status: "Sold Out",
     current: false,
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&h=1100&fit=crop&q=85",
-    portrait: true,
   },
   {
     index: "02",
@@ -48,7 +47,26 @@ const projects = [
     status: "Sold Out",
     current: false,
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&h=1100&fit=crop&q=85",
-    portrait: true,
+  },
+  {
+    index: "03",
+    name: "The Outlook",
+    suburb: "Kiama",
+    type: "Luxury Apartments",
+    units: "18 Apartments",
+    status: "Sold Out",
+    current: false,
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&h=1100&fit=crop&q=85",
+  },
+  {
+    index: "04",
+    name: "Shellharbour Rise",
+    suburb: "Shellharbour",
+    type: "Townhouses",
+    units: "8 Homes",
+    status: "Sold Out",
+    current: false,
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&h=1100&fit=crop&q=85",
   },
 ];
 
@@ -111,7 +129,7 @@ export default function ProjectsContent() {
           </div>
 
           {/* 2-column grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
             {projects.map((project, i) => (
               <ProjectCard key={project.index} project={project} delay={i * 100} />
             ))}
