@@ -69,7 +69,7 @@ export default function ProjectsContent() {
       {/* ── Page intro ── */}
       <section style={{ backgroundColor: "#ffffff", paddingTop: "80px", paddingBottom: "60px" }}>
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-end pb-16" style={{ borderBottom: "1px solid #E8E5DF" }}>
+          <div className="grid lg:grid-cols-2 gap-12 items-end pb-16">
             <FadeUp>
               <span className="label-tag">Project Sales</span>
               <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.4rem, 5vw, 4.5rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.0 }}>
