@@ -38,7 +38,7 @@ const services = [
   {
     title: "Projects",
     href: "/projects",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop&q=85",
+    image: "/project.jpg",
   },
   {
     title: "Suburb Guides",
