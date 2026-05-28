@@ -40,8 +40,8 @@ const projects = [
   },
   {
     index: "02",
-    name: "Pacific Views",
-    suburb: "Wollongong",
+    name: "Bluewater Apartments",
+    suburb: "Kiama",
     type: "Residential Apartments",
     units: "24 Apartments",
     status: "Sold Out",
