@@ -211,7 +211,7 @@ function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: n
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
+      <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
         <img
           src={project.image}
           alt={project.name}
