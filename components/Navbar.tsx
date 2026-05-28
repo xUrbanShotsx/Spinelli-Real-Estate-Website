@@ -101,8 +101,8 @@ export default function Navbar() {
           </div>
 
           {/* Centre — Logo */}
-          <div className="flex justify-center">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center justify-center">
+          <div className="flex justify-center items-center" style={{ height: "68px", overflow: "visible" }}>
+            <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center justify-center" style={{ height: "105px" }}>
               <img
                 src="/logo.png"
                 alt="Spinelli Real Estate"
