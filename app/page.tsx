@@ -28,7 +28,7 @@ const services = [
   {
     title: "Business",
     href: "/business",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=85",
+    image: "/Business.png",
   },
   {
     title: "Property Management",
