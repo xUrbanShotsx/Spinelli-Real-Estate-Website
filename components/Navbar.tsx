@@ -108,7 +108,7 @@ export default function Navbar() {
                 alt="Spinelli Real Estate"
                 className="transition-all duration-300"
                 style={{
-                  height: "80px",
+                  height: "110px",
                   width: "auto",
                   filter: solid ? "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)" : "none",
                 }}
