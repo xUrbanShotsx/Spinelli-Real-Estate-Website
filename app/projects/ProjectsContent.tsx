@@ -40,7 +40,7 @@ const projects = [
   },
   {
     index: "02",
-    name: "Bluewater Apartments",
+    name: "Bluewater",
     suburb: "Kiama",
     type: "Residential Apartments",
     units: "24 Apartments",
