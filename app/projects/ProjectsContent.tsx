@@ -43,7 +43,7 @@ const projects = [
     name: "Bluewater",
     suburb: "Kiama",
     type: "Residential Apartments",
-    units: "24 Apartments",
+    units: "23 Apartments",
     status: "Sold Out",
     current: false,
     image: "/bluewater.jpg",
