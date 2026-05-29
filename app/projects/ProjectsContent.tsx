@@ -33,7 +33,7 @@ const projects = [
     name: "Elevation 77",
     suburb: "Shellharbour City Centre",
     type: "Apartments & Commercial",
-    units: "77 Apartments, 7 Commercial",
+    units: "77 Apartments\n7 Commercial",
     status: "Sold Out",
     current: false,
     image: "/Elevation.jpg",
@@ -246,7 +246,7 @@ function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: n
               {project.name}
             </h3>
           </div>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.06em", flexShrink: 0, marginTop: "2px" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.06em", flexShrink: 0, marginTop: "2px", textAlign: "right", whiteSpace: "pre-line" }}>
             {project.units}
           </p>
         </div>
