@@ -46,7 +46,7 @@ const projects = [
     units: "24 Apartments",
     status: "Sold Out",
     current: false,
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&h=1100&fit=crop&q=85",
+    image: "/bluewater.jpg",
   },
   {
     index: "03",
