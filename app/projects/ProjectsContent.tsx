@@ -36,7 +36,7 @@ const projects = [
     units: "12 Homes",
     status: "Sold Out",
     current: false,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&h=1100&fit=crop&q=85",
+    image: "/Elevation.jpg",
   },
   {
     index: "02",
