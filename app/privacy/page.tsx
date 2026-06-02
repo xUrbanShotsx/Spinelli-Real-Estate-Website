@@ -249,7 +249,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       {/* ── Header ── */}
-      <section style={{ backgroundColor: "#0D3348", paddingTop: "140px", paddingBottom: "80px" }}>
+      <section style={{ backgroundColor: "#5BC2E7", paddingTop: "140px", paddingBottom: "80px" }}>
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
           <span
             style={{
@@ -257,7 +257,7 @@ export default function PrivacyPolicyPage() {
               fontSize: "10px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.7)",
               display: "block",
               marginBottom: "20px",
             }}
@@ -281,7 +281,7 @@ export default function PrivacyPolicyPage() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.8)",
               lineHeight: 1.75,
               maxWidth: "52ch",
             }}
