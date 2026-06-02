@@ -3,33 +3,13 @@ import { useState } from "react";
 
 const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Other"];
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <label
-        style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "10px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "#a2b0aa",
-          display: "block",
-          marginBottom: "5px",
-        }}
-      >
-        {label}
-      </label>
-      {children}
-    </div>
-  );
-}
-
 const inputStyle: React.CSSProperties = {
   width: "100%",
   borderBottom: "1px solid #E8E5DF",
   padding: "7px 0",
   fontFamily: "var(--font-sans)",
-  fontSize: "13px",
+  fontSize: "11px",
+  letterSpacing: "0.1em",
   color: "#000000",
   backgroundColor: "transparent",
   outline: "none",
@@ -56,25 +36,21 @@ export default function ContactForm() {
   return (
     <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-5">
-        <Field label="First Name">
-          <input type="text" placeholder="First Name" required style={inputStyle} />
-        </Field>
-        <Field label="Last Name">
-          <input type="text" placeholder="Last Name" required style={inputStyle} />
-        </Field>
+        <input type="text" placeholder="FIRST NAME" required style={inputStyle} />
+        <input type="text" placeholder="LAST NAME" required style={inputStyle} />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
-        <Field label="Email Address">
-          <input type="email" placeholder="Email Address" required style={inputStyle} />
-        </Field>
-        <Field label="Phone Number">
-          <input type="tel" placeholder="Phone Number" style={inputStyle} />
-        </Field>
+        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} />
+        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} />
       </div>
 
-      <Field label="Enquiry Type">
-        <div className="flex flex-wrap gap-1.5 pt-1">
+      {/* Enquiry Type */}
+      <div>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", color: "#a2b0aa", textTransform: "uppercase", marginBottom: "8px" }}>
+          Enquiry Type
+        </p>
+        <div className="flex flex-wrap gap-1.5">
           {enquiryTypes.map((t) => (
             <button
               key={t}
@@ -96,25 +72,22 @@ export default function ContactForm() {
             </button>
           ))}
         </div>
-      </Field>
+      </div>
 
-      <Field label="Suburb of Interest">
-        <input type="text" placeholder="Suburb of Interest" style={inputStyle} />
-      </Field>
+      <input type="text" placeholder="SUBURB OF INTEREST" style={inputStyle} />
 
-      <Field label="Message">
-        <textarea
-          rows={4}
-          placeholder="Tell us how we can help…"
-          style={{
-            ...inputStyle,
-            resize: "none",
-            borderBottom: "none",
-            border: "1px solid #E8E5DF",
-            padding: "10px 12px",
-          }}
-        />
-      </Field>
+      <textarea
+        rows={4}
+        placeholder="MESSAGE"
+        style={{
+          ...inputStyle,
+          resize: "none",
+          borderBottom: "none",
+          border: "1px solid #E8E5DF",
+          padding: "10px 12px",
+          letterSpacing: "0.1em",
+        }}
+      />
 
       <div className="flex items-center gap-5 pt-1">
         <button
