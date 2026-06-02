@@ -6,7 +6,7 @@ const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Ot
 const inputStyle: React.CSSProperties = {
   width: "100%",
   borderBottom: "1px solid #E8E5DF",
-  padding: "7px 0",
+  padding: "5px 0",
   fontFamily: "var(--font-sans)",
   fontSize: "11px",
   letterSpacing: "0.1em",
@@ -21,8 +21,8 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="py-10">
-        <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
+      <div className="py-10 text-center">
+        <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px", margin: "0 auto 20px" }} />
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
           Message Received
         </h2>
@@ -34,23 +34,23 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
-      <div className="grid sm:grid-cols-2 gap-5">
+    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-3">
+      <div className="grid grid-cols-2 gap-4">
         <input type="text" placeholder="FIRST NAME" required style={inputStyle} />
         <input type="text" placeholder="LAST NAME" required style={inputStyle} />
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-4">
         <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} />
         <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} />
       </div>
 
-      {/* Enquiry Type */}
+      {/* Enquiry Type — 3 cols forces 2 rows */}
       <div>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", color: "#a2b0aa", textTransform: "uppercase", marginBottom: "8px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", color: "#a2b0aa", textTransform: "uppercase", marginBottom: "6px" }}>
           Enquiry Type
         </p>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="grid grid-cols-3 gap-1.5">
           {enquiryTypes.map((t) => (
             <button
               key={t}
@@ -58,9 +58,9 @@ export default function ContactForm() {
               onClick={() => setActiveType(t)}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "11px",
+                fontSize: "10px",
                 letterSpacing: "0.05em",
-                padding: "5px 12px",
+                padding: "5px 8px",
                 border: activeType === t ? "1px solid #000000" : "1px solid #DAD7CE",
                 backgroundColor: activeType === t ? "#000000" : "transparent",
                 color: activeType === t ? "#ffffff" : "#7a7265",
@@ -75,19 +75,19 @@ export default function ContactForm() {
       </div>
 
       <textarea
-        rows={4}
+        rows={2}
         placeholder="MESSAGE"
         style={{
           ...inputStyle,
           resize: "none",
           borderBottom: "none",
           border: "1px solid #E8E5DF",
-          padding: "10px 12px",
+          padding: "8px 10px",
           letterSpacing: "0.1em",
         }}
       />
 
-      <div className="flex items-center gap-5 pt-1">
+      <div className="flex items-center justify-center gap-5 pt-1">
         <button
           type="submit"
           className="inline-block px-7 py-3 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
@@ -95,9 +95,6 @@ export default function ContactForm() {
         >
           Send Enquiry
         </button>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", lineHeight: 1.5 }}>
-          We respond within<br />one business day
-        </p>
       </div>
     </form>
   );
