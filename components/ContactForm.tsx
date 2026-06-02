@@ -104,9 +104,15 @@ export default function ContactForm() {
 
       <Field label="Message">
         <textarea
-          rows={2}
+          rows={4}
           placeholder="Tell us how we can help…"
-          style={{ ...inputStyle, resize: "none" }}
+          style={{
+            ...inputStyle,
+            resize: "none",
+            borderBottom: "none",
+            border: "1px solid #E8E5DF",
+            padding: "10px 12px",
+          }}
         />
       </Field>
 
