@@ -57,19 +57,19 @@ export default function ContactForm() {
     <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-5">
         <Field label="First Name">
-          <input type="text" placeholder="Jane" required style={inputStyle} />
+          <input type="text" placeholder="First Name" required style={inputStyle} />
         </Field>
         <Field label="Last Name">
-          <input type="text" placeholder="Smith" required style={inputStyle} />
+          <input type="text" placeholder="Last Name" required style={inputStyle} />
         </Field>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
         <Field label="Email Address">
-          <input type="email" placeholder="jane@example.com" required style={inputStyle} />
+          <input type="email" placeholder="Email Address" required style={inputStyle} />
         </Field>
         <Field label="Phone Number">
-          <input type="tel" placeholder="04xx xxx xxx" style={inputStyle} />
+          <input type="tel" placeholder="Phone Number" style={inputStyle} />
         </Field>
       </div>
 
@@ -99,7 +99,7 @@ export default function ContactForm() {
       </Field>
 
       <Field label="Suburb of Interest">
-        <input type="text" placeholder="e.g. Kiama, Wollongong…" style={inputStyle} />
+        <input type="text" placeholder="Suburb of Interest" style={inputStyle} />
       </Field>
 
       <Field label="Message">
