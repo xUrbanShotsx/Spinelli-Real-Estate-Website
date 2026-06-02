@@ -229,7 +229,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden" style={{ minHeight: "540px" }}>
         {/* Full-bleed background image */}
         <img
-          src="/rooftop.jpg"
+          src="/Rooftop.jpg"
           alt="Ready to make your move"
           className="absolute inset-0 object-cover"
           style={{ width: "100%", height: "100%" }}
