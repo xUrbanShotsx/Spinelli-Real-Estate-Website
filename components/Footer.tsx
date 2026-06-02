@@ -26,6 +26,8 @@ export default function Footer() {
             style={{
               height: "80px",
               width: "auto",
+              maxWidth: "200px",
+              objectFit: "contain",
               filter: "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)",
             }}
           />
