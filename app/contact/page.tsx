@@ -7,11 +7,6 @@ export const metadata: Metadata = {
     "Contact Spinelli Real Estate — Illawarra's trusted property experts. Call, email or use our enquiry form for any property need.",
 };
 
-const team = [
-  { name: "Paul Spinelli", role: "Principal", phone: "0412 345 678", email: "paul@spinellirealestate.com.au", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
-  { name: "Adam Spinelli", role: "Sales Agent", phone: "0423 456 789", email: "adam@spinellirealestate.com.au", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
-];
-
 export default function ContactPage() {
   return (
     <>
@@ -78,41 +73,6 @@ export default function ContactPage() {
                       Saturday &nbsp;9:00am – 4:00pm
                     </p>
                   </div>
-                </div>
-              </div>
-
-              <div style={{ height: "1px", backgroundColor: "#E8E5DF" }} />
-
-              {/* Team */}
-              <div>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#a2b0aa", marginBottom: "20px" }}>
-                  Our Team
-                </p>
-                <div className="space-y-8">
-                  {team.map((m) => (
-                    <div key={m.name} className="flex items-center gap-5">
-                      <img
-                        src={m.image}
-                        alt={m.name}
-                        style={{ width: "60px", height: "60px", objectFit: "cover", objectPosition: "top", flexShrink: 0 }}
-                      />
-                      <div>
-                        <p style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#000000", fontWeight: 400, letterSpacing: "-0.01em", marginBottom: "2px" }}>
-                          {m.name}
-                        </p>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", marginBottom: "6px" }}>
-                          {m.role}
-                        </p>
-                        <a
-                          href={`tel:${m.phone.replace(/\s/g, "")}`}
-                          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7" }}
-                          className="hover:opacity-70 transition-opacity block"
-                        >
-                          {m.phone}
-                        </a>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
 
