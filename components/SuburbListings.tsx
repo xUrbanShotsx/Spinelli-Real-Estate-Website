@@ -61,7 +61,7 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="block group">
       {/* Image */}
-      <div className="overflow-hidden" style={{ position: "relative", height: "240px" }}>
+      <div className="overflow-hidden" style={{ position: "relative", aspectRatio: "3/2" }}>
         <img
           src={suburb.image}
           alt={suburb.name}
@@ -159,7 +159,7 @@ export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
     <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
 
       {/* Header + filters */}
-      <div style={{ paddingLeft: "40px", paddingRight: "40px" }}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8"
           style={{ borderBottom: "1px solid #E8E5DF" }}>
           <div>
@@ -214,8 +214,8 @@ export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
 
       {/* Grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: "40px", paddingLeft: "40px", paddingRight: "40px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-5 sm:px-8"
+          style={{ gap: "40px" }}>
           {filtered.map((s) => (
             <div key={s.slug}
               onMouseEnter={() => setHoveredSlug(s.slug)}

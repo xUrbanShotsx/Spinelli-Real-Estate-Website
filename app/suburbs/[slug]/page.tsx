@@ -31,24 +31,13 @@ export default async function SuburbPage({ params }: Props) {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "100svh" }}>
-        <img
-          src={suburb.image}
-          alt={suburb.name}
-          className="absolute inset-0 object-cover"
-          style={{ width: "100%", height: "100%" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.05) 100%)" }}
-        />
-
-        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20">
+      <section style={{ backgroundColor: "#0D3348", paddingTop: "140px", paddingBottom: "80px" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           {/* Back link */}
           <Link
             href="/suburbs"
-            className="inline-flex items-center gap-2 mb-8 transition-opacity hover:opacity-60"
-            style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            className="inline-flex items-center gap-2 mb-10 transition-opacity hover:opacity-60"
+            style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase" }}
           >
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "12px", height: "12px" }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -58,13 +47,7 @@ export default async function SuburbPage({ params }: Props) {
 
           <span
             className="block mb-4"
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#5BC2E7",
-            }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5BC2E7" }}
           >
             {suburb.demandLevel} Demand · {suburb.lga}
           </span>
@@ -72,18 +55,18 @@ export default async function SuburbPage({ params }: Props) {
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.5rem, 9vw, 8rem)",
+              fontSize: "clamp(3rem, 8vw, 7rem)",
               color: "#ffffff",
               fontWeight: 300,
               letterSpacing: "-0.03em",
               lineHeight: 0.95,
-              marginBottom: "2rem",
+              marginBottom: "2.5rem",
             }}
           >
             {suburb.name}
           </h1>
 
-          {/* Inline key stats */}
+          {/* Key stats */}
           <div className="flex flex-wrap gap-x-10 gap-y-4">
             {[
               { v: suburb.medianHouse, l: "Median House" },
