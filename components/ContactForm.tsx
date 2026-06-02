@@ -2,14 +2,11 @@
 import { useState } from "react";
 
 const enquiryTypes = [
-  "Free Property Appraisal",
-  "Buyer Enquiry",
-  "Rental Enquiry",
-  "Commercial Property",
-  "Business Sales",
+  "Buying",
+  "Selling",
+  "Rentals",
   "Property Management",
-  "Project / Off the Plan",
-  "General Enquiry",
+  "Other",
 ];
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
@@ -46,7 +43,7 @@ const inputStyle: React.CSSProperties = {
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
-  const [activeType, setActiveType] = useState("Free Property Appraisal");
+  const [activeType, setActiveType] = useState("Buying");
 
   if (submitted) {
     return (

@@ -100,29 +100,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── Full-width image banner ── */}
-      <div style={{ height: "400px", position: "relative", overflow: "hidden" }}>
-        <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&h=600&fit=crop&q=85"
-          alt="Illawarra coastline"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%" }}
-        />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)" }} />
-        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.5rem, 4vw, 3rem)",
-              color: "#ffffff",
-              fontWeight: 300,
-              letterSpacing: "-0.03em",
-              textAlign: "center",
-            }}
-          >
-            Serving the Illawarra for Over 20 Years
-          </p>
-        </div>
-      </div>
     </>
   );
 }
