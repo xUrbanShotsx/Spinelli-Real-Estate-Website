@@ -1,13 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const enquiryTypes = [
-  "Buying",
-  "Selling",
-  "Rentals",
-  "Property Management",
-  "Other",
-];
+const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Other"];
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -20,7 +14,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
           textTransform: "uppercase",
           color: "#a2b0aa",
           display: "block",
-          marginBottom: "8px",
+          marginBottom: "5px",
         }}
       >
         {label}
@@ -33,9 +27,9 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 const inputStyle: React.CSSProperties = {
   width: "100%",
   borderBottom: "1px solid #E8E5DF",
-  padding: "10px 0",
+  padding: "7px 0",
   fontFamily: "var(--font-sans)",
-  fontSize: "14px",
+  fontSize: "13px",
   color: "#000000",
   backgroundColor: "transparent",
   outline: "none",
@@ -47,21 +41,12 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="py-20">
-        <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "24px" }} />
-        <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "2.2rem",
-            color: "#000000",
-            fontWeight: 300,
-            letterSpacing: "-0.03em",
-            marginBottom: "16px",
-          }}
-        >
+      <div className="py-10">
+        <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
           Message Received
         </h2>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.75, maxWidth: "40ch" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
           Thank you for reaching out. One of our team will be in touch within one business day.
         </p>
       </div>
@@ -69,8 +54,8 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-8">
-      <div className="grid sm:grid-cols-2 gap-8">
+    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-5">
         <Field label="First Name">
           <input type="text" placeholder="Jane" required style={inputStyle} />
         </Field>
@@ -79,7 +64,7 @@ export default function ContactForm() {
         </Field>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-8">
+      <div className="grid sm:grid-cols-2 gap-5">
         <Field label="Email Address">
           <input type="email" placeholder="jane@example.com" required style={inputStyle} />
         </Field>
@@ -89,7 +74,7 @@ export default function ContactForm() {
       </div>
 
       <Field label="Enquiry Type">
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {enquiryTypes.map((t) => (
             <button
               key={t}
@@ -98,8 +83,8 @@ export default function ContactForm() {
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "11px",
-                letterSpacing: "0.06em",
-                padding: "6px 14px",
+                letterSpacing: "0.05em",
+                padding: "5px 12px",
                 border: activeType === t ? "1px solid #000000" : "1px solid #DAD7CE",
                 backgroundColor: activeType === t ? "#000000" : "transparent",
                 color: activeType === t ? "#ffffff" : "#7a7265",
@@ -119,21 +104,21 @@ export default function ContactForm() {
 
       <Field label="Message">
         <textarea
-          rows={4}
+          rows={2}
           placeholder="Tell us how we can help…"
           style={{ ...inputStyle, resize: "none" }}
         />
       </Field>
 
-      <div className="flex items-center gap-6 pt-2">
+      <div className="flex items-center gap-5 pt-1">
         <button
           type="submit"
-          className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-85"
+          className="inline-block px-7 py-3 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
           style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
         >
           Send Enquiry
         </button>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", lineHeight: 1.5 }}>
           We respond within<br />one business day
         </p>
       </div>
