@@ -1840,7 +1840,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Wollongong High School of Performing Arts", "Edmund Rice College", "Wollongong Public School"],
     amenities: ["Westfield Wollongong", "Crown Street Mall", "Wollongong Train Station", "Port Kembla Harbour"],
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    image: "/Wollongong.jpg",
     demandLevel: "Very High",
   },
   {
@@ -1866,7 +1866,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Kiama High School", "St Joseph's Primary School", "Kiama Public School"],
     amenities: ["Kiama Train Station", "Kiama Shopping Village", "Kiama Harbour", "Kiama PCYC"],
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+    image: "/Kiama.jpg",
     demandLevel: "Very High",
   },
   {
@@ -1892,7 +1892,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Shellharbour Anglican College", "Warilla High School", "Lake Illawarra High School"],
     amenities: ["Stockland Shellharbour", "Shellharbour Hospital", "Shellharbour Train Station", "Warrawong Plaza"],
-    image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80",
+    image: "/Shellharbour.jpg",
     demandLevel: "Very High",
   },
   {
@@ -1944,7 +1944,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Gerringong Public School", "St Patrick's Primary Gerringong"],
     amenities: ["Gerringong train station", "Gerringong Village shops", "Kiama 10 mins drive"],
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
+    image: "/Gerringong.jpg",
     demandLevel: "High",
   },
   {
@@ -1996,7 +1996,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Austinmer Public School", "Bulli High School"],
     amenities: ["Austinmer Train Station", "Village shops & cafés", "Bulli Surf Life Saving Club"],
-    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80",
+    image: "/Austinmer.jpg",
     demandLevel: "Very High",
   },
   {
@@ -2048,7 +2048,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Dapto High School", "St Paul's Catholic College", "Dapto Public School"],
     amenities: ["Dapto Train Station", "Dapto Mall", "Dapto RSL", "Princes Highway access"],
-    image: "https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?w=800&q=80",
+    image: "/Dapto.jpg",
     demandLevel: "High",
   },
   {
@@ -2100,7 +2100,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Figtree High School", "Our Lady of Mercy College", "Figtree Public School"],
     amenities: ["Figtree Grove Shopping Centre", "Wollongong CBD 10 mins", "M1 motorway access"],
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
+    image: "/Figtree.jpg",
     demandLevel: "High",
   },
   {
@@ -2152,7 +2152,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Jamberoo Public School", "Kiama High School (nearby)"],
     amenities: ["Jamberoo Pub", "Local general store", "Kiama 20 mins drive", "Shellharbour 20 mins drive"],
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
+    image: "/Jamberoo.jpg",
     demandLevel: "Moderate",
   },
   {
@@ -2178,7 +2178,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Berry Public School", "Nowra Anglican College (nearby)"],
     amenities: ["Berry Hotel", "Berry Visitor Centre", "Princes Highway access", "Nowra 20 mins drive"],
-    image: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80",
+    image: "/Berry.webp",
     demandLevel: "Moderate",
   },
   {
@@ -2204,7 +2204,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Nowra Anglican College", "Shoalhaven High School", "St Michael's Catholic Primary"],
     amenities: ["Stockland Nowra", "Nowra CBD", "Shoalhaven Entertainment Centre", "Princes Highway access"],
-    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80",
+    image: "/Nowra.jpg",
     demandLevel: "Moderate",
   },
   {
@@ -2282,7 +2282,7 @@ export const suburbs: Suburb[] = [
     ],
     schools: ["Lake Illawarra South Public School", "Warrawong High School", "Our Lady of Lourdes Catholic Primary"],
     amenities: ["Lake Illawarra foreshore reserve", "Warrawong Plaza", "Princes Highway", "Lake Illawarra boat ramp"],
-    image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&q=80",
+    image: "/lake-illawarra.jpg",
     demandLevel: "Moderate",
   },
   {
