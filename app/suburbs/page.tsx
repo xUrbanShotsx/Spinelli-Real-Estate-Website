@@ -13,7 +13,7 @@ export default function SuburbsPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "80vh" }}>
+      <section className="relative flex items-end" style={{ minHeight: "100svh" }}>
         <img
           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&h=1000&fit=crop&q=85"
           alt="Illawarra coastline"
@@ -71,6 +71,14 @@ export default function SuburbsPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-sans)" }}>Scroll</span>
+          <svg className="w-4 h-4" style={{ color: "rgba(255,255,255,0.45)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
       </section>
 
