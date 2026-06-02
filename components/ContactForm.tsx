@@ -75,7 +75,7 @@ export default function ContactForm() {
       </div>
 
       <textarea
-        rows={2}
+        rows={4}
         placeholder="MESSAGE"
         style={{
           ...inputStyle,
@@ -87,7 +87,7 @@ export default function ContactForm() {
         }}
       />
 
-      <div className="flex items-center justify-center gap-5 pt-1">
+      <div className="flex items-center gap-5 pt-1">
         <button
           type="submit"
           className="inline-block px-7 py-3 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"

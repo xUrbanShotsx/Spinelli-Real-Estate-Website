@@ -76,7 +76,7 @@ export default function ContactOverlay() {
           paddingBottom: "60px",
         }}
       >
-        <div className="w-full max-w-xl mx-auto text-center">
+        <div className="w-full max-w-xl mx-auto">
             <div className="mb-6">
               <span className="label-tag">Get in Touch</span>
               <h1
