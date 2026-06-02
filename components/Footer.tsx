@@ -117,9 +117,10 @@ export default function Footer() {
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.02em" }}>
             © {new Date().getFullYear()} Spinelli Real Estate. Licensed Real Estate Agent NSW.
           </p>
-          <div className="flex gap-5">
+          <div className="flex gap-5 items-center">
             <Link href="/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Privacy Policy</Link>
             <Link href="/disclaimer" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Disclaimer</Link>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Built by SanjSTUDIO</span>
           </div>
         </div>
 
