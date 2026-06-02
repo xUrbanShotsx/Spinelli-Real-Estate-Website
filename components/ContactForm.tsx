@@ -74,8 +74,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <input type="text" placeholder="SUBURB OF INTEREST" style={inputStyle} />
-
       <textarea
         rows={4}
         placeholder="MESSAGE"
