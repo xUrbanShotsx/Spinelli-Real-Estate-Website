@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import type { Property, PropertyAmenity } from "@/lib/types";
 
@@ -59,6 +59,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
 
   // Lightbox state — index is relative to galleryPhotos array
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const prev = useCallback(() =>
@@ -82,6 +83,19 @@ export default function PropertyDetailClient({ property }: { property: Property 
       document.body.style.overflow = "";
     };
   }, [lightboxIndex, closeLightbox, prev, next]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
+    touchStartX.current = null;
+  }, [next, prev]);
 
   return (
     <>
@@ -351,6 +365,8 @@ export default function PropertyDetailClient({ property }: { property: Property 
       {lightboxIndex !== null && (
         <div
           onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{
             position: "fixed", inset: 0, zIndex: 300,
             backgroundColor: "rgba(0,0,0,0.92)",
