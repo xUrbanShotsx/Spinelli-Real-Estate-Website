@@ -3,8 +3,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Property } from "@/lib/types";
 
-const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Other"];
-
 const inputStyle: React.CSSProperties = {
   width: "100%",
   borderBottom: "1px solid rgba(255,255,255,0.4)",
@@ -22,8 +20,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [activeType, setActiveType] = useState("Buying");
-  const [message, setMessage] = useState(`I am enquiring about ${property.address}, ${property.suburb}`);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 10);
@@ -180,31 +177,6 @@ export default function EnquiryPage({ property }: { property: Property }) {
                 <div className="grid grid-cols-2 gap-4">
                   <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white/50" />
                   <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white/50" />
-                </div>
-
-                {/* Enquiry Type */}
-                <div>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", fontWeight: 600, color: "#ffffff", textTransform: "uppercase", marginBottom: "8px" }}>
-                    Enquiry Type
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {enquiryTypes.map((t) => (
-                      <button
-                        key={t}
-                        type="button"
-                        onClick={() => setActiveType(t)}
-                        style={{
-                          fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.08em", fontWeight: 600,
-                          padding: "5px 12px", border: "1px solid rgba(255,255,255,0.4)",
-                          backgroundColor: activeType === t ? "#ffffff" : "transparent",
-                          color: activeType === t ? "#0D3348" : "#ffffff",
-                          transition: "all 0.15s ease", cursor: "pointer",
-                        }}
-                      >
-                        {t}
-                      </button>
-                    ))}
-                  </div>
                 </div>
 
                 <textarea
