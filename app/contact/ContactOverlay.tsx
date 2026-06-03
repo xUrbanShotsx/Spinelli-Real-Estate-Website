@@ -32,7 +32,7 @@ export default function ContactOverlay() {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        backgroundColor: "#ffffff",
+        backgroundColor: "#0D3348",
         overflowY: "auto",
         opacity: visible ? 1 : 0,
         transition: "opacity 0.25s ease",
@@ -51,7 +51,7 @@ export default function ContactOverlay() {
           fontSize: "11px",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: "#000000",
+          color: "#ffffff",
           background: "none",
           border: "none",
           cursor: "pointer",
@@ -78,12 +78,20 @@ export default function ContactOverlay() {
       >
         <div className="w-full max-w-xl mx-auto">
             <div className="mb-6">
-              <span className="label-tag">Get in Touch</span>
+              <span style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#5BC2E7",
+                display: "block",
+                marginBottom: "10px",
+              }}>Get in Touch</span>
               <h1
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                  color: "#000000",
+                  color: "#ffffff",
                   fontWeight: 300,
                   letterSpacing: "-0.03em",
                   lineHeight: 1.05,

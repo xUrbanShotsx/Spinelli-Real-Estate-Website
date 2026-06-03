@@ -5,12 +5,12 @@ const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Ot
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  borderBottom: "1px solid #E8E5DF",
+  borderBottom: "1px solid rgba(255,255,255,0.2)",
   padding: "5px 0",
   fontFamily: "var(--font-sans)",
   fontSize: "11px",
   letterSpacing: "0.1em",
-  color: "#000000",
+  color: "#ffffff",
   backgroundColor: "transparent",
   outline: "none",
 };
@@ -21,12 +21,12 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="py-10 text-center">
-        <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px", margin: "0 auto 20px" }} />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
+      <div className="py-10">
+        <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
           Message Received
         </h2>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
           Thank you for reaching out. One of our team will be in touch within one business day.
         </p>
       </div>
@@ -36,18 +36,18 @@ export default function ContactForm() {
   return (
     <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
       <div className="grid grid-cols-2 gap-4">
-        <input type="text" placeholder="FIRST NAME" required style={inputStyle} />
-        <input type="text" placeholder="LAST NAME" required style={inputStyle} />
+        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-white/40" />
+        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-white/40" />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} />
-        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} />
+        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white/40" />
+        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white/40" />
       </div>
 
-      {/* Enquiry Type — 3 cols forces 2 rows */}
+      {/* Enquiry Type */}
       <div>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", color: "#a2b0aa", textTransform: "uppercase", marginBottom: "6px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "8px" }}>
           Enquiry Type
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -60,10 +60,10 @@ export default function ContactForm() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "10px",
                 letterSpacing: "0.05em",
-                padding: "5px 8px",
-                border: activeType === t ? "1px solid #000000" : "1px solid #DAD7CE",
-                backgroundColor: activeType === t ? "#000000" : "transparent",
-                color: activeType === t ? "#ffffff" : "#7a7265",
+                padding: "5px 12px",
+                border: activeType === t ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.2)",
+                backgroundColor: activeType === t ? "#ffffff" : "transparent",
+                color: activeType === t ? "#0D3348" : "rgba(255,255,255,0.6)",
                 transition: "all 0.15s ease",
                 cursor: "pointer",
               }}
@@ -77,12 +77,13 @@ export default function ContactForm() {
       <textarea
         rows={4}
         placeholder="MESSAGE"
+        className="placeholder:text-white/40"
         style={{
           ...inputStyle,
           resize: "none",
           borderBottom: "none",
-          border: "1px solid #E8E5DF",
-          padding: "8px 10px",
+          border: "1px solid rgba(255,255,255,0.2)",
+          padding: "10px 12px",
           letterSpacing: "0.1em",
         }}
       />
@@ -91,7 +92,7 @@ export default function ContactForm() {
         <button
           type="submit"
           className="inline-block px-7 py-3 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-          style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
+          style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}
         >
           Send Enquiry
         </button>
