@@ -69,12 +69,12 @@ const process = [
 export default function PropertyManagementPage() {
   return (
     <>
-      {/* ── Opening — dark navy, no hero image ── */}
-      <section style={{ backgroundColor: "#0D3348", paddingTop: "140px", paddingBottom: "80px" }}>
+      {/* ── Opening ── */}
+      <section style={{ backgroundColor: "#5BC2E7", paddingTop: "140px", paddingBottom: "80px" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid lg:grid-cols-[1fr_420px] gap-16 items-end">
             <div>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "20px" }}>
                 Property Management
               </span>
               <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 7vw, 6rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 0.95 }}>
@@ -82,21 +82,21 @@ export default function PropertyManagementPage() {
               </h1>
             </div>
             <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.85 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.85)", lineHeight: 1.85 }}>
                 For over 20 years, Spinelli Real Estate has been the Illawarra's most trusted property management team. We protect your investment, secure great tenants and maximise your returns — while you get on with your life.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link
                   href="/contact?type=property-management"
                   className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
+                  style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}
                 >
                   Get a Free Appraisal
                 </Link>
                 <a
                   href="tel:0242960047"
                   className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                  style={{ border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-sans)" }}
+                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#ffffff", fontFamily: "var(--font-sans)" }}
                 >
                   02 4296 0047
                 </a>
@@ -107,7 +107,7 @@ export default function PropertyManagementPage() {
       </section>
 
       {/* ── Stats strip ── */}
-      <section style={{ backgroundColor: "#0D3348", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      <section style={{ backgroundColor: "#5BC2E7", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
             {stats.map((s) => (
@@ -149,7 +149,7 @@ export default function PropertyManagementPage() {
       </section>
 
       {/* ── How It Works ── */}
-      <section style={{ backgroundColor: "#FBF9F3", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "96px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="mb-14">
             <span className="label-tag">Our Process</span>
@@ -159,7 +159,7 @@ export default function PropertyManagementPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
             {process.map((s, i) => (
-              <div key={s.step} style={{ padding: "36px 32px", borderLeft: i === 0 ? "none" : "1px solid #DAD7CE", backgroundColor: "#FBF9F3" }}>
+              <div key={s.step} style={{ padding: "36px 32px", borderLeft: i === 0 ? "none" : "1px solid #DAD7CE", backgroundColor: "#ffffff" }}>
                 <p style={{ fontFamily: "var(--font-display)", fontSize: "3rem", fontWeight: 300, color: "#5BC2E7", letterSpacing: "-0.04em", opacity: 0.3, lineHeight: 1, marginBottom: "20px" }}>{s.step}</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#000000", fontWeight: 600, marginBottom: "10px" }}>{s.title}</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>{s.desc}</p>
@@ -196,7 +196,7 @@ export default function PropertyManagementPage() {
       </section>
 
       {/* ── Commercial PM ── */}
-      <section style={{ backgroundColor: "#FBF9F3", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "96px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="pb-12 mb-12" style={{ borderBottom: "1px solid #DAD7CE" }}>
             <span className="label-tag">Commercial</span>
@@ -241,11 +241,11 @@ export default function PropertyManagementPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ backgroundColor: "#0D3348", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#5BC2E7", padding: "96px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "20px" }}>
                 Get Started Today
               </span>
               <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.0 }}>
@@ -253,21 +253,21 @@ export default function PropertyManagementPage() {
               </h2>
             </div>
             <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.55)", lineHeight: 1.85, maxWidth: "44ch", marginBottom: "36px" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.85)", lineHeight: 1.85, maxWidth: "44ch", marginBottom: "36px" }}>
                 Whether you have one investment property or an entire portfolio — our team will provide a free, no-obligation appraisal and show you exactly how we'll grow and protect your investment.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contact?type=property-management"
                   className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
+                  style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}
                 >
                   Get a Free PM Appraisal
                 </Link>
                 <a
                   href="tel:0242960047"
                   className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                  style={{ border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-sans)" }}
+                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#ffffff", fontFamily: "var(--font-sans)" }}
                 >
                   02 4296 0047
                 </a>
