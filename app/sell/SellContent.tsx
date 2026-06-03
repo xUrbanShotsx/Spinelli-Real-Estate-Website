@@ -109,22 +109,6 @@ export default function SellContent() {
         </div>
       </section>
 
-      {/* ── Animated Stats ── */}
-      <section style={{ backgroundColor: "#ffffff", borderBottom: "1px solid #E8E5DF" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((s, i) => (
-              <div key={s.label} className="py-12 px-6 flex flex-col gap-2" style={{ borderLeft: i > 0 ? "1px solid #E8E5DF" : "none" }}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1 }}>
-                  <AnimatedStat target={s.target} suffix={s.suffix} />
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase" }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Interactive Process ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "96px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
