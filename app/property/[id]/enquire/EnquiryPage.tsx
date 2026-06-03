@@ -46,7 +46,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        backgroundColor: "#0D3348",
+        backgroundColor: "#5BC2E7",
         overflowY: "auto",
         opacity: visible ? 1 : 0,
         transition: "opacity 0.25s ease",
@@ -197,7 +197,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
                 <button
                   type="submit"
                   className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
+                  style={{ backgroundColor: "#0D3348", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
                 >
                   SUBMIT
                 </button>
