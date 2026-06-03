@@ -93,7 +93,7 @@ export default function SellContent() {
                 Selling your home is one of the biggest decisions you'll make. We bring local expertise, premium marketing and relentless negotiation to make sure you get the result you deserve.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact?type=appraisal"
+                <Link href="/appraisal"
                   className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
                   style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}>
                   Book a Free Appraisal
@@ -280,7 +280,7 @@ export default function SellContent() {
                 Book a confidential, obligation-free appraisal and find out exactly what your property could achieve in today's market.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact?type=appraisal"
+                <Link href="/appraisal"
                   className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
                   style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}>
                   Book a Free Appraisal

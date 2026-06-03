@@ -47,7 +47,7 @@ export default function SuburbsPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/contact?type=appraisal"
+                  href="/appraisal"
                   className="inline-block px-7 py-3.5 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-85"
                   style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
                 >

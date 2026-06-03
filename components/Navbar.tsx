@@ -129,7 +129,7 @@ export default function Navbar() {
               02 4296 0047
             </a>
             <Link
-              href="/contact?type=appraisal"
+              href="/appraisal"
               className="hidden sm:inline-block text-[12px] font-medium px-4 py-2 transition-all hover:opacity-85"
               style={{
                 backgroundColor: solid ? "#5BC2E7" : "rgba(255,255,255,0.12)",
@@ -259,7 +259,7 @@ export default function Navbar() {
             info@spinellirealestate.com.au
           </a>
           <Link
-            href="/contact?type=appraisal"
+            href="/appraisal"
             onClick={() => setMenuOpen(false)}
             className="block text-center py-3 text-[13px] font-medium transition-opacity hover:opacity-85"
             style={{ backgroundColor: "#5BC2E7", color: "#FBF9F3", fontFamily: "var(--font-sans)" }}
