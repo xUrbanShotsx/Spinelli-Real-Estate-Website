@@ -24,6 +24,7 @@ const navItems = [
     dropdown: [
       { label: "Residential", href: "/rent", sub: "Find your next rental" },
       { label: "Commercial", href: "/commercial#lease", sub: "Office & retail leasing" },
+      { label: "Property Management", href: "/property-management", sub: "Let us manage your property" },
     ],
   },
   { label: "Projects", href: "/projects" },
