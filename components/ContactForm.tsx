@@ -16,9 +16,11 @@ const inputStyle: React.CSSProperties = {
   outline: "none",
 };
 
-export default function ContactForm() {
+export default function ContactForm({ propertyAddress }: { propertyAddress?: string }) {
   const [submitted, setSubmitted] = useState(false);
-  const [activeType, setActiveType] = useState("Buying");
+  const [activeType, setActiveType] = useState(propertyAddress ? "Buying" : "Buying");
+  const defaultMessage = propertyAddress ? `I am enquiring about '${propertyAddress}'` : "";
+  const [message, setMessage] = useState(defaultMessage);
 
   if (submitted) {
     return (
@@ -79,6 +81,8 @@ export default function ContactForm() {
       <textarea
         rows={4}
         placeholder="MESSAGE"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
         className="placeholder:text-white"
         style={{
           ...inputStyle,

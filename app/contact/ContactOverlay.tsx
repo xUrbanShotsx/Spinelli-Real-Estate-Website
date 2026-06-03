@@ -1,10 +1,12 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ContactForm from "@/components/ContactForm";
 
 export default function ContactOverlay() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const propertyAddress = searchParams.get("property") ?? undefined;
   const [visible, setVisible] = useState(false);
 
   // Fade in on mount
@@ -109,7 +111,7 @@ export default function ContactOverlay() {
                 Let&apos;s Start the Conversation
               </h1>
             </div>
-            <ContactForm />
+            <ContactForm propertyAddress={propertyAddress} />
         </div>
       </div>
     </div>

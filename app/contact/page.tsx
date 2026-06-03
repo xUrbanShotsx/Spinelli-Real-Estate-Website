@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import ContactOverlay from "./ContactOverlay";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactOverlay />;
+  return (
+    <Suspense>
+      <ContactOverlay />
+    </Suspense>
+  );
 }
