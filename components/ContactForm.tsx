@@ -50,7 +50,7 @@ export default function ContactForm() {
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", color: "#a2b0aa", textTransform: "uppercase", marginBottom: "6px" }}>
           Enquiry Type
         </p>
-        <div className="grid grid-cols-3 gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {enquiryTypes.map((t) => (
             <button
               key={t}
