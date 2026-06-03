@@ -171,7 +171,7 @@ export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
   const clearAll = () => { setDemand("All Suburbs"); setSearch(""); };
 
   return (
-    <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
+    <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "60px" }}>
 
       {/* Header + filters */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
