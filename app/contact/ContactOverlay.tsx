@@ -7,6 +7,8 @@ export default function ContactOverlay() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const propertyAddress = searchParams.get("property") ?? undefined;
+  const propertyPrice   = searchParams.get("price")    ?? undefined;
+  const propertyImage   = searchParams.get("image")    ?? undefined;
   const [visible, setVisible] = useState(false);
 
   // Fade in on mount
@@ -111,6 +113,41 @@ export default function ContactOverlay() {
                 Let&apos;s Start the Conversation
               </h1>
             </div>
+
+            {/* Property card — shown when coming from a listing */}
+            {propertyAddress && (
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                backgroundColor: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                padding: "12px 14px",
+                marginBottom: "36px",
+              }}>
+                {propertyImage && (
+                  <img
+                    src={propertyImage}
+                    alt=""
+                    style={{ width: "64px", height: "48px", objectFit: "cover", flexShrink: 0 }}
+                  />
+                )}
+                <div style={{ minWidth: 0 }}>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>
+                    Enquiring About
+                  </p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {propertyAddress}
+                  </p>
+                  {propertyPrice && (
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.5)", marginTop: "2px" }}>
+                      {propertyPrice}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+
             <ContactForm propertyAddress={propertyAddress} />
         </div>
       </div>
