@@ -242,7 +242,7 @@ export default function SellContent() {
                 />
               </div>
               <div style={{ paddingTop: "14px" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Drone Aerial Footage</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Drone Aerial Photography</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Aerial perspectives reveal land size, surroundings and proximity to beaches, parks and lifestyle amenities no ground shot can capture.</p>
               </div>
             </div>
