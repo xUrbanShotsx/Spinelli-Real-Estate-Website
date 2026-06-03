@@ -1,8 +1,18 @@
 import { notFound } from "next/navigation";
-import { residentialSaleProperties } from "@/lib/data";
+import {
+  residentialSaleProperties,
+  residentialRentProperties,
+  commercialProperties,
+  businessListings,
+} from "@/lib/data";
 import PropertyDetailClient from "./PropertyDetailClient";
 
-const allProperties = [...residentialSaleProperties];
+const allProperties = [
+  ...residentialSaleProperties,
+  ...residentialRentProperties,
+  ...commercialProperties,
+  ...businessListings,
+];
 
 export function generateStaticParams() {
   return allProperties.map((p) => ({ id: p.id }));
