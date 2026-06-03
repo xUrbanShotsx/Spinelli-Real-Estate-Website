@@ -282,7 +282,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
                   <span className="label-tag">Nearby Amenities</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                     {property.amenities.map((a) => (
-                      <div key={a.name} className="flex items-center gap-4 py-3 px-4" style={{ border: "1px solid #E8E5DF", backgroundColor: "#FBF9F3" }}>
+                      <div key={a.name} className="flex items-center gap-4 py-3 px-4" style={{ border: "1px solid #E8E5DF", backgroundColor: "#ffffff" }}>
                         <div style={{ color: "#5BC2E7", flexShrink: 0 }}>{amenityIcon(a.category)}</div>
                         <div className="flex-1 min-w-0">
                           <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#000000", fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</p>
@@ -402,7 +402,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
       )}
 
       {/* ── Back to listings ── */}
-      <section className="py-12" style={{ backgroundColor: "#FBF9F3", borderTop: "1px solid #E8E5DF" }}>
+      <section className="py-12" style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <Link href="/buy" className="inline-flex items-center gap-2 text-[13px] transition-opacity hover:opacity-60" style={{ fontFamily: "var(--font-sans)", color: "#58503c" }}>
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "16px", height: "16px" }}>
