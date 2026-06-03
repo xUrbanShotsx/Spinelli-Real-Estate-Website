@@ -121,37 +121,24 @@ export default function EnquiryPage({ property }: { property: Property }) {
               {property.suburb}
             </p>
 
-            {/* Price */}
-            <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "24px" }}>
+            {/* Price + stats inline */}
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "8px" }}>
               {property.price}
             </p>
 
-            {/* Stats row */}
             {(property.beds !== undefined || property.baths !== undefined || property.cars !== undefined || property.landSize) && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0", borderTop: "1px solid #E8E5DF", borderLeft: "1px solid #E8E5DF" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
                 {property.beds !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.beds}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bed</p>
-                  </div>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}>{property.beds} Bed</span>
                 )}
                 {property.baths !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.baths}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bath</p>
-                  </div>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}>{property.baths} Bath</span>
                 )}
                 {property.cars !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.cars}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Car</p>
-                  </div>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}>{property.cars} Car</span>
                 )}
                 {property.landSize && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.landSize}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Land</p>
-                  </div>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265" }}>{property.landSize} Land</span>
                 )}
               </div>
             )}
