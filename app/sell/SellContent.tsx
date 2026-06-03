@@ -251,7 +251,7 @@ export default function SellContent() {
               <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
                 {/* Replace src below with your drone photo */}
                 <img
-                  src="/marketing-drone.jpg"
+                  src="/droneshot.jpg"
                   alt="Drone aerial shot"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
