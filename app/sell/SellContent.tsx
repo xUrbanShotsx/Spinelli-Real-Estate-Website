@@ -239,12 +239,13 @@ export default function SellContent() {
             {/* Frame 2 — Internal */}
             <div>
               <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
-                {/* Replace src below with your interior photo */}
-                <img
-                  src="/marketing-interior.jpg"
-                  alt="Property interior"
+                <video
+                  src="/hero.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
                 <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
                   <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
