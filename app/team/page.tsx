@@ -12,47 +12,6 @@ export const metadata: Metadata = {
 export default function TeamPage() {
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "100svh" }}>
-        <img
-          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&h=1200&fit=crop&q=85"
-          alt="Spinelli Real Estate Team"
-          className="absolute inset-0 object-cover"
-          style={{ width: "100%", height: "100%" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.05) 100%)" }}
-        />
-        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20">
-          <span className="label-tag-light block mb-5">Our People</span>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(3rem, 8vw, 7rem)",
-              color: "#ffffff",
-              fontWeight: 300,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.0,
-              marginBottom: "1.5rem",
-            }}
-          >
-            Meet the<br />Team
-          </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "15px",
-              color: "rgba(255,255,255,0.6)",
-              lineHeight: 1.75,
-              maxWidth: "44ch",
-            }}
-          >
-            {team.length} passionate Illawarra property professionals — dedicated to delivering exceptional results for every client, every time.
-          </p>
-        </div>
-      </section>
-
       {/* ── Team grid ── */}
       <TeamGrid members={team} />
 

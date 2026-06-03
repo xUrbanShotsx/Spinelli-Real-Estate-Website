@@ -71,7 +71,7 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
   const [hoveredName, setHoveredName] = useState<string | null>(null);
 
   return (
-    <section style={{ backgroundColor: "#ffffff", paddingTop: "80px", paddingBottom: "80px" }}>
+    <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "80px" }}>
       <div style={{ paddingLeft: "40px", paddingRight: "40px" }}>
 
         {/* Header */}
