@@ -5,11 +5,12 @@ const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Ot
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  borderBottom: "1px solid rgba(255,255,255,0.2)",
+  borderBottom: "1px solid rgba(255,255,255,0.5)",
   padding: "5px 0",
   fontFamily: "var(--font-sans)",
-  fontSize: "11px",
-  letterSpacing: "0.1em",
+  fontSize: "12px",
+  letterSpacing: "0.12em",
+  fontWeight: 600,
   color: "#ffffff",
   backgroundColor: "transparent",
   outline: "none",
@@ -36,18 +37,18 @@ export default function ContactForm() {
   return (
     <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
       <div className="grid grid-cols-2 gap-4">
-        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-white/40" />
-        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-white/40" />
+        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-white/50 placeholder:font-semibold" />
+        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-white/50 placeholder:font-semibold" />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white/40" />
-        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white/40" />
+        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white/50 placeholder:font-semibold" />
+        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white/50 placeholder:font-semibold" />
       </div>
 
       {/* Enquiry Type */}
       <div>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "8px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", marginBottom: "8px" }}>
           Enquiry Type
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -58,12 +59,13 @@ export default function ContactForm() {
               onClick={() => setActiveType(t)}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "10px",
-                letterSpacing: "0.05em",
+                fontSize: "11px",
+                letterSpacing: "0.08em",
+                fontWeight: 600,
                 padding: "5px 12px",
-                border: activeType === t ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.2)",
+                border: activeType === t ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.4)",
                 backgroundColor: activeType === t ? "#ffffff" : "transparent",
-                color: activeType === t ? "#0D3348" : "rgba(255,255,255,0.6)",
+                color: activeType === t ? "#0D3348" : "rgba(255,255,255,0.7)",
                 transition: "all 0.15s ease",
                 cursor: "pointer",
               }}
@@ -77,22 +79,21 @@ export default function ContactForm() {
       <textarea
         rows={4}
         placeholder="MESSAGE"
-        className="placeholder:text-white/40"
+        className="placeholder:text-white/50 placeholder:font-semibold"
         style={{
           ...inputStyle,
           resize: "none",
           borderBottom: "none",
-          border: "1px solid rgba(255,255,255,0.2)",
+          border: "1px solid rgba(255,255,255,0.5)",
           padding: "10px 12px",
-          letterSpacing: "0.1em",
         }}
       />
 
       <div className="flex items-center gap-5 pt-1">
         <button
           type="submit"
-          className="inline-block px-7 py-3 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-          style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)" }}
+          className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
+          style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
         >
           Send Enquiry
         </button>

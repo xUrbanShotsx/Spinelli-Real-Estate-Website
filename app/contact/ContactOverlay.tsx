@@ -92,7 +92,7 @@ export default function ContactOverlay() {
                   fontFamily: "var(--font-display)",
                   fontSize: "clamp(2rem, 4vw, 3.2rem)",
                   color: "#ffffff",
-                  fontWeight: 300,
+                  fontWeight: 500,
                   letterSpacing: "-0.03em",
                   lineHeight: 1.05,
                 }}
