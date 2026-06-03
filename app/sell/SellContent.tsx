@@ -221,14 +221,6 @@ export default function SellContent() {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
-                {/* Placeholder shown when no image is present */}
-                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Front Shot</p>
-                </div>
               </div>
               <div style={{ paddingTop: "14px" }}>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Exterior Photography</p>
@@ -247,12 +239,6 @@ export default function SellContent() {
                   playsInline
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
-                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Internal Shot</p>
-                </div>
               </div>
               <div style={{ paddingTop: "14px" }}>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Videography</p>
@@ -270,12 +256,6 @@ export default function SellContent() {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
-                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Drone Shot</p>
-                </div>
               </div>
               <div style={{ paddingTop: "14px" }}>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Drone Aerial Footage</p>
