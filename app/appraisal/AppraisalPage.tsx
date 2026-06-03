@@ -141,7 +141,7 @@ export default function AppraisalPage() {
 
               <textarea
                 rows={4}
-                placeholder="MESSAGE"
+                placeholder="ADD DETAILS ABOUT YOUR HOME"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="placeholder:text-black/40"
