@@ -2711,14 +2711,14 @@ export const team: TeamMember[] = [
     role: "Property Manager",
     phone: "0456 937 843",
     email: "sam@spinellire.com",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+    image: "/staff/Samantha Foy.JPG",
   },
   {
     name: "Jye Sanjurjo",
     role: "Sales Associate",
     phone: "0436 191 701",
     email: "jye@spinellire.com",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+    image: "/staff/Jye Sanjurjo.png",
   },
   {
     name: "Lilly Ashton",
@@ -2732,14 +2732,14 @@ export const team: TeamMember[] = [
     role: "Property Officer",
     phone: "0458 659 772",
     email: "tahlia@spinellire.com",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&q=80",
+    image: "/staff/Tahlia Spinelli.JPG",
   },
   {
     name: "Kellie Spinelli",
     role: "Accounts Manager",
     phone: "02 4296 0047",
     email: "info@spinellire.com",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80",
+    image: "/staff/Kellie Spinelli.JPG",
   },
   {
     name: "Vicki Taddeo",
