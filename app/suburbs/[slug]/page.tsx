@@ -31,7 +31,7 @@ export default async function SuburbPage({ params }: Props) {
   return (
     <>
       {/* ── Hero ── */}
-      <section style={{ backgroundColor: "#0D3348", paddingTop: "140px", paddingBottom: "80px" }}>
+      <section style={{ backgroundColor: "#5BC2E7", paddingTop: "140px", paddingBottom: "80px" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           {/* Back link */}
           <Link
@@ -47,7 +47,7 @@ export default async function SuburbPage({ params }: Props) {
 
           <span
             className="block mb-4"
-            style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5BC2E7" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}
           >
             {suburb.demandLevel} Demand · {suburb.lga}
           </span>
