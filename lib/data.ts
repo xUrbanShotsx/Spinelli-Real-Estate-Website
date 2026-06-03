@@ -2752,27 +2752,27 @@ export const team: TeamMember[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Sarah & Mark Thompson",
-    suburb: "Kiama",
-    text: "Paul and the team at Spinelli achieved $180,000 over our reserve at auction. Their marketing campaign was exceptional — professional photography, targeted social media and open homes that drew huge crowds. We couldn't be happier.",
-    service: "Residential Sale",
-  },
-  {
-    name: "David Chen",
-    suburb: "Wollongong",
-    text: "As an investor with a growing portfolio, I trust Spinelli to manage all my properties. Their attention to detail, prompt communication and rigorous tenant selection gives me complete peace of mind.",
+    name: "Mitch D",
+    suburb: "Landlord",
+    text: "Spinelli Real Estate demonstrated outstanding market knowledge from the very beginning. They provided an extensive and detailed report of comparable leases in the area, explained recent market trends clearly, and recommended a pricing strategy that was spot on — achieving a great result while still leasing the property quickly.",
     service: "Property Management",
   },
   {
-    name: "The Morello Family",
-    suburb: "Shellharbour",
-    text: "We purchased off-the-plan through Spinelli's project sales team and the experience was seamless from start to finish. Adam kept us informed at every stage and helped us secure a property we absolutely love.",
-    service: "Project Sales",
+    name: "Peter I",
+    suburb: "Landlord",
+    text: "Spinelli Real Estate have managed my rental property for almost 3 years and I can say they have been exemplary. Easy to get a hold of, quick to respond and very approachable staff. I cannot praise their level of service enough — would recommend them to anyone needing great property managing service.",
+    service: "Property Management",
   },
   {
-    name: "Rachel Davidson",
-    suburb: "Thirroul",
-    text: "Selling a commercial property can be complex, but the Spinelli team made it straightforward. Their knowledge of the Illawarra commercial market is second to none — they found us the right buyer quickly.",
-    service: "Commercial Sale",
+    name: "Nathan F",
+    suburb: "Seller",
+    text: "I had the absolute pleasure of working with Adam to sell my home, and I couldn't be more impressed with the entire experience. From our first conversation to the final closing, Adam was professional, knowledgeable, and always one step ahead.",
+    service: "Residential Sale",
+  },
+  {
+    name: "Alex H",
+    suburb: "Seller",
+    text: "Immense gratitude and thanks to Zoe for selling my property! Zoe was very professional and patient during the selling process. It was an emotional journey that she managed well and wholly embraced, never wavering in focusing on the end result.",
+    service: "Residential Sale",
   },
 ];
