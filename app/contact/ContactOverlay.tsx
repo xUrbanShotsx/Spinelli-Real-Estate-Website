@@ -38,6 +38,15 @@ export default function ContactOverlay() {
         transition: "opacity 0.25s ease",
       }}
     >
+      {/* Logo */}
+      <div style={{ position: "fixed", top: "20px", left: "28px", zIndex: 201 }}>
+        <img
+          src="/logo.png"
+          alt="Spinelli Real Estate"
+          style={{ height: "90px", width: "auto", maxWidth: "none", objectFit: "contain" }}
+        />
+      </div>
+
       {/* Close button */}
       <button
         onClick={() => router.back()}
