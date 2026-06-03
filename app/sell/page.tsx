@@ -15,7 +15,7 @@ const steps = [
 ];
 
 const pillars = [
-  { title: "20+ Years Local Knowledge", body: "Deep Illawarra expertise across every suburb, price point and property type." },
+  { title: "12+ Years Local Knowledge", body: "Deep Illawarra expertise across every suburb, price point and property type." },
   { title: "Premium Marketing", body: "Professional photography, drone footage, feature listings and targeted digital campaigns." },
   { title: "Proven Results", body: "Consistent above-reserve outcomes, short days-on-market and 94% list-to-sale ratio." },
   { title: "Full Transparency", body: "Honest advice, clear communication and no hidden fees — at every stage." },
@@ -75,7 +75,7 @@ export default function SellPage() {
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
             {[
-              { stat: "20+", label: "Years in the Illawarra" },
+              { stat: "12+", label: "Years in the Illawarra" },
               { stat: "94%", label: "List-to-sale ratio" },
               { stat: "28d",  label: "Average days on market" },
               { stat: "5★",  label: "Vendor satisfaction" },

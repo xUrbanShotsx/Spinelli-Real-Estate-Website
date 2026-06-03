@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Property Management | Spinelli Real Estate",
   description:
-    "Illawarra's leading property management team. 20+ years experience, 350+ properties managed, 97% tenancy rate. Let Spinelli Real Estate protect and grow your investment.",
+    "Illawarra's leading property management team. 12+ years experience, 350+ properties managed, 97% tenancy rate. Let Spinelli Real Estate protect and grow your investment.",
 };
 
 const residentialServices = [
@@ -29,7 +29,7 @@ const stats = [
   { v: "350+",   l: "Properties Managed" },
   { v: "97%",    l: "Tenancy Rate" },
   { v: "8 Days", l: "Average Days to Lease" },
-  { v: "20+",    l: "Years Illawarra Experience" },
+  { v: "12+",    l: "Years Illawarra Experience" },
 ];
 
 const whyUs = [
@@ -39,7 +39,7 @@ const whyUs = [
   },
   {
     title: "Local Market Expertise",
-    desc: "We've been managing Illawarra properties for over 20 years. We know the suburbs, the rental demand, the seasonal trends and what drives premium returns in this market.",
+    desc: "We've been managing Illawarra properties for over 12 years. We know the suburbs, the rental demand, the seasonal trends and what drives premium returns in this market.",
   },
   {
     title: "Proactive — Not Reactive",
@@ -83,7 +83,7 @@ export default function PropertyManagementPage() {
             </div>
             <div>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.85)", lineHeight: 1.85 }}>
-                For over 20 years, Spinelli Real Estate has been the Illawarra's most trusted property management team. We protect your investment, secure great tenants and maximise your returns — while you get on with your life.
+                For over 12 years, Spinelli Real Estate has been the Illawarra's most trusted property management team. We protect your investment, secure great tenants and maximise your returns — while you get on with your life.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link

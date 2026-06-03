@@ -19,7 +19,7 @@ const milestones = [
   { year: "2008", event: "Expanded into commercial property & business sales" },
   { year: "2013", event: "Launched dedicated property management division" },
   { year: "2018", event: "Entered project marketing for Illawarra developers" },
-  { year: "2024", event: "20 years — over 2,000 successful transactions" },
+  { year: "2024", event: "12 years — over 2,000 successful transactions" },
 ];
 
 export default function AboutPage() {
@@ -126,7 +126,7 @@ export default function AboutPage() {
                 style={{ backgroundColor: "rgba(13,51,72,0.92)" }}
               >
                 {[
-                  { v: "20+", l: "Years" },
+                  { v: "12+", l: "Years" },
                   { v: "2,000+", l: "Transactions" },
                   { v: "5★", l: "Satisfaction" },
                 ].map((s, i) => (

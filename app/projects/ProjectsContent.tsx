@@ -182,7 +182,7 @@ export default function ProjectsContent() {
                   { label: "Projects Delivered",     value: "50+" },
                   { label: "In Project Sales",        value: "$380M+" },
                   { label: "Average Sell-Out Time",   value: "6 Weeks" },
-                  { label: "Years Illawarra Focus",   value: "20+" },
+                  { label: "Years Illawarra Focus",   value: "12+" },
                 ].map((s, i) => (
                   <div key={s.label} className="flex items-center justify-between py-5" style={{ borderTop: "1px solid #E8E5DF" }}>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265" }}>{s.label}</p>
