@@ -3,25 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import PropertyCard from "@/components/PropertyCard";
 import type { Property } from "@/lib/types";
 
-const SUBURBS = ["All Suburbs", "Wollongong", "Kiama", "Thirroul", "Shellharbour", "Gerringong", "Austinmer", "Fairy Meadow", "Corrimal", "Figtree", "Bulli"];
-
-const PRICE_RANGES = [
-  { label: "Any Price",        min: 0,        max: Infinity },
-  { label: "Under $1M",        min: 0,        max: 1000000  },
-  { label: "$1M – $1.5M",      min: 1000000,  max: 1500000  },
-  { label: "$1.5M – $2M",      min: 1500000,  max: 2000000  },
-  { label: "$2M – $2.5M",      min: 2000000,  max: 2500000  },
-  { label: "$2.5M – $3M",      min: 2500000,  max: 3000000  },
-  { label: "$3M+",             min: 3000000,  max: Infinity },
-];
-
-const BED_OPTIONS = ["Any Beds", "1+", "2+", "3+", "4+", "5+"];
-
-function parsePrice(raw: string): number | null {
-  const cleaned = raw.replace(/[^0-9.]/g, "");
-  const n = parseFloat(cleaned);
-  return isNaN(n) ? null : n;
-}
+const TYPE_OPTIONS = ["All", "Residential", "Commercial", "Business"];
 
 function Dropdown({ label, value, options, onChange }: {
   label: string; value: string; options: string[]; onChange: (v: string) => void;
@@ -55,44 +37,20 @@ function Dropdown({ label, value, options, onChange }: {
       >
         {isActive ? value : label}
         <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-          style={{
-            width: "10px",
-            height: "10px",
-            flexShrink: 0,
-            transform: open ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.2s ease",
-          }}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          style={{ width: "10px", height: "10px", flexShrink: 0, transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       {open && (
-        <div
-          className="absolute top-full left-0 mt-1 z-50 min-w-full"
-          style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #DAD7CE",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-          }}
-        >
+        <div className="absolute top-full left-0 mt-1 z-50 min-w-full"
+          style={{ backgroundColor: "#ffffff", border: "1px solid #DAD7CE", boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}>
           {options.map((opt) => (
-            <button
-              key={opt}
-              onClick={() => { onChange(opt); setOpen(false); }}
+            <button key={opt} onClick={() => { onChange(opt); setOpen(false); }}
               className="block w-full text-left px-4 py-2.5 text-[12px] transition-colors hover:bg-[#FBF9F3]"
-              style={{
-                fontFamily: "var(--font-sans)",
-                color: opt === value ? "#000000" : "#7a7265",
-                fontWeight: opt === value ? 500 : 400,
-                letterSpacing: "0.02em",
-                borderBottom: "1px solid #F0EDE7",
-              }}
-            >
+              style={{ fontFamily: "var(--font-sans)", color: opt === value ? "#000000" : "#7a7265", fontWeight: opt === value ? 500 : 400, letterSpacing: "0.02em", borderBottom: "1px solid #F0EDE7" }}>
               {opt}
             </button>
           ))}
@@ -103,68 +61,39 @@ function Dropdown({ label, value, options, onChange }: {
 }
 
 export default function SoldListings({ properties }: { properties: Property[] }) {
-  const [suburb, setSuburb] = useState("All Suburbs");
-  const [priceLabel, setPriceLabel] = useState("Any Price");
-  const [beds, setBeds] = useState("Any Beds");
+  const [type, setType] = useState("All");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  const priceRange = PRICE_RANGES.find((r) => r.label === priceLabel) ?? PRICE_RANGES[0];
-  const minBeds = beds === "Any Beds" ? 0 : parseInt(beds);
-
   const filtered = properties.filter((p) => {
-    if (suburb !== "All Suburbs" && p.suburb !== suburb) return false;
-    if (minBeds > 0 && (p.beds === undefined || p.beds < minBeds)) return false;
-    const num = parsePrice(p.price);
-    if (num !== null) {
-      if (num < priceRange.min || num > priceRange.max) return false;
-    }
+    if (type === "Residential" && !p.type.startsWith("residential")) return false;
+    if (type === "Commercial" && !p.type.startsWith("commercial")) return false;
+    if (type === "Business" && p.type !== "business") return false;
     return true;
   });
 
-  const hasFilters = suburb !== "All Suburbs" || priceLabel !== "Any Price" || beds !== "Any Beds";
-
-  const clearAll = () => {
-    setSuburb("All Suburbs");
-    setPriceLabel("Any Price");
-    setBeds("Any Beds");
-  };
+  const hasFilters = type !== "All";
+  const clearAll = () => setType("All");
 
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
 
       {/* Header + filters */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div
-          className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8"
-          style={{ borderBottom: "1px solid #E8E5DF" }}
-        >
+        <div className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8" style={{ borderBottom: "1px solid #E8E5DF" }}>
           <div>
             <span className="label-tag">Recent Results</span>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                color: "#000000",
-                fontWeight: 300,
-                letterSpacing: "-0.03em",
-                lineHeight: 1.1,
-              }}
-            >
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
               Sold Properties
             </h2>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <Dropdown label="Suburb"      value={suburb}     options={SUBURBS}                          onChange={setSuburb}     />
-            <Dropdown label="Price Range" value={priceLabel} options={PRICE_RANGES.map((r) => r.label)} onChange={setPriceLabel} />
-            <Dropdown label="Bedrooms"    value={beds}       options={BED_OPTIONS}                      onChange={setBeds}       />
+            <Dropdown label="Type" value={type} options={TYPE_OPTIONS} onChange={setType} />
 
             {hasFilters && (
-              <button
-                onClick={clearAll}
+              <button onClick={clearAll}
                 className="flex items-center gap-1.5 px-3 py-2 text-[11px] tracking-wide transition-opacity hover:opacity-60"
-                style={{ fontFamily: "var(--font-sans)", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase" }}
-              >
+                style={{ fontFamily: "var(--font-sans)", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "10px", height: "10px" }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -175,23 +104,12 @@ export default function SoldListings({ properties }: { properties: Property[] })
         </div>
       </div>
 
-      {/* Full-width grid */}
+      {/* Grid */}
       {filtered.length > 0 ? (
-        <div
-          className="property-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-5 sm:px-8"
-          style={{ gap: "40px" }}
-        >
+        <div className="property-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-5 sm:px-8" style={{ gap: "40px" }}>
           {filtered.map((p) => (
-            <div
-              key={p.id}
-              onMouseEnter={() => setHoveredId(p.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              <PropertyCard
-                property={p}
-                compact
-                blurred={!!hoveredId && hoveredId !== p.id}
-              />
+            <div key={p.id} onMouseEnter={() => setHoveredId(p.id)} onMouseLeave={() => setHoveredId(null)}>
+              <PropertyCard property={p} compact blurred={!!hoveredId && hoveredId !== p.id} />
             </div>
           ))}
         </div>
