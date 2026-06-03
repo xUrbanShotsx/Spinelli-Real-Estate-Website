@@ -60,18 +60,33 @@ function Dropdown({ label, value, options, onChange }: {
 function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="block group">
-      {/* Image */}
-      <div className="overflow-hidden" style={{ position: "relative", aspectRatio: "3/2" }}>
-        <img
-          src={suburb.image}
-          alt={suburb.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+      {/* Blue frame with suburb name */}
+      <div
+        style={{
+          position: "relative",
+          aspectRatio: "3/2",
+          backgroundColor: "#5BC2E7",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: blurred ? 0.5 : 1,
+          transition: "opacity 0.3s ease",
+        }}
+      >
+        <p
           style={{
-            filter: blurred ? "blur(4px)" : "none",
-            opacity: blurred ? 0.5 : 1,
-            transition: "filter 0.3s ease, opacity 0.3s ease",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+            color: "#ffffff",
+            fontWeight: 300,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
+            textAlign: "center",
+            padding: "0 20px",
           }}
-        />
+        >
+          {suburb.name}
+        </p>
         {/* Demand badge */}
         <div className="absolute top-3 left-3">
           <span
@@ -81,7 +96,7 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
               fontWeight: 500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              backgroundColor: "#5BC2E7",
+              backgroundColor: "rgba(255,255,255,0.25)",
               color: "#ffffff",
               padding: "3px 8px",
             }}
