@@ -42,7 +42,7 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
       }}
     >
       {/* Logo */}
-      <div style={{ position: "fixed", top: "10px", left: "28px", zIndex: 201, display: "flex", alignItems: "center" }}>
+      <div className="fixed left-6 sm:left-12 lg:left-20" style={{ top: "10px", zIndex: 201, display: "flex", alignItems: "center" }}>
         <img
           src="/logo.png"
           alt="Spinelli Real Estate"

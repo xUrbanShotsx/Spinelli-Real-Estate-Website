@@ -53,7 +53,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
       }}
     >
       {/* Logo */}
-      <div style={{ position: "fixed", top: "10px", left: "28px", zIndex: 201 }}>
+      <div className="fixed left-6 sm:left-12 lg:left-20" style={{ top: "10px", zIndex: 201 }}>
         <img
           src="/logo.png"
           alt="Spinelli Real Estate"
