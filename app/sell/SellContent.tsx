@@ -197,6 +197,94 @@ export default function SellContent() {
         </div>
       </section>
 
+      {/* ── Marketing showcase ── */}
+      <section style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF", padding: "96px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="mb-14">
+            <span className="label-tag">Our Marketing</span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+              Presented to<br />Impress Buyers
+            </h2>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.85, maxWidth: "56ch", marginTop: "20px" }}>
+              First impressions are everything. We invest in professional photography, interior styling shots and drone aerial footage to make your property stand out — online and at inspection.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Frame 1 — Front shot */}
+            <div>
+              <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
+                {/* Replace src below with your front exterior photo */}
+                <img
+                  src="/marketing-front.jpg"
+                  alt="Property front shot"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+                {/* Placeholder shown when no image is present */}
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Front Shot</p>
+                </div>
+              </div>
+              <div style={{ paddingTop: "14px" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Exterior Photography</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Professional front-of-property shots that create an immediate, lasting first impression online and in print.</p>
+              </div>
+            </div>
+
+            {/* Frame 2 — Internal */}
+            <div>
+              <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
+                {/* Replace src below with your interior photo */}
+                <img
+                  src="/marketing-interior.jpg"
+                  alt="Property interior"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Internal Shot</p>
+                </div>
+              </div>
+              <div style={{ paddingTop: "14px" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Interior Photography</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Wide-angle, naturally lit interior shots that showcase space, flow and lifestyle — making buyers picture themselves at home.</p>
+              </div>
+            </div>
+
+            {/* Frame 3 — Drone */}
+            <div>
+              <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
+                {/* Replace src below with your drone photo */}
+                <img
+                  src="/marketing-drone.jpg"
+                  alt="Drone aerial shot"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                  <svg fill="none" viewBox="0 0 24 24" stroke="#C8C3BA" strokeWidth={1} style={{ width: 40, height: 40 }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#C8C3BA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Drone Shot</p>
+                </div>
+              </div>
+              <div style={{ paddingTop: "14px" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Drone Aerial Footage</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Aerial perspectives reveal land size, surroundings and proximity to beaches, parks and lifestyle amenities no ground shot can capture.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Testimonial ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "96px 0", borderTop: "1px solid #E8E5DF" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
