@@ -129,7 +129,7 @@ export default function Navbar() {
             </a>
             <Link
               href="/contact?type=appraisal"
-              className="text-[12px] font-medium px-4 py-2 transition-all hover:opacity-85"
+              className="hidden sm:inline-block text-[12px] font-medium px-4 py-2 transition-all hover:opacity-85"
               style={{
                 backgroundColor: solid ? "#5BC2E7" : "rgba(255,255,255,0.12)",
                 color: "#ffffff",
