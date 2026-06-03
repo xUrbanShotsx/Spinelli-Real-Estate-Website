@@ -13,19 +13,16 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
   const router = useRouter();
   const [visible, setVisible] = useState(false);
 
-  // Fade in on mount
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 10);
     return () => clearTimeout(t);
   }, []);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, []);
 
-  // Close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") router.back(); };
     window.addEventListener("keydown", handler);
@@ -38,7 +35,7 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        backgroundColor: "#0D3348",
+        backgroundColor: "#ffffff",
         overflowY: "auto",
         opacity: visible ? 1 : 0,
         transition: "opacity 0.25s ease",
@@ -49,7 +46,13 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
         <img
           src="/logo.png"
           alt="Spinelli Real Estate"
-          style={{ height: "85px", width: "auto", maxWidth: "none", objectFit: "contain" }}
+          style={{
+            height: "85px",
+            width: "auto",
+            maxWidth: "none",
+            objectFit: "contain",
+            filter: "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)",
+          }}
         />
       </div>
 
@@ -66,7 +69,7 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
           fontSize: "11px",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: "#ffffff",
+          color: "#000000",
           background: "none",
           border: "none",
           cursor: "pointer",
@@ -80,7 +83,7 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
         </svg>
       </button>
 
-      {/* Content — centred vertically */}
+      {/* Content */}
       <div
         className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20"
         style={{
@@ -92,65 +95,65 @@ export default function ContactOverlay({ propertyAddress, propertyPrice, propert
         }}
       >
         <div className="w-full max-w-xl mx-auto">
-            <div className="mb-6">
-              <span style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "10px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
+          <div className="mb-6">
+            <span style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "10px",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "#5BC2E7",
+              display: "block",
+              marginBottom: "10px",
+            }}>Get in Touch</span>
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2rem, 4vw, 3.2rem)",
                 color: "#5BC2E7",
-                display: "block",
-                marginBottom: "10px",
-              }}>Get in Touch</span>
-              <h1
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                  color: "#ffffff",
-                  fontWeight: 300,
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.05,
-                }}
-              >
-                Let&apos;s Start the Conversation
-              </h1>
-            </div>
+                fontWeight: 300,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+              }}
+            >
+              Let&apos;s Start the Conversation
+            </h1>
+          </div>
 
-            {/* Property card — shown when coming from a listing */}
-            {propertyAddress && (
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "14px",
-                backgroundColor: "rgba(255,255,255,0.07)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                padding: "12px 14px",
-                marginBottom: "36px",
-              }}>
-                {propertyImage && (
-                  <img
-                    src={propertyImage}
-                    alt=""
-                    style={{ width: "64px", height: "48px", objectFit: "cover", flexShrink: 0 }}
-                  />
+          {/* Property card — shown when coming from a listing */}
+          {propertyAddress && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "14px",
+              backgroundColor: "#F8FAFC",
+              border: "1px solid #E8E5DF",
+              padding: "12px 14px",
+              marginBottom: "36px",
+            }}>
+              {propertyImage && (
+                <img
+                  src={propertyImage}
+                  alt=""
+                  style={{ width: "64px", height: "48px", objectFit: "cover", flexShrink: 0 }}
+                />
+              )}
+              <div style={{ minWidth: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>
+                  Enquiring About
+                </p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {propertyAddress}
+                </p>
+                {propertyPrice && (
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", marginTop: "2px" }}>
+                    {propertyPrice}
+                  </p>
                 )}
-                <div style={{ minWidth: 0 }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>
-                    Enquiring About
-                  </p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {propertyAddress}
-                  </p>
-                  {propertyPrice && (
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.5)", marginTop: "2px" }}>
-                      {propertyPrice}
-                    </p>
-                  )}
-                </div>
               </div>
-            )}
+            </div>
+          )}
 
-            <ContactForm propertyAddress={propertyAddress} />
+          <ContactForm propertyAddress={propertyAddress} />
         </div>
       </div>
     </div>

@@ -5,20 +5,20 @@ const enquiryTypes = ["Buying", "Selling", "Rentals", "Property Management", "Ot
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  borderBottom: "1px solid #ffffff",
+  borderBottom: "1px solid #000000",
   padding: "5px 0",
   fontFamily: "var(--font-sans)",
   fontSize: "12px",
   letterSpacing: "0.12em",
   fontWeight: 600,
-  color: "#ffffff",
+  color: "#000000",
   backgroundColor: "transparent",
   outline: "none",
 };
 
 export default function ContactForm({ propertyAddress }: { propertyAddress?: string }) {
   const [submitted, setSubmitted] = useState(false);
-  const [activeType, setActiveType] = useState(propertyAddress ? "Buying" : "Buying");
+  const [activeType, setActiveType] = useState("Buying");
   const defaultMessage = propertyAddress ? `I am enquiring about '${propertyAddress}'` : "";
   const [message, setMessage] = useState(defaultMessage);
 
@@ -26,10 +26,10 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
     return (
       <div className="py-10">
         <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
           Message Received
         </h2>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
           Thank you for reaching out. One of our team will be in touch within one business day.
         </p>
       </div>
@@ -39,18 +39,18 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
   return (
     <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
       <div className="grid grid-cols-2 gap-4">
-        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-white" />
-        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-white" />
+        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-black/40" />
+        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-black/40" />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white" />
-        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white" />
+        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-black/40" />
+        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-black/40" />
       </div>
 
       {/* Enquiry Type */}
       <div>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", fontWeight: 600, color: "#ffffff", textTransform: "uppercase", marginBottom: "8px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.12em", fontWeight: 600, color: "#000000", textTransform: "uppercase", marginBottom: "8px" }}>
           Enquiry Type
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -65,9 +65,9 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
                 letterSpacing: "0.08em",
                 fontWeight: 600,
                 padding: "5px 12px",
-                border: activeType === t ? "1px solid #ffffff" : "1px solid #ffffff",
-                backgroundColor: activeType === t ? "#ffffff" : "transparent",
-                color: activeType === t ? "#0D3348" : "#ffffff",
+                border: "1px solid #000000",
+                backgroundColor: activeType === t ? "#000000" : "transparent",
+                color: activeType === t ? "#ffffff" : "#000000",
                 transition: "all 0.15s ease",
                 cursor: "pointer",
               }}
@@ -83,12 +83,12 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
         placeholder="MESSAGE"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="placeholder:text-white"
+        className="placeholder:text-black/40"
         style={{
           ...inputStyle,
           resize: "none",
           borderBottom: "none",
-          border: "1px solid #ffffff",
+          border: "1px solid #000000",
           padding: "10px 12px",
         }}
       />
@@ -97,7 +97,7 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
         <button
           type="submit"
           className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
-          style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
+          style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
         >
           SUBMIT
         </button>

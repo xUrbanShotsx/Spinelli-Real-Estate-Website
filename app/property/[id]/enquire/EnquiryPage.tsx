@@ -5,13 +5,13 @@ import type { Property } from "@/lib/types";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  borderBottom: "1px solid rgba(255,255,255,0.4)",
+  borderBottom: "1px solid #000000",
   padding: "5px 0",
   fontFamily: "var(--font-sans)",
   fontSize: "12px",
   letterSpacing: "0.12em",
   fontWeight: 600,
-  color: "#ffffff",
+  color: "#000000",
   backgroundColor: "transparent",
   outline: "none",
 };
@@ -46,7 +46,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        backgroundColor: "#5BC2E7",
+        backgroundColor: "#ffffff",
         overflowY: "auto",
         opacity: visible ? 1 : 0,
         transition: "opacity 0.25s ease",
@@ -54,7 +54,16 @@ export default function EnquiryPage({ property }: { property: Property }) {
     >
       {/* Logo */}
       <div style={{ position: "fixed", top: "10px", left: "28px", zIndex: 201 }}>
-        <img src="/logo.png" alt="Spinelli Real Estate" style={{ height: "85px", width: "auto", objectFit: "contain" }} />
+        <img
+          src="/logo.png"
+          alt="Spinelli Real Estate"
+          style={{
+            height: "85px",
+            width: "auto",
+            objectFit: "contain",
+            filter: "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)",
+          }}
+        />
       </div>
 
       {/* Close */}
@@ -64,7 +73,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
         style={{
           position: "fixed", top: "24px", right: "28px", zIndex: 201,
           fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em",
-          textTransform: "uppercase", color: "#ffffff", background: "none",
+          textTransform: "uppercase", color: "#000000", background: "none",
           border: "none", cursor: "pointer", padding: "8px",
         }}
         aria-label="Close"
@@ -105,43 +114,43 @@ export default function EnquiryPage({ property }: { property: Property }) {
             </div>
 
             {/* Address */}
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: "6px" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: "6px" }}>
               {property.address}
             </h2>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.5)", marginBottom: "20px" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", marginBottom: "20px" }}>
               {property.suburb}
             </p>
 
             {/* Price */}
-            <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "24px" }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "24px" }}>
               {property.price}
             </p>
 
             {/* Stats row */}
             {(property.beds !== undefined || property.baths !== undefined || property.cars !== undefined || property.landSize) && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0", borderTop: "1px solid rgba(255,255,255,0.1)", borderLeft: "1px solid rgba(255,255,255,0.1)" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0", borderTop: "1px solid #E8E5DF", borderLeft: "1px solid #E8E5DF" }}>
                 {property.beds !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid rgba(255,255,255,0.1)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.beds}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bed</p>
+                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.beds}</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bed</p>
                   </div>
                 )}
                 {property.baths !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid rgba(255,255,255,0.1)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.baths}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bath</p>
+                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.baths}</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Bath</p>
                   </div>
                 )}
                 {property.cars !== undefined && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid rgba(255,255,255,0.1)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.cars}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Car</p>
+                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.cars}</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Car</p>
                   </div>
                 )}
                 {property.landSize && (
-                  <div style={{ padding: "14px 20px", borderRight: "1px solid rgba(255,255,255,0.1)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.landSize}</p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Land</p>
+                  <div style={{ padding: "14px 20px", borderRight: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>{property.landSize}</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "4px" }}>Land</p>
                   </div>
                 )}
               </div>
@@ -153,30 +162,30 @@ export default function EnquiryPage({ property }: { property: Property }) {
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "10px" }}>
               Get in Touch
             </span>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: "36px" }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: "36px" }}>
               Let&apos;s Start the<br />Conversation
             </h1>
 
             {submitted ? (
               <div className="py-10">
                 <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
-                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
                   Message Received
                 </h2>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.6)", lineHeight: 1.75 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
                   Thank you for reaching out. One of our team will be in touch within one business day.
                 </p>
               </div>
             ) : (
               <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
                 <div className="grid grid-cols-2 gap-4">
-                  <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-white/50" />
-                  <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-white/50" />
+                  <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-black/40" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-white/50" />
-                  <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-white/50" />
+                  <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-black/40" />
                 </div>
 
                 <textarea
@@ -184,12 +193,12 @@ export default function EnquiryPage({ property }: { property: Property }) {
                   placeholder="MESSAGE"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="placeholder:text-white/50"
+                  className="placeholder:text-black/40"
                   style={{
                     ...inputStyle,
                     resize: "none",
                     borderBottom: "none",
-                    border: "1px solid rgba(255,255,255,0.4)",
+                    border: "1px solid #000000",
                     padding: "10px 12px",
                   }}
                 />
@@ -197,7 +206,7 @@ export default function EnquiryPage({ property }: { property: Property }) {
                 <button
                   type="submit"
                   className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#0D3348", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
+                  style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
                 >
                   SUBMIT
                 </button>
