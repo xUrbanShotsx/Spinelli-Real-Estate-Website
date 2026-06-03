@@ -95,7 +95,7 @@ export default function ContactForm() {
           className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
           style={{ backgroundColor: "#ffffff", color: "#0D3348", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
         >
-          Send Enquiry
+          SUBMIT
         </button>
       </div>
     </form>
