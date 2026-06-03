@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Property, PropertyAmenity } from "@/lib/types";
 
@@ -55,6 +56,32 @@ export default function PropertyDetailClient({ property }: { property: Property 
   const heroPhoto = photos[0];
   const galleryPhotos = photos.slice(1);
   const paragraphs = (property.longDescription ?? property.description).split("\n\n");
+
+  // Lightbox state — index is relative to galleryPhotos array
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const prev = useCallback(() =>
+    setLightboxIndex((i) => (i === null ? null : (i === 0 ? galleryPhotos.length - 1 : i - 1))),
+    [galleryPhotos.length]);
+  const next = useCallback(() =>
+    setLightboxIndex((i) => (i === null ? null : (i === galleryPhotos.length - 1 ? 0 : i + 1))),
+    [galleryPhotos.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxIndex, closeLightbox, prev, next]);
 
   return (
     <>
@@ -179,13 +206,19 @@ export default function PropertyDetailClient({ property }: { property: Property 
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {galleryPhotos.map((photo, i) => (
-                <div key={i} className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                <button
+                  key={i}
+                  onClick={() => setLightboxIndex(i)}
+                  className="overflow-hidden group block w-full"
+                  style={{ aspectRatio: "4/3", cursor: "zoom-in", padding: 0, border: "none", background: "none" }}
+                  aria-label={`View photo ${i + 2}`}
+                >
                   <img
                     src={photo}
                     alt={`${property.address} — photo ${i + 2}`}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -313,6 +346,95 @@ export default function PropertyDetailClient({ property }: { property: Property 
           </div>
         </div>
       </section>
+
+      {/* ── Lightbox ── */}
+      {lightboxIndex !== null && (
+        <div
+          onClick={closeLightbox}
+          style={{
+            position: "fixed", inset: 0, zIndex: 300,
+            backgroundColor: "rgba(0,0,0,0.92)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >
+          {/* Image */}
+          <img
+            src={galleryPhotos[lightboxIndex]}
+            alt={`${property.address} — photo ${lightboxIndex + 2}`}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: "90vw",
+              maxHeight: "85vh",
+              objectFit: "contain",
+              userSelect: "none",
+            }}
+          />
+
+          {/* Close */}
+          <button
+            onClick={closeLightbox}
+            className="flex items-center gap-2 transition-opacity hover:opacity-50"
+            style={{
+              position: "fixed", top: "24px", right: "28px",
+              fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em",
+              textTransform: "uppercase", color: "#ffffff",
+              background: "none", border: "none", cursor: "pointer", padding: "8px",
+            }}
+          >
+            <span>Close</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Counter */}
+          <span style={{
+            position: "fixed", top: "32px", left: "50%", transform: "translateX(-50%)",
+            fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(255,255,255,0.5)",
+            letterSpacing: "0.1em",
+          }}>
+            {lightboxIndex + 2} / {photos.length}
+          </span>
+
+          {/* Prev */}
+          {galleryPhotos.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="flex items-center justify-center transition-opacity hover:opacity-70"
+              style={{
+                position: "fixed", left: "16px", top: "50%", transform: "translateY(-50%)",
+                width: "48px", height: "48px",
+                backgroundColor: "rgba(255,255,255,0.1)", color: "#ffffff",
+                border: "none", cursor: "pointer",
+              }}
+              aria-label="Previous photo"
+            >
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "22px", height: "22px" }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Next */}
+          {galleryPhotos.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="flex items-center justify-center transition-opacity hover:opacity-70"
+              style={{
+                position: "fixed", right: "16px", top: "50%", transform: "translateY(-50%)",
+                width: "48px", height: "48px",
+                backgroundColor: "rgba(255,255,255,0.1)", color: "#ffffff",
+                border: "none", cursor: "pointer",
+              }}
+              aria-label="Next photo"
+            >
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "22px", height: "22px" }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
 
       {/* ── Back to listings ── */}
       <section className="py-12" style={{ backgroundColor: "#FBF9F3", borderTop: "1px solid #E8E5DF" }}>
