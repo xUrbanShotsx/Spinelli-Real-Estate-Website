@@ -242,7 +242,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
       {/* ── Property details + enquiry ── */}
       <section style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-16">
-          <div className="grid lg:grid-cols-[1fr_260px] gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-[1fr_200px] gap-12 lg:gap-16">
 
             {/* Left — description / features / amenities */}
             <div>
@@ -296,65 +296,16 @@ export default function PropertyDetailClient({ property }: { property: Property 
               )}
             </div>
 
-            {/* Right — sticky enquiry card */}
+            {/* Right — sticky enquiry button */}
             <div>
-              <div className="sticky top-24" style={{ border: "1px solid #E8E5DF", backgroundColor: "#FBF9F3" }}>
-                {property.openHome && (
-                  <div className="px-4 py-2.5 flex items-center gap-2" style={{ backgroundColor: "#5BC2E7" }}>
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "13px", height: "13px", color: "#ffffff", flexShrink: 0 }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#ffffff", fontWeight: 500 }}>{property.openHome}</p>
-                  </div>
-                )}
-
-                <div className="p-4">
-                  {property.agent && (
-                    <div className="flex items-center gap-2.5 mb-4 pb-4" style={{ borderBottom: "1px solid #E8E5DF" }}>
-                      <div className="flex items-center justify-center flex-shrink-0" style={{ width: "32px", height: "32px", backgroundColor: "#0D3348", color: "#5BC2E7" }}>
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.3} style={{ width: "16px", height: "16px" }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#000000", fontWeight: 500 }}>{property.agent}</p>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Spinelli Real Estate</p>
-                      </div>
-                    </div>
-                  )}
-
-                  <p className="mb-3" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#a2b0aa" }}>
-                    Enquire
-                  </p>
-
-                  <div className="space-y-2 mb-3">
-                    <input type="text" placeholder="Name" className="w-full px-3 py-2 text-[12px] outline-none" style={{ border: "1px solid #DAD7CE", fontFamily: "var(--font-sans)", backgroundColor: "#ffffff", color: "#58503c" }} />
-                    <input type="email" placeholder="Email" className="w-full px-3 py-2 text-[12px] outline-none" style={{ border: "1px solid #DAD7CE", fontFamily: "var(--font-sans)", backgroundColor: "#ffffff", color: "#58503c" }} />
-                    <input type="tel" placeholder="Phone" className="w-full px-3 py-2 text-[12px] outline-none" style={{ border: "1px solid #DAD7CE", fontFamily: "var(--font-sans)", backgroundColor: "#ffffff", color: "#58503c" }} />
-                    <textarea rows={2} placeholder="Message..." className="w-full px-3 py-2 text-[12px] outline-none resize-none" style={{ border: "1px solid #DAD7CE", fontFamily: "var(--font-sans)", backgroundColor: "#ffffff", color: "#58503c" }} />
-                  </div>
-
-                  <Link
-                    href={`/contact?property=${property.id}&type=property-enquiry`}
-                    className="block w-full text-center py-2.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85 mb-2"
-                    style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
-                  >
-                    Send Enquiry
-                  </Link>
-
-                  {property.agentPhone && (
-                    <a
-                      href={`tel:${property.agentPhone.replace(/\s/g, "")}`}
-                      className="flex items-center justify-center gap-1.5 w-full py-2.5 text-[12px] font-medium transition-opacity hover:opacity-70"
-                      style={{ border: "1px solid #DAD7CE", color: "#58503c", fontFamily: "var(--font-sans)" }}
-                    >
-                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "13px", height: "13px" }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      {property.agentPhone}
-                    </a>
-                  )}
-                </div>
+              <div className="sticky top-24">
+                <Link
+                  href="/contact"
+                  className="block w-full text-center py-3 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: "#0D3348", color: "#ffffff", fontFamily: "var(--font-sans)" }}
+                >
+                  Send Enquiry
+                </Link>
               </div>
             </div>
           </div>
