@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import type { Property, PropertyAmenity } from "@/lib/types";
 
@@ -53,7 +52,8 @@ const amenityIcon = (category: PropertyAmenity["category"]) => {
 
 export default function PropertyDetailClient({ property }: { property: Property }) {
   const photos = property.photos ?? [property.image];
-  const [activePhoto, setActivePhoto] = useState(0);
+  const heroPhoto = photos[0];
+  const galleryPhotos = photos.slice(1);
   const paragraphs = (property.longDescription ?? property.description).split("\n\n");
 
   return (
@@ -61,9 +61,9 @@ export default function PropertyDetailClient({ property }: { property: Property 
       {/* ── Hero image — full screen, edge to top ── */}
       <section className="relative" style={{ height: "100svh", minHeight: "560px" }}>
         <img
-          src={photos[activePhoto]}
+          src={heroPhoto}
           alt={property.title}
-          className="absolute inset-0 object-cover transition-opacity duration-500"
+          className="absolute inset-0 object-cover"
           style={{ width: "100%", height: "100%" }}
         />
         {/* Gradient overlay */}
@@ -72,7 +72,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
           style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.0) 100%)" }}
         />
 
-        {/* Breadcrumb — sits just below the fixed navbar */}
+        {/* Breadcrumb */}
         <div className="absolute left-0 right-0 z-10" style={{ top: "68px" }}>
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-4 flex items-center gap-2" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>
             <Link href="/buy" className="hover:text-white transition-colors">For Sale</Link>
@@ -164,38 +164,6 @@ export default function PropertyDetailClient({ property }: { property: Property 
           </div>
         </div>
 
-        {/* Prev / Next arrows */}
-        {photos.length > 1 && (
-          <>
-            <button
-              onClick={() => setActivePhoto((p) => (p === 0 ? photos.length - 1 : p - 1))}
-              className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
-              style={{ width: "48px", height: "48px", backgroundColor: "rgba(0,0,0,0.35)", color: "#ffffff", backdropFilter: "blur(4px)" }}
-              aria-label="Previous photo"
-            >
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "22px", height: "22px" }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setActivePhoto((p) => (p === photos.length - 1 ? 0 : p + 1))}
-              className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
-              style={{ width: "48px", height: "48px", backgroundColor: "rgba(0,0,0,0.35)", color: "#ffffff", backdropFilter: "blur(4px)" }}
-              aria-label="Next photo"
-            >
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "22px", height: "22px" }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            {/* Photo counter */}
-            <div className="absolute bottom-20 right-6" style={{ pointerEvents: "none" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.08em" }}>
-                {activePhoto + 1} / {photos.length}
-              </span>
-            </div>
-          </>
-        )}
-
         {/* Scroll hint */}
         <div className="absolute bottom-6 right-6 sm:right-12 lg:right-20 flex flex-col items-center gap-1.5 animate-bounce" style={{ color: "rgba(255,255,255,0.45)" }}>
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Scroll</span>
@@ -204,6 +172,23 @@ export default function PropertyDetailClient({ property }: { property: Property 
           </svg>
         </div>
       </section>
+
+      {/* ── Photo gallery ── */}
+      {galleryPhotos.length > 0 && (
+        <section style={{ backgroundColor: "#000000" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "2px" }}>
+            {galleryPhotos.map((photo, i) => (
+              <div key={i} style={{ aspectRatio: "4/3", overflow: "hidden" }}>
+                <img
+                  src={photo}
+                  alt={`${property.address} — photo ${i + 2}`}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── Property details + enquiry ── */}
       <section style={{ backgroundColor: "#ffffff" }}>
