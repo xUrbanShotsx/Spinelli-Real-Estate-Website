@@ -34,7 +34,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-6">
+    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
       <div className="grid grid-cols-2 gap-4">
         <input type="text" placeholder="FIRST NAME" required style={inputStyle} />
         <input type="text" placeholder="LAST NAME" required style={inputStyle} />
