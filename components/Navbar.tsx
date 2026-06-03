@@ -199,7 +199,7 @@ export default function Navbar() {
                 {/* Sub-items */}
                 <div
                   className="overflow-hidden transition-all duration-200"
-                  style={{ maxHeight: expanded === item.label ? "300px" : "0" }}
+                  style={{ maxHeight: expanded === item.label ? "500px" : "0" }}
                 >
                   <div className="pb-3 pl-3 space-y-0">
                     {item.dropdown.map((child) => (
