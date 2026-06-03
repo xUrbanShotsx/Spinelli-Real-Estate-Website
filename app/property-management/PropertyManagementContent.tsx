@@ -352,7 +352,7 @@ export default function PropertyManagementContent() {
                 Get Started Today
               </span>
               <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.0 }}>
-                Ready to Hand<br />It Over?
+                Ready for the<br />Next Steps?
               </h2>
             </div>
             <div>
