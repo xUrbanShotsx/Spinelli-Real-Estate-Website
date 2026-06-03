@@ -175,17 +175,19 @@ export default function PropertyDetailClient({ property }: { property: Property 
 
       {/* ── Photo gallery ── */}
       {galleryPhotos.length > 0 && (
-        <section style={{ backgroundColor: "#000000" }}>
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "2px" }}>
-            {galleryPhotos.map((photo, i) => (
-              <div key={i} style={{ aspectRatio: "4/3", overflow: "hidden" }}>
-                <img
-                  src={photo}
-                  alt={`${property.address} — photo ${i + 2}`}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-            ))}
+        <section style={{ backgroundColor: "#ffffff", paddingTop: "40px", paddingBottom: "40px" }}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {galleryPhotos.map((photo, i) => (
+                <div key={i} className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                  <img
+                    src={photo}
+                    alt={`${property.address} — photo ${i + 2}`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
