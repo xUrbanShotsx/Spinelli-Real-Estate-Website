@@ -298,7 +298,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
               {/* Send Enquiry button */}
               <div className="pt-10">
                 <Link
-                  href={`/contact?property=${encodeURIComponent(`${property.address}, ${property.suburb}`)}&price=${encodeURIComponent(property.price)}&image=${encodeURIComponent(property.image)}`}
+                  href={`/property/${property.id}/enquire`}
                   className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
                   style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
                 >
