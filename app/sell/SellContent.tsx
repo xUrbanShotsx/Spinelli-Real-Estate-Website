@@ -254,8 +254,8 @@ export default function SellContent() {
                 </div>
               </div>
               <div style={{ paddingTop: "14px" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Interior Photography</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Wide-angle, naturally lit interior shots that showcase space, flow and lifestyle — making buyers picture themselves at home.</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 700, color: "#000000", letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "4px" }}>Videography</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", lineHeight: 1.7 }}>Cinematic walk-through video that showcases space, flow and lifestyle — giving buyers a compelling feel for the property before they even step inside.</p>
               </div>
             </div>
 
