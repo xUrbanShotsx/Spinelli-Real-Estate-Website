@@ -216,7 +216,7 @@ export default function SellContent() {
               <div style={{ position: "relative", aspectRatio: "4/3", backgroundColor: "#F0EDE8", overflow: "hidden" }}>
                 {/* Replace src below with your front exterior photo */}
                 <img
-                  src="/marketing-front.jpg"
+                  src="/Front shot.jpg"
                   alt="Property front shot"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
