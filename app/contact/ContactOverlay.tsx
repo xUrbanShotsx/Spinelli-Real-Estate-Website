@@ -39,11 +39,11 @@ export default function ContactOverlay() {
       }}
     >
       {/* Logo */}
-      <div style={{ position: "fixed", top: "20px", left: "28px", zIndex: 201 }}>
+      <div style={{ position: "fixed", top: "24px", left: "28px", zIndex: 201, display: "flex", alignItems: "center" }}>
         <img
           src="/logo.png"
           alt="Spinelli Real Estate"
-          style={{ height: "90px", width: "auto", maxWidth: "none", objectFit: "contain" }}
+          style={{ height: "60px", width: "auto", maxWidth: "none", objectFit: "contain" }}
         />
       </div>
 
