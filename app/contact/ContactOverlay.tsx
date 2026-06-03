@@ -1,14 +1,16 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ContactForm from "@/components/ContactForm";
 
-export default function ContactOverlay() {
+interface Props {
+  propertyAddress?: string;
+  propertyPrice?: string;
+  propertyImage?: string;
+}
+
+export default function ContactOverlay({ propertyAddress, propertyPrice, propertyImage }: Props) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const propertyAddress = searchParams.get("property") ?? undefined;
-  const propertyPrice   = searchParams.get("price")    ?? undefined;
-  const propertyImage   = searchParams.get("image")    ?? undefined;
   const [visible, setVisible] = useState(false);
 
   // Fade in on mount

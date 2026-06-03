@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import ContactOverlay from "./ContactOverlay";
 
 export const metadata: Metadata = {
@@ -8,10 +7,17 @@ export const metadata: Metadata = {
     "Contact Spinelli Real Estate — Illawarra's trusted property experts. Call, email or use our enquiry form for any property need.",
 };
 
-export default function ContactPage() {
+interface Props {
+  searchParams: Promise<{ property?: string; price?: string; image?: string }>;
+}
+
+export default async function ContactPage({ searchParams }: Props) {
+  const params = await searchParams;
   return (
-    <Suspense>
-      <ContactOverlay />
-    </Suspense>
+    <ContactOverlay
+      propertyAddress={params.property}
+      propertyPrice={params.price}
+      propertyImage={params.image}
+    />
   );
 }
