@@ -242,7 +242,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
       {/* ── Property details + enquiry ── */}
       <section style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-16">
-          <div className="grid lg:grid-cols-[1fr_200px] gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-1 gap-12 lg:gap-16">
 
             {/* Left — description / features / amenities */}
             <div>
@@ -294,15 +294,13 @@ export default function PropertyDetailClient({ property }: { property: Property 
                   </div>
                 </div>
               )}
-            </div>
 
-            {/* Right — sticky enquiry button */}
-            <div>
-              <div className="sticky top-24">
+              {/* Send Enquiry button */}
+              <div className="pt-10" style={{ borderTop: "1px solid #E8E5DF" }}>
                 <Link
                   href="/contact"
-                  className="block w-full text-center py-3 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#0D3348", color: "#ffffff", fontFamily: "var(--font-sans)" }}
+                  className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
                 >
                   Send Enquiry
                 </Link>
