@@ -34,8 +34,8 @@ const stats = [
 
 const whyUs = [
   {
-    title: "One Dedicated Property Manager",
-    desc: "You'll have a single, experienced point of contact who knows your property, your tenants and your goals. No call centres. No passing the buck.",
+    title: "A Team Working for You",
+    desc: "When you work with Spinelli, you get the full strength of our property management team behind you. Every member knows your property, your tenants and your goals — so you're always looked after, no matter who picks up the phone.",
   },
   {
     title: "Local Market Expertise",
