@@ -296,7 +296,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
               )}
 
               {/* Send Enquiry button */}
-              <div className="pt-10" style={{ borderTop: "1px solid #E8E5DF" }}>
+              <div className="pt-10">
                 <Link
                   href="/contact"
                   className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
