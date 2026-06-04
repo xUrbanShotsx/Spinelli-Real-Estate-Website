@@ -295,8 +295,8 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 </div>
               )}
 
-              {/* Send Enquiry button */}
-              <div className="pt-10">
+              {/* Send Enquiry / Make Offer buttons */}
+              <div className="pt-10 flex flex-wrap gap-3">
                 <Link
                   href={`/property/${property.id}/enquire`}
                   className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-85"
@@ -304,6 +304,15 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 >
                   Send Enquiry
                 </Link>
+                {property.type === "residential-sale" && (
+                  <Link
+                    href={`/property/${property.id}/offer`}
+                    className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-70"
+                    style={{ border: "1px solid #000000", color: "#000000", fontFamily: "var(--font-sans)" }}
+                  >
+                    Make Offer
+                  </Link>
+                )}
               </div>
             </div>
           </div>
