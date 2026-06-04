@@ -4,79 +4,62 @@ import type { TeamMember } from "@/lib/types";
 
 function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean }) {
   return (
-    <div className="group block" style={{ backgroundColor: "#ffffff" }}>
-      {/* Image — same fixed height as property cards */}
-      <div className="relative overflow-hidden" style={{ height: "340px" }}>
-        <img
-          src={member.image}
-          alt={member.name}
-          className="absolute inset-0 object-cover object-top"
-          style={{
-            width: "100%",
-            height: "100%",
-            filter: blurred ? "blur(4px)" : "none",
-            opacity: blurred ? 0.5 : 1,
-            transition: "filter 0.3s ease, opacity 0.3s ease",
-          }}
-        />
-        {/* Role badge — top right, matching tag badge style */}
-        <div className="absolute top-0 right-0">
-          <span
-            style={{
-              display: "block",
-              backgroundColor: "#5BC2E7",
-              color: "#ffffff",
-              fontFamily: "var(--font-sans)",
-              fontSize: "10px",
-              fontWeight: 500,
-              letterSpacing: "0.14em",
-              padding: "6px 12px",
-              textTransform: "uppercase",
-            }}
-          >
-            {member.role}
-          </span>
-        </div>
-      </div>
+    <div className="group relative overflow-hidden" style={{ height: "480px" }}>
+      {/* Image */}
+      <img
+        src={member.image}
+        alt={member.name}
+        className="absolute inset-0 object-cover object-top"
+        style={{
+          width: "100%",
+          height: "100%",
+          filter: blurred ? "blur(4px)" : "none",
+          opacity: blurred ? 0.5 : 1,
+          transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.5s ease",
+        }}
+      />
 
-      {/* Text below — matching property card text style */}
-      <div style={{ paddingTop: "12px", paddingBottom: "4px" }}>
-        <p
+      {/* Dark gradient shader */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.0) 100%)" }}
+      />
+
+      {/* Role badge — top right */}
+      <div className="absolute top-0 right-0">
+        <span
           style={{
+            display: "block",
+            backgroundColor: "#5BC2E7",
+            color: "#ffffff",
             fontFamily: "var(--font-sans)",
-            fontSize: "14px",
-            color: "#000000",
-            fontWeight: 400,
-            lineHeight: 1.35,
-            marginBottom: "6px",
+            fontSize: "10px",
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+            padding: "6px 12px",
+            textTransform: "uppercase",
           }}
         >
+          {member.role}
+        </span>
+      </div>
+
+      {/* Text — bottom left inside frame */}
+      <div className="absolute bottom-0 left-0 right-0 px-5 py-5">
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#ffffff", lineHeight: 1.3, marginBottom: "4px" }}>
           {member.name}
         </p>
         <a
           href={`tel:${member.phone.replace(/\s/g, "")}`}
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "11px",
-            color: "#a2b0aa",
-            letterSpacing: "0.1em",
-            display: "block",
-          }}
-          className="transition-opacity hover:opacity-60"
+          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "2px" }}
+          className="transition-opacity hover:opacity-80"
         >
           {member.phone}
         </a>
         <a
           href={`mailto:${member.email}`}
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
-            color: "#58503c",
-            fontWeight: 500,
-            marginTop: "6px",
-            display: "block",
-          }}
-          className="transition-opacity hover:opacity-60"
+          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", display: "block" }}
+          className="transition-opacity hover:opacity-80"
         >
           {member.email}
         </a>
