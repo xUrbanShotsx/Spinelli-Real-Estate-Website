@@ -1,10 +1,15 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import type { TeamMember } from "@/lib/types";
+
+function toSlug(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-");
+}
 
 function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean }) {
   return (
-    <div className="group relative overflow-hidden" style={{ height: "480px" }}>
+    <Link href={`/team/${toSlug(member.name)}`} className="group relative overflow-hidden block" style={{ height: "480px" }}>
       {/* Image */}
       <img
         src={member.image}
@@ -49,22 +54,14 @@ function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean })
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#ffffff", lineHeight: 1.3, marginBottom: "4px" }}>
           {member.name}
         </p>
-        <a
-          href={`tel:${member.phone.replace(/\s/g, "")}`}
-          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", display: "block", marginBottom: "2px" }}
-          className="transition-opacity hover:opacity-80"
-        >
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", marginBottom: "2px" }}>
           {member.phone}
-        </a>
-        <a
-          href={`mailto:${member.email}`}
-          style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", display: "block" }}
-          className="transition-opacity hover:opacity-80"
-        >
+        </p>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
           {member.email}
-        </a>
+        </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
