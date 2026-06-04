@@ -161,13 +161,6 @@ export default function CareersPage() {
                 What Sets Us Apart
               </h2>
             </div>
-            <a
-              href="mailto:paul@spinellire.com?subject=Career%20Enquiry%20%E2%80%94%20Spinelli%20Real%20Estate"
-              className="inline-block px-7 py-3.5 text-[11px] font-medium tracking-wide transition-opacity hover:opacity-85"
-              style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", whiteSpace: "nowrap" }}
-            >
-              Apply Now
-            </a>
           </div>
 
           {/* Perk rows */}
