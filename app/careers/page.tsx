@@ -21,7 +21,7 @@ const perks = [
   {
     num: "03",
     title: "Uncapped Earning Potential",
-    body: "Competitive commission structures and incentives that reward your results, not just your hours. The harder you work, the more you earn — simple as that.",
+    body: "Competitive commission structures and incentives that reward your results, not just your hours. The harder you work, the more you earn — simple as that. With a brand new office in a prime location, you'll be working from a space that reflects the calibre of our brand.",
   },
   {
     num: "04",
