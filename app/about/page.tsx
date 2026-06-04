@@ -37,7 +37,7 @@ const values = [
 ];
 
 const stats = [
-  { value: "12+", label: "Years in the Illawarra" },
+  { value: "50+", label: "Years Combined Experience" },
   { value: "2,000+", label: "Successful Transactions" },
   { value: "94%", label: "List-to-Sale Ratio" },
   { value: "5★", label: "Client Satisfaction" },
@@ -49,70 +49,8 @@ const previewTeam = team.slice(0, 4);
 export default function AboutPage() {
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "92vh" }}>
-        <Image
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&h=1200&fit=crop&q=85"
-          alt="Spinelli Real Estate office"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.08) 100%)" }}
-        />
-        <div className="relative w-full">
-          {/* Hero text */}
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-16">
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
-              Our Story
-            </span>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(3.2rem, 8vw, 7.5rem)",
-                color: "#ffffff",
-                fontWeight: 300,
-                letterSpacing: "-0.03em",
-                lineHeight: 1.0,
-                marginBottom: "1.5rem",
-                maxWidth: "14ch",
-              }}
-            >
-              Built on Trust.<br />Driven by Results.
-            </h1>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: "44ch" }}>
-              A boutique Illawarra agency with over a decade of local knowledge, genuine care and a relentless commitment to exceptional outcomes.
-            </p>
-          </div>
-
-          {/* Stats bar */}
-          <div style={{ backgroundColor: "rgba(13,51,72,0.95)", borderTop: "1px solid rgba(91,194,231,0.15)" }}>
-            <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div className="grid grid-cols-2 md:grid-cols-4">
-                {stats.map((s, i) => (
-                  <div
-                    key={s.label}
-                    className="py-7 text-center"
-                    style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.08)" : "none" }}
-                  >
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>
-                      {s.value}
-                    </p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "6px" }}>
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Who We Are ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "100px" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -158,6 +96,20 @@ export default function AboutPage() {
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "40px" }}>
                 From Helensburgh to Nowra, we&apos;ve helped thousands of families buy, sell, rent and invest across the Illawarra — with the same commitment to premium service and premium results every single time.
               </p>
+              {/* Stats row */}
+              <div className="grid grid-cols-2 gap-6 mb-10" style={{ borderTop: "1px solid #E8E5DF", paddingTop: "32px" }}>
+                {stats.map((s) => (
+                  <div key={s.label}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>
+                      {s.value}
+                    </p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "6px" }}>
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/team"
