@@ -2736,7 +2736,7 @@ export const team: TeamMember[] = [
     name: "Samantha Foy",
     role: "Property Manager",
     phone: "0456 937 843",
-    email: "sam@spinellire.com",
+    email: "samantha@spinellire.com",
     image: "/staff/samantha-foy.jpg",
   },
   {
