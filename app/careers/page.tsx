@@ -9,28 +9,34 @@ export const metadata: Metadata = {
 
 const perks = [
   {
+    num: "01",
     title: "Supportive Culture",
-    body: "Work alongside a tight-knit, family-run team that genuinely invests in your growth and wellbeing.",
+    body: "Work alongside a tight-knit, family-run team that genuinely invests in your growth and wellbeing. Here, you're not a number — you're part of the family.",
   },
   {
+    num: "02",
     title: "Strong Brand & Reputation",
-    body: "Represent one of the Illawarra's most trusted real estate agencies with a 12+ year track record.",
+    body: "Represent one of the Illawarra's most trusted agencies with a 12+ year track record. Our name opens doors — and makes closing deals easier.",
   },
   {
+    num: "03",
     title: "Uncapped Earning Potential",
-    body: "Competitive commission structures and incentives that reward your results — not just your hours.",
+    body: "Competitive commission structures and incentives that reward your results, not just your hours. The harder you work, the more you earn — simple as that.",
   },
   {
+    num: "04",
     title: "Training & Mentorship",
-    body: "Learn from experienced directors who are hands-on, accessible and committed to your career.",
+    body: "Learn directly from experienced directors who are hands-on, accessible and genuinely invested in your career progression — from day one and beyond.",
   },
   {
+    num: "05",
     title: "Premium Marketing Tools",
-    body: "Access to professional photography, videography, drone aerials and cutting-edge digital marketing.",
+    body: "Every listing backed by professional photography, videography, drone aerials and a full digital marketing suite. Your properties will stand out.",
   },
   {
-    title: "Flexible & Modern",
-    body: "A forward-thinking workplace that embraces new technology and adapts to how you work best.",
+    num: "06",
+    title: "Flexible & Forward-Thinking",
+    body: "A modern workplace that embraces new technology, trusts your judgment and adapts to how you work best. We move with the times — and so will you.",
   },
 ];
 
@@ -129,63 +135,93 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ── Why Spinelli ── */}
-      <section style={{ backgroundColor: "#F8F9FA", padding: "80px 0" }}>
+      {/* ── What Sets Us Apart ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div style={{ borderTop: "1px solid #E8E5DF", paddingTop: "60px" }}>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "10px",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#5BC2E7",
-                display: "block",
-                marginBottom: "12px",
-              }}
-            >
-              Why Join Us
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                color: "#000000",
-                fontWeight: 300,
-                letterSpacing: "-0.03em",
-                marginBottom: "48px",
-              }}
-            >
-              What Sets Us Apart
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {perks.map((perk) => (
-                <div key={perk.title} style={{ borderTop: "2px solid #5BC2E7", paddingTop: "20px" }}>
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: "#000000",
-                      letterSpacing: "0.04em",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {perk.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
-                      color: "#7a7265",
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {perk.body}
-                  </p>
-                </div>
-              ))}
+
+          {/* Section header */}
+          <div
+            className="flex flex-wrap items-end justify-between gap-4 pb-12 mb-12"
+            style={{ borderBottom: "1px solid #E8E5DF" }}
+          >
+            <div>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "10px" }}>
+                Why Join Us
+              </span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                }}
+              >
+                What Sets Us Apart
+              </h2>
             </div>
+            <a
+              href="mailto:paul@spinellire.com?subject=Career%20Enquiry%20%E2%80%94%20Spinelli%20Real%20Estate"
+              className="inline-block px-7 py-3.5 text-[11px] font-medium tracking-wide transition-opacity hover:opacity-85"
+              style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", whiteSpace: "nowrap" }}
+            >
+              Apply Now
+            </a>
+          </div>
+
+          {/* Perk rows */}
+          <div>
+            {perks.map((perk, i) => (
+              <div
+                key={perk.num}
+                className="grid md:grid-cols-[80px_1fr_2fr] gap-6 md:gap-12 items-start py-10"
+                style={{ borderBottom: i < perks.length - 1 ? "1px solid #E8E5DF" : "none" }}
+              >
+                {/* Number */}
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(2rem, 3vw, 2.8rem)",
+                    color: "#5BC2E7",
+                    fontWeight: 300,
+                    letterSpacing: "-0.04em",
+                    lineHeight: 1,
+                    opacity: 0.5,
+                  }}
+                >
+                  {perk.num}
+                </span>
+
+                {/* Title */}
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(1.2rem, 2vw, 1.5rem)",
+                    color: "#000000",
+                    fontWeight: 300,
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1.2,
+                    paddingTop: "4px",
+                  }}
+                >
+                  {perk.title}
+                </h3>
+
+                {/* Body */}
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    color: "#7a7265",
+                    lineHeight: 1.85,
+                    paddingTop: "4px",
+                  }}
+                >
+                  {perk.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
