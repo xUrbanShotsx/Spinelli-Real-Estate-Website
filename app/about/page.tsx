@@ -56,8 +56,8 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Who We Are</p>
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Who We Are</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Spinelli Real Estate — Illawarra&apos;s Local Agency</p>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 Whether you want to pop in for a chat, attend a property consultation or simply get a feel for who we are — our doors are always open.
               </p>
               <a
-                href="https://maps.google.com/?q=24+College+Avenue+Shellharbour+City+Centre+NSW"
+                href="https://maps.google.com/?q=16+College+Avenue+Shellharbour+City+Centre+NSW"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
@@ -145,9 +145,9 @@ export default function AboutPage() {
                 className="object-cover"
               />
               {/* Location badge */}
-              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Our Office</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>24 College Avenue, Shellharbour City Centre NSW</p>
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Our Office</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>16 College Avenue, Shellharbour City Centre NSW</p>
               </div>
             </div>
           </div>
@@ -168,8 +168,8 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Our Community</p>
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Our Community</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Proud supporters of Destiny Rescue &amp; the Illawarra community</p>
               </div>
             </div>
