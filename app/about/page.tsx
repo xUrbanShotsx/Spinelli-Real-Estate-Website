@@ -178,7 +178,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Pull quote ── */}
-      <section style={{ backgroundColor: "#0D3348", padding: "100px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="max-w-4xl">
             <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "40px" }} />
@@ -186,7 +186,7 @@ export default function AboutPage() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                color: "#ffffff",
+                color: "#000000",
                 fontWeight: 300,
                 letterSpacing: "-0.03em",
                 lineHeight: 1.2,
