@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { team } from "@/lib/data";
+import { team, soldProperties, residentialRentProperties } from "@/lib/data";
+import type { Property } from "@/lib/types";
 
 export function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
@@ -21,10 +22,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function tagColour(tag: string | undefined, type: string): string {
+  if (tag === "Sold") return "#22c55e";
+  if (type === "residential-rent") return "#5BC2E7";
+  return "#5BC2E7";
+}
+
+function tagLabel(tag: string | undefined, type: string): string {
+  if (tag === "Sold") return "Sold";
+  if (type === "residential-rent") return "Leased";
+  return tag ?? "";
+}
+
 export default async function TeamMemberPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const member = team.find((m) => toSlug(m.name) === slug);
   if (!member) notFound();
+
+  // Gather this agent's sold sales + managed rentals
+  const agentProperties: Property[] = [
+    ...soldProperties.filter((p) => p.agent === member.name),
+    ...residentialRentProperties.filter((p) => p.agent === member.name),
+  ];
 
   return (
     <>
@@ -136,38 +155,79 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      {/* ── Other team members ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div style={{ borderTop: "1px solid #E8E5DF", paddingTop: "60px" }}>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "40px" }}>
-              Also Meet the Team
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {team
-                .filter((m) => toSlug(m.name) !== slug)
-                .slice(0, 4)
-                .map((m) => (
-                  <Link key={m.name} href={`/team/${toSlug(m.name)}`} className="group block">
-                    <div className="relative overflow-hidden" style={{ height: "220px" }}>
+      {/* ── Properties ── */}
+      {agentProperties.length > 0 && (
+        <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <div style={{ borderTop: "1px solid #E8E5DF", paddingTop: "60px" }}>
+              <div className="flex items-end justify-between gap-4 mb-10">
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em" }}>
+                  Recent Results
+                </h2>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.08em" }}>
+                  {agentProperties.length} {agentProperties.length === 1 ? "property" : "properties"}
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {agentProperties.map((p) => (
+                  <div key={p.id} className="group">
+                    {/* Image */}
+                    <div className="relative overflow-hidden" style={{ height: "240px", backgroundColor: "#E8F6FC" }}>
                       <img
-                        src={m.image}
-                        alt={m.name}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", transition: "transform 0.4s ease" }}
+                        src={p.image}
+                        alt={p.title}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s ease" }}
                         className="group-hover:scale-105"
                       />
-                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.0) 60%)" }} />
-                      <div className="absolute bottom-0 left-0 px-3 py-3">
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "#ffffff" }}>{m.name}</p>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.65)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{m.role}</p>
+                      {/* Tag badge */}
+                      <div className="absolute top-0 left-0">
+                        <span style={{
+                          display: "block",
+                          backgroundColor: tagColour(p.tag, p.type),
+                          color: "#ffffff",
+                          fontFamily: "var(--font-sans)",
+                          fontSize: "9px",
+                          fontWeight: 600,
+                          letterSpacing: "0.14em",
+                          padding: "5px 10px",
+                          textTransform: "uppercase",
+                        }}>
+                          {tagLabel(p.tag, p.type)}
+                        </span>
                       </div>
                     </div>
-                  </Link>
+
+                    {/* Details */}
+                    <div style={{ paddingTop: "16px" }}>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", marginBottom: "2px" }}>
+                        {p.address}
+                      </p>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "8px" }}>
+                        {p.suburb}
+                      </p>
+                      <p style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "8px" }}>
+                        {p.price}
+                      </p>
+                      {/* Beds / baths / cars */}
+                      <div style={{ display: "flex", gap: "14px" }}>
+                        {p.beds !== undefined && (
+                          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#7a7265" }}>{p.beds} Bed</span>
+                        )}
+                        {p.baths !== undefined && (
+                          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#7a7265" }}>{p.baths} Bath</span>
+                        )}
+                        {p.cars !== undefined && (
+                          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#7a7265" }}>{p.cars} Car</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

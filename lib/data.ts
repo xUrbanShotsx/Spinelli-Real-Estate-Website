@@ -809,6 +809,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Stunning architect-designed home steps from the beach. Sold in 18 days — $220,000 above reserve.",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    agent: "Paul Spinelli",
   },
   {
     id: "sd-2",
@@ -821,6 +822,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Commanding ocean views from every room. Sold at auction with 11 registered bidders.",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    agent: "Paul Spinelli",
   },
   {
     id: "sd-3",
@@ -833,6 +835,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Period detail meets modern living. Sold prior to auction after multiple offers.",
     image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-4",
@@ -845,6 +848,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Resort-style pool and alfresco, sweeping ocean glimpses. Sold in 12 days — $150,000 above price guide.",
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-5",
@@ -857,6 +861,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Generous family home on 620m². Sold under the hammer with a competitive auction result.",
     image: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=800&q=80",
+    agent: "Mark Spinelli",
   },
   {
     id: "sd-6",
@@ -869,6 +874,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Luxury coastal living with Werri Beach at your doorstep. Sold to a Sydney buyer within 3 weeks.",
     image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80",
+    agent: "Mark Spinelli",
   },
   {
     id: "sd-7",
@@ -881,6 +887,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Architecturally designed split-level home with harbour and city views. Strong auction result.",
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    agent: "Paul Spinelli",
   },
   {
     id: "sd-8",
@@ -893,6 +900,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Charming cottage with lush garden in a tightly held coastal pocket. Sold $80,000 above reserve.",
     image: "https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?w=800&q=80",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-9",
@@ -905,6 +913,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Premium waterfront-precinct home with resort amenities and double-glazed windows throughout.",
     image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
+    agent: "Mark Spinelli",
   },
   {
     id: "sd-10",
@@ -917,6 +926,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Beautifully renovated 1930s bungalow on a full block. Sold in one weekend with multiple offers.",
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80",
+    agent: "Jye Sanjurjo",
   },
   {
     id: "sd-11",
@@ -929,6 +939,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Top-floor penthouse with panoramic ocean and city views. Sold off-market to interstate buyer.",
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
+    agent: "Paul Spinelli",
   },
   {
     id: "sd-12",
@@ -941,6 +952,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Sprawling 2-acre lifestyle property with pool, dam and sweeping escarpment views. Sold in 21 days.",
     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-13",
@@ -953,6 +965,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Main residence plus approved self-contained flat. Sold to an investor — combined rent $1,450pw.",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    agent: "Mark Spinelli",
   },
   {
     id: "sd-14",
@@ -965,6 +978,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Brand-new Hamptons-inspired home with high ceilings, stone benchtops and landscaped gardens.",
     image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80",
+    agent: "Jye Sanjurjo",
   },
   {
     id: "sd-15",
@@ -977,6 +991,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Sleek townhouse walking distance to the beach and CBD. Sold at first open home.",
     image: "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&q=80",
+    agent: "Jye Sanjurjo",
   },
   {
     id: "sd-16",
@@ -989,6 +1004,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Elevated position with ocean and escarpment outlooks. Outstanding auction result — 7 bidders.",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-17",
@@ -1001,6 +1017,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Much-loved village cottage with established gardens. Sold $95,000 above reserve at auction.",
     image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80",
+    agent: "Mark Spinelli",
   },
   {
     id: "sd-18",
@@ -1013,6 +1030,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Rare absolute waterfront position on Lake Illawarra with private jetty. Sold off-market.",
     image: "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=800&q=80",
+    agent: "Paul Spinelli",
   },
 ];
 
@@ -1030,6 +1048,7 @@ export const residentialRentProperties: Property[] = [
     description: "Contemporary townhouse with harbour glimpses. Open-plan living, modern kitchen, private courtyard.",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
     featured: true,
+    agent: "Zoe Porritt",
   },
   {
     id: "rr-2",
@@ -1044,6 +1063,7 @@ export const residentialRentProperties: Property[] = [
     description: "Light-filled apartment in the heart of Wollongong CBD. Walking distance to beach, shops and university.",
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
     featured: true,
+    agent: "Samantha Foy",
   },
   {
     id: "rr-3",
@@ -1057,6 +1077,7 @@ export const residentialRentProperties: Property[] = [
     cars: 2,
     description: "Spacious family home with sparkling pool, alfresco entertaining and double garage.",
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    agent: "Zoe Porritt",
   },
   {
     id: "rr-4",
@@ -1071,6 +1092,7 @@ export const residentialRentProperties: Property[] = [
     description: "Bright ground-floor apartment steps from Thirroul Beach. Freshly painted, new carpet, private courtyard.",
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
     tag: "Available Now",
+    agent: "Samantha Foy",
   },
   {
     id: "rr-5",
@@ -1085,6 +1107,7 @@ export const residentialRentProperties: Property[] = [
     description: "Immaculate family home with escarpment views, solar panels, ducted air conditioning and beautifully landscaped gardens.",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
     featured: true,
+    agent: "Zoe Porritt",
   },
   {
     id: "rr-6",
@@ -1098,6 +1121,7 @@ export const residentialRentProperties: Property[] = [
     cars: 1,
     description: "Charming renovated terrace with open-plan living, stone kitchen, rear courtyard and lock-up garage. Walk to everything.",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    agent: "Samantha Foy",
   },
   {
     id: "rr-7",
@@ -1113,6 +1137,7 @@ export const residentialRentProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80",
     featured: true,
     tag: "Brand New",
+    agent: "Zoe Porritt",
   },
   {
     id: "rr-8",
@@ -1127,6 +1152,7 @@ export const residentialRentProperties: Property[] = [
     description: "High-floor apartment with uninterrupted ocean views. Fully renovated, reverse-cycle air, secure parking and storage.",
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
     tag: "Ocean Views",
+    agent: "Samantha Foy",
   },
   {
     id: "rr-9",
