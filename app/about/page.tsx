@@ -195,7 +195,7 @@ export default function AboutPage() {
                 Being part of the Illawarra isn&apos;t just where we do business — it&apos;s where we live, raise our families and put down roots. That connection drives us to give back in ways that go well beyond real estate.
               </p>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
-                We are proud supporters of <strong style={{ color: "#000000", fontWeight: 500 }}>Destiny Rescue</strong> — an organisation doing extraordinary work to rescue children from trafficking and exploitation around the world. Their mission aligns with our belief that business success carries a responsibility to make a real difference.
+                We are proud supporters of <a href="https://www.destinyrescue.org.au/" target="_blank" rel="noopener noreferrer" style={{ color: "#5BC2E7", fontWeight: 500, textDecoration: "underline" }}>Destiny Rescue</a> — an organisation doing extraordinary work to rescue children from trafficking and exploitation around the world. Their mission aligns with our belief that business success carries a responsibility to make a real difference.
               </p>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
                 Locally, we actively support community initiatives, local events and organisations across the Illawarra. We believe a strong community creates a better place to live — and that every business has a role to play in making that happen.
