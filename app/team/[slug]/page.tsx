@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { team, soldProperties, residentialRentProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
@@ -63,11 +64,14 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           <div className="grid lg:grid-cols-[480px_1fr] gap-16 items-start">
 
             {/* Photo */}
-            <div className="relative overflow-hidden" style={{ height: "580px" }}>
-              <img
+            <div className="relative overflow-hidden" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
+              <Image
                 src={member.image}
                 alt={member.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="object-cover object-top"
+                priority
               />
               {/* Shader */}
               <div
@@ -171,11 +175,12 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                   <div key={p.id} className="group">
                     {/* Image */}
                     <div className="relative overflow-hidden" style={{ height: "240px", backgroundColor: "#E8F6FC" }}>
-                      <img
+                      <Image
                         src={p.image}
                         alt={p.title}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s ease" }}
-                        className="group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-400"
                       />
                       {/* Tag badge */}
                       <div className="absolute top-0 left-0">

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
@@ -15,16 +16,14 @@ function TeamCard({ member, blurred, priority }: { member: TeamMember; blurred: 
       style={{ height: "480px", backgroundColor: "#E8F6FC" }}
     >
       {/* Image */}
-      <img
+      <Image
         src={member.image}
         alt={member.name}
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
-        className="absolute inset-0 object-cover object-top"
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover object-top"
+        priority={priority}
         style={{
-          width: "100%",
-          height: "100%",
           filter: blurred ? "blur(4px)" : "none",
           opacity: blurred ? 0.5 : 1,
           transition: "filter 0.3s ease, opacity 0.3s ease",
