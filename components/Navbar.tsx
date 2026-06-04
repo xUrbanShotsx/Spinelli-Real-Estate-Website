@@ -34,10 +34,10 @@ const navItems = [
     dropdown: [
       { label: "About Us", href: "/about", sub: "Our story & values" },
       { label: "Meet the Team", href: "/team", sub: "The people behind Spinelli" },
-      { label: "Careers", href: "/careers", sub: "Join our growing team" },
       { label: "Contact Us", href: "/contact", sub: "Get in touch today" },
     ],
   },
+  { label: "Careers", href: "/careers" },
 ];
 
 export default function Navbar() {
