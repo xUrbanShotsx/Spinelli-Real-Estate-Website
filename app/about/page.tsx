@@ -154,8 +154,62 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Values ── */}
+      {/* ── Our Community ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Image */}
+            <div className="relative overflow-hidden order-last lg:order-first" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=900&q=85"
+                alt="Community and charity support"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Our Community</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Proud supporters of Destiny Rescue &amp; the Illawarra community</p>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div>
+              <span className="label-tag">Our Community</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                  marginBottom: "28px",
+                }}
+              >
+                Giving Back to the<br />Community We Serve
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                Being part of the Illawarra isn&apos;t just where we do business — it&apos;s where we live, raise our families and put down roots. That connection drives us to give back in ways that go well beyond real estate.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                We are proud supporters of <strong style={{ color: "#000000", fontWeight: 500 }}>Destiny Rescue</strong> — an organisation doing extraordinary work to rescue children from trafficking and exploitation around the world. Their mission aligns with our belief that business success carries a responsibility to make a real difference.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                Locally, we actively support community initiatives, local events and organisations across the Illawarra. We believe a strong community creates a better place to live — and that every business has a role to play in making that happen.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
+                When you choose Spinelli Real Estate, you&apos;re not just working with a local agent — you&apos;re supporting a business that genuinely invests in the people and places around it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Values ── */}
+      <section style={{ backgroundColor: "#F8F9FA", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div
             className="flex flex-wrap items-end justify-between gap-4 pb-12 mb-4"
