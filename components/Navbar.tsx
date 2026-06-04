@@ -28,7 +28,15 @@ const navItems = [
     ],
   },
   { label: "Projects", href: "/projects" },
-  { label: "Suburbs", href: "/suburbs" },
+  {
+    label: "Resources",
+    dropdown: [
+      { label: "Suburbs", href: "/suburbs", sub: "Explore Illawarra suburbs" },
+      { label: "Buying Guide", href: "/buying-guide", sub: "Everything you need to buy" },
+      { label: "Selling Guide", href: "/selling-guide", sub: "Get the best result when selling" },
+      { label: "Investing Guide", href: "/investing-guide", sub: "Build your property portfolio" },
+    ],
+  },
   {
     label: "About",
     dropdown: [
@@ -47,7 +55,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages with no hero — navbar should use blue at the top
-  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers"];
+  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide"];
   const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
