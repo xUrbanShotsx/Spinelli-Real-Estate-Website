@@ -22,9 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function tagColour(tag: string | undefined, type: string): string {
-  if (tag === "Sold") return "#22c55e";
-  if (type === "residential-rent") return "#5BC2E7";
+function tagColour(_tag: string | undefined, _type: string): string {
   return "#5BC2E7";
 }
 
