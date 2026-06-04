@@ -131,8 +131,69 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Values ── */}
+      {/* ── Our Home ── */}
       <section style={{ backgroundColor: "#F8F9FA", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Text */}
+            <div>
+              <span className="label-tag">Our Home</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                  marginBottom: "28px",
+                }}
+              >
+                A Brand New Base<br />in Shellharbour City Centre
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                We&apos;re proud to call Shellharbour City Centre home. Our brand new office sits at the heart of one of the Illawarra&apos;s fastest-growing precincts — purpose-built for the way we work and designed to reflect the quality of our brand.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                From this central location, we service the entire Illawarra region — from Helensburgh in the north to Nowra in the south — with the same local expertise and personal attention our clients have come to expect.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "40px" }}>
+                Whether you want to pop in for a chat, attend a property consultation or simply get a feel for who we are — our doors are always open.
+              </p>
+              <a
+                href="https://maps.google.com/?q=Shellharbour+City+Centre"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
+                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+              >
+                Get Directions
+              </a>
+            </div>
+
+            {/* Image */}
+            <div className="relative overflow-hidden" style={{ height: "520px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=85"
+                alt="Spinelli Real Estate Shellharbour City Centre office"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              {/* Location badge */}
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Our Office</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Shellharbour City Centre, NSW</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Values ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div
             className="flex flex-wrap items-end justify-between gap-4 pb-12 mb-4"
