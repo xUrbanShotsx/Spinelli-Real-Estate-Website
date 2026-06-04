@@ -7,20 +7,27 @@ function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
 }
 
-function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean }) {
+function TeamCard({ member, blurred, priority }: { member: TeamMember; blurred: boolean; priority: boolean }) {
   return (
-    <Link href={`/team/${toSlug(member.name)}`} className="group relative overflow-hidden block" style={{ height: "480px" }}>
+    <Link
+      href={`/team/${toSlug(member.name)}`}
+      className="group relative overflow-hidden block"
+      style={{ height: "480px", backgroundColor: "#E8F6FC" }}
+    >
       {/* Image */}
       <img
         src={member.image}
         alt={member.name}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
         className="absolute inset-0 object-cover object-top"
         style={{
           width: "100%",
           height: "100%",
           filter: blurred ? "blur(4px)" : "none",
           opacity: blurred ? 0.5 : 1,
-          transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.5s ease",
+          transition: "filter 0.3s ease, opacity 0.3s ease",
         }}
       />
 
@@ -72,7 +79,7 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
     <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "80px" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
 
-        {/* Header — matching for sale page header */}
+        {/* Header */}
         <div
           className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8"
           style={{ borderBottom: "1px solid #E8E5DF" }}
@@ -94,12 +101,12 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
           </div>
         </div>
 
-        {/* 3-column grid — matching for sale page */}
+        {/* 3-column grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: "40px" }}
         >
-          {members.map((m) => (
+          {members.map((m, i) => (
             <div
               key={m.name}
               onMouseEnter={() => setHoveredName(m.name)}
@@ -108,6 +115,7 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
               <TeamCard
                 member={m}
                 blurred={!!hoveredName && hoveredName !== m.name}
+                priority={i < 3}
               />
             </div>
           ))}
