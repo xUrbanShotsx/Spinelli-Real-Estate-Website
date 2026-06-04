@@ -163,7 +163,7 @@ export default function AboutPage() {
                 Whether you want to pop in for a chat, attend a property consultation or simply get a feel for who we are — our doors are always open.
               </p>
               <a
-                href="https://maps.google.com/?q=Shellharbour+City+Centre"
+                href="https://maps.google.com/?q=24+College+Avenue+Shellharbour+City+Centre+NSW"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
@@ -185,7 +185,7 @@ export default function AboutPage() {
               {/* Location badge */}
               <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Our Office</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Shellharbour City Centre, NSW</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>24 College Avenue, Shellharbour City Centre NSW</p>
               </div>
             </div>
           </div>
