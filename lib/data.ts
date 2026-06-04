@@ -2738,14 +2738,14 @@ export const team: TeamMember[] = [
     name: "Kellie Spinelli",
     role: "Accounts Manager",
     phone: "02 4296 0047",
-    email: "info@spinellire.com",
+    email: "accounts@spinellire.com",
     image: "/staff/kellie-spinelli.jpg",
   },
   {
     name: "Vicki Taddeo",
     role: "Accounts Manager",
     phone: "02 4296 0047",
-    email: "info@spinellire.com",
+    email: "accounts@spinellire.com",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
   },
 ];
