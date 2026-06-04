@@ -36,13 +36,6 @@ const values = [
   },
 ];
 
-const stats = [
-  { value: "50+", label: "Years Combined Experience" },
-  { value: "2,000+", label: "Successful Transactions" },
-  { value: "94%", label: "List-to-Sale Ratio" },
-  { value: "5★", label: "Client Satisfaction" },
-];
-
 // First 4 team members for the preview strip
 const previewTeam = team.slice(0, 4);
 
@@ -63,11 +56,10 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              {/* Blue accent strip */}
-              <div
-                className="absolute bottom-0 left-0"
-                style={{ width: "4px", height: "100%", backgroundColor: "#5BC2E7", opacity: 0.6 }}
-              />
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(13,51,72,0.88)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "4px" }}>Who We Are</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Spinelli Real Estate — Illawarra&apos;s Local Agency</p>
+              </div>
             </div>
 
             {/* Text */}
@@ -93,39 +85,9 @@ export default function AboutPage() {
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
                 As a locally owned, family-run business, we operate differently. Every client works directly with our senior agents — not a junior assistant — and benefits from the full weight of our experience, our network and our reputation.
               </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "40px" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
                 From Helensburgh to Nowra, we&apos;ve helped thousands of families buy, sell, rent and invest across the Illawarra — with the same commitment to premium service and premium results every single time.
               </p>
-              {/* Stats row */}
-              <div className="grid grid-cols-2 gap-6 mb-10" style={{ borderTop: "1px solid #E8E5DF", paddingTop: "32px" }}>
-                {stats.map((s) => (
-                  <div key={s.label}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1 }}>
-                      {s.value}
-                    </p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "6px" }}>
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/team"
-                  className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
-                >
-                  Meet the Team
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                  style={{ border: "1px solid #E8E5DF", color: "#000000", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
-                >
-                  Get in Touch
-                </Link>
-              </div>
             </div>
           </div>
         </div>
