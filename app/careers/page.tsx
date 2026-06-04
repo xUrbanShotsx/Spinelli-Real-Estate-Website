@@ -190,56 +190,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ── CTA banner ── */}
-      <section style={{ backgroundColor: "#0D3348", padding: "80px 0" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <span className="label-tag-light">Ready to Apply?</span>
-              <h2
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                  color: "#ffffff",
-                  fontWeight: 300,
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.05,
-                }}
-              >
-                Take the Next Step<br />in Your Career
-              </h2>
-            </div>
-            <div>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "14px",
-                  color: "rgba(255,255,255,0.6)",
-                  lineHeight: 1.75,
-                  maxWidth: "44ch",
-                  marginBottom: "32px",
-                }}
-              >
-                Send us your CV and a short note about yourself. We review every application personally and
-                will be in touch within a few business days.
-              </p>
-              <a
-                href="mailto:paul@spinellire.com?subject=Career%20Enquiry%20%E2%80%94%20Spinelli%20Real%20Estate"
-                className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                style={{
-                  backgroundColor: "#5BC2E7",
-                  color: "#ffffff",
-                  fontFamily: "var(--font-sans)",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Apply Now
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
