@@ -36,7 +36,7 @@ const services = [
   },
   {
     title: "Projects",
-    href: "/projects",
+    href: "https://innovate-property.vercel.app/",
     image: "/project.jpg",
   },
   {
