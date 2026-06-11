@@ -307,7 +307,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 >
                   Send Enquiry
                 </Link>
-                {property.type === "residential-sale" && (
+                {property.type === "residential-sale" && property.tag !== "Sold" && (
                   <Link
                     href={`/property/${property.id}/offer`}
                     className="inline-block px-8 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-70"
