@@ -52,7 +52,10 @@ const amenityIcon = (category: PropertyAmenity["category"]) => {
 };
 
 export default function PropertyDetailClient({ property }: { property: Property }) {
-  const photos = property.photos ?? [property.image];
+  const photos = [
+    ...(property.photos ?? [property.image]),
+    ...(property.floorPlan ? [property.floorPlan] : []),
+  ];
   const heroPhoto = photos[0];
   const galleryPhotos = photos.slice(1);
   const paragraphs = (property.longDescription ?? property.description).split("\n\n");
@@ -235,20 +238,6 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 </button>
               ))}
             </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── Floor Plan ── */}
-      {property.floorPlan && (
-        <section style={{ backgroundColor: "#F8F9FA", padding: "60px 0" }}>
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <span className="label-tag" style={{ marginBottom: "24px", display: "block" }}>Floor Plan</span>
-            <img
-              src={property.floorPlan}
-              alt={`${property.address} floor plan`}
-              style={{ maxWidth: "100%", width: "100%", maxHeight: "600px", objectFit: "contain", backgroundColor: "#ffffff" }}
-            />
           </div>
         </section>
       )}
