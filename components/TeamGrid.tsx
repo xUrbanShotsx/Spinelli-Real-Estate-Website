@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
@@ -42,14 +41,20 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
               className="team-card relative overflow-hidden block"
               style={{ height: "480px", backgroundColor: "#E8F6FC" }}
             >
-              {/* Photo — Next.js Image compresses 2MB PNGs to ~50KB WebP */}
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={m.image}
                 alt={m.name}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover object-top"
-                priority={i < 6}
+                loading="eager"
+                decoding="sync"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                }}
               />
 
               {/* Dark gradient */}

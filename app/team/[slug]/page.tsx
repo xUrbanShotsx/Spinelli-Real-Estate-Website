@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { team, soldProperties, residentialRentProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
@@ -65,13 +64,13 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
 
             {/* Photo */}
             <div className="relative overflow-hidden" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={member.image}
                 alt={member.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 480px"
-                className="object-cover object-top"
-                priority
+                loading="eager"
+                decoding="sync"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
               />
               {/* Shader */}
               <div
