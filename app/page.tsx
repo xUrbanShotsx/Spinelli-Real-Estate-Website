@@ -4,6 +4,8 @@ import PropertyCard from "@/components/PropertyCard";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import MarketStats from "@/components/MarketStats";
 import { residentialSaleProperties, testimonials } from "@/lib/data";
+import { fetchForSale, mapListing } from "@/lib/agentbox";
+import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Spinelli Real Estate | Illawarra's Premier Agency",
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
     "Spinelli Real Estate — premium residential sales, commercial, project sales and property management across the Illawarra. Wollongong, Kiama, Shellharbour and surrounds.",
 };
 
-const featuredSale = residentialSaleProperties.filter((p) => p.featured).slice(0, 3);
+export const revalidate = 300;
 
 const services = [
   {
@@ -46,7 +48,17 @@ const services = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch the 3 most recent residential sale listings from AgentBox
+  let featuredSale: Property[] = residentialSaleProperties.filter((p) => p.featured).slice(0, 3);
+  try {
+    const data = await fetchForSale(1, 3);
+    if (data.listings?.length) {
+      featuredSale = data.listings.slice(0, 3).map(mapListing);
+    }
+  } catch (e) {
+    console.error("AgentBox fetch failed, using static data:", e);
+  }
   return (
     <>
       {/* ── Hero ── */}
