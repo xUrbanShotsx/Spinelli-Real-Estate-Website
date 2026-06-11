@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { team, soldProperties, residentialRentProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
@@ -63,16 +64,15 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           <div className="grid lg:grid-cols-[480px_1fr] gap-16 items-start">
 
             {/* Photo */}
-            <div
-              className="relative overflow-hidden"
-              style={{
-                height: "580px",
-                backgroundImage: `url(${member.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top center",
-                backgroundColor: "#E8F6FC",
-              }}
-            >
+            <div className="relative overflow-hidden" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="object-cover object-top"
+                priority
+              />
               {/* Shader */}
               <div
                 className="absolute inset-0"

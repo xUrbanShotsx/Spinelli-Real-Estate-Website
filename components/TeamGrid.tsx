@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
@@ -41,23 +42,14 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
               className="team-card relative overflow-hidden block"
               style={{ height: "480px", backgroundColor: "#E8F6FC" }}
             >
-              {/* Photo — eager for first 6 (all visible above fold on any screen) */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              {/* Photo — Next.js Image compresses 2MB PNGs to ~50KB WebP */}
+              <Image
                 src={m.image}
                 alt={m.name}
-                loading={i < 6 ? "eager" : "lazy"}
-                // @ts-expect-error fetchpriority is valid HTML but not yet in TS types
-                fetchpriority={i < 3 ? "high" : "auto"}
-                decoding="sync"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "top center",
-                }}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover object-top"
+                priority={i < 6}
               />
 
               {/* Dark gradient */}
