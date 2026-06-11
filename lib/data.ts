@@ -2710,6 +2710,7 @@ export const team: TeamMember[] = [
     phone: "0415 112 702",
     email: "paul@spinellire.com",
     image: "/staff/paul-spinelli.png",
+    bio: "Paul Spinelli is the founder and Managing Director of Spinelli Real Estate, bringing over two decades of deep Illawarra market knowledge to every client relationship. Paul built this agency on a simple but powerful belief — that every client deserves honest advice, premium marketing and a relentless commitment to achieving the best possible outcome. His hands-on approach means clients deal directly with him from first meeting to settlement, backed by the full weight of his experience and local network. Outside of real estate, Paul is a proud Illawarra local who is deeply invested in the community and the people who call this coast home.",
   },
   {
     name: "Adam Spinelli",
@@ -2717,6 +2718,7 @@ export const team: TeamMember[] = [
     phone: "0447 771 445",
     email: "adam@spinellire.com",
     image: "/staff/adam-spinelli.png",
+    bio: "Adam Spinelli is a Sales Director at Spinelli Real Estate with a reputation built on strong results, clear communication and genuine care for his clients. Having grown up in the Illawarra, Adam brings an intimate understanding of the local property market and the lifestyle that makes this region so sought after. He is known for his strategic approach to pricing and negotiation, consistently achieving outcomes that exceed expectations. Whether you are buying your first home, upgrading or looking to invest, Adam's straightforward advice and tireless work ethic will ensure you feel confident and supported every step of the way.",
   },
   {
     name: "Mark Spinelli",
@@ -2724,6 +2726,7 @@ export const team: TeamMember[] = [
     phone: "0401 385 662",
     email: "mark@spinellire.com",
     image: "/staff/mark-spinelli.png",
+    bio: "Mark Spinelli is a Sales Director who brings energy, expertise and a genuine passion for property to every transaction. With years of experience selling across the Illawarra, Mark has developed a sharp eye for matching buyers with the right properties and delivering outstanding results for vendors through targeted marketing and skilled negotiation. His clients appreciate his honesty, his availability and his ability to make what can be a complex process feel straightforward. Mark is committed to building long-term relationships with his clients — many of whom come back to him time and again for trusted advice on their next move.",
   },
   {
     name: "Zoe Porritt",
@@ -2731,6 +2734,7 @@ export const team: TeamMember[] = [
     phone: "0400 000 000",
     email: "zoe@spinellire.com",
     image: "/staff/zoe-porritt.png",
+    bio: "Zoe Porritt is a dedicated Property Manager who takes the stress out of investment property ownership for her clients. With a thorough understanding of the Illawarra rental market, Zoe manages every property as if it were her own — ensuring landlords maximise their returns while tenants enjoy a professional and responsive management experience. Her attention to detail, proactive communication and strong knowledge of tenancy legislation means both owners and tenants are always well looked after. Zoe is passionate about building lasting relationships with her clients and takes genuine pride in the results she achieves for every investor she works with.",
   },
   {
     name: "Samantha Foy",
@@ -2738,6 +2742,7 @@ export const team: TeamMember[] = [
     phone: "0456 937 843",
     email: "samantha@spinellire.com",
     image: "/staff/samantha-foy.png",
+    bio: "Samantha Foy is an experienced Property Manager known for her warmth, professionalism and exceptional organisation. Sam manages a diverse portfolio of residential properties across the Illawarra and is committed to delivering a seamless experience for both landlords and tenants. She is thorough in her approach to routine inspections, maintenance coordination and lease renewals, ensuring every property under her care is well maintained and consistently tenanted. Sam's clients value her transparency, her prompt responses and her ability to handle even the most complex situations with calm efficiency. She is a trusted and reliable member of the Spinelli team.",
   },
   {
     name: "Jye Sanjurjo",
@@ -2745,6 +2750,7 @@ export const team: TeamMember[] = [
     phone: "0436 191 701",
     email: "jye@spinellire.com",
     image: "/staff/jye-sanjurjo.png",
+    bio: "Jye Sanjurjo is a Sales Associate who brings enthusiasm, drive and a fresh perspective to the Spinelli Real Estate team. Working closely alongside the Sales Directors, Jye is committed to delivering an outstanding client experience at every stage of the sales process — from the first call through to settlement day. He is passionate about real estate, deeply knowledgeable about the Illawarra market and dedicated to helping buyers find the right property and vendors achieve exceptional results. Clients appreciate Jye's energy, his willingness to go the extra mile and his genuine care for the people he works with.",
   },
   {
     name: "Lilly Ashton",
@@ -2752,6 +2758,7 @@ export const team: TeamMember[] = [
     phone: "0419 233 657",
     email: "lilly@spinellire.com",
     image: "/staff/lilly-ashton.png",
+    bio: "Lilly Ashton is a Property Officer who plays an essential role in the day-to-day operations of Spinelli Real Estate's property management division. Lilly assists with lease administration, tenant liaison, maintenance requests and inspection scheduling, ensuring the smooth running of the portfolio and a high standard of service for every client. She is organised, approachable and always willing to help — qualities that make her a valued point of contact for both landlords and tenants. Lilly is passionate about property management and is committed to growing her expertise while contributing to the exceptional team culture at Spinelli Real Estate.",
   },
   {
     name: "Tahlia Spinelli",
@@ -2759,6 +2766,7 @@ export const team: TeamMember[] = [
     phone: "0458 659 772",
     email: "tahlia@spinellire.com",
     image: "/staff/tahlia-spinelli.png",
+    bio: "Tahlia Spinelli is a Property Officer who brings dedication, care and a strong work ethic to her role within the property management team. Tahlia supports the day-to-day operations of the rental portfolio, including tenant communications, lease processing and property inspections, ensuring every client receives a prompt and professional service. As part of the Spinelli family, she has a deep understanding of the values that underpin the agency and is committed to upholding them in everything she does. Tahlia is enthusiastic about her career in real estate and looks forward to continuing to grow within the Spinelli team.",
   },
   {
     name: "Kellie Spinelli",
@@ -2766,6 +2774,7 @@ export const team: TeamMember[] = [
     phone: "02 4296 0047",
     email: "accounts@spinellire.com",
     image: "/staff/kellie-spinelli.png",
+    bio: "Kellie Spinelli manages the financial operations of Spinelli Real Estate with precision, reliability and care. As Accounts Manager, Kellie oversees trust accounting, owner disbursements, invoicing and financial reporting — ensuring the business operates with complete accuracy and transparency. Her meticulous approach and deep understanding of real estate financial processes give both clients and the wider team complete confidence in the integrity of every transaction. Kellie is an integral part of the Spinelli family and her behind-the-scenes contribution is fundamental to the high standard of service the agency is known for.",
   },
   {
     name: "Vicki Taddeo",
@@ -2773,6 +2782,7 @@ export const team: TeamMember[] = [
     phone: "02 4296 0047",
     email: "accounts@spinellire.com",
     image: "/staff/vicki-taddeo.png",
+    bio: "Vicki Taddeo is an experienced Accounts Manager who brings years of financial expertise and a meticulous eye for detail to the Spinelli Real Estate team. Working alongside Kellie, Vicki helps manage the agency's trust accounting, owner payments and financial administration — ensuring everything runs smoothly and accurately behind the scenes. She is highly organised, trustworthy and takes genuine pride in the accuracy of her work. Vicki's professionalism and calm demeanour make her a reliable and respected member of the team, and her contribution is central to the seamless experience Spinelli clients enjoy.",
   },
 ];
 
