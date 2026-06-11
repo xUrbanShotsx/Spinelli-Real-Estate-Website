@@ -6,9 +6,11 @@ import {
   commercialProperties,
   businessListings,
 } from "@/lib/data";
+import { fetchListing, mapListing } from "@/lib/agentbox";
 import EnquiryPage from "./EnquiryPage";
+import type { Property } from "@/lib/types";
 
-const allProperties = [
+const staticProperties = [
   ...residentialSaleProperties,
   ...soldProperties,
   ...residentialRentProperties,
@@ -16,13 +18,22 @@ const allProperties = [
   ...businessListings,
 ];
 
+function isAgentBoxId(id: string) {
+  return /^[0-9]+[A-Z][0-9]+$/.test(id);
+}
+
+export const dynamicParams = true;
+
 export function generateStaticParams() {
-  return allProperties.map((p) => ({ id: p.id }));
+  return staticProperties.map((p) => ({ id: p.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const property = allProperties.find((p) => p.id === id);
+  let property: Property | undefined = staticProperties.find((p) => p.id === id);
+  if (!property && isAgentBoxId(id)) {
+    try { property = mapListing(await fetchListing(id)); } catch {}
+  }
   if (!property) return {};
   return {
     title: `Enquire — ${property.address}, ${property.suburb} | Spinelli Real Estate`,
@@ -31,7 +42,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function PropertyEnquirePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const property = allProperties.find((p) => p.id === id);
+  let property: Property | undefined = staticProperties.find((p) => p.id === id);
+  if (!property && isAgentBoxId(id)) {
+    try { property = mapListing(await fetchListing(id)); } catch {}
+  }
   if (!property) notFound();
   return <EnquiryPage property={property} />;
 }

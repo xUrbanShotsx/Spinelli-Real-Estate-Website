@@ -28,6 +28,7 @@ export interface Property {
   longDescription?: string;
   image: string;
   photos?: string[];
+  floorPlan?: string;
   features?: string[];
   amenities?: PropertyAmenity[];
   featured?: boolean;

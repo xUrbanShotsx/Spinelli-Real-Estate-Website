@@ -239,6 +239,20 @@ export default function PropertyDetailClient({ property }: { property: Property 
         </section>
       )}
 
+      {/* ── Floor Plan ── */}
+      {property.floorPlan && (
+        <section style={{ backgroundColor: "#F8F9FA", padding: "60px 0" }}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <span className="label-tag" style={{ marginBottom: "24px", display: "block" }}>Floor Plan</span>
+            <img
+              src={property.floorPlan}
+              alt={`${property.address} floor plan`}
+              style={{ maxWidth: "100%", width: "100%", maxHeight: "600px", objectFit: "contain", backgroundColor: "#ffffff" }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* ── Property details + enquiry ── */}
       <section style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-16">

@@ -29,6 +29,14 @@ export interface ABImage {
   id: string;
   url: string;
   title?: string;
+  thumbnails?: { url: string; size: string }[];
+}
+
+export interface ABFloorPlan {
+  id: string;
+  url: string;
+  pdfUrl?: string;
+  title?: string;
 }
 
 export interface ABListing {
@@ -65,7 +73,9 @@ export interface ABListing {
     landArea: { value: string; unit: string };
     buildingArea: { value: string; unit: string };
   };
+  mainImage?: ABImage;
   images?: ABImage[];
+  floorPlans?: ABFloorPlan[];
   staff?: { firstName: string; lastName: string; phone: string; email: string }[];
 }
 
@@ -82,7 +92,8 @@ export async function fetchListings(
   params: Record<string, string> = {},
   revalidate = 300
 ): Promise<ABListingsResponse> {
-  const res = await fetch(url("/listings", { include: "images", ...params }), {
+  // mainImage is the correct include for list endpoint (images only works on detail)
+  const res = await fetch(url("/listings", { include: "mainImage", ...params }), {
     headers: headers(),
     next: { revalidate },
   });
@@ -93,7 +104,7 @@ export async function fetchListings(
 
 export async function fetchListing(id: string, revalidate = 300): Promise<ABListing> {
   const res = await fetch(
-    url(`/listings/${id}`, { include: "images,features,staff,descriptions" }),
+    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription" }),
     { headers: headers(), next: { revalidate } }
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
@@ -209,8 +220,9 @@ export function mapListing(l: ABListing): Property {
     landSize,
     buildingSize,
     description: l.mainHeadline || "",
-    image: l.images?.[0]?.url ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    image: l.mainImage?.url ?? l.images?.[0]?.url ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     photos: l.images?.map((i) => i.url),
+    floorPlan: l.floorPlans?.[0]?.url,
     tag: listingTag(l),
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
