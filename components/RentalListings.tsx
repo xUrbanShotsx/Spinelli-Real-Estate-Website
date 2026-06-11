@@ -87,22 +87,19 @@ function Dropdown({ label, value, options, onChange }: {
 }
 
 export default function RentalListings({ properties }: { properties: Property[] }) {
-  const [suburb, setSuburb] = useState("All Suburbs");
   const [beds, setBeds] = useState("Any Beds");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const minBeds = beds === "Any Beds" ? 0 : parseInt(beds);
 
   const filtered = properties.filter((p) => {
-    if (suburb !== "All Suburbs" && p.suburb !== suburb) return false;
     if (minBeds > 0 && (p.beds === undefined || p.beds < minBeds)) return false;
     return true;
   });
 
-  const hasFilters = suburb !== "All Suburbs" || beds !== "Any Beds";
+  const hasFilters = beds !== "Any Beds";
 
   const clearAll = () => {
-    setSuburb("All Suburbs");
     setBeds("Any Beds");
   };
 
@@ -117,8 +114,7 @@ export default function RentalListings({ properties }: { properties: Property[] 
             </h2>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Dropdown label="Suburb"   value={suburb} options={SUBURBS}     onChange={setSuburb} />
-            <Dropdown label="Bedrooms" value={beds}   options={BED_OPTIONS} onChange={setBeds}   />
+            <Dropdown label="Bedrooms" value={beds} options={BED_OPTIONS} onChange={setBeds} />
             {hasFilters && (
               <button onClick={clearAll} className="flex items-center gap-1.5 px-3 py-2 text-[11px] tracking-wide transition-opacity hover:opacity-60" style={{ fontFamily: "var(--font-sans)", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "10px", height: "10px" }}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
