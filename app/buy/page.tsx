@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ResidentialListings from "@/components/ResidentialListings";
 import Link from "next/link";
+import { fetchForSale, mapListing } from "@/lib/agentbox";
 import { residentialSaleProperties } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -9,12 +10,24 @@ export const metadata: Metadata = {
     "Browse residential properties for sale across the Illawarra — Wollongong, Kiama, Shellharbour, Thirroul and surrounds. Expert guidance from Spinelli Real Estate.",
 };
 
+export const revalidate = 300; // refresh every 5 minutes
 
-export default function BuyPage() {
+export default async function BuyPage() {
+  // Fetch live listings from AgentBox, fall back to static data on error
+  let properties = residentialSaleProperties;
+  try {
+    const data = await fetchForSale(1, 50);
+    if (data.listings?.length) {
+      properties = data.listings.map(mapListing);
+    }
+  } catch (e) {
+    console.error("AgentBox fetch failed, using static data:", e);
+  }
+
   return (
     <>
       {/* ── Listings ── */}
-      <ResidentialListings properties={residentialSaleProperties} />
+      <ResidentialListings properties={properties} />
 
 
       {/* ── Buyer registration CTA ── */}

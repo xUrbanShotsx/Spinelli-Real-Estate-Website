@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import RentalListings from "@/components/RentalListings";
 import Link from "next/link";
+import { fetchForLease, mapListing } from "@/lib/agentbox";
 import { residentialRentProperties } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -9,10 +10,22 @@ export const metadata: Metadata = {
     "Search rental properties across the Illawarra — houses, apartments and townhouses for rent in Wollongong, Kiama, Shellharbour and surrounds.",
 };
 
-export default function RentPage() {
+export const revalidate = 300;
+
+export default async function RentPage() {
+  let properties = residentialRentProperties;
+  try {
+    const data = await fetchForLease(1, 50);
+    if (data.listings?.length) {
+      properties = data.listings.map(mapListing);
+    }
+  } catch (e) {
+    console.error("AgentBox fetch failed, using static data:", e);
+  }
+
   return (
     <>
-      <RentalListings properties={residentialRentProperties} />
+      <RentalListings properties={properties} />
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348" }}>
