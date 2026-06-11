@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { team, soldProperties, residentialRentProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
@@ -64,15 +63,16 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           <div className="grid lg:grid-cols-[480px_1fr] gap-16 items-start">
 
             {/* Photo */}
-            <div className="relative overflow-hidden" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
-              <Image
-                src={member.image}
-                alt={member.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 480px"
-                className="object-cover object-top"
-                priority
-              />
+            <div
+              className="relative overflow-hidden"
+              style={{
+                height: "580px",
+                backgroundImage: `url(${member.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "top center",
+                backgroundColor: "#E8F6FC",
+              }}
+            >
               {/* Shader */}
               <div
                 className="absolute inset-0"
@@ -174,14 +174,16 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                 {agentProperties.map((p) => (
                   <div key={p.id} className="group">
                     {/* Image */}
-                    <div className="relative overflow-hidden" style={{ height: "240px", backgroundColor: "#E8F6FC" }}>
-                      <Image
-                        src={p.image}
-                        alt={p.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-400"
-                      />
+                    <div
+                      className="relative overflow-hidden group-hover:scale-105 transition-transform duration-500"
+                      style={{
+                        height: "240px",
+                        backgroundImage: `url(${p.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundColor: "#E8F6FC",
+                      }}
+                    >
                       {/* Tag badge */}
                       <div className="absolute top-0 left-0">
                         <span style={{

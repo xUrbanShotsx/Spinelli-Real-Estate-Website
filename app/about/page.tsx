@@ -316,14 +316,16 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {previewTeam.map((m) => (
               <Link key={m.name} href={`/team/${toSlug(m.name)}`} className="group block">
-                <div className="relative overflow-hidden" style={{ height: "300px", backgroundColor: "#E8F6FC" }}>
-                  <Image
-                    src={m.image}
-                    alt={m.name}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    height: "300px",
+                    backgroundImage: `url(${m.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "top center",
+                    backgroundColor: "#E8F6FC",
+                  }}
+                >
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 55%)" }} />
                   <div className="absolute bottom-0 left-0 px-4 py-4">
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "#ffffff", marginBottom: "2px" }}>{m.name}</p>

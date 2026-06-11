@@ -1,35 +1,28 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
 }
 
-function TeamCard({ member, blurred, priority }: { member: TeamMember; blurred: boolean; priority: boolean }) {
+function TeamCard({ member, blurred }: { member: TeamMember; blurred: boolean }) {
   return (
     <Link
       href={`/team/${toSlug(member.name)}`}
       className="group relative overflow-hidden block"
-      style={{ height: "480px", backgroundColor: "#E8F6FC" }}
+      style={{
+        height: "480px",
+        backgroundImage: `url(${member.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "top center",
+        backgroundColor: "#E8F6FC",
+        filter: blurred ? "blur(4px)" : "none",
+        opacity: blurred ? 0.5 : 1,
+        transition: "filter 0.3s ease, opacity 0.3s ease",
+      }}
     >
-      {/* Image */}
-      <Image
-        src={member.image}
-        alt={member.name}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover object-top"
-        priority={priority}
-        style={{
-          filter: blurred ? "blur(4px)" : "none",
-          opacity: blurred ? 0.5 : 1,
-          transition: "filter 0.3s ease, opacity 0.3s ease",
-        }}
-      />
-
       {/* Dark gradient shader */}
       <div
         className="absolute inset-0"
@@ -105,7 +98,7 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: "40px" }}
         >
-          {members.map((m, i) => (
+          {members.map((m) => (
             <div
               key={m.name}
               onMouseEnter={() => setHoveredName(m.name)}
@@ -114,7 +107,6 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
               <TeamCard
                 member={m}
                 blurred={!!hoveredName && hoveredName !== m.name}
-                priority={i < 3}
               />
             </div>
           ))}
