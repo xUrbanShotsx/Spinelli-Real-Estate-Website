@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import BusinessListings from "@/components/BusinessListings";
 import Link from "next/link";
 import { businessListings } from "@/lib/data";
+import { fetchBusiness, mapListing } from "@/lib/agentbox";
+import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Business Sales | Spinelli Real Estate",
@@ -9,10 +11,20 @@ export const metadata: Metadata = {
     "Buy or sell a business in the Illawarra with Spinelli Real Estate. Confidential, professional business broking services.",
 };
 
-export default function BusinessPage() {
+export const revalidate = 300;
+
+export default async function BusinessPage() {
+  let properties: Property[] = businessListings;
+  try {
+    const data = await fetchBusiness();
+    if (data.listings?.length) properties = data.listings.map(mapListing);
+  } catch (e) {
+    console.error("AgentBox business fetch failed, using static data:", e);
+  }
+
   return (
     <>
-      <BusinessListings properties={businessListings} />
+      <BusinessListings properties={properties} />
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348" }}>

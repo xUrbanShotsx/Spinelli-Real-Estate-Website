@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import CommercialListings from "@/components/CommercialListings";
 import Link from "next/link";
 import { commercialProperties } from "@/lib/data";
+import { fetchCommercialSale, fetchCommercialLease, mapListing } from "@/lib/agentbox";
+import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Commercial Property | Spinelli Real Estate",
@@ -9,10 +11,27 @@ export const metadata: Metadata = {
     "Commercial property sales, leasing and investment across the Illawarra. Retail, office, industrial and specialty assets — Spinelli Real Estate.",
 };
 
-export default function CommercialPage() {
+export const revalidate = 300;
+
+export default async function CommercialPage() {
+  let properties: Property[] = commercialProperties;
+  try {
+    const [saleData, leaseData] = await Promise.all([
+      fetchCommercialSale(),
+      fetchCommercialLease(),
+    ]);
+    const live = [
+      ...(saleData.listings ?? []),
+      ...(leaseData.listings ?? []),
+    ].map(mapListing);
+    if (live.length) properties = live;
+  } catch (e) {
+    console.error("AgentBox commercial fetch failed, using static data:", e);
+  }
+
   return (
     <>
-      <CommercialListings properties={commercialProperties} />
+      <CommercialListings properties={properties} />
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348" }}>

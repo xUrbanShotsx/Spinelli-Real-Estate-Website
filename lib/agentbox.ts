@@ -130,6 +130,33 @@ export async function fetchForLease(page = 1, limit = 20): Promise<ABListingsRes
   });
 }
 
+export async function fetchCommercialSale(page = 1, limit = 50): Promise<ABListingsResponse> {
+  return fetchListings({
+    "filter[type]": "Commercial Sale",
+    "filter[status]": "Available",
+    page: String(page),
+    limit: String(limit),
+  });
+}
+
+export async function fetchCommercialLease(page = 1, limit = 50): Promise<ABListingsResponse> {
+  return fetchListings({
+    "filter[type]": "Commercial Lease",
+    "filter[status]": "Available",
+    page: String(page),
+    limit: String(limit),
+  });
+}
+
+export async function fetchBusiness(page = 1, limit = 50): Promise<ABListingsResponse> {
+  return fetchListings({
+    "filter[type]": "Business",
+    "filter[status]": "Available",
+    page: String(page),
+    limit: String(limit),
+  });
+}
+
 export async function fetchSold(page = 1, limit = 18): Promise<ABListingsResponse> {
   return fetchListings({
     "filter[type]": "Sale",
