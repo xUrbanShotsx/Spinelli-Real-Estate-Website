@@ -157,7 +157,7 @@ export async function fetchBusiness(page = 1, limit = 50): Promise<ABListingsRes
   });
 }
 
-export async function fetchSold(page = 1, limit = 18): Promise<ABListingsResponse> {
+export async function fetchSold(page = 1, limit = 50): Promise<ABListingsResponse> {
   return fetchListings({
     "filter[type]": "Sale",
     "filter[status]": "Sold",
@@ -270,7 +270,7 @@ export function listingImage(l: ABListing): string {
 
 export function listingTag(l: ABListing): string {
   if (l.status === "Under Offer") return "Under Offer";
-  if (l.status === "Sold") return "Sold";
+  if (l.status === "Sold" || l.status === "Settled") return "Sold";
   if (l.status === "Leased") return "Leased";
   if (l.auctionDate) return "Auction";
   if (l.method === "Auction") return "Auction";

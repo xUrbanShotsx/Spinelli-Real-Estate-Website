@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import SoldListings from "@/components/SoldListings";
 import Link from "next/link";
 import { soldProperties } from "@/lib/data";
+import { fetchSold, mapListing } from "@/lib/agentbox";
+import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Sold Properties | Spinelli Real Estate",
@@ -9,10 +11,20 @@ export const metadata: Metadata = {
     "Browse recently sold properties across the Illawarra. See what homes are achieving in Wollongong, Kiama, Shellharbour and surrounds.",
 };
 
-export default function SellPage() {
+export const revalidate = 300;
+
+export default async function SoldPage() {
+  let properties: Property[] = soldProperties;
+  try {
+    const data = await fetchSold(1, 50);
+    if (data.listings?.length) properties = data.listings.map(mapListing);
+  } catch (e) {
+    console.error("AgentBox sold fetch failed, using static data:", e);
+  }
+
   return (
     <>
-      <SoldListings properties={soldProperties} />
+      <SoldListings properties={properties} />
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348" }}>
