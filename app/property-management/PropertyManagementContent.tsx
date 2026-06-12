@@ -126,7 +126,7 @@ export default function PropertyManagementContent() {
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
           />
         </div>
-        <div className="hero-pm-gradient" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(13,51,72,0.95) 0%, rgba(13,51,72,0.6) 50%, rgba(0,0,0,0.15) 100%)" }} />
+        <div className="hero-pm-gradient" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, transparent 100%)" }} />
         <div className="hero-pm-text w-full">
           <div className="hero-pm-text-inner relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20">
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
