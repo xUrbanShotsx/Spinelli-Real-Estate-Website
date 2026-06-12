@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { team } from "@/lib/data";
+import AboutValues from "@/components/AboutValues";
 
 export const metadata: Metadata = {
   title: "About Us | Spinelli Real Estate",
@@ -14,13 +15,6 @@ function toSlug(name: string) {
 
 const previewTeam = team.slice(0, 4);
 
-const values = [
-  { num: "01", title: "Integrity", body: "Honest advice, always in your best interest — even when it's not what you want to hear. Our reputation is built on trust, and we protect it with every interaction." },
-  { num: "02", title: "Excellence", body: "From the quality of our marketing to the depth of our market knowledge, we hold ourselves to the highest standard in everything we do." },
-  { num: "03", title: "Community", body: "We're proud Illawarra locals who reinvest in the communities we serve and genuinely care about the people who call this coast home." },
-  { num: "04", title: "Results", body: "Our clients judge us on outcomes — and we're consistently proud of what we deliver. Every transaction is an opportunity to prove our worth." },
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -30,9 +24,6 @@ export default function AboutPage() {
           top: 0;
           height: 100vh;
           overflow: hidden;
-        }
-        .about-scroll-container {
-          position: relative;
         }
         .about-panel img.bg {
           position: absolute;
@@ -56,7 +47,6 @@ export default function AboutPage() {
         }
       `}</style>
 
-      {/* ─── Sticky scroll wrapper ─── */}
       <div style={{ position: "relative" }}>
 
         {/* ── Panel 1: Hero ── */}
@@ -65,11 +55,11 @@ export default function AboutPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="bg"
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&h=1200&fit=crop&q=85"
+              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1800&h=1200&fit=crop&q=85"
               alt=""
               loading="eager"
             />
-            <div className="overlay" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 100%)" }} />
+            <div className="overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.1) 100%)" }} />
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
               <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "24px" }}>
                 Our Story
@@ -88,13 +78,13 @@ export default function AboutPage() {
               >
                 Built on Trust.<br />Driven by Results.
               </h1>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "44ch" }}>
                 A boutique Illawarra agency with over a decade of local knowledge, genuine care and a relentless commitment to exceptional outcomes.
               </p>
-              {/* Scroll indicator */}
               <div style={{ position: "absolute", bottom: "48px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>Scroll</span>
-                <div style={{ width: "1px", height: "48px", backgroundColor: "rgba(255,255,255,0.25)" }} />
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Scroll</span>
+                <div style={{ width: "1px", height: "48px", backgroundColor: "rgba(255,255,255,0.2)" }} />
               </div>
             </div>
           </div>
@@ -109,7 +99,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&h=1200&fit=crop&q=85"
               alt=""
             />
-            <div className="overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.05) 100%)" }} />
+            <div className="overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.05) 100%)" }} />
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
               <div style={{ maxWidth: "52ch" }}>
                 <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
@@ -140,45 +130,55 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* ── Panel 3: Stats ── */}
+        {/* ── Panel 3: Stats (with image) ── */}
         <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 3, backgroundColor: "#0D3348" }}>
-            <div className="overlay" style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(91,194,231,0.08) 0%, transparent 70%)" }} />
+          <div className="about-panel" style={{ zIndex: 3 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="bg"
+              src="https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=1800&h=1200&fit=crop&q=85"
+              alt=""
+              style={{ objectPosition: "center 60%" }}
+            />
+            <div className="overlay" style={{ background: "rgba(13,51,72,0.88)" }} />
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
-                {[
-                  { value: "50+", label: "Years Combined Experience" },
-                  { value: "2,000+", label: "Successful Transactions" },
-                  { value: "94%", label: "List-to-Sale Ratio" },
-                  { value: "5★", label: "Client Satisfaction" },
-                ].map((s) => (
-                  <div key={s.label} style={{ borderTop: "1px solid rgba(91,194,231,0.3)", paddingTop: "28px" }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 6vw, 5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "12px" }}>
-                      {s.value}
-                    </p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.12em", textTransform: "uppercase", lineHeight: 1.5 }}>
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div style={{ marginTop: "80px" }}>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
-                    color: "rgba(255,255,255,0.2)",
-                    fontWeight: 300,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1.3,
-                    maxWidth: "40ch",
-                  }}
-                >
-                  &ldquo;We treat every property as if it were our own — because we know what it means to you.&rdquo;
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "20px" }}>
-                  Paul Spinelli — Managing Director
-                </p>
+              <div style={{ width: "100%" }}>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+                  {[
+                    { value: "50+", label: "Years Combined\nExperience" },
+                    { value: "2,000+", label: "Successful\nTransactions" },
+                    { value: "94%", label: "List-to-Sale\nRatio" },
+                    { value: "5★", label: "Client\nSatisfaction" },
+                  ].map((s) => (
+                    <div key={s.label} style={{ borderTop: "1px solid rgba(91,194,231,0.35)", paddingTop: "28px" }}>
+                      <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 6vw, 5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "12px" }}>
+                        {s.value}
+                      </p>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", textTransform: "uppercase", lineHeight: 1.6, whiteSpace: "pre-line" }}>
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "40px" }}>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
+                      color: "rgba(255,255,255,0.25)",
+                      fontWeight: 300,
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.3,
+                      maxWidth: "42ch",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    &ldquo;We treat every property as if it were our own — because we know what it means to you.&rdquo;
+                  </p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                    Paul Spinelli — Managing Director
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1800&h=1200&fit=crop&q=85"
               alt=""
             />
-            <div className="overlay" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%)" }} />
+            <div className="overlay" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%)" }} />
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20" style={{ justifyContent: "flex-end", paddingBottom: "80px" }}>
               <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
                 Our Home
@@ -207,20 +207,20 @@ export default function AboutPage() {
                   letterSpacing: "-0.03em",
                   lineHeight: 1.05,
                   marginBottom: "20px",
-                  maxWidth: "20ch",
+                  maxWidth: "18ch",
                 }}
               >
                 A Brand New Base in Shellharbour City Centre
               </h2>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "48ch", marginBottom: "32px" }}>
-                Our brand new office at 16 College Avenue sits at the heart of one of the Illawarra&apos;s fastest-growing precincts — purpose-built for the way we work and designed to reflect the quality of our brand.
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "48ch", marginBottom: "28px" }}>
+                Our brand new office at 16 College Avenue sits at the heart of one of the Illawarra&apos;s fastest-growing precincts — purpose-built for the way we work.
               </p>
               <a
                 href="https://maps.google.com/?q=16+College+Avenue+Shellharbour+City+Centre+NSW"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-85"
+                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 20px" }}
               >
                 Get Directions
               </a>
@@ -237,7 +237,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1800&h=1200&fit=crop&q=85"
               alt=""
             />
-            <div className="overlay" style={{ background: "linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.05) 100%)" }} />
+            <div className="overlay" style={{ background: "linear-gradient(to left, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.05) 100%)" }} />
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20" style={{ alignItems: "flex-end" }}>
               <div style={{ maxWidth: "50ch" }}>
                 <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
@@ -260,54 +260,23 @@ export default function AboutPage() {
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9, marginBottom: "16px" }}>
                   Being part of the Illawarra isn&apos;t just where we do business — it&apos;s where we live, raise our families and put down roots.
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9, marginBottom: "28px" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9 }}>
                   We are proud supporters of{" "}
-                  <a
-                    href="https://www.destinyrescue.org.au/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: "#5BC2E7", textDecoration: "underline", fontWeight: 500 }}
-                  >
+                  <a href="https://www.destinyrescue.org.au/" target="_blank" rel="noopener noreferrer" style={{ color: "#5BC2E7", textDecoration: "underline", fontWeight: 500 }}>
                     Destiny Rescue
                   </a>
-                  {" "}— an organisation doing extraordinary work to rescue children from trafficking and exploitation around the world.
+                  {" "}— rescuing children from trafficking and exploitation around the world.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── Panel 6: Values ── */}
+        {/* ── Panel 6: Values (interactive client component) ── */}
         <div style={{ height: "100vh" }}>
           <div className="about-panel" style={{ zIndex: 6, backgroundColor: "#ffffff" }}>
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div style={{ width: "100%" }}>
-                <div style={{ borderBottom: "1px solid #E8E5DF", paddingBottom: "40px", marginBottom: "40px" }}>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "12px" }}>
-                    Our Values
-                  </span>
-                  <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-                    What We Stand For
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10">
-                  {values.map((v) => (
-                    <div key={v.num} style={{ display: "flex", gap: "24px", alignItems: "flex-start" }}>
-                      <span style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, opacity: 0.5, flexShrink: 0, paddingTop: "2px" }}>
-                        {v.num}
-                      </span>
-                      <div>
-                        <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "8px" }}>
-                          {v.title}
-                        </h3>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.8 }}>
-                          {v.body}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <AboutValues />
             </div>
           </div>
         </div>
@@ -317,7 +286,7 @@ export default function AboutPage() {
           <div className="about-panel" style={{ zIndex: 7, backgroundColor: "#0D3348" }}>
             <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
               <div style={{ width: "100%" }}>
-                <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px", marginBottom: "40px" }}>
+                <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px", marginBottom: "36px" }}>
                   <div>
                     <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "10px" }}>
                       Our People
@@ -340,10 +309,15 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {previewTeam.map((m) => (
                     <Link key={m.name} href={`/team/${toSlug(m.name)}`} className="group block">
-                      <div
-                        className="relative overflow-hidden"
-                        style={{ height: "280px", backgroundImage: `url(${m.image})`, backgroundSize: "cover", backgroundPosition: "top center", backgroundColor: "#1a4a65" }}
-                      >
+                      <div className="relative overflow-hidden" style={{ height: "260px", backgroundColor: "#1a4a65" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={m.image}
+                          alt={m.name}
+                          loading="eager"
+                          decoding="sync"
+                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+                        />
                         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.0) 55%)" }} />
                         <div className="absolute top-0 right-0">
                           <span style={{ display: "block", backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", padding: "5px 10px", textTransform: "uppercase" }}>
@@ -363,49 +337,34 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* ── Panel 8: CTA ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 8, backgroundColor: "#5BC2E7" }}>
-            <div className="overlay" style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 65%)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+        {/* ── Panel 8: CTA bar (compact, not full screen) ── */}
+        <div style={{ position: "sticky", top: "100vh", zIndex: 8 }}>
+          <div style={{ backgroundColor: "#5BC2E7", padding: "28px 0" }}>
+            <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "20px" }}>
                 <div>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", display: "block", marginBottom: "20px" }}>
-                    Get Started
-                  </span>
-                  <h2
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(2.5rem, 5vw, 5rem)",
-                      color: "#ffffff",
-                      fontWeight: 300,
-                      letterSpacing: "-0.03em",
-                      lineHeight: 1.0,
-                    }}
-                  >
-                    Ready to Work<br />Together?
-                  </h2>
-                </div>
-                <div>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, maxWidth: "44ch", marginBottom: "40px" }}>
-                    Whether you&apos;re buying, selling or investing — our team is ready to deliver the result you deserve. Let&apos;s start the conversation.
+                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em" }}>
+                    Ready to Work Together?
                   </p>
-                  <div className="flex flex-wrap gap-4">
-                    <Link
-                      href="/contact"
-                      className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-90"
-                      style={{ backgroundColor: "#ffffff", color: "#5BC2E7", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
-                    >
-                      Get in Touch
-                    </Link>
-                    <a
-                      href="tel:0242960047"
-                      className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                      style={{ border: "1px solid rgba(255,255,255,0.4)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
-                    >
-                      02 4296 0047
-                    </a>
-                  </div>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.7)", marginTop: "4px" }}>
+                    Buy, sell or invest across the Illawarra with Spinelli Real Estate.
+                  </p>
+                </div>
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                  <Link
+                    href="/contact"
+                    className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: "#ffffff", color: "#5BC2E7", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 22px" }}
+                  >
+                    Get in Touch
+                  </Link>
+                  <a
+                    href="tel:0242960047"
+                    className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-70"
+                    style={{ border: "1px solid rgba(255,255,255,0.45)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 22px" }}
+                  >
+                    02 4296 0047
+                  </a>
                 </div>
               </div>
             </div>
