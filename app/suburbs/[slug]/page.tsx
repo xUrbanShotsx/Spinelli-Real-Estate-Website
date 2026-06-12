@@ -149,15 +149,6 @@ export default async function SuburbPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Hero photo ── */}
-      <section>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={heroImage}
-          alt={suburb.name}
-          style={{ width: "100%", height: "520px", objectFit: "cover", objectPosition: "center", display: "block" }}
-        />
-      </section>
 
       {/* ── About + Market data ── */}
       <section style={{ backgroundColor: "#ffffff", paddingTop: "100px", paddingBottom: "100px" }}>
