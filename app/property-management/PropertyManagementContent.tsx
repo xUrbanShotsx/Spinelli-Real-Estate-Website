@@ -82,7 +82,7 @@ export default function PropertyManagementContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "85vh" }}>
+      <section className="relative flex items-end" style={{ minHeight: "100vh" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/PropertyManage.JPG"
