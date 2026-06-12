@@ -56,69 +56,70 @@ function Dropdown({ label, value, options, onChange }: {
   );
 }
 
+const suburbImages: Record<string, string> = {
+  "wollongong":              "/Wollongong.jpg",
+  "kiama":                   "/Kiama.jpg",
+  "shellharbour":            "/Shellharbour.jpg",
+  "gerringong":              "/Gerringong.jpg",
+  "austinmer":               "/Austinmer.jpg",
+  "dapto":                   "/Dapto.jpg",
+  "figtree":                 "/Figtree.jpg",
+  "jamberoo":                "/Jamberoo.jpg",
+  "berry":                   "/Berry.webp",
+  "nowra":                   "/Nowra.jpg",
+  "lake-illawarra":          "/lake-illawarra.jpg",
+  "thirroul":                "/Elevation.jpg",
+  "corrimal":                "/Rooftop.jpg",
+  "fairy-meadow":            "/bluewater.jpg",
+  "helensburgh":             "/droneshot.jpg",
+  "barrack-heights":         "/Shellharbour.jpg",
+  "barrack-point":           "/bluewater.jpg",
+  "shell-cove":              "/Shellharbour.jpg",
+  "shellharbour-city-centre":"/Shellharbour.jpg",
+  "warilla":                 "/Elevation.jpg",
+  "windang":                 "/bluewater.jpg",
+  "calderwood":              "/Elevation.jpg",
+  "tullimbar":               "/Elevation.jpg",
+  "yellow-rock-ridge":       "/Rooftop.jpg",
+  "blackbutt":               "/Rooftop.jpg",
+  "dunmore":                 "/Jamberoo.jpg",
+  "croom":                   "/Jamberoo.jpg",
+};
+const fallbackImage = "/suburb.jpg";
+
 function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
+  const image = suburbImages[suburb.slug] ?? fallbackImage;
+
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="block group">
       <div
         style={{
           position: "relative",
           aspectRatio: "3/2",
-          backgroundColor: "#ffffff",
           border: "1px solid #5BC2E7",
           overflow: "hidden",
           opacity: blurred ? 0.45 : 1,
           transition: "opacity 0.3s ease",
         }}
       >
-        {/* Watermark suburb name */}
-        <p
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            bottom: "-10px",
-            right: "-12px",
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(3.5rem, 8vw, 6rem)",
-            fontWeight: 300,
-            color: "rgba(91,194,231,0.08)",
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-            whiteSpace: "nowrap",
-            userSelect: "none",
-            pointerEvents: "none",
-          }}
-        >
-          {suburb.name}
-        </p>
-
-        {/* Blue accent bar top */}
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", backgroundColor: "#5BC2E7" }} />
+        {/* Photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={suburb.name}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.4s ease" }}
+          className="group-hover:scale-105"
+        />
 
         {/* Arrow on hover */}
-        <div style={{ position: "absolute", top: "20px", right: "20px", opacity: 0, transition: "opacity 0.2s ease" }} className="group-hover:opacity-100">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={1.5}>
+        <div style={{ position: "absolute", top: "14px", right: "14px", backgroundColor: "rgba(255,255,255,0.9)", padding: "6px", opacity: 0, transition: "opacity 0.2s ease" }} className="group-hover:opacity-100">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0D3348" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </div>
 
-        {/* Bottom content */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px" }}>
-          {/* Stats row */}
-          <div className="flex items-end justify-between mb-3">
-            <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Median Price</p>
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.medianHouse}</p>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Annual Growth</p>
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.annualGrowth}</p>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Suburb name + DOM — blue bar */}
-        <div className="flex items-center justify-between" style={{ backgroundColor: "#5BC2E7", padding: "14px 20px" }}>
+        {/* Blue bar — suburb name + avg DOM */}
+        <div className="flex items-center justify-between" style={{ position: "absolute", bottom: 0, left: 0, right: 0, backgroundColor: "#5BC2E7", padding: "14px 20px" }}>
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
             {suburb.name}
           </h3>
