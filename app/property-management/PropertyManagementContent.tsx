@@ -82,7 +82,12 @@ export default function PropertyManagementContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "100vh" }}>
+      <style>{`
+        @media (max-width: 1024px) {
+          .hero-pm { min-height: 0 !important; aspect-ratio: 3 / 2; }
+        }
+      `}</style>
+      <section className="hero-pm relative flex items-end" style={{ minHeight: "100vh" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/PropertyManage.JPG"
