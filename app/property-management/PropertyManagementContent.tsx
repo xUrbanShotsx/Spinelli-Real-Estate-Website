@@ -100,6 +100,7 @@ export default function PropertyManagementContent() {
           }
           .hero-pm-gradient { display: none !important; }
           .hero-pm-text {
+            order: -1;
             background-color: #0D3348;
             padding-top: 40px;
             padding-bottom: 48px;
