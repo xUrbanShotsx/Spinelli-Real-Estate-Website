@@ -18,8 +18,14 @@ const inputStyle: React.CSSProperties = {
 
 export default function ContactForm({ propertyAddress }: { propertyAddress?: string }) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [activeType, setActiveType] = useState("Buying");
   const defaultMessage = propertyAddress ? `I am enquiring about '${propertyAddress}'` : "";
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState(defaultMessage);
 
   if (submitted) {
@@ -37,15 +43,30 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+          await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ firstName, lastName, email, phone, enquiryType: activeType, message }),
+          });
+        } catch {}
+        setLoading(false);
+        setSubmitted(true);
+      }}
+      className="space-y-9"
+    >
       <div className="grid grid-cols-2 gap-4">
-        <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-black/40" />
-        <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-black/40" />
+        <input type="text" placeholder="FIRST NAME" required value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+        <input type="text" placeholder="LAST NAME" required value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-black/40" />
-        <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-black/40" />
+        <input type="email" placeholder="EMAIL ADDRESS" required value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+        <input type="tel" placeholder="PHONE NUMBER" value={phone} onChange={(e) => setPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
       </div>
 
       {/* Enquiry Type */}
@@ -96,10 +117,11 @@ export default function ContactForm({ propertyAddress }: { propertyAddress?: str
       <div className="flex items-center gap-5 pt-1">
         <button
           type="submit"
+          disabled={loading}
           className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
           style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
         >
-          SUBMIT
+          {loading ? "SENDING..." : "SUBMIT"}
         </button>
       </div>
     </form>
