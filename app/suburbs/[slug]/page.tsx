@@ -71,7 +71,7 @@ export default async function SuburbPage({ params }: Props) {
   return (
     <>
       {/* ── Hero ── */}
-      <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "80px" }}>
+      <section className="flex items-end" style={{ backgroundColor: "#ffffff", minHeight: "100vh", paddingTop: "140px", paddingBottom: "80px" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           {/* Back link */}
           <Link
