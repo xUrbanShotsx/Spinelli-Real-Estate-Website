@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { suburbs } from "@/lib/data";
-import type { PropertyAmenity } from "@/lib/types";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -61,12 +60,6 @@ export default async function SuburbPage({ params }: Props) {
   const nearby = suburbs.filter((s) => s.slug !== suburb.slug).slice(0, 4);
   const heroImage = suburbImages[suburb.slug] ?? fallbackImage;
 
-  const amenities = suburb.amenities as unknown as PropertyAmenity[];
-
-  const categoryIcon: Record<string, string> = {
-    transport: "🚉", beach: "🏖️", shops: "🛍️", school: "🎓",
-    café: "☕", park: "🌿", hospital: "🏥",
-  };
 
   return (
     <>
@@ -265,13 +258,10 @@ export default async function SuburbPage({ params }: Props) {
                   Local<br />Amenities
                 </h2>
                 <div>
-                  {amenities.map((a) => (
-                    <div key={a.name} className="flex items-center justify-between py-3.5" style={{ borderBottom: "1px solid #E8E5DF" }}>
-                      <div className="flex items-center gap-4">
-                        <div style={{ width: "6px", height: "6px", backgroundColor: "#5BC2E7", borderRadius: "50%", flexShrink: 0 }} />
-                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "13.5px", color: "#58503c" }}>{a.name}</span>
-                      </div>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7" }}>{a.distance}</span>
+                  {suburb.amenities.map((a) => (
+                    <div key={a} className="flex items-center gap-4 py-3.5" style={{ borderBottom: "1px solid #E8E5DF" }}>
+                      <div style={{ width: "6px", height: "6px", backgroundColor: "#5BC2E7", borderRadius: "50%", flexShrink: 0 }} />
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13.5px", color: "#58503c" }}>{a}</span>
                     </div>
                   ))}
                 </div>
