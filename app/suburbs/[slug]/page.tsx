@@ -71,12 +71,13 @@ export default async function SuburbPage({ params }: Props) {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="flex items-end" style={{ backgroundColor: "#ffffff", minHeight: "100vh", paddingTop: "140px", paddingBottom: "80px" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          {/* Back link */}
+      <section className="relative" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+
+        {/* Back link — top left */}
+        <div className="absolute px-6 sm:px-12 lg:px-20" style={{ top: "120px", left: 0 }}>
           <Link
             href="/suburbs"
-            className="inline-flex items-center gap-2 mb-10 transition-opacity hover:opacity-60"
+            className="inline-flex items-center gap-2 transition-opacity hover:opacity-60"
             style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase" }}
           >
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "12px", height: "12px" }}>
@@ -84,26 +85,32 @@ export default async function SuburbPage({ params }: Props) {
             </svg>
             All Suburbs
           </Link>
+        </div>
 
-          <div className="max-w-3xl">
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
-              Suburb Guide · {suburb.lga}
-            </span>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(3rem, 8vw, 6.5rem)",
-                color: "#000000",
-                fontWeight: 300,
-                letterSpacing: "-0.04em",
-                lineHeight: 0.95,
-                marginBottom: "32px",
-              }}
-            >
-              {suburb.name}
-            </h1>
+        {/* Suburb name — centred */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
+            Suburb Guide · {suburb.lga}
+          </span>
+          <h1
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(3.5rem, 10vw, 8rem)",
+              color: "#000000",
+              fontWeight: 300,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.95,
+            }}
+          >
+            {suburb.name}
+          </h1>
+        </div>
+
+        {/* Description + buttons — bottom */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-12 lg:px-20" style={{ paddingBottom: "80px" }}>
+          <div className="max-w-7xl mx-auto">
             <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, maxWidth: "54ch", marginBottom: "40px" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, maxWidth: "54ch", marginBottom: "36px" }}>
               {suburb.description}
             </p>
             <div className="flex flex-wrap gap-4">
