@@ -60,95 +60,88 @@ function Dropdown({ label, value, options, onChange }: {
 function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="block group">
-      {/* Blue frame with suburb name */}
       <div
         style={{
           position: "relative",
           aspectRatio: "3/2",
-          backgroundColor: "#5BC2E7",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: blurred ? 0.5 : 1,
+          backgroundColor: "#0D3348",
+          overflow: "hidden",
+          opacity: blurred ? 0.45 : 1,
           transition: "opacity 0.3s ease",
         }}
       >
+        {/* Watermark suburb name */}
         <p
+          aria-hidden="true"
           style={{
+            position: "absolute",
+            bottom: "-10px",
+            right: "-12px",
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
-            color: "#ffffff",
+            fontSize: "clamp(3.5rem, 8vw, 6rem)",
             fontWeight: 300,
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1,
-            textAlign: "center",
-            padding: "0 20px",
+            color: "rgba(255,255,255,0.06)",
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            pointerEvents: "none",
           }}
         >
           {suburb.name}
         </p>
+
+        {/* Blue accent bar top */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", backgroundColor: "#5BC2E7" }} />
+
         {/* Demand badge */}
-        <div className="absolute top-3 left-3">
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "10px",
-              fontWeight: 500,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              backgroundColor: "rgba(255,255,255,0.25)",
-              color: "#ffffff",
-              padding: "3px 8px",
-            }}
-          >
+        <div style={{ position: "absolute", top: "20px", left: "20px" }}>
+          <span style={{
+            fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500,
+            letterSpacing: "0.1em", textTransform: "uppercase",
+            backgroundColor: "rgba(91,194,231,0.18)", color: "#5BC2E7",
+            padding: "4px 10px", border: "1px solid rgba(91,194,231,0.3)",
+          }}>
             {suburb.demandLevel} Demand
           </span>
         </div>
-      </div>
 
-      {/* Text below */}
-      <div className="pt-4 pb-2">
-        <h3
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "1.35rem",
-            color: "#000000",
-            fontWeight: 300,
-            letterSpacing: "-0.02em",
-            lineHeight: 1.2,
-            marginBottom: "10px",
-          }}
-        >
-          {suburb.name}
-        </h3>
+        {/* Arrow on hover */}
+        <div style={{
+          position: "absolute", top: "20px", right: "20px",
+          opacity: 0, transition: "opacity 0.2s ease",
+        }} className="group-hover:opacity-100">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </div>
 
-        {/* Stats row */}
-        <div className="flex items-center gap-5">
-          <div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#000000", fontWeight: 500 }}>
-              {suburb.medianHouse}
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: "2px" }}>
-              Median
-            </p>
+        {/* Bottom content */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px" }}>
+          {/* Stats row */}
+          <div className="flex items-end justify-between mb-3">
+            <div>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Median Price</p>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.medianHouse}</p>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Annual Growth</p>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.annualGrowth}</p>
+            </div>
           </div>
-          <div style={{ width: "1px", height: "28px", backgroundColor: "#E8E5DF" }} />
-          <div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#5BC2E7", fontWeight: 500 }}>
-              {suburb.annualGrowth}
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: "2px" }}>
-              Growth
-            </p>
-          </div>
-          <div style={{ width: "1px", height: "28px", backgroundColor: "#E8E5DF" }} />
-          <div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#000000", fontWeight: 500 }}>
-              {suburb.daysOnMarket}d
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: "2px" }}>
-              Avg DOM
-            </p>
+
+          {/* Divider */}
+          <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(255,255,255,0.1)", marginBottom: "14px" }} />
+
+          {/* Suburb name + DOM */}
+          <div className="flex items-end justify-between">
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              {suburb.name}
+            </h3>
+            <div style={{ textAlign: "right" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>Avg DOM</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>{suburb.daysOnMarket}d</p>
+            </div>
           </div>
         </div>
       </div>
