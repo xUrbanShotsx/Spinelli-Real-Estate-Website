@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 /* ── Data ─────────────────────────────────────────────── */
@@ -19,23 +19,32 @@ const whyUs = [
   { title: "Stress-Free Process",       desc: "From appraisal to settlement, we handle every detail and keep you informed — so you can focus on your next chapter." },
 ];
 
+const reviews = [
+  { quote: "Adam sold our home in under two weeks for $60,000 above our reserve. The marketing was stunning and the communication throughout was excellent.", name: "Sarah M", location: "Wollongong" },
+  { quote: "We were blown away by the results. Spinelli's negotiation skills are second to none — we achieved a price we didn't think was possible.", name: "James & Lisa T", location: "Kiama" },
+  { quote: "From the first meeting to settlement, everything was seamless. Professional, honest and genuinely cared about getting us the best result.", name: "Michael R", location: "Shellharbour" },
+  { quote: "The photography and marketing they produced for our home was incredible. Multiple offers on the first weekend, sold $45K above reserve.", name: "Emma D", location: "Wollongong" },
+  { quote: "Spinelli have sold three properties for us now. We wouldn't go anywhere else. Exceptional agents who deliver exceptional results.", name: "David & Karen B", location: "Illawarra" },
+];
+
 /* ── Main component ───────────────────────────────────── */
 export default function SellContent() {
   const [activeStep, setActiveStep] = useState(0);
   const [hoveredWhy, setHoveredWhy] = useState<number | null>(null);
+  const [activeReview, setActiveReview] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "85vh" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&h=1200&fit=crop&q=85"
-          alt=""
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(13,51,72,0.95) 0%, rgba(13,51,72,0.6) 50%, rgba(0,0,0,0.15) 100%)" }} />
-        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20">
+      <section className="flex items-end" style={{ minHeight: "100vh", backgroundColor: "#ffffff" }}>
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20 pt-40">
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
             Sell With Spinelli
           </span>
@@ -43,7 +52,7 @@ export default function SellContent() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(3rem, 7vw, 6.5rem)",
-              color: "#ffffff",
+              color: "#0D3348",
               fontWeight: 300,
               letterSpacing: "-0.03em",
               lineHeight: 1.0,
@@ -53,7 +62,7 @@ export default function SellContent() {
           >
             Achieve More<br />For Your Home
           </h1>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.65)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(88,80,60,0.8)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px" }}>
             Selling your home is one of the biggest decisions you&apos;ll make. We bring local expertise, premium marketing and relentless negotiation to make sure you get the result you deserve.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -67,7 +76,7 @@ export default function SellContent() {
             <Link
               href="/sold"
               className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-              style={{ border: "1px solid rgba(255,255,255,0.3)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+              style={{ border: "1px solid #DAD7CE", color: "#0D3348", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
             >
               View Recent Results
             </Link>
@@ -228,6 +237,75 @@ export default function SellContent() {
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.8 }}>Aerial perspectives reveal land size, surroundings and proximity to beaches, parks and lifestyle amenities.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Reviews ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="flex flex-wrap items-end justify-between gap-4 pb-10 mb-12" style={{ borderBottom: "1px solid #E8E5DF" }}>
+            <div>
+              <span className="label-tag">Client Reviews</span>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+                What Our Sellers<br />Are Saying
+              </h2>
+            </div>
+          </div>
+
+          {/* Review card */}
+          <div style={{ minHeight: "220px", position: "relative" }}>
+            {reviews.map((r, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  opacity: activeReview === i ? 1 : 0,
+                  transition: "opacity 0.6s ease",
+                  pointerEvents: activeReview === i ? "auto" : "none",
+                }}
+              >
+                <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "32px" }} />
+                <blockquote
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
+                    color: "#0D3348",
+                    fontWeight: 300,
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1.35,
+                    maxWidth: "52ch",
+                    marginBottom: "28px",
+                  }}
+                >
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  {r.name} — {r.location}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Dots */}
+          <div className="flex gap-3 mt-16">
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveReview(i)}
+                style={{
+                  width: activeReview === i ? "32px" : "8px",
+                  height: "8px",
+                  borderRadius: "4px",
+                  backgroundColor: activeReview === i ? "#5BC2E7" : "#DAD7CE",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  padding: 0,
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
