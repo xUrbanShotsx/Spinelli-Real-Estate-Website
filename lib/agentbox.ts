@@ -202,7 +202,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<boolean> {
   const res = await fetch(url("/enquiries"), {
     method: "POST",
     headers: { ...headers(), "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ enquiry: body }),
   });
 
   return res.ok;
