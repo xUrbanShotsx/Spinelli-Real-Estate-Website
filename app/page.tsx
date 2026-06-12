@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import PropertyCard from "@/components/PropertyCard";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import MarketStats from "@/components/MarketStats";
-import { residentialSaleProperties, testimonials } from "@/lib/data";
+import { residentialSaleProperties } from "@/lib/data";
 import { fetchForSale, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
@@ -235,7 +235,7 @@ export default async function HomePage() {
 
 
       {/* ── Testimonials ── */}
-      <TestimonialsSlider testimonials={testimonials} />
+      <TestimonialsSlider />
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden" style={{ minHeight: "540px" }}>
