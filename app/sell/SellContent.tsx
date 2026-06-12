@@ -310,38 +310,6 @@ export default function SellContent() {
         </div>
       </section>
 
-      {/* ── Pull quote ── */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348", padding: "80px 0" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&h=500&fit=crop&q=60" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.07 }} />
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "32px" }} />
-          <blockquote
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
-              color: "#ffffff",
-              fontWeight: 300,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.2,
-              maxWidth: "34ch",
-              marginBottom: "24px",
-            }}
-          >
-            &ldquo;From our first conversation to the final closing, Adam was professional, knowledgeable, and always one step ahead.&rdquo;
-          </blockquote>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "36px" }}>
-            Nathan F — Seller, Illawarra
-          </p>
-          <Link
-            href="/appraisal"
-            className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-            style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
-          >
-            Book a Free Appraisal
-          </Link>
-        </div>
-      </section>
 
       {/* ── CTA ── */}
       <section style={{ backgroundColor: "#0D3348", padding: "100px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
