@@ -117,7 +117,7 @@ export default async function SuburbPage({ params }: Props) {
               <Link
                 href={`/contact?suburb=${suburb.slug}`}
                 className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                style={{ border: "1px solid #E8E5DF", color: "#000000", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+                style={{ color: "#000000", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
               >
                 Make an Enquiry
               </Link>
@@ -127,9 +127,9 @@ export default async function SuburbPage({ params }: Props) {
       </section>
 
       {/* ── Key stats bar ── */}
-      <section style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF" }}>
+      <section style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#E8E5DF]">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             {[
               { v: suburb.medianHouse, l: "Median House" },
               { v: suburb.annualGrowth, l: "Annual Growth" },
@@ -262,8 +262,8 @@ export default async function SuburbPage({ params }: Props) {
                 <div>
                   {amenities.map((a) => (
                     <div key={a.name} className="flex items-center justify-between py-3.5" style={{ borderBottom: "1px solid #E8E5DF" }}>
-                      <div className="flex items-center gap-3">
-                        <span style={{ fontSize: "14px", lineHeight: 1 }}>{categoryIcon[a.category] ?? "📍"}</span>
+                      <div className="flex items-center gap-4">
+                        <div style={{ width: "6px", height: "6px", backgroundColor: "#5BC2E7", borderRadius: "50%", flexShrink: 0 }} />
                         <span style={{ fontFamily: "var(--font-sans)", fontSize: "13.5px", color: "#58503c" }}>{a.name}</span>
                       </div>
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7" }}>{a.distance}</span>
