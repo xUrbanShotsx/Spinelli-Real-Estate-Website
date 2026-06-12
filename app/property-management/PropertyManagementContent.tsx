@@ -287,6 +287,24 @@ export default function PropertyManagementContent() {
         </div>
       </section>
 
+      {/* ── Our Team ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="mb-10">
+            <span className="label-tag">Our Team</span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+              The People Behind Your Property
+            </h2>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/PropertyManage.JPG"
+            alt="Spinelli Property Management Team"
+            style={{ width: "100%", height: "auto", display: "block", objectFit: "cover" }}
+          />
+        </div>
+      </section>
+
       {/* ── Full-bleed pull quote ── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0D3348", padding: "80px 0" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
