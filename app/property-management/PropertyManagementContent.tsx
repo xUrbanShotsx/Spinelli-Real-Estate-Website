@@ -130,27 +130,6 @@ export default function PropertyManagementContent() {
         </div>
       </section>
 
-      {/* ── Stats bar ── */}
-      <section style={{ backgroundColor: "#ffffff", borderBottom: "1px solid #E8E5DF" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((s, i) => (
-              <div
-                key={s.label}
-                className="py-12 px-6"
-                style={{ borderLeft: i > 0 ? "1px solid #E8E5DF" : "none" }}
-              >
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "8px" }}>
-                  <AnimatedStat target={s.target} suffix={s.suffix} />
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Services ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
