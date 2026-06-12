@@ -120,12 +120,12 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
 
           {/* Suburb name + DOM */}
           <div className="flex items-end justify-between">
-            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
               {suburb.name}
             </h3>
             <div style={{ textAlign: "right" }}>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>Avg DOM</p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", fontWeight: 500 }}>{suburb.daysOnMarket}d</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7", fontWeight: 500 }}>{suburb.daysOnMarket}d</p>
             </div>
           </div>
         </div>
