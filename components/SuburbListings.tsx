@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import type { Suburb } from "@/lib/types";
 
-const DEMAND_OPTIONS = ["All Suburbs", "Very High", "High", "Moderate"];
 
 function Dropdown({ label, value, options, onChange }: {
   label: string; value: string; options: string[]; onChange: (v: string) => void;
@@ -64,7 +63,8 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
         style={{
           position: "relative",
           aspectRatio: "3/2",
-          backgroundColor: "#0D3348",
+          backgroundColor: "#ffffff",
+          border: "1px solid #5BC2E7",
           overflow: "hidden",
           opacity: blurred ? 0.45 : 1,
           transition: "opacity 0.3s ease",
@@ -80,7 +80,7 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(3.5rem, 8vw, 6rem)",
             fontWeight: 300,
-            color: "rgba(255,255,255,0.06)",
+            color: "rgba(91,194,231,0.08)",
             letterSpacing: "-0.04em",
             lineHeight: 1,
             whiteSpace: "nowrap",
@@ -94,23 +94,8 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
         {/* Blue accent bar top */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", backgroundColor: "#5BC2E7" }} />
 
-        {/* Demand badge */}
-        <div style={{ position: "absolute", top: "20px", left: "20px" }}>
-          <span style={{
-            fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500,
-            letterSpacing: "0.1em", textTransform: "uppercase",
-            backgroundColor: "rgba(91,194,231,0.18)", color: "#5BC2E7",
-            padding: "4px 10px", border: "1px solid rgba(91,194,231,0.3)",
-          }}>
-            {suburb.demandLevel} Demand
-          </span>
-        </div>
-
         {/* Arrow on hover */}
-        <div style={{
-          position: "absolute", top: "20px", right: "20px",
-          opacity: 0, transition: "opacity 0.2s ease",
-        }} className="group-hover:opacity-100">
+        <div style={{ position: "absolute", top: "20px", right: "20px", opacity: 0, transition: "opacity 0.2s ease" }} className="group-hover:opacity-100">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
@@ -121,26 +106,26 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
           {/* Stats row */}
           <div className="flex items-end justify-between mb-3">
             <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Median Price</p>
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.medianHouse}</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Median Price</p>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.medianHouse}</p>
             </div>
             <div style={{ textAlign: "right" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Annual Growth</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" }}>Annual Growth</p>
               <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.02em" }}>{suburb.annualGrowth}</p>
             </div>
           </div>
 
           {/* Divider */}
-          <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(255,255,255,0.1)", marginBottom: "14px" }} />
+          <div style={{ width: "100%", height: "1px", backgroundColor: "#E8E5DF", marginBottom: "14px" }} />
 
           {/* Suburb name + DOM */}
           <div className="flex items-end justify-between">
-            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
               {suburb.name}
             </h3>
             <div style={{ textAlign: "right" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>Avg DOM</p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>{suburb.daysOnMarket}d</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>Avg DOM</p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#7a7265", fontWeight: 500 }}>{suburb.daysOnMarket}d</p>
             </div>
           </div>
         </div>
@@ -150,23 +135,17 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
 }
 
 export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
-  const [demand, setDemand] = useState("All Suburbs");
   const [search, setSearch] = useState("");
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
-  const filtered = suburbs.filter((s) => {
-    if (demand !== "All Suburbs" && s.demandLevel !== demand) return false;
-    if (search && !s.name.toLowerCase().includes(search.toLowerCase())) return false;
-    return true;
-  });
-
-  const hasFilters = demand !== "All Suburbs" || search !== "";
-  const clearAll = () => { setDemand("All Suburbs"); setSearch(""); };
+  const filtered = suburbs.filter((s) =>
+    !search || s.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "60px" }}>
 
-      {/* Header + filters */}
+      {/* Header + search */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8"
           style={{ borderBottom: "1px solid #E8E5DF" }}>
@@ -177,43 +156,27 @@ export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
             </h2>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Search input */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search suburb..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="px-4 py-2 text-[12px] outline-none"
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  border: search ? "1px solid #000000" : "1px solid #DAD7CE",
-                  backgroundColor: search ? "#000000" : "transparent",
-                  color: search ? "#ffffff" : "#7a7265",
-                  letterSpacing: "0.04em",
-                  width: "160px",
-                }}
-              />
-              {search && (
-                <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color: "#ffffff" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "10px", height: "10px" }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
-
-            <Dropdown label="Demand Level" value={demand} options={DEMAND_OPTIONS} onChange={setDemand} />
-
-            {hasFilters && (
-              <button onClick={clearAll}
-                className="flex items-center gap-1.5 px-3 py-2 text-[11px] tracking-wide transition-opacity hover:opacity-60"
-                style={{ fontFamily: "var(--font-sans)", color: "#a2b0aa", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search suburb..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="px-4 py-2 text-[12px] outline-none"
+              style={{
+                fontFamily: "var(--font-sans)",
+                border: search ? "1px solid #000000" : "1px solid #DAD7CE",
+                backgroundColor: search ? "#000000" : "transparent",
+                color: search ? "#ffffff" : "#7a7265",
+                letterSpacing: "0.04em",
+                width: "160px",
+              }}
+            />
+            {search && (
+              <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color: "#ffffff" }}>
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "10px", height: "10px" }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-                Clear
               </button>
             )}
           </div>
@@ -238,8 +201,8 @@ export default function SuburbListings({ suburbs }: { suburbs: Suburb[] }) {
             No suburbs match your search
           </p>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#a2b0aa" }}>
-            Try adjusting your filters or{" "}
-            <button onClick={clearAll} style={{ color: "#5BC2E7", textDecoration: "underline" }}>clear all</button>.
+            Try a different name or{" "}
+            <button onClick={() => setSearch("")} style={{ color: "#5BC2E7", textDecoration: "underline" }}>clear search</button>.
           </p>
         </div>
       )}
