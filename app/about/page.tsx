@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { team } from "@/lib/data";
-import AboutValues from "@/components/AboutValues";
 
 export const metadata: Metadata = {
   title: "About Us | Spinelli Real Estate",
@@ -13,365 +13,377 @@ function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
 }
 
+const values = [
+  {
+    num: "01",
+    title: "Integrity",
+    body: "We give honest advice — always in your best interest, even when it's not what you want to hear. Our reputation is built on trust, and we protect it with every interaction.",
+  },
+  {
+    num: "02",
+    title: "Excellence",
+    body: "From the quality of our marketing to the depth of our market knowledge, we hold ourselves to the highest standard. Good enough is never good enough for us.",
+  },
+  {
+    num: "03",
+    title: "Community",
+    body: "We're proud Illawarra locals who live and breathe this region. We reinvest in the communities we serve and genuinely care about the people who call this coast home.",
+  },
+  {
+    num: "04",
+    title: "Results",
+    body: "Our clients judge us on outcomes — and we're consistently proud of what we deliver. Every sale, every lease, every transaction is an opportunity to prove our worth.",
+  },
+];
+
+// First 4 team members for the preview strip
 const previewTeam = team.slice(0, 4);
 
 export default function AboutPage() {
   return (
     <>
-      <style>{`
-        .about-panel {
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          overflow: hidden;
-        }
-        .about-panel img.bg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-        }
-        .about-panel .overlay {
-          position: absolute;
-          inset: 0;
-        }
-        .about-panel .content {
-          position: relative;
-          z-index: 2;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-      `}</style>
+      {/* ── Who We Are ── */}
+      <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "100px" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-      <div style={{ position: "relative" }}>
-
-        {/* ── Panel 1: Hero ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 1 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="bg"
-              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1800&h=1200&fit=crop&q=85"
-              alt=""
-              loading="eager"
-            />
-            <div className="overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.1) 100%)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "24px" }}>
-                Our Story
-              </span>
-              <h1
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(3rem, 8vw, 8rem)",
-                  color: "#ffffff",
-                  fontWeight: 300,
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.0,
-                  marginBottom: "32px",
-                  maxWidth: "14ch",
-                }}
-              >
-                Built on Trust.<br />Driven by Results.
-              </h1>
-              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "44ch" }}>
-                A boutique Illawarra agency with over a decade of local knowledge, genuine care and a relentless commitment to exceptional outcomes.
-              </p>
-              <div style={{ position: "absolute", bottom: "48px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Scroll</span>
-                <div style={{ width: "1px", height: "48px", backgroundColor: "rgba(255,255,255,0.2)" }} />
+            {/* Image */}
+            <div className="relative overflow-hidden order-last lg:order-first" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85"
+                alt="Spinelli Real Estate team"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Who We Are</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Spinelli Real Estate — Illawarra&apos;s Local Agency</p>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* ── Panel 2: Who We Are ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 2 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="bg"
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&h=1200&fit=crop&q=85"
-              alt=""
-            />
-            <div className="overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.05) 100%)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div style={{ maxWidth: "52ch" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
-                  Who We Are
-                </span>
-                <h2
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
-                    color: "#ffffff",
-                    fontWeight: 300,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1.05,
-                    marginBottom: "28px",
-                  }}
-                >
-                  A Family Agency<br />Built for the Illawarra
-                </h2>
-                <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9, marginBottom: "16px" }}>
-                  Spinelli Real Estate was founded on a simple belief — that clients deserve more than a transaction. They deserve a trusted adviser who truly knows the local market, genuinely cares about their outcome and works tirelessly to achieve it.
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9 }}>
-                  As a locally owned, family-run business, every client works directly with our senior agents — backed by 50+ years of combined experience and an unmatched Illawarra network.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Panel 3: Stats (with image) ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 3 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="bg"
-              src="https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=1800&h=1200&fit=crop&q=85"
-              alt=""
-              style={{ objectPosition: "center 60%" }}
-            />
-            <div className="overlay" style={{ background: "rgba(13,51,72,0.88)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div style={{ width: "100%" }}>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
-                  {[
-                    { value: "50+", label: "Years Combined\nExperience" },
-                    { value: "2,000+", label: "Successful\nTransactions" },
-                    { value: "94%", label: "List-to-Sale\nRatio" },
-                    { value: "5★", label: "Client\nSatisfaction" },
-                  ].map((s) => (
-                    <div key={s.label} style={{ borderTop: "1px solid rgba(91,194,231,0.35)", paddingTop: "28px" }}>
-                      <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 6vw, 5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "12px" }}>
-                        {s.value}
-                      </p>
-                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", textTransform: "uppercase", lineHeight: 1.6, whiteSpace: "pre-line" }}>
-                        {s.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "40px" }}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
-                      color: "rgba(255,255,255,0.25)",
-                      fontWeight: 300,
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1.3,
-                      maxWidth: "42ch",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    &ldquo;We treat every property as if it were our own — because we know what it means to you.&rdquo;
-                  </p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                    Paul Spinelli — Managing Director
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Panel 4: Our Home ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 4 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="bg"
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1800&h=1200&fit=crop&q=85"
-              alt=""
-            />
-            <div className="overlay" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20" style={{ justifyContent: "flex-end", paddingBottom: "80px" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
-                Our Home
-              </span>
+            {/* Text */}
+            <div>
+              <span className="label-tag">Who We Are</span>
               <h2
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
-                  color: "#ffffff",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  color: "#000000",
                   fontWeight: 300,
                   letterSpacing: "-0.03em",
-                  lineHeight: 1.05,
-                  marginBottom: "20px",
-                  maxWidth: "18ch",
+                  lineHeight: 1.1,
+                  marginBottom: "28px",
                 }}
               >
-                A Brand New Base in Shellharbour City Centre
+                A Family Agency<br />Built for the Illawarra
               </h2>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "48ch", marginBottom: "28px" }}>
-                Our brand new office at 16 College Avenue sits at the heart of one of the Illawarra&apos;s fastest-growing precincts — purpose-built for the way we work.
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                Spinelli Real Estate was founded on a simple belief — that clients deserve more than a transaction. They deserve a trusted adviser who truly knows the local market, genuinely cares about their outcome and works tirelessly to achieve it.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                As a locally owned, family-run business, we operate differently. Every client works directly with our senior agents — not a junior assistant — and benefits from the full weight of our experience, our network and our reputation.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
+                From Helensburgh to Nowra, we&apos;ve helped thousands of families buy, sell, rent and invest across the Illawarra — with the same commitment to premium service and premium results every single time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Our Home ── */}
+      <section style={{ backgroundColor: "#F8F9FA", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Text */}
+            <div>
+              <span className="label-tag">Our Home</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                  marginBottom: "28px",
+                }}
+              >
+                A Brand New Base<br />in Shellharbour City Centre
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                We&apos;re proud to call Shellharbour City Centre home. Our brand new office sits at the heart of one of the Illawarra&apos;s fastest-growing precincts — purpose-built for the way we work and designed to reflect the quality of our brand.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                From this central location, we service the entire Illawarra region — from Helensburgh in the north to Nowra in the south — with the same local expertise and personal attention our clients have come to expect.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "40px" }}>
+                Whether you want to pop in for a chat, attend a property consultation or simply get a feel for who we are — our doors are always open.
               </p>
               <a
                 href="https://maps.google.com/?q=16+College+Avenue+Shellharbour+City+Centre+NSW"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 20px" }}
+                className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
+                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
               >
                 Get Directions
               </a>
             </div>
+
+            {/* Image */}
+            <div className="relative overflow-hidden" style={{ height: "520px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=85"
+                alt="Spinelli Real Estate Shellharbour City Centre office"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              {/* Location badge */}
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Our Office</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>16 College Avenue, Shellharbour City Centre NSW</p>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* ── Panel 5: Our Community ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 5 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="bg"
-              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1800&h=1200&fit=crop&q=85"
-              alt=""
-            />
-            <div className="overlay" style={{ background: "linear-gradient(to left, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.05) 100%)" }} />
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20" style={{ alignItems: "flex-end" }}>
-              <div style={{ maxWidth: "50ch" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
-                  Our Community
+      {/* ── Our Community ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Image */}
+            <div className="relative overflow-hidden order-last lg:order-first" style={{ height: "580px", backgroundColor: "#E8F6FC" }}>
+              <Image
+                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=900&q=85"
+                alt="Community and charity support"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5" style={{ backgroundColor: "rgba(91,194,231,0.92)" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "4px" }}>Our Community</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#ffffff" }}>Proud supporters of Destiny Rescue &amp; the Illawarra community</p>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div>
+              <span className="label-tag">Our Community</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                  marginBottom: "28px",
+                }}
+              >
+                Giving Back to the<br />Community We Serve
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                Being part of the Illawarra isn&apos;t just where we do business — it&apos;s where we live, raise our families and put down roots. That connection drives us to give back in ways that go well beyond real estate.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                We are proud supporters of <a href="https://www.destinyrescue.org.au/" target="_blank" rel="noopener noreferrer" style={{ color: "#5BC2E7", fontWeight: 500, textDecoration: "underline" }}>Destiny Rescue</a> — an organisation doing extraordinary work to rescue children from trafficking and exploitation around the world. Their mission aligns with our belief that business success carries a responsibility to make a real difference.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                Locally, we actively support community initiatives, local events and organisations across the Illawarra. We believe a strong community creates a better place to live — and that every business has a role to play in making that happen.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
+                When you choose Spinelli Real Estate, you&apos;re not just working with a local agent — you&apos;re supporting a business that genuinely invests in the people and places around it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Values ── */}
+      <section style={{ backgroundColor: "#F8F9FA", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div
+            className="flex flex-wrap items-end justify-between gap-4 pb-12 mb-4"
+            style={{ borderBottom: "1px solid #E8E5DF" }}
+          >
+            <div>
+              <span className="label-tag">Our Values</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                }}
+              >
+                What We Stand For
+              </h2>
+            </div>
+          </div>
+
+          <div>
+            {values.map((v, i) => (
+              <div
+                key={v.num}
+                className="grid md:grid-cols-[80px_1fr_2fr] gap-6 md:gap-12 items-start py-10"
+                style={{ borderBottom: i < values.length - 1 ? "1px solid #E8E5DF" : "none" }}
+              >
+                <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3vw, 2.8rem)", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1, opacity: 0.45 }}>
+                  {v.num}
                 </span>
-                <h2
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
-                    color: "#ffffff",
-                    fontWeight: 300,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1.05,
-                    marginBottom: "28px",
-                  }}
-                >
-                  Giving Back to the<br />Community We Serve
-                </h2>
-                <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9, marginBottom: "16px" }}>
-                  Being part of the Illawarra isn&apos;t just where we do business — it&apos;s where we live, raise our families and put down roots.
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.7)", lineHeight: 1.9 }}>
-                  We are proud supporters of{" "}
-                  <a href="https://www.destinyrescue.org.au/" target="_blank" rel="noopener noreferrer" style={{ color: "#5BC2E7", textDecoration: "underline", fontWeight: 500 }}>
-                    Destiny Rescue
-                  </a>
-                  {" "}— rescuing children from trafficking and exploitation around the world.
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.5rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.2, paddingTop: "4px" }}>
+                  {v.title}
+                </h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.85, paddingTop: "4px" }}>
+                  {v.body}
                 </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* ── Panel 6: Values (interactive client component) ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 6, backgroundColor: "#ffffff" }}>
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <AboutValues />
-            </div>
+      {/* ── Pull quote ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="max-w-4xl">
+            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "40px" }} />
+            <p
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
+                color: "#000000",
+                fontWeight: 300,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.2,
+                marginBottom: "40px",
+              }}
+            >
+              &ldquo;We treat every property as if it were our own — because we know what it means to you.&rdquo;
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              Paul Spinelli — Managing Director
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* ── Panel 7: Team ── */}
-        <div style={{ height: "100vh" }}>
-          <div className="about-panel" style={{ zIndex: 7, backgroundColor: "#0D3348" }}>
-            <div className="content max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div style={{ width: "100%" }}>
-                <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px", marginBottom: "36px" }}>
-                  <div>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "10px" }}>
-                      Our People
-                    </span>
-                    <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 3rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-                      The People Behind Spinelli
-                    </h2>
+      {/* ── Team preview ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div
+            className="flex flex-wrap items-end justify-between gap-4 pb-10 mb-10"
+            style={{ borderBottom: "1px solid #E8E5DF" }}
+          >
+            <div>
+              <span className="label-tag">Our People</span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  color: "#000000",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.1,
+                }}
+              >
+                The People Behind Spinelli
+              </h2>
+            </div>
+            <Link
+              href="/team"
+              className="inline-flex items-center gap-2 transition-opacity hover:opacity-60"
+              style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            >
+              View Full Team
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "12px", height: "12px" }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {previewTeam.map((m) => (
+              <Link key={m.name} href={`/team/${toSlug(m.name)}`} className="group block">
+                <div className="relative overflow-hidden" style={{ height: "300px", backgroundColor: "#E8F6FC" }}>
+                  <Image
+                    src={m.image}
+                    alt={m.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 55%)" }} />
+                  <div className="absolute bottom-0 left-0 px-4 py-4">
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "#ffffff", marginBottom: "2px" }}>{m.name}</p>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{m.role}</p>
                   </div>
-                  <Link
-                    href="/team"
-                    className="inline-flex items-center gap-2 transition-opacity hover:opacity-60"
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.1em", textTransform: "uppercase" }}
-                  >
-                    View Full Team
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ width: "12px", height: "12px" }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  {/* Blue role tag */}
+                  <div className="absolute top-0 right-0">
+                    <span style={{ display: "block", backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", padding: "5px 10px", textTransform: "uppercase" }}>
+                      {m.role}
+                    </span>
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {previewTeam.map((m) => (
-                    <Link key={m.name} href={`/team/${toSlug(m.name)}`} className="group block">
-                      <div className="relative overflow-hidden" style={{ height: "260px", backgroundColor: "#1a4a65" }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={m.image}
-                          alt={m.name}
-                          loading="eager"
-                          decoding="sync"
-                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
-                        />
-                        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.0) 55%)" }} />
-                        <div className="absolute top-0 right-0">
-                          <span style={{ display: "block", backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", padding: "5px 10px", textTransform: "uppercase" }}>
-                            {m.role}
-                          </span>
-                        </div>
-                        <div className="absolute bottom-0 left-0 px-4 py-4">
-                          <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "#ffffff", marginBottom: "2px" }}>{m.name}</p>
-                          <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{m.role}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section style={{ backgroundColor: "#5BC2E7", padding: "80px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.4rem)",
+                  color: "#ffffff",
+                  fontWeight: 300,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.05,
+                }}
+              >
+                Ready to Work<br />Together?
+              </h2>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.75)", lineHeight: 1.75, maxWidth: "42ch", marginBottom: "32px" }}>
+                Whether you&apos;re buying, selling or investing — our team is ready to deliver the result you deserve. Let&apos;s start the conversation.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: "#ffffff", color: "#5BC2E7", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                >
+                  Get in Touch
+                </Link>
+                <a
+                  href="tel:0242960047"
+                  className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
+                  style={{ border: "1px solid rgba(255,255,255,0.4)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                >
+                  02 4296 0047
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        {/* ── Panel 8: CTA bar (compact, not full screen) ── */}
-        <div style={{ position: "sticky", top: "100vh", zIndex: 8 }}>
-          <div style={{ backgroundColor: "#5BC2E7", padding: "28px 0" }}>
-            <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "20px" }}>
-                <div>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em" }}>
-                    Ready to Work Together?
-                  </p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.7)", marginTop: "4px" }}>
-                    Buy, sell or invest across the Illawarra with Spinelli Real Estate.
-                  </p>
-                </div>
-                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                  <Link
-                    href="/contact"
-                    className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: "#ffffff", color: "#5BC2E7", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 22px" }}
-                  >
-                    Get in Touch
-                  </Link>
-                  <a
-                    href="tel:0242960047"
-                    className="inline-block text-[11px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                    style={{ border: "1px solid rgba(255,255,255,0.45)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase", padding: "10px 22px" }}
-                  >
-                    02 4296 0047
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      </section>
     </>
   );
 }
