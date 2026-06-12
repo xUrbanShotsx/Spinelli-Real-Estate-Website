@@ -101,10 +101,16 @@ export default function PropertyManagementContent() {
           .hero-pm-gradient { display: none !important; }
           .hero-pm-text {
             order: -1;
-            background-color: #0D3348;
-            padding-top: 40px;
-            padding-bottom: 48px;
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 60px;
           }
+          .hero-pm-text h1 { color: #0D3348 !important; }
+          .hero-pm-text p { color: rgba(88,80,60,0.8) !important; }
+          .hero-pm-text span { color: #5BC2E7 !important; }
           .hero-pm-text-inner { padding-bottom: 0 !important; }
         }
         @media (min-width: 1025px) {
