@@ -73,8 +73,8 @@ export default async function SuburbPage({ params }: Props) {
       {/* ── Hero ── */}
       <section className="relative" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
 
-        {/* Back link — top left */}
-        <div className="absolute px-6 sm:px-12 lg:px-20" style={{ top: "120px", left: 0 }}>
+        {/* Back link — top left, aligned with navbar menu button */}
+        <div className="absolute px-6 sm:px-10" style={{ top: "120px", left: 0 }}>
           <Link
             href="/suburbs"
             className="inline-flex items-center gap-2 transition-opacity hover:opacity-60"
@@ -106,29 +106,27 @@ export default async function SuburbPage({ params }: Props) {
           </h1>
         </div>
 
-        {/* Description + buttons — bottom */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-12 lg:px-20" style={{ paddingBottom: "80px" }}>
-          <div className="max-w-7xl mx-auto">
-            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, maxWidth: "54ch", marginBottom: "36px" }}>
-              {suburb.description}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/appraisal"
-                className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
-              >
-                Free Appraisal
-              </Link>
-              <Link
-                href={`/contact?suburb=${suburb.slug}`}
-                className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-                style={{ color: "#000000", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
-              >
-                Make an Enquiry
-              </Link>
-            </div>
+        {/* Description + buttons — bottom centred */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-12 lg:px-20 flex flex-col items-center text-center" style={{ paddingBottom: "80px" }}>
+          <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, maxWidth: "54ch", marginBottom: "36px" }}>
+            {suburb.description}
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/appraisal"
+              className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
+              style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            >
+              Free Appraisal
+            </Link>
+            <Link
+              href={`/contact?suburb=${suburb.slug}`}
+              className="inline-block px-8 py-4 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
+              style={{ color: "#000000", fontFamily: "var(--font-sans)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            >
+              Make an Enquiry
+            </Link>
           </div>
         </div>
       </section>
