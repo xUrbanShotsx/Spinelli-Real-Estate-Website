@@ -19,7 +19,13 @@ export default function AppraisalPage() {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 10);
@@ -119,15 +125,30 @@ export default function AppraisalPage() {
               </p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setLoading(true);
+                try {
+                  await fetch("/api/appraisal", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ firstName, lastName, email, phone, address, message }),
+                  });
+                } catch {}
+                setLoading(false);
+                setSubmitted(true);
+              }}
+              className="space-y-9"
+            >
               <div className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-black/40" />
-                <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-black/40" />
+                <input type="text" placeholder="FIRST NAME" required value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+                <input type="text" placeholder="LAST NAME" required value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-black/40" />
-                <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-black/40" />
+                <input type="email" placeholder="EMAIL ADDRESS" required value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+                <input type="tel" placeholder="PHONE NUMBER" value={phone} onChange={(e) => setPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
               </div>
 
               {/* Property Address */}
@@ -135,6 +156,8 @@ export default function AppraisalPage() {
                 type="text"
                 placeholder="PROPERTY ADDRESS"
                 required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 style={inputStyle}
                 className="placeholder:text-black/40"
               />
@@ -156,10 +179,11 @@ export default function AppraisalPage() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
                 style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
               >
-                SUBMIT
+                {loading ? "SENDING..." : "SUBMIT"}
               </button>
             </form>
           )}
