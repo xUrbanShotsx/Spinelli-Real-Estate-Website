@@ -27,7 +27,7 @@ const navItems = [
       { label: "Property Management", href: "/property-management", sub: "Let us manage your property" },
     ],
   },
-  { label: "Projects", href: "https://innovate-property.vercel.app/", external: true },
+  { label: "Projects", href: "/projects" },
   {
     label: "Resources",
     dropdown: [
@@ -55,7 +55,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Pages with no hero — navbar should use blue at the top
-  const lightPages = ["/sold", "/buy", "/rent", "/sell", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide"];
+  const lightPages = ["/sold", "/buy", "/rent", "/sell", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects"];
   const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
