@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { projects } from "./data";
 
 function useReveal(threshold = 0.08) {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,83 +27,6 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
     </div>
   );
 }
-
-type ProjectCategory = "Duplex" | "Townhouse" | "Multi-Level Residential" | "Commercial";
-
-const projects = [
-  {
-    id: "elevation-77",
-    name: "Elevation 77",
-    suburb: "Shellharbour City Centre",
-    category: "Multi-Level Residential" as ProjectCategory,
-    units: "77 Apartments · 7 Commercial",
-    status: "Sold Out",
-    image: "/Elevation.jpg",
-  },
-  {
-    id: "bluewater",
-    name: "Bluewater",
-    suburb: "Kiama",
-    category: "Multi-Level Residential" as ProjectCategory,
-    units: "23 Apartments",
-    status: "Sold Out",
-    image: "/bluewater.jpg",
-  },
-  {
-    id: "the-outlook",
-    name: "The Outlook",
-    suburb: "Kiama",
-    category: "Multi-Level Residential" as ProjectCategory,
-    units: "18 Apartments",
-    status: "Sold Out",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=90",
-  },
-  {
-    id: "shellharbour-rise",
-    name: "Shellharbour Rise",
-    suburb: "Shellharbour",
-    category: "Townhouse" as ProjectCategory,
-    units: "8 Townhomes",
-    status: "Sold Out",
-    image: "/Shellharbour.jpg",
-  },
-  {
-    id: "grove-albion-park",
-    name: "The Grove",
-    suburb: "Albion Park",
-    category: "Townhouse" as ProjectCategory,
-    units: "6 Townhomes",
-    status: "Now Selling",
-    image: "/Gerringong.jpg",
-  },
-  {
-    id: "coastal-terrace",
-    name: "Coastal Terrace Collection",
-    suburb: "Thirroul",
-    category: "Duplex" as ProjectCategory,
-    units: "4 Homes",
-    status: "Now Selling",
-    image: "/Kiama.jpg",
-  },
-  {
-    id: "harbourside-quarter",
-    name: "Harbourside Quarter",
-    suburb: "Wollongong",
-    category: "Commercial" as ProjectCategory,
-    units: "Mixed Use · 32 Apartments",
-    status: "Coming Soon",
-    image: "/Wollongong.jpg",
-  },
-  {
-    id: "gerringong-heights",
-    name: "Gerringong Heights",
-    suburb: "Gerringong",
-    category: "Duplex" as ProjectCategory,
-    units: "18 Homes",
-    status: "Now Selling",
-    image: "/Gerringong.jpg",
-  },
-];
 
 const NAV_H = 90;
 
@@ -214,23 +138,23 @@ export default function ProjectsContent() {
                   {project.units} · {project.category}
                 </p>
 
-                {/* Actions (only for active projects) */}
-                {project.status !== "Sold Out" && (
-                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+                {/* Actions */}
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+                  {project.status !== "Sold Out" && (
                     <Link
                       href="/contact"
-                      style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0D3348", backgroundColor: "#ffffff", padding: "13px 28px", textDecoration: "none", transition: "opacity 0.2s" }}
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0D3348", backgroundColor: "#ffffff", padding: "13px 28px", textDecoration: "none" }}
                     >
                       Register Interest
                     </Link>
-                    <Link
-                      href="/contact"
-                      style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "transparent", border: "1px solid rgba(255,255,255,0.35)", padding: "13px 28px", textDecoration: "none" }}
-                    >
-                      Learn More
-                    </Link>
-                  </div>
-                )}
+                  )}
+                  <Link
+                    href={`/projects/${project.id}`}
+                    style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "transparent", border: "1px solid rgba(255,255,255,0.35)", padding: "13px 28px", textDecoration: "none" }}
+                  >
+                    View Project
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
