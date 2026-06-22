@@ -231,29 +231,15 @@ export default function Navbar() {
               </div>
             ) : (
               <div key={item.href} style={{ borderBottom: "1px solid #E8E5DF" }}>
-                {item.external ? (
-                  <a
-                    href={item.href!}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-4 transition-opacity hover:opacity-60"
-                  >
-                    <span className="text-[22px] font-light tracking-tight" style={{ color: "#000000", fontFamily: "var(--font-display)" }}>
-                      {item.label}
-                    </span>
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href!}
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-4 transition-opacity hover:opacity-60"
-                  >
-                    <span className="text-[22px] font-light tracking-tight" style={{ color: "#000000", fontFamily: "var(--font-display)" }}>
-                      {item.label}
-                    </span>
-                  </Link>
-                )}
+                <Link
+                  href={item.href!}
+                  onClick={() => setMenuOpen(false)}
+                  className="block py-4 transition-opacity hover:opacity-60"
+                >
+                  <span className="text-[22px] font-light tracking-tight" style={{ color: "#000000", fontFamily: "var(--font-display)" }}>
+                    {item.label}
+                  </span>
+                </Link>
               </div>
             )
           )}
