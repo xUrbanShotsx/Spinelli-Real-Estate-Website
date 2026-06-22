@@ -55,7 +55,7 @@ const projects = [
     category: "Multi-Level Residential" as ProjectCategory,
     units: "18 Apartments",
     status: "Sold Out",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&h=1100&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=90",
   },
   {
     id: "shellharbour-rise",
@@ -104,13 +104,25 @@ const projects = [
   },
 ];
 
-const statusColor: Record<string, { bg: string; text: string }> = {
-  "Now Selling": { bg: "#5BC2E7", text: "#ffffff" },
-  "Coming Soon": { bg: "#0D3348", text: "#ffffff" },
-  "Sold Out":    { bg: "rgba(255,255,255,0.18)", text: "#ffffff" },
-};
+const NAV_H = 90;
 
 export default function ProjectsContent() {
+  const [current, setCurrent] = useState(1);
+  const stackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!stackRef.current) return;
+      const stackTop = stackRef.current.offsetTop;
+      const cardH = window.innerHeight - NAV_H;
+      const scrolled = window.scrollY - stackTop;
+      const idx = Math.floor(scrolled / cardH) + 1;
+      setCurrent(Math.min(Math.max(1, idx), projects.length));
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       {/* ── Hero ── */}
@@ -118,98 +130,101 @@ export default function ProjectsContent() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 40px 100px", width: "100%" }}>
           <HeroText />
         </div>
-
-        {/* Scroll indicator */}
         <div style={{ position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.4)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            Scroll
-          </span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.4)", letterSpacing: "0.18em", textTransform: "uppercase" }}>Scroll</span>
           <svg width="1" height="36" viewBox="0 0 1 36"><line x1="0.5" y1="0" x2="0.5" y2="36" stroke="rgba(13,51,72,0.2)" strokeWidth="1"/></svg>
         </div>
       </section>
 
+      {/* ── Scroll counter (fixed, only visible in stack zone) ── */}
+      <div style={{ position: "fixed", left: "clamp(20px, 3vw, 48px)", top: `${NAV_H + 32}px`, zIndex: 500, pointerEvents: "none" }}>
+        <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(0.85rem, 1.2vw, 1.1rem)", color: "rgba(255,255,255,0.5)", fontWeight: 300, letterSpacing: "-0.01em" }}>
+          <span style={{ color: "#ffffff" }}>{String(current).padStart(2, "0")}</span>
+          {" / "}
+          {String(projects.length).padStart(2, "0")}
+        </span>
+      </div>
 
-      {/* ── Full-screen sticky scroll cards ── */}
-      <div style={{ backgroundColor: "#ffffff" }}>
+      {/* ── Sticky stack ── */}
+      <div
+        ref={stackRef}
+        style={{ height: `calc((100svh - ${NAV_H}px) * ${projects.length})`, position: "relative" }}
+      >
         {projects.map((project, i) => (
-          <div key={project.id} style={{ height: "100svh" }}>
-            <div style={{ position: "sticky", top: "90px", height: "calc(100svh - 90px)", backgroundColor: "#ffffff", padding: "clamp(10px, 1.5vw, 20px)", boxSizing: "border-box", display: "flex" }}>
+          <div
+            key={project.id}
+            style={{
+              position: "sticky",
+              top: `${NAV_H}px`,
+              height: `calc(100svh - ${NAV_H}px)`,
+              zIndex: i + 1,
+              backgroundColor: "#ffffff",
+              padding: "clamp(10px, 1.5vw, 18px)",
+              boxSizing: "border-box",
+            }}
+          >
+            {/* Framed image */}
+            <div style={{ position: "relative", height: "100%", overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.image}
+                alt={project.name}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+              />
+              {/* Gradient */}
+              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
 
-              {/* Framed image area */}
-              <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
-                />
-                {/* Overlay */}
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.68) 100%)" }} />
+              {/* Centred content */}
+              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 clamp(24px, 8vw, 120px)" }}>
+                {/* Status badge */}
+                <span style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "9px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: project.status === "Now Selling" ? "#ffffff" : "rgba(255,255,255,0.5)",
+                  border: `1px solid ${project.status === "Now Selling" ? "#5BC2E7" : "rgba(255,255,255,0.25)"}`,
+                  backgroundColor: project.status === "Now Selling" ? "#5BC2E7" : "transparent",
+                  padding: "5px 16px",
+                  marginBottom: "28px",
+                  display: "inline-block",
+                }}>
+                  {project.status}
+                </span>
 
-                {/* Counter top-right */}
-                <div style={{ position: "absolute", top: "28px", right: "32px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", opacity: 0.9 }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em" }}>
-                    / {String(projects.length).padStart(2, "0")}
-                  </span>
-                </div>
+                {/* Project name */}
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 7vw, 7.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.92, marginBottom: "20px" }}>
+                  {project.name}
+                </h2>
 
-                {/* Dot navigation — right side */}
-                <div style={{ position: "absolute", right: "32px", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {projects.map((_, j) => (
-                    <div
-                      key={j}
-                      style={{
-                        width: j === i ? "24px" : "6px",
-                        height: "6px",
-                        borderRadius: "3px",
-                        backgroundColor: j === i ? "#5BC2E7" : "rgba(255,255,255,0.3)",
-                        transition: "all 0.3s ease",
-                      }}
-                    />
-                  ))}
-                </div>
+                {/* Suburb */}
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.2vw, 12px)", color: "rgba(255,255,255,0.5)", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "12px" }}>
+                  {project.suburb}
+                </p>
 
-                {/* Bottom content */}
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(28px, 4vw, 52px) clamp(24px, 4vw, 52px) clamp(32px, 5vw, 60px)" }}>
-                  <div style={{ maxWidth: "900px" }}>
-                    {/* Status + category row */}
-                    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px", flexWrap: "wrap" }}>
-                      <span style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "9px",
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        fontWeight: 600,
-                        padding: "5px 14px",
-                        backgroundColor: statusColor[project.status]?.bg ?? "rgba(255,255,255,0.18)",
-                        color: statusColor[project.status]?.text ?? "#ffffff",
-                      }}>
-                        {project.status}
-                      </span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-                        {project.category}
-                      </span>
-                    </div>
+                {/* Units + category */}
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.1vw, 11px)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "36px" }}>
+                  {project.units} · {project.category}
+                </p>
 
-                    {/* Suburb */}
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1.5vw, 13px)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
-                      {project.suburb}
-                    </p>
-
-                    {/* Project name */}
-                    <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 8vw, 7rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "24px" }}>
-                      {project.name}
-                    </h2>
-
-                    {/* Units */}
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.5vw, 14px)", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em" }}>
-                      {project.units}
-                    </p>
+                {/* Actions (only for active projects) */}
+                {project.status !== "Sold Out" && (
+                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+                    <Link
+                      href="/contact"
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0D3348", backgroundColor: "#ffffff", padding: "13px 28px", textDecoration: "none", transition: "opacity 0.2s" }}
+                    >
+                      Register Interest
+                    </Link>
+                    <Link
+                      href="/contact"
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "transparent", border: "1px solid rgba(255,255,255,0.35)", padding: "13px 28px", textDecoration: "none" }}
+                    >
+                      Learn More
+                    </Link>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
