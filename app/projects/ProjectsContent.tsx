@@ -133,7 +133,7 @@ export default function ProjectsContent() {
         {/* Centred brief */}
         <div style={{ textAlign: "center", padding: "0 clamp(24px, 8vw, 120px)", maxWidth: "780px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/S%20Logo.png" alt="Spinelli" style={{ height: "48px", width: "auto", margin: "0 auto 28px", display: "block", opacity: 0.85 }} />
+          <img src="/ProLogo.png" alt="Spinelli" style={{ height: "48px", width: "auto", margin: "0 auto 28px", display: "block", opacity: 0.85 }} />
           <HeroText />
         </div>
 
