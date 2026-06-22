@@ -114,7 +114,7 @@ export default function ProjectsContent() {
     const handleScroll = () => {
       if (!stackRef.current) return;
       const stackTop = stackRef.current.offsetTop;
-      const cardH = window.innerHeight - NAV_H;
+      const cardH = window.innerHeight;
       const scrolled = window.scrollY - stackTop;
       const idx = Math.floor(scrolled / cardH) + 1;
       setCurrent(Math.min(Math.max(1, idx), projects.length));
@@ -148,18 +148,19 @@ export default function ProjectsContent() {
       {/* ── Sticky stack ── */}
       <div
         ref={stackRef}
-        style={{ height: `calc((100svh - ${NAV_H}px) * ${projects.length})`, position: "relative" }}
+        style={{ height: `calc(100vh * ${projects.length})` }}
       >
         {projects.map((project, i) => (
           <div
             key={project.id}
             style={{
               position: "sticky",
-              top: `${NAV_H}px`,
-              height: `calc(100svh - ${NAV_H}px)`,
+              top: 0,
+              height: "100vh",
               zIndex: i + 1,
               backgroundColor: "#ffffff",
-              padding: "clamp(10px, 1.5vw, 18px)",
+              paddingTop: `${NAV_H}px`,
+              padding: `${NAV_H}px clamp(10px, 1.5vw, 18px) clamp(10px, 1.5vw, 18px)`,
               boxSizing: "border-box",
             }}
           >
