@@ -39,7 +39,6 @@ const projects = [
     category: "Multi-Level Residential" as ProjectCategory,
     units: "77 Apartments · 7 Commercial",
     status: "Sold Out",
-    active: false,
     image: "/Elevation.jpg",
   },
   {
@@ -49,7 +48,6 @@ const projects = [
     category: "Multi-Level Residential" as ProjectCategory,
     units: "23 Apartments",
     status: "Sold Out",
-    active: false,
     image: "/bluewater.jpg",
   },
   {
@@ -59,7 +57,6 @@ const projects = [
     category: "Multi-Level Residential" as ProjectCategory,
     units: "18 Apartments",
     status: "Sold Out",
-    active: false,
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&h=1100&fit=crop&q=85",
   },
   {
@@ -69,7 +66,6 @@ const projects = [
     category: "Townhouse" as ProjectCategory,
     units: "8 Townhomes",
     status: "Sold Out",
-    active: false,
     image: "/Shellharbour.jpg",
   },
   {
@@ -79,7 +75,6 @@ const projects = [
     category: "Townhouse" as ProjectCategory,
     units: "6 Townhomes",
     status: "Now Selling",
-    active: true,
     image: "/Gerringong.jpg",
   },
   {
@@ -89,7 +84,6 @@ const projects = [
     category: "Duplex" as ProjectCategory,
     units: "4 Homes",
     status: "Now Selling",
-    active: true,
     image: "/Kiama.jpg",
   },
   {
@@ -99,7 +93,6 @@ const projects = [
     category: "Commercial" as ProjectCategory,
     units: "Mixed Use · 32 Apartments",
     status: "Coming Soon",
-    active: true,
     image: "/Wollongong.jpg",
   },
   {
@@ -109,7 +102,6 @@ const projects = [
     category: "Duplex" as ProjectCategory,
     units: "18 Homes",
     status: "Now Selling",
-    active: true,
     image: "/Gerringong.jpg",
   },
 ];
@@ -117,13 +109,20 @@ const projects = [
 const statusColor: Record<string, { bg: string; text: string }> = {
   "Now Selling": { bg: "#5BC2E7", text: "#ffffff" },
   "Coming Soon": { bg: "#0D3348", text: "#ffffff" },
-  "Sold Out":    { bg: "rgba(0,0,0,0.55)", text: "#ffffff" },
+  "Sold Out":    { bg: "rgba(255,255,255,0.18)", text: "#ffffff" },
 };
 
 export default function ProjectsContent() {
   const [active, setActive] = useState<ProjectCategory>("All");
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const filtered = active === "All" ? projects : projects.filter(p => p.category === active);
+
+  function handleFilter(cat: ProjectCategory) {
+    setActive(cat);
+    // scroll to top of project section when filter changes
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <>
@@ -142,7 +141,6 @@ export default function ProjectsContent() {
           <HeroText />
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 right-10 flex flex-col items-center gap-2">
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.18em", textTransform: "uppercase", writingMode: "vertical-rl" }}>
             Scroll
@@ -151,41 +149,20 @@ export default function ProjectsContent() {
         </div>
       </section>
 
-      {/* ── Intro ── */}
-      <section style={{ backgroundColor: "#ffffff", paddingTop: "80px", paddingBottom: "60px" }}>
+      {/* ── Filter bar (sticky) ── */}
+      <div ref={sectionRef} style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "#ffffff", borderBottom: "1px solid #E8E5DF" }}>
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-end">
-            <FadeUp>
-              <span className="label-tag">Developments & Projects</span>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.4rem, 5vw, 4.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.0 }}>
-                Built for<br />Every Scale
-              </h2>
-            </FadeUp>
-            <FadeUp delay={100}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.85, maxWidth: "48ch" }}>
-                From boutique duplexes to landmark commercial towers, Spinelli brings unrivalled Illawarra market knowledge and a pre-qualified buyer database to every development — delivering results for developers at every scale.
-              </p>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Category filter + grid ── */}
-      <section style={{ backgroundColor: "#ffffff", paddingBottom: "100px" }}>
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
-
-          {/* Filter row */}
-          <div className="flex flex-wrap items-center gap-3 py-6 mb-10" style={{ borderBottom: "1px solid #E8E5DF" }}>
+          <div className="flex flex-wrap items-center gap-2 py-4">
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
-                onClick={() => setActive(cat)}
+                onClick={() => handleFilter(cat)}
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "11px",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  padding: "8px 20px",
+                  padding: "7px 18px",
                   border: active === cat ? "1px solid #0D3348" : "1px solid #DAD7CE",
                   backgroundColor: active === cat ? "#0D3348" : "transparent",
                   color: active === cat ? "#ffffff" : "#7a7265",
@@ -200,15 +177,92 @@ export default function ProjectsContent() {
               {filtered.length} Project{filtered.length !== 1 ? "s" : ""}
             </span>
           </div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
-            {filtered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} delay={i * 80} />
-            ))}
-          </div>
         </div>
-      </section>
+      </div>
+
+      {/* ── Full-screen sticky scroll cards ── */}
+      <div>
+        {filtered.map((project, i) => (
+          <div key={project.id} style={{ height: "100svh" }}>
+            <div style={{ position: "sticky", top: 0, height: "100svh", overflow: "hidden" }}>
+              {/* Background image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.image}
+                alt={project.name}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+              />
+              {/* Overlay */}
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.72) 100%)" }} />
+
+              {/* Counter top-right */}
+              <div style={{ position: "absolute", top: "32px", right: "40px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", opacity: 0.9 }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em" }}>
+                  / {String(filtered.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Dot navigation — right side */}
+              <div style={{ position: "absolute", right: "40px", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "10px" }}>
+                {filtered.map((_, j) => (
+                  <div
+                    key={j}
+                    style={{
+                      width: j === i ? "24px" : "6px",
+                      height: "6px",
+                      borderRadius: "3px",
+                      backgroundColor: j === i ? "#5BC2E7" : "rgba(255,255,255,0.3)",
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Bottom content */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px, 5vw, 60px) clamp(24px, 5vw, 60px) clamp(40px, 6vw, 72px)" }}>
+                <div style={{ maxWidth: "900px" }}>
+                  {/* Status + category row */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
+                    <span style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "9px",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      padding: "5px 14px",
+                      backgroundColor: statusColor[project.status]?.bg ?? "rgba(255,255,255,0.18)",
+                      color: statusColor[project.status]?.text ?? "#ffffff",
+                    }}>
+                      {project.status}
+                    </span>
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+                      {project.category}
+                    </span>
+                  </div>
+
+                  {/* Suburb */}
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1.5vw, 13px)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
+                    {project.suburb}
+                  </p>
+
+                  {/* Project name */}
+                  <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 8vw, 7rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "24px" }}>
+                    {project.name}
+                  </h2>
+
+                  {/* Units */}
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.5vw, 14px)", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em" }}>
+                    {project.units}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
 
       {/* ── Development types ── */}
       <section style={{ backgroundColor: "#FBF9F3", padding: "80px 0" }}>
@@ -221,10 +275,10 @@ export default function ProjectsContent() {
           </FadeUp>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0">
             {[
-              { label: "Duplex", desc: "Side-by-side and attached dual occupancy developments across the Illawarra, from concept to sell-out." },
-              { label: "Townhouse", desc: "Boutique townhouse communities of 4–20 homes with full sales, marketing and VIP buyer access." },
+              { label: "Duplex",                  desc: "Side-by-side and attached dual occupancy developments across the Illawarra, from concept to sell-out." },
+              { label: "Townhouse",               desc: "Boutique townhouse communities of 4–20 homes with full sales, marketing and VIP buyer access." },
               { label: "Multi-Level Residential", desc: "Apartment towers and mid-rise residential — off-the-plan sales campaigns, presales and settlement management." },
-              { label: "Commercial", desc: "Commercial and mixed-use developments, from ground-floor retail to standalone office and retail buildings." },
+              { label: "Commercial",              desc: "Commercial and mixed-use developments, from ground-floor retail to standalone office and retail buildings." },
             ].map((item, i) => (
               <FadeUp key={item.label} delay={i * 80}>
                 <div style={{ padding: "36px 28px", borderLeft: i > 0 ? "1px solid #DAD7CE" : "none" }}>
@@ -298,18 +352,10 @@ export default function ProjectsContent() {
               Talk to our projects team about your development — whether it&apos;s a duplex in Dapto or a multi-level tower in Wollongong CBD.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-80"
-                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}
-              >
+              <Link href="/contact" className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-80" style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}>
                 Talk to Our Team
               </Link>
-              <a
-                href="tel:0242960047"
-                className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-60"
-                style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-sans)" }}
-              >
+              <a href="tel:0242960047" className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-60" style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-sans)" }}>
                 02 4296 0047
               </a>
             </div>
@@ -317,56 +363,6 @@ export default function ProjectsContent() {
         </div>
       </section>
     </>
-  );
-}
-
-function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: number }) {
-  const [hovered, setHovered] = useState(false);
-  const { ref, visible } = useReveal(0.05);
-  const badge = statusColor[project.status] ?? statusColor["Sold Out"];
-
-  return (
-    <div
-      ref={ref}
-      style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)", transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms` }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Image */}
-      <div style={{ position: "relative", overflow: "hidden", aspectRatio: "4/5" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.image}
-          alt={project.name}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transform: hovered ? "scale(1.06)" : "scale(1)", transition: "transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
-        />
-        {/* Status badge */}
-        <div style={{ position: "absolute", top: "14px", left: "14px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, padding: "5px 12px", backgroundColor: badge.bg, color: badge.text }}>
-            {project.status}
-          </span>
-        </div>
-        {/* Category tag */}
-        <div style={{ position: "absolute", bottom: "14px", left: "14px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "4px 10px", backgroundColor: "rgba(255,255,255,0.9)", color: "#0D3348" }}>
-            {project.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Info */}
-      <div style={{ paddingTop: "18px" }}>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "5px" }}>
-          {project.suburb}
-        </p>
-        <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem, 2vw, 1.8rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "8px" }}>
-          {project.name}
-        </h3>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.06em" }}>
-          {project.units}
-        </p>
-      </div>
-    </div>
   );
 }
 
