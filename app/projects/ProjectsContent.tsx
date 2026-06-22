@@ -127,25 +127,17 @@ export default function ProjectsContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section style={{ position: "relative", minHeight: "100svh", backgroundColor: "#0D3348", display: "flex", flexDirection: "column", justifyContent: "flex-end", overflow: "hidden" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/droneshot.jpg"
-          alt=""
-          aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(13,51,72,0.3) 0%, rgba(13,51,72,0.15) 40%, rgba(13,51,72,0.75) 100%)" }} />
-
-        <div style={{ position: "relative", maxWidth: "1400px", margin: "0 auto", padding: "0 40px 80px", width: "100%" }}>
+      <section style={{ minHeight: "100svh", backgroundColor: "#FBF9F3", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 40px 100px", width: "100%" }}>
           <HeroText />
         </div>
 
-        <div className="absolute bottom-8 right-10 flex flex-col items-center gap-2">
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.18em", textTransform: "uppercase", writingMode: "vertical-rl" }}>
+        {/* Scroll indicator */}
+        <div style={{ position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.4)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
             Scroll
           </span>
-          <svg width="1" height="40" viewBox="0 0 1 40"><line x1="0.5" y1="0" x2="0.5" y2="40" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/></svg>
+          <svg width="1" height="36" viewBox="0 0 1 36"><line x1="0.5" y1="0" x2="0.5" y2="36" stroke="rgba(13,51,72,0.2)" strokeWidth="1"/></svg>
         </div>
       </section>
 
@@ -181,82 +173,85 @@ export default function ProjectsContent() {
       </div>
 
       {/* ── Full-screen sticky scroll cards ── */}
-      <div>
+      <div style={{ backgroundColor: "#ffffff" }}>
         {filtered.map((project, i) => (
           <div key={project.id} style={{ height: "100svh" }}>
-            <div style={{ position: "sticky", top: 0, height: "100svh", overflow: "hidden" }}>
-              {/* Background image */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.image}
-                alt={project.name}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
-              />
-              {/* Overlay */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.72) 100%)" }} />
+            <div style={{ position: "sticky", top: 0, height: "100svh", backgroundColor: "#ffffff", padding: "clamp(12px, 2vw, 24px)", boxSizing: "border-box", display: "flex" }}>
 
-              {/* Counter top-right */}
-              <div style={{ position: "absolute", top: "32px", right: "40px", display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", opacity: 0.9 }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em" }}>
-                  / {String(filtered.length).padStart(2, "0")}
-                </span>
-              </div>
+              {/* Framed image area */}
+              <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                />
+                {/* Overlay */}
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.68) 100%)" }} />
 
-              {/* Dot navigation — right side */}
-              <div style={{ position: "absolute", right: "40px", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "10px" }}>
-                {filtered.map((_, j) => (
-                  <div
-                    key={j}
-                    style={{
-                      width: j === i ? "24px" : "6px",
-                      height: "6px",
-                      borderRadius: "3px",
-                      backgroundColor: j === i ? "#5BC2E7" : "rgba(255,255,255,0.3)",
-                      transition: "all 0.3s ease",
-                    }}
-                  />
-                ))}
-              </div>
+                {/* Counter top-right */}
+                <div style={{ position: "absolute", top: "28px", right: "32px", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", opacity: 0.9 }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em" }}>
+                    / {String(filtered.length).padStart(2, "0")}
+                  </span>
+                </div>
 
-              {/* Bottom content */}
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px, 5vw, 60px) clamp(24px, 5vw, 60px) clamp(40px, 6vw, 72px)" }}>
-                <div style={{ maxWidth: "900px" }}>
-                  {/* Status + category row */}
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
-                    <span style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "9px",
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                      padding: "5px 14px",
-                      backgroundColor: statusColor[project.status]?.bg ?? "rgba(255,255,255,0.18)",
-                      color: statusColor[project.status]?.text ?? "#ffffff",
-                    }}>
-                      {project.status}
-                    </span>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-                      {project.category}
-                    </span>
+                {/* Dot navigation — right side */}
+                <div style={{ position: "absolute", right: "32px", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {filtered.map((_, j) => (
+                    <div
+                      key={j}
+                      style={{
+                        width: j === i ? "24px" : "6px",
+                        height: "6px",
+                        borderRadius: "3px",
+                        backgroundColor: j === i ? "#5BC2E7" : "rgba(255,255,255,0.3)",
+                        transition: "all 0.3s ease",
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Bottom content */}
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(28px, 4vw, 52px) clamp(24px, 4vw, 52px) clamp(32px, 5vw, 60px)" }}>
+                  <div style={{ maxWidth: "900px" }}>
+                    {/* Status + category row */}
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px", flexWrap: "wrap" }}>
+                      <span style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "9px",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        fontWeight: 600,
+                        padding: "5px 14px",
+                        backgroundColor: statusColor[project.status]?.bg ?? "rgba(255,255,255,0.18)",
+                        color: statusColor[project.status]?.text ?? "#ffffff",
+                      }}>
+                        {project.status}
+                      </span>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+                        {project.category}
+                      </span>
+                    </div>
+
+                    {/* Suburb */}
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1.5vw, 13px)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
+                      {project.suburb}
+                    </p>
+
+                    {/* Project name */}
+                    <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 8vw, 7rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "24px" }}>
+                      {project.name}
+                    </h2>
+
+                    {/* Units */}
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.5vw, 14px)", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em" }}>
+                      {project.units}
+                    </p>
                   </div>
-
-                  {/* Suburb */}
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1.5vw, 13px)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
-                    {project.suburb}
-                  </p>
-
-                  {/* Project name */}
-                  <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 8vw, 7rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "24px" }}>
-                    {project.name}
-                  </h2>
-
-                  {/* Units */}
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.5vw, 14px)", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em" }}>
-                    {project.units}
-                  </p>
                 </div>
               </div>
             </div>
@@ -371,17 +366,20 @@ function HeroText() {
   useEffect(() => { const t = setTimeout(() => setVisible(true), 150); return () => clearTimeout(t); }, []);
   return (
     <>
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "20px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(12px)", transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s" }}>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "24px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(12px)", transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s" }}>
         Spinelli Real Estate — Projects
       </p>
-      <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 9vw, 9rem)", lineHeight: 0.9, letterSpacing: "-0.05em", color: "#ffffff", fontWeight: 300, maxWidth: "12ch", marginBottom: "28px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease 0.25s, transform 0.8s ease 0.25s" }}>
-        Developments<br />& Projects
+      <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 9vw, 9rem)", lineHeight: 0.9, letterSpacing: "-0.05em", color: "#0D3348", fontWeight: 300, maxWidth: "14ch", marginBottom: "32px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease 0.25s, transform 0.8s ease 0.25s" }}>
+        Developments<br />&amp; Projects
       </h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", opacity: visible ? 1 : 0, transition: "opacity 0.6s ease 0.55s" }}>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(14px, 1.6vw, 16px)", color: "rgba(88,80,60,0.75)", lineHeight: 1.85, maxWidth: "52ch", marginBottom: "40px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s" }}>
+        From boutique duplexes to landmark multi-level towers and commercial developments — Spinelli brings unrivalled Illawarra market knowledge and a pre-qualified buyer database to every project.
+      </p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", opacity: visible ? 1 : 0, transition: "opacity 0.6s ease 0.65s" }}>
         <Link href="/contact" className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-80" style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}>
           Discuss a Project
         </Link>
-        <a href="tel:0242960047" className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-60" style={{ border: "1px solid rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-sans)" }}>
+        <a href="tel:0242960047" className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-60" style={{ border: "1px solid rgba(13,51,72,0.2)", color: "#0D3348", fontFamily: "var(--font-sans)" }}>
           02 4296 0047
         </a>
       </div>
