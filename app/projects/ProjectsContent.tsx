@@ -27,9 +27,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-type ProjectCategory = "All" | "Duplex" | "Townhouse" | "Multi-Level Residential" | "Commercial";
-
-const CATEGORIES: ProjectCategory[] = ["All", "Duplex", "Townhouse", "Multi-Level Residential", "Commercial"];
+type ProjectCategory = "Duplex" | "Townhouse" | "Multi-Level Residential" | "Commercial";
 
 const projects = [
   {
@@ -113,17 +111,6 @@ const statusColor: Record<string, { bg: string; text: string }> = {
 };
 
 export default function ProjectsContent() {
-  const [active, setActive] = useState<ProjectCategory>("All");
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const filtered = active === "All" ? projects : projects.filter(p => p.category === active);
-
-  function handleFilter(cat: ProjectCategory) {
-    setActive(cat);
-    // scroll to top of project section when filter changes
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
     <>
       {/* ── Hero ── */}
@@ -141,40 +128,10 @@ export default function ProjectsContent() {
         </div>
       </section>
 
-      {/* ── Filter bar (sticky) ── */}
-      <div ref={sectionRef} style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "#ffffff", borderBottom: "1px solid #E8E5DF" }}>
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
-          <div className="flex flex-wrap items-center gap-2 py-4">
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat}
-                onClick={() => handleFilter(cat)}
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "11px",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  padding: "7px 18px",
-                  border: active === cat ? "1px solid #0D3348" : "1px solid #DAD7CE",
-                  backgroundColor: active === cat ? "#0D3348" : "transparent",
-                  color: active === cat ? "#ffffff" : "#7a7265",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-            <span style={{ marginLeft: "auto", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              {filtered.length} Project{filtered.length !== 1 ? "s" : ""}
-            </span>
-          </div>
-        </div>
-      </div>
 
       {/* ── Full-screen sticky scroll cards ── */}
       <div style={{ backgroundColor: "#ffffff" }}>
-        {filtered.map((project, i) => (
+        {projects.map((project, i) => (
           <div key={project.id} style={{ height: "100svh" }}>
             <div style={{ position: "sticky", top: 0, height: "100svh", backgroundColor: "#ffffff", padding: "clamp(12px, 2vw, 24px)", boxSizing: "border-box", display: "flex" }}>
 
@@ -195,13 +152,13 @@ export default function ProjectsContent() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em" }}>
-                    / {String(filtered.length).padStart(2, "0")}
+                    / {String(projects.length).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Dot navigation — right side */}
                 <div style={{ position: "absolute", right: "32px", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {filtered.map((_, j) => (
+                  {projects.map((_, j) => (
                     <div
                       key={j}
                       style={{
