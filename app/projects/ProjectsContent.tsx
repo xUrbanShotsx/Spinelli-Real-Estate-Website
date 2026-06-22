@@ -133,7 +133,7 @@ export default function ProjectsContent() {
       <div style={{ backgroundColor: "#ffffff" }}>
         {projects.map((project, i) => (
           <div key={project.id} style={{ height: "100svh" }}>
-            <div style={{ position: "sticky", top: 0, height: "100svh", backgroundColor: "#ffffff", padding: "clamp(12px, 2vw, 24px)", boxSizing: "border-box", display: "flex" }}>
+            <div style={{ position: "sticky", top: "90px", height: "calc(100svh - 90px)", backgroundColor: "#ffffff", padding: "clamp(10px, 1.5vw, 20px)", boxSizing: "border-box", display: "flex" }}>
 
               {/* Framed image area */}
               <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
