@@ -126,17 +126,18 @@ export default function ProjectsContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section style={{ height: "100svh", backgroundColor: "#ffffff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative" }}>
+      <section style={{ height: "100svh", backgroundColor: "#ffffff", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {/* Top spacer — pushes text to vertical centre */}
+        <div style={{ flex: 1 }} />
+
         {/* Centred brief */}
         <div style={{ textAlign: "center", padding: "0 clamp(24px, 8vw, 120px)", maxWidth: "780px" }}>
           <HeroText />
         </div>
 
-        {/* Down arrow below text */}
-        <div style={{ marginTop: "48px" }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(13,51,72,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
+        {/* Line from below text to bottom of hero */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "32px" }}>
+          <div style={{ width: "1px", flex: 1, backgroundColor: "rgba(13,51,72,0.15)" }} />
         </div>
       </section>
 
