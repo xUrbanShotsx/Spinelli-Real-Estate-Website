@@ -126,13 +126,16 @@ export default function ProjectsContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section style={{ minHeight: "100svh", backgroundColor: "#FBF9F3", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 40px 100px", width: "100%" }}>
+      <section style={{ height: "100svh", backgroundColor: "#ffffff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative" }}>
+        {/* Centred brief */}
+        <div style={{ textAlign: "center", padding: "0 clamp(24px, 8vw, 120px)", maxWidth: "780px" }}>
           <HeroText />
         </div>
-        <div style={{ position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.4)", letterSpacing: "0.18em", textTransform: "uppercase" }}>Scroll</span>
-          <svg width="1" height="36" viewBox="0 0 1 36"><line x1="0.5" y1="0" x2="0.5" y2="36" stroke="rgba(13,51,72,0.2)" strokeWidth="1"/></svg>
+
+        {/* Scroll line from text to bottom */}
+        <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", paddingBottom: "32px" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.35)", letterSpacing: "0.18em", textTransform: "uppercase" }}>Scroll</span>
+          <div style={{ width: "1px", flex: 1, minHeight: "80px", backgroundColor: "rgba(13,51,72,0.15)" }} />
         </div>
       </section>
 
@@ -338,24 +341,19 @@ function HeroText() {
   const [visible, setVisible] = useState(false);
   useEffect(() => { const t = setTimeout(() => setVisible(true), 150); return () => clearTimeout(t); }, []);
   return (
-    <>
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "24px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(12px)", transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s" }}>
-        Spinelli Real Estate — Projects
-      </p>
-      <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 9vw, 9rem)", lineHeight: 0.9, letterSpacing: "-0.05em", color: "#0D3348", fontWeight: 300, maxWidth: "14ch", marginBottom: "32px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease 0.25s, transform 0.8s ease 0.25s" }}>
-        Developments<br />&amp; Projects
-      </h1>
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(14px, 1.6vw, 16px)", color: "rgba(88,80,60,0.75)", lineHeight: 1.85, maxWidth: "52ch", marginBottom: "40px", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s" }}>
-        From boutique duplexes to landmark multi-level towers and commercial developments — Spinelli brings unrivalled Illawarra market knowledge and a pre-qualified buyer database to every project.
-      </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", opacity: visible ? 1 : 0, transition: "opacity 0.6s ease 0.65s" }}>
-        <Link href="/contact" className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-80" style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}>
-          Discuss a Project
-        </Link>
-        <a href="tel:0242960047" className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-widest uppercase transition-opacity hover:opacity-60" style={{ border: "1px solid rgba(13,51,72,0.2)", color: "#0D3348", fontFamily: "var(--font-sans)" }}>
-          02 4296 0047
-        </a>
-      </div>
-    </>
+    <p style={{
+      fontFamily: "var(--font-display)",
+      fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)",
+      color: "#0D3348",
+      fontWeight: 300,
+      lineHeight: 1.55,
+      letterSpacing: "-0.01em",
+      textAlign: "center",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(16px)",
+      transition: "opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s",
+    }}>
+      From boutique duplexes to landmark multi-level towers and commercial developments — Spinelli brings unrivalled Illawarra market knowledge and a pre-qualified buyer database to every project.
+    </p>
   );
 }
