@@ -132,10 +132,11 @@ export default function ProjectsContent() {
           <HeroText />
         </div>
 
-        {/* Scroll line from text to bottom */}
-        <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", paddingBottom: "32px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(13,51,72,0.35)", letterSpacing: "0.18em", textTransform: "uppercase" }}>Scroll</span>
-          <div style={{ width: "1px", flex: 1, minHeight: "80px", backgroundColor: "rgba(13,51,72,0.15)" }} />
+        {/* Down arrow below text */}
+        <div style={{ marginTop: "48px" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(13,51,72,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
         </div>
       </section>
 
