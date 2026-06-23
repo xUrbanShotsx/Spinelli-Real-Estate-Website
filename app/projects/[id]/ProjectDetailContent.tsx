@@ -77,6 +77,14 @@ const AGENTS = [
 export default function ProjectDetailContent({ project }: { project: Project }) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  function scrollCarousel(dir: "left" | "right") {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardWidth = el.clientWidth * 0.76 + 16;
+    el.scrollBy({ left: dir === "right" ? cardWidth : -cardWidth, behavior: "smooth" });
+  }
 
   const heroImg   = project.gallery[0] ?? project.image;
   const wideImg   = project.gallery[1] ?? project.image;
@@ -159,6 +167,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       {/* ── GALLERY: peek carousel ───────────────────────────── */}
       <div style={{ marginBottom: "80px", overflow: "hidden" }}>
         <div
+          ref={carouselRef}
           style={{
             display: "flex",
             overflowX: "auto",
@@ -195,6 +204,28 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
               />
             </div>
           ))}
+        </div>
+
+        {/* Arrows */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "32px", marginTop: "24px" }}>
+          <button
+            onClick={() => scrollCarousel("left")}
+            aria-label="Previous image"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.5, transition: "opacity 0.2s" }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "0.5")}
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => scrollCarousel("right")}
+            aria-label="Next image"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.5, transition: "opacity 0.2s" }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "0.5")}
+          >
+            ›
+          </button>
         </div>
       </div>
 
