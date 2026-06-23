@@ -37,7 +37,7 @@ function TextBlock({ heading, children, headingSize = "2.6rem" }: {
   headingSize?: string;
 }) {
   return (
-    <div style={{ marginTop: "80px", marginBottom: "80px" }}>
+    <div style={{ marginTop: "0", marginBottom: "0", backgroundColor: "#ffffff", padding: "80px 0" }}>
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
         <Reveal>
           {/* 4 – 6 – 2 column grid, exact Boston layout */}
@@ -77,6 +77,7 @@ const AGENTS = [
 /* ─── Component ─────────────────────────────────────────────── */
 export default function ProjectDetailContent({ project }: { project: Project }) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(Math.floor(4 / 2));
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const heroImg   = project.gallery[0] ?? project.image;
@@ -96,26 +97,28 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
-    const cardSlot = el.clientWidth * 0.76 + 16;
+    const cardSlot = el.clientWidth * 0.76 + 28;
     el.scrollLeft = startIndex * cardSlot;
   }, [startIndex]);
 
   function handleScroll() {
     const el = carouselRef.current;
     if (!el) return;
-    const cardSlot = el.clientWidth * 0.76 + 16;
+    const cardSlot = el.clientWidth * 0.76 + 28;
     const oneSet = count * cardSlot;
     if (el.scrollLeft < oneSet * 0.75) {
       el.scrollLeft += oneSet;
     } else if (el.scrollLeft >= oneSet * 2.25) {
       el.scrollLeft -= oneSet;
     }
+    const idx = Math.round(el.scrollLeft / cardSlot) % count;
+    setActiveIndex(idx < 0 ? idx + count : idx);
   }
 
   function scrollCarousel(dir: "left" | "right") {
     const el = carouselRef.current;
     if (!el) return;
-    const cardSlot = el.clientWidth * 0.76 + 16;
+    const cardSlot = el.clientWidth * 0.76 + 28;
     el.scrollBy({ left: dir === "right" ? cardSlot : -cardSlot, behavior: "smooth" });
   }
 
@@ -185,7 +188,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       )}
 
       {/* ── GALLERY: peek carousel ───────────────────────────── */}
-      <div style={{ marginBottom: "80px", overflow: "hidden" }}>
+      <div style={{ marginBottom: "80px", overflow: "hidden", backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
         <div
           ref={carouselRef}
           style={{
@@ -225,23 +228,26 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           ))}
         </div>
 
-        {/* Arrows */}
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "32px", marginTop: "24px" }}>
+        {/* Arrows + counter */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "28px", marginTop: "24px" }}>
           <button
             onClick={() => scrollCarousel("left")}
             aria-label="Previous image"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.5, transition: "opacity 0.2s" }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.4, transition: "opacity 0.2s" }}
             onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "0.5")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "0.4")}
           >
             ‹
           </button>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#0a172d", letterSpacing: "0.14em", opacity: 0.4, minWidth: "40px", textAlign: "center" }}>
+            {activeIndex + 1} / {count}
+          </span>
           <button
             onClick={() => scrollCarousel("right")}
             aria-label="Next image"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.5, transition: "opacity 0.2s" }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", color: "#0a172d", fontFamily: "var(--font-sans)", fontSize: "20px", lineHeight: 1, opacity: 0.4, transition: "opacity 0.2s" }}
             onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "0.5")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "0.4")}
           >
             ›
           </button>
