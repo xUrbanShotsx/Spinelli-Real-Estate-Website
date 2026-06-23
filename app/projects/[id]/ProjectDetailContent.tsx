@@ -8,6 +8,7 @@ import type { ComponentProps } from "react";
 type ProjectMapProps = ComponentProps<typeof import("../../../components/ProjectMap").default>;
 const ProjectMap = dynamic<ProjectMapProps>(() => import("../../../components/ProjectMap"), { ssr: false });
 import type { Project } from "../data";
+import { projects } from "../data";
 
 /* ─── Intersection reveal ─────────────────────────────────── */
 function useReveal(threshold = 0.05) {
@@ -297,6 +298,41 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       </TextBlock>
 
+
+      {/* ── RELATED PROJECTS ─────────────────────────────────── */}
+      {(() => {
+        const related = projects.filter(p => p.id !== project.id).slice(0, 2);
+        return (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
+            {related.map((p) => (
+              <Link
+                key={p.id}
+                href={`/projects/${p.id}`}
+                style={{ position: "relative", height: "55vh", overflow: "hidden", display: "block", textDecoration: "none" }}
+                className="group"
+              >
+                <Image
+                  src={p.gallery[0] ?? p.image}
+                  alt={p.name}
+                  fill
+                  sizes="50vw"
+                  style={{ objectFit: "cover", objectPosition: "center", transition: "transform 0.7s ease" }}
+                  className="group-hover:scale-[1.04]"
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, padding: "28px 32px" }}>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "8px" }}>
+                    {p.suburb}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+                    {p.name}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* ── LIGHTBOX ─────────────────────────────────────────── */}
       {lightboxImg && (
