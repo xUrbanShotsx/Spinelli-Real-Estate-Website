@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "../data";
 
 /* ─── Intersection reveal ─────────────────────────────────── */
@@ -76,7 +77,6 @@ const AGENTS = [
 /* ─── Component ─────────────────────────────────────────────── */
 export default function ProjectDetailContent({ project }: { project: Project }) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-  const [heroLoaded, setHeroLoaded] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const heroImg   = project.gallery[0] ?? project.image;
@@ -126,17 +126,13 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
 
         {/* Top 2/3: image with dark shader + centred project name */}
         <div style={{ position: "relative", overflow: "hidden" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={heroImg}
             alt={project.name}
-            onLoad={() => setHeroLoaded(true)}
-            style={{
-              position: "absolute", inset: 0, width: "100%", height: "100%",
-              objectFit: "cover", objectPosition: "center",
-              opacity: heroLoaded ? 1 : 0,
-              transition: "opacity 1.4s ease",
-            }}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
           />
           {/* Dark shader */}
           <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)" }} />
@@ -217,11 +213,13 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
                 borderRadius: "2px",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={img}
                 alt={`${project.name} gallery ${(i % count) + 1}`}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                fill
+                priority
+                sizes="76vw"
+                style={{ objectFit: "cover", objectPosition: "center" }}
               />
             </div>
           ))}
