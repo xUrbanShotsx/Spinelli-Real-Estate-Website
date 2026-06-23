@@ -270,40 +270,11 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       )}
 
-      {/* ── TEXT BLOCK 3: enquiry ───────────────────────────── */}
-      <TextBlock heading={<>{project.status === "Sold Out" ? <>This project<br />is sold out.</> : <>Enquire<br />today.</>}</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
-        <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.5, letterSpacing: "-0.02em", marginBottom: "40px" }}>
-          {project.status === "Sold Out"
-            ? `${project.name} is fully sold. Get in touch to hear about upcoming Spinelli developments.`
-            : "Get in touch with our projects team for pricing, floor plans, availability and to register for VIP access."}
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <Link
-            href={`/contact?project=${project.id}`}
-            style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", position: "relative", alignSelf: "flex-start" }}
-            className="boston-link"
-          >
-            {project.status === "Sold Out" ? "Contact Us" : "Make an Enquiry"}
-            <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
-          </Link>
-          {project.status !== "Sold Out" && (
-            <Link
-              href="/contact"
-              style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}
-            >
-              Register Interest
-              <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
-            </Link>
-          )}
-        </div>
-      </TextBlock>
-
-
       {/* ── RELATED PROJECTS ─────────────────────────────────── */}
       {(() => {
         const related = projects.filter(p => p.id !== project.id).slice(0, 2);
         return (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
             {related.map((p) => (
               <Link
                 key={p.id}
@@ -333,6 +304,34 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           </div>
         );
       })()}
+
+      {/* ── TEXT BLOCK 3: enquiry ───────────────────────────── */}
+      <TextBlock heading={<>{project.status === "Sold Out" ? <>This project<br />is sold out.</> : <>Enquire<br />today.</>}</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
+        <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.5, letterSpacing: "-0.02em", marginBottom: "40px" }}>
+          {project.status === "Sold Out"
+            ? `${project.name} is fully sold. Get in touch to hear about upcoming Spinelli developments.`
+            : "Get in touch with our projects team for pricing, floor plans, availability and to register for VIP access."}
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <Link
+            href={`/contact?project=${project.id}`}
+            style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", position: "relative", alignSelf: "flex-start" }}
+            className="boston-link"
+          >
+            {project.status === "Sold Out" ? "Contact Us" : "Make an Enquiry"}
+            <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
+          </Link>
+          {project.status !== "Sold Out" && (
+            <Link
+              href="/contact"
+              style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}
+            >
+              Register Interest
+              <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
+            </Link>
+          )}
+        </div>
+      </TextBlock>
 
       {/* ── LIGHTBOX ─────────────────────────────────────────── */}
       {lightboxImg && (
