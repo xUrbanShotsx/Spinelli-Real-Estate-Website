@@ -184,27 +184,6 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       </section>
 
-      {/* ── TEXT BLOCK 1: about the project ─────────────────── */}
-      <TextBlock heading={<>{project.suburb}.<br />A new chapter.</>}>
-        <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.45, letterSpacing: "-0.02em", marginBottom: "24px" }}>
-          {project.description}
-        </p>
-        {/* Specs row */}
-        <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0", borderTop: "1px solid #e5e5e5" }}>
-          {[
-            { label: "Address", value: project.address },
-            { label: "Type", value: project.category },
-            { label: "Scale", value: project.units },
-            { label: "Status", value: project.status },
-          ].map((item) => (
-            <div key={item.label} style={{ padding: "16px 0", borderBottom: "1px solid #e5e5e5", paddingRight: "16px" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#a2b0aa", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "6px" }}>{item.label}</p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#0a172d", lineHeight: 1.4 }}>{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </TextBlock>
-
       {/* ── FULL-WIDTH PARALLAX IMAGE ────────────────────────── */}
       <div
         style={{
