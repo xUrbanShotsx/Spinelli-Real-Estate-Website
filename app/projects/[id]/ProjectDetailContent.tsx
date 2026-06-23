@@ -156,23 +156,41 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </TextBlock>
       )}
 
-      {/* ── GALLERY: 2×2 tight grid ─────────────────────────── */}
+      {/* ── GALLERY: Boston-style full-bleed editorial grid ── */}
       <div style={{ marginBottom: "80px" }}>
-        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px" }}>
-            {galleryImgs.map((img, i) => (
-              <Reveal key={i} delay={i * 60}>
-                <div
-                  style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden", cursor: "zoom-in" }}
-                  onClick={() => setLightboxImg(img)}
-                  className="group"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img} alt={`${project.name} ${i + 2}`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s ease" }} className="group-hover:scale-[1.04]" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
+        {/* Row 1: full-width */}
+        <div
+          style={{ position: "relative", width: "100%", height: "65vh", overflow: "hidden", cursor: "zoom-in", marginBottom: "4px" }}
+          onClick={() => setLightboxImg(galleryImgs[0])}
+          className="group"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={galleryImgs[0]} alt={`${project.name} gallery 1`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.8s ease" }} className="group-hover:scale-[1.03]" />
+        </div>
+
+        {/* Row 2: two equal columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px", marginBottom: "4px" }}>
+          {[galleryImgs[1], galleryImgs[2]].map((img, i) => (
+            <div
+              key={i}
+              style={{ position: "relative", height: "55vh", overflow: "hidden", cursor: "zoom-in" }}
+              onClick={() => setLightboxImg(img)}
+              className="group"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img} alt={`${project.name} gallery ${i + 2}`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.8s ease" }} className="group-hover:scale-[1.03]" />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 3: full-width */}
+        <div
+          style={{ position: "relative", width: "100%", height: "65vh", overflow: "hidden", cursor: "zoom-in" }}
+          onClick={() => setLightboxImg(galleryImgs[3])}
+          className="group"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={galleryImgs[3]} alt={`${project.name} gallery 4`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.8s ease" }} className="group-hover:scale-[1.03]" />
         </div>
       </div>
 
