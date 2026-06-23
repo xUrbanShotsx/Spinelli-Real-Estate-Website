@@ -157,7 +157,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
 
         {/* Bottom 1/3: title left, description right */}
-        <div style={{ backgroundColor: "#ffffff", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden", gap: "40px" }}>
+        <div style={{ backgroundColor: "#ffffff", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden", gap: "20px" }}>
           <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2.4rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             {project.name}
           </p>
