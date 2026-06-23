@@ -126,8 +126,8 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
 
         {/* Bottom 1/3: brief description */}
-        <div style={{ backgroundColor: "#0a172d", display: "flex", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(255,255,255,0.5)", lineHeight: 1.9, maxWidth: "72ch", letterSpacing: "0.01em" }}>
+        <div style={{ backgroundColor: "#ffffff", display: "flex", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(0,0,0,0.6)", lineHeight: 1.9, maxWidth: "72ch", letterSpacing: "0.01em" }}>
             {project.description}
           </p>
         </div>
