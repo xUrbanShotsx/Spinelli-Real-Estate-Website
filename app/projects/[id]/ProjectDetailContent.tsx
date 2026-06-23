@@ -193,7 +193,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
             overflowX: "auto",
             scrollSnapType: "x mandatory",
             WebkitOverflowScrolling: "touch",
-            gap: "16px",
+            gap: "28px",
             paddingLeft: "calc(50% - 38vw)",
             paddingRight: "calc(50% - 38vw)",
             scrollbarWidth: "none",
@@ -208,7 +208,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
                 flex: "0 0 76vw",
                 scrollSnapAlign: "center",
                 position: "relative",
-                height: "62vh",
+                height: "72vh",
                 overflow: "hidden",
                 borderRadius: "2px",
               }}
