@@ -196,7 +196,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       )}
 
       {/* ── GALLERY: peek carousel ───────────────────────────── */}
-      <div style={{ marginBottom: "80px", overflow: "hidden", backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
+      <div style={{ overflow: "hidden", backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
         <div
           ref={carouselRef}
           style={{
