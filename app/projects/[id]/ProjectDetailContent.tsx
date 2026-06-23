@@ -283,14 +283,15 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
                 style={{ position: "relative", height: "55vh", overflow: "hidden", display: "block", textDecoration: "none" }}
                 className="group"
               >
-                <Image
-                  src={p.gallery[0] ?? p.image}
-                  alt={p.name}
-                  fill
-                  sizes="50vw"
-                  style={{ objectFit: "cover", objectPosition: "center", transition: "transform 0.7s ease" }}
-                  className="group-hover:scale-[1.04]"
-                />
+                <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+                  <Image
+                    src={p.gallery[0] ?? p.image}
+                    alt={p.name}
+                    fill
+                    sizes="50vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                </div>
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, padding: "28px 32px" }}>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "8px" }}>
