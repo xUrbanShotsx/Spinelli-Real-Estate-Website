@@ -18,6 +18,7 @@ export interface Project {
   gallery: string[];
   description: string;
   longDescription?: string;
+  mapQuery?: string;
   timeline: ProjectTimeline[];
 }
 
@@ -33,6 +34,7 @@ export const projects: Project[] = [
     image: "/Elevation.jpg",
     gallery: ["/Elevation.jpg", "/2.jpg", "/3.jpg", "/4.jpg", "/5.jpg", "/6.jpg"],
     description: "A landmark mixed-use tower delivering 77 architecturally designed apartments and 7 ground-floor commercial tenancies in the heart of Shellharbour City Centre. Every residence features premium finishes, generous balconies and secure parking.",
+    mapQuery: "18 College Avenue, Shellharbour City Centre NSW 2529",
     longDescription: "Life at Elevation 77 is defined by the moments between. Morning coffee from the café below, evenings on your balcony as the sun drops behind the escarpment, weekends spent walking to the lake or the village without once touching your car. This is urban living on the Illawarra coast — unhurried, elevated, and entirely your own. Each residence has been designed to bring the outside in, with generous glazing, north-facing aspects and premium finishes that make every room feel like a considered choice. The rooftop terrace becomes a natural extension of your home — a space to entertain, to unwind, or simply to take in the kind of view that reminds you why you chose this life.",
     timeline: [
       { label: "Site Acquired", date: "Mar 2019", done: true },
