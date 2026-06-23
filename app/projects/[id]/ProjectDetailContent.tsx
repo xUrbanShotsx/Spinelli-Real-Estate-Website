@@ -79,13 +79,6 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
   const [heroLoaded, setHeroLoaded] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  function scrollCarousel(dir: "left" | "right") {
-    const el = carouselRef.current;
-    if (!el) return;
-    const cardWidth = el.clientWidth * 0.76 + 16;
-    el.scrollBy({ left: dir === "right" ? cardWidth : -cardWidth, behavior: "smooth" });
-  }
-
   const heroImg   = project.gallery[0] ?? project.image;
   const wideImg   = project.gallery[1] ?? project.image;
   const galleryImgs = [
@@ -94,6 +87,37 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
     project.gallery[4] ?? project.gallery[0] ?? project.image,
     project.gallery[1] ?? project.image,
   ];
+
+  // Triple the images for seamless looping
+  const count = galleryImgs.length;
+  const loopedImgs = [...galleryImgs, ...galleryImgs, ...galleryImgs];
+  const startIndex = count + Math.floor(count / 2); // start on middle image of middle set
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardSlot = el.clientWidth * 0.76 + 16;
+    el.scrollLeft = startIndex * cardSlot;
+  }, [startIndex]);
+
+  function handleScroll() {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardSlot = el.clientWidth * 0.76 + 16;
+    const oneSet = count * cardSlot;
+    if (el.scrollLeft < oneSet * 0.75) {
+      el.scrollLeft += oneSet;
+    } else if (el.scrollLeft >= oneSet * 2.25) {
+      el.scrollLeft -= oneSet;
+    }
+  }
+
+  function scrollCarousel(dir: "left" | "right") {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardSlot = el.clientWidth * 0.76 + 16;
+    el.scrollBy({ left: dir === "right" ? cardSlot : -cardSlot, behavior: "smooth" });
+  }
 
   return (
     <>
@@ -179,8 +203,9 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
             scrollbarWidth: "none",
           }}
           className="[&::-webkit-scrollbar]:hidden"
+          onScroll={handleScroll}
         >
-          {galleryImgs.map((img, i) => (
+          {loopedImgs.map((img, i) => (
             <div
               key={i}
               style={{
@@ -198,7 +223,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img}
-                alt={`${project.name} gallery ${i + 1}`}
+                alt={`${project.name} gallery ${(i % count) + 1}`}
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.8s ease" }}
                 className="group-hover:scale-[1.03]"
               />
