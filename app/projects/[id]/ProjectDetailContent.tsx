@@ -90,10 +90,14 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
   return (
     <>
       {/* ── HERO: split top/bottom — image top, brief bottom ── */}
-      <section style={{ height: "100svh", display: "grid", gridTemplateRows: "1fr 1fr", paddingTop: "90px" }}>
+      {/* 3-row grid: 90px navbar spacer + equal 1fr halves */}
+      <section style={{ height: "100svh", display: "grid", gridTemplateRows: "90px 1fr 1fr" }}>
+
+        {/* Navbar spacer row — spans both columns */}
+        <div style={{ gridColumn: "1", gridRow: "1" }} />
 
         {/* Top half: project image */}
-        <div style={{ position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "relative", overflow: "hidden", gridRow: "2" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroImg}
@@ -109,7 +113,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
 
         {/* Bottom half: project brief */}
-        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(40px, 5vw, 72px) clamp(32px, 4vw, 64px)" }}>
+        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(28px, 3vw, 48px) clamp(32px, 4vw, 64px)", gridRow: "3", overflow: "hidden" }}>
 
           {/* Top: back link */}
           <Link
