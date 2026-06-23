@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Project } from "../data";
 
-const NAV_PAD = "clamp(24px, 2.8vw, 40px)";
-
 function useReveal(threshold = 0.08) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -41,9 +39,10 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
 
   return (
     <>
-      {/* ── Section 1: Details left + image right (bleeds past centre) ── */}
+      {/* ── Section 1: Details left + image right ── */}
       <section style={{ backgroundColor: "#ffffff", minHeight: "100svh", paddingTop: "90px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <div style={{ padding: `40px ${NAV_PAD}` }}>
+        {/* Same container as navbar: max-w-screen-2xl mx-auto px-6 sm:px-10 */}
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 w-full" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
 
           {/* Back link */}
           <Link
@@ -54,7 +53,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
             All Projects
           </Link>
 
-          {/* Two-column layout — image column is wider, crosses the midline */}
+          {/* Two-column: text left, image right (image takes 1.4× — crosses midline) */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "clamp(32px, 5vw, 64px)", alignItems: "center" }}>
 
             {/* Left: details */}
@@ -109,7 +108,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
               </div>
             </div>
 
-            {/* Right: image — no frame, fills column to right padding edge */}
+            {/* Right: image, no border/frame */}
             <div
               style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", cursor: "zoom-in" }}
               onClick={() => setLightboxImg(project.gallery[0] ?? project.image)}
@@ -127,119 +126,125 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       </section>
 
-      {/* ── Section 2: 3 images in a row — no borders ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: `0 ${NAV_PAD} clamp(24px, 3vw, 40px)` }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(8px, 1.2vw, 14px)" }}>
-          {(project.gallery.slice(1, 4).length > 0 ? project.gallery.slice(1, 4) : [project.image, project.image, project.image]).map((img, i) => (
-            <FadeUp key={i} delay={i * 80}>
-              <div
-                style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", cursor: "zoom-in" }}
-                onClick={() => setLightboxImg(img)}
-                className="group"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img}
-                  alt={`${project.name} ${i + 2}`}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.6s ease" }}
-                  className="group-hover:scale-105"
-                />
-              </div>
-            </FadeUp>
-          ))}
+      {/* ── Section 2: 3 images in a row, no borders ── */}
+      <section style={{ backgroundColor: "#ffffff" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 pb-10">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(8px, 1.2vw, 14px)" }}>
+            {(project.gallery.slice(1, 4).length > 0 ? project.gallery.slice(1, 4) : [project.image, project.image, project.image]).map((img, i) => (
+              <FadeUp key={i} delay={i * 80}>
+                <div
+                  style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", cursor: "zoom-in" }}
+                  onClick={() => setLightboxImg(img)}
+                  className="group"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={img}
+                    alt={`${project.name} ${i + 2}`}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.6s ease" }}
+                    className="group-hover:scale-105"
+                  />
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Section 3: Description left + Agents right — aligned with navbar padding ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: `80px ${NAV_PAD}` }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }}>
+      {/* ── Section 3: Description left + Agents right ── */}
+      <section style={{ backgroundColor: "#ffffff", paddingTop: "80px", paddingBottom: "80px" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }}>
 
-          {/* Left: description */}
-          <FadeUp>
-            <span className="label-tag">About the Project</span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "24px" }}>
-              {project.name}
-            </h2>
-            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
-              {project.description}
-            </p>
-            {project.longDescription && (
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
-                {project.longDescription}
+            {/* Left: description */}
+            <FadeUp>
+              <span className="label-tag">About the Project</span>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "24px" }}>
+                {project.name}
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                {project.description}
               </p>
-            )}
-          </FadeUp>
+              {project.longDescription && (
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", lineHeight: 1.9 }}>
+                  {project.longDescription}
+                </p>
+              )}
+            </FadeUp>
 
-          {/* Right: agents */}
-          <FadeUp delay={100}>
-            <span className="label-tag">Project Agents</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              {[
-                { name: "Paul Spinelli",  role: "Director — Project Sales", phone: "02 4296 0047", email: "paul@spinellire.com.au",  image: "/Staff/paul-spinelli.png" },
-                { name: "Adam Spinelli",  role: "Director — Project Sales", phone: "02 4296 0047", email: "adam@spinellire.com.au",  image: "/Staff/adam-spinelli.png" },
-              ].map((agent) => (
-                <div key={agent.name} style={{ display: "flex", gap: "20px", alignItems: "flex-start", padding: "24px", border: "1px solid #E8E5DF" }}>
-                  <div style={{ width: "72px", height: "88px", flexShrink: 0, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={agent.image} alt={agent.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "3px" }}>
-                      {agent.name}
-                    </h3>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "14px" }}>
-                      {agent.role}
-                    </p>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                      <a href={`tel:${agent.phone.replace(/\s/g, "")}`} style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#58503C", textDecoration: "none" }}>{agent.phone}</a>
-                      <a href={`mailto:${agent.email}`}               style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#58503C", textDecoration: "none" }}>{agent.email}</a>
+            {/* Right: agents */}
+            <FadeUp delay={100}>
+              <span className="label-tag">Project Agents</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                {[
+                  { name: "Paul Spinelli", role: "Director — Project Sales", phone: "02 4296 0047", email: "paul@spinellire.com.au", image: "/Staff/paul-spinelli.png" },
+                  { name: "Adam Spinelli", role: "Director — Project Sales", phone: "02 4296 0047", email: "adam@spinellire.com.au", image: "/Staff/adam-spinelli.png" },
+                ].map((agent) => (
+                  <div key={agent.name} style={{ display: "flex", gap: "20px", alignItems: "flex-start", padding: "24px", border: "1px solid #E8E5DF" }}>
+                    <div style={{ width: "72px", height: "88px", flexShrink: 0, overflow: "hidden" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={agent.image} alt={agent.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "3px" }}>
+                        {agent.name}
+                      </h3>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "14px" }}>
+                        {agent.role}
+                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                        <a href={`tel:${agent.phone.replace(/\s/g, "")}`} style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#58503C", textDecoration: "none" }}>{agent.phone}</a>
+                        <a href={`mailto:${agent.email}`}               style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#58503C", textDecoration: "none" }}>{agent.email}</a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
       {/* ── Timeline ── */}
-      <section style={{ backgroundColor: "#FBF9F3", padding: `80px ${NAV_PAD}` }}>
-        <FadeUp>
-          <span className="label-tag">Project Timeline</span>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "48px" }}>
-            Milestones
-          </h2>
-        </FadeUp>
-        <div>
-          {project.timeline.map((step, i) => (
-            <FadeUp key={i} delay={i * 60}>
-              <div style={{ display: "flex", gap: "clamp(20px, 4vw, 48px)", alignItems: "center", padding: "18px 0", borderBottom: "1px solid #E8E5DF" }}>
-                <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: step.done ? "#5BC2E7" : "#E8E5DF", border: `2px solid ${step.done ? "#5BC2E7" : "#DAD7CE"}`, flexShrink: 0 }} />
-                <div style={{ minWidth: "clamp(80px, 12vw, 120px)", flexShrink: 0 }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: step.done ? "#5BC2E7" : "#a2b0aa", letterSpacing: "0.06em", fontWeight: 500 }}>
-                    {step.date}
-                  </p>
+      <section style={{ backgroundColor: "#FBF9F3", paddingTop: "80px", paddingBottom: "80px" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
+          <FadeUp>
+            <span className="label-tag">Project Timeline</span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "48px" }}>
+              Milestones
+            </h2>
+          </FadeUp>
+          <div>
+            {project.timeline.map((step, i) => (
+              <FadeUp key={i} delay={i * 60}>
+                <div style={{ display: "flex", gap: "clamp(20px, 4vw, 48px)", alignItems: "center", padding: "18px 0", borderBottom: "1px solid #E8E5DF" }}>
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: step.done ? "#5BC2E7" : "#E8E5DF", border: `2px solid ${step.done ? "#5BC2E7" : "#DAD7CE"}`, flexShrink: 0 }} />
+                  <div style={{ minWidth: "clamp(80px, 12vw, 120px)", flexShrink: 0 }}>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: step.done ? "#5BC2E7" : "#a2b0aa", letterSpacing: "0.06em", fontWeight: 500 }}>
+                      {step.date}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flex: 1 }}>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.3rem)", color: step.done ? "#0D3348" : "#a2b0aa", fontWeight: 300, letterSpacing: "-0.02em" }}>
+                      {step.label}
+                    </p>
+                    {step.done && (
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </div>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", flex: 1 }}>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2vw, 1.3rem)", color: step.done ? "#0D3348" : "#a2b0aa", fontWeight: 300, letterSpacing: "-0.02em" }}>
-                    {step.label}
-                  </p>
-                  {step.done && (
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  )}
-                </div>
-              </div>
-            </FadeUp>
-          ))}
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Enquiry CTA ── */}
-      <section style={{ backgroundColor: "#0D3348", padding: "100px 0" }}>
-        <div className="max-w-screen-2xl mx-auto text-center" style={{ padding: `0 ${NAV_PAD}` }}>
+      <section style={{ backgroundColor: "#0D3348", paddingTop: "100px", paddingBottom: "100px" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 text-center">
           <FadeUp>
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.16em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
               {project.status === "Sold Out" ? "This Project" : "Register Your Interest"}
