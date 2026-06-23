@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
+
+import type { ComponentProps } from "react";
+type ProjectMapProps = ComponentProps<typeof import("../../../components/ProjectMap").default>;
+const ProjectMap = dynamic<ProjectMapProps>(() => import("../../../components/ProjectMap"), { ssr: false });
 import type { Project } from "../data";
 
 /* ─── Intersection reveal ─────────────────────────────────── */
@@ -258,17 +263,9 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       </div>
 
       {/* ── MAP ─────────────────────────────────────────────── */}
-      {project.mapQuery && (
+      {project.mapLat && project.mapLng && (
         <div style={{ backgroundColor: "#ffffff" }}>
-          <iframe
-            title="Project location"
-            width="100%"
-            height="520"
-            style={{ border: 0, display: "block", filter: "grayscale(100%)" }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(project.mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-          />
+          <ProjectMap lat={project.mapLat} lng={project.mapLng} zoom={16} />
         </div>
       )}
 
