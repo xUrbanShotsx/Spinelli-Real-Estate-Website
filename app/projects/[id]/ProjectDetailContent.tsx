@@ -214,18 +214,14 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
                 position: "relative",
                 height: "62vh",
                 overflow: "hidden",
-                cursor: "zoom-in",
                 borderRadius: "2px",
               }}
-              onClick={() => setLightboxImg(img)}
-              className="group"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img}
                 alt={`${project.name} gallery ${(i % count) + 1}`}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.8s ease" }}
-                className="group-hover:scale-[1.03]"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
               />
             </div>
           ))}
