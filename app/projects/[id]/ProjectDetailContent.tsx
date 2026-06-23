@@ -89,10 +89,10 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
 
   return (
     <>
-      {/* ── HERO: split 50/50 — image left, brief right ─────── */}
-      <section style={{ height: "100svh", display: "grid", gridTemplateColumns: "1fr 1fr", paddingTop: "90px" }}>
+      {/* ── HERO: split top/bottom — image top, brief bottom ── */}
+      <section style={{ height: "100svh", display: "grid", gridTemplateRows: "1fr 1fr", paddingTop: "90px" }}>
 
-        {/* Left half: project image */}
+        {/* Top half: project image */}
         <div style={{ position: "relative", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -108,7 +108,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           />
         </div>
 
-        {/* Right half: project brief */}
+        {/* Bottom half: project brief */}
         <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(40px, 5vw, 72px) clamp(32px, 4vw, 64px)" }}>
 
           {/* Top: back link */}
