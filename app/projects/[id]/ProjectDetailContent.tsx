@@ -89,46 +89,94 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
 
   return (
     <>
-      {/* ── HERO: full-bleed, name bottom-left ──────────────── */}
-      <section style={{ position: "relative", height: "100svh", overflow: "hidden", backgroundColor: "#0a172d" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={heroImg}
-          alt={project.name}
-          onLoad={() => setHeroLoaded(true)}
-          style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center",
-            opacity: heroLoaded ? 0.7 : 0,
-            transition: "opacity 1.4s ease",
-          }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,23,45,0.82) 0%, rgba(10,23,45,0.1) 55%, rgba(10,23,45,0.35) 100%)" }} />
+      {/* ── HERO: split 50/50 — image left, brief right ─────── */}
+      <section style={{ height: "100svh", display: "grid", gridTemplateColumns: "1fr 1fr", paddingTop: "90px" }}>
 
-        {/* Back link */}
-        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10" style={{ position: "absolute", top: 0, left: 0, right: 0, paddingTop: "112px" }}>
-          <Link
-            href="/projects"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none" }}
-          >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
-            Projects
-          </Link>
+        {/* Left half: project image */}
+        <div style={{ position: "relative", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroImg}
+            alt={project.name}
+            onLoad={() => setHeroLoaded(true)}
+            style={{
+              position: "absolute", inset: 0, width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center",
+              opacity: heroLoaded ? 1 : 0,
+              transition: "opacity 1.4s ease",
+            }}
+          />
         </div>
 
-        {/* Project name */}
-        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10" style={{ position: "absolute", bottom: 0, left: 0, right: 0, paddingBottom: "72px" }}>
-          <div style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "16px" }}>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.18)", padding: "4px 12px" }}>
-              {project.status}
-            </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-              {project.suburb}
-            </span>
+        {/* Right half: project brief */}
+        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(40px, 5vw, 72px) clamp(32px, 4vw, 64px)" }}>
+
+          {/* Top: back link */}
+          <Link
+            href="/projects"
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", alignSelf: "flex-start" }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            All Projects
+          </Link>
+
+          {/* Middle: name + status */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.15)", padding: "4px 12px" }}>
+                {project.status}
+              </span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                {project.suburb}
+              </span>
+            </div>
+
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem, 4.5vw, 5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "32px" }}>
+              {project.name}
+            </h1>
+
+            {/* Thin rule */}
+            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+
+            {/* Brief */}
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.1vw, 15px)", color: "rgba(255,255,255,0.55)", lineHeight: 1.85, maxWidth: "42ch" }}>
+              {project.description}
+            </p>
           </div>
-          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 10vw, 10rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.88, maxWidth: "14ch" }}>
-            {project.name}
-          </h1>
+
+          {/* Bottom: key facts + CTA */}
+          <div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0", borderTop: "1px solid rgba(255,255,255,0.1)", marginBottom: "32px" }}>
+              {[
+                { label: "Type",    value: project.category },
+                { label: "Scale",   value: project.units },
+                { label: "Address", value: project.suburb },
+                { label: "Status",  value: project.status },
+              ].map((item) => (
+                <div key={item.label} style={{ padding: "14px 0", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingRight: "12px" }}>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "8px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Link
+                href={`/contact?project=${project.id}`}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", backgroundColor: "#5BC2E7", color: "#ffffff", padding: "13px 24px", textDecoration: "none", display: "inline-block" }}
+              >
+                Make an Enquiry
+              </Link>
+              {project.status !== "Sold Out" && (
+                <Link
+                  href="/contact"
+                  style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.15)", padding: "13px 24px", textDecoration: "none", display: "inline-block" }}
+                >
+                  Register Interest
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
