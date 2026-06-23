@@ -90,7 +90,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
   return (
     <>
       {/* ── HERO: split top/bottom — image extends into navbar ── */}
-      <section style={{ height: "100svh", display: "grid", gridTemplateRows: "1fr 1fr" }}>
+      <section style={{ height: "100svh", display: "grid", gridTemplateRows: "2fr 1fr" }}>
 
         {/* Top half: image — starts at top-0, sits behind transparent navbar */}
         <div style={{ position: "relative", overflow: "hidden" }}>
