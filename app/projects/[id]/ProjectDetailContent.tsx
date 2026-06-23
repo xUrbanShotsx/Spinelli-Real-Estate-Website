@@ -92,7 +92,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       {/* ── HERO: split top/bottom — image extends into navbar ── */}
       <section style={{ height: "100svh", display: "grid", gridTemplateRows: "2fr 1fr" }}>
 
-        {/* Top half: image — starts at top-0, sits behind transparent navbar */}
+        {/* Top 2/3: image with dark shader + centred project name */}
         <div style={{ position: "relative", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -106,43 +106,40 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
               transition: "opacity 1.4s ease",
             }}
           />
-        </div>
+          {/* Dark shader */}
+          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)" }} />
 
-        {/* Bottom half: project brief */}
-        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(28px, 3vw, 48px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
+          {/* Back link — top left */}
+          <div className="max-w-screen-2xl mx-auto px-6 sm:px-10" style={{ position: "absolute", top: 0, left: 0, right: 0, paddingTop: "112px" }}>
+            <Link
+              href="/projects"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none" }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
+              All Projects
+            </Link>
+          </div>
 
-          {/* Top: back link */}
-          <Link
-            href="/projects"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", alignSelf: "flex-start" }}
-          >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
-            All Projects
-          </Link>
-
-          {/* Middle: name + status */}
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.15)", padding: "4px 12px" }}>
+          {/* Project name — centred over image */}
+          <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 24px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.25)", padding: "4px 12px" }}>
                 {project.status}
               </span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
                 {project.suburb}
               </span>
             </div>
-
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem, 4.5vw, 5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: "32px" }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 7vw, 8rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.9 }}>
               {project.name}
             </h1>
-
-            {/* Thin rule */}
-            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
-
-            {/* Brief */}
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.1vw, 15px)", color: "rgba(255,255,255,0.55)", lineHeight: 1.85, maxWidth: "42ch" }}>
-              {project.description}
-            </p>
           </div>
+        </div>
+
+        {/* Bottom 1/3: project brief — no name, just details + CTA */}
+        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
+
+          <div />
 
           {/* Bottom: key facts + CTA */}
           <div>
