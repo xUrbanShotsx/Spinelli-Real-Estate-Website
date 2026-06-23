@@ -274,7 +274,8 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       {(() => {
         const related = projects.filter(p => p.id !== project.id).slice(0, 2);
         return (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginTop: "60px" }}>
+          <div style={{ backgroundColor: "#ffffff", padding: "0 40px 60px", marginTop: "60px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
             {related.map((p) => (
               <Link
                 key={p.id}
@@ -301,6 +302,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
                 </div>
               </Link>
             ))}
+          </div>
           </div>
         );
       })()}
