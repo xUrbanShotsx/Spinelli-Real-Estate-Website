@@ -54,9 +54,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Pages with no hero — navbar should use blue at the top
+  // Pages with no hero image — navbar is always solid at the top.
+  // Individual project detail pages (/projects/[id]) are excluded so the
+  // navbar starts transparent over the dark split hero and goes solid on scroll.
   const lightPages = ["/sold", "/buy", "/rent", "/sell", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects"];
-  const isLightPage = lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  const isProjectDetail = /^\/projects\/.+/.test(pathname);
+  const isLightPage = !isProjectDetail && lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
