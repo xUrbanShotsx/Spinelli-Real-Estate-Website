@@ -278,40 +278,6 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       </TextBlock>
 
-      {/* ── AGENT PANELS: Boston's related-content-section style ── */}
-      <div style={{ display: "flex" }}>
-        {AGENTS.map((agent) => (
-          <a
-            key={agent.name}
-            href={`tel:${agent.phone.replace(/\s/g, "")}`}
-            style={{ flex: 1, height: "340px", position: "relative", overflow: "hidden", display: "block", textDecoration: "none" }}
-            className="group"
-          >
-            {/* Background photo */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={agent.image}
-              alt={agent.name}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", transition: "transform 0.4s ease" }}
-              className="group-hover:scale-[1.03]"
-            />
-            {/* Overlay */}
-            <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(10,23,45,0.45)", transition: "background-color 0.3s" }} className="group-hover:[background-color:rgba(10,23,45,0.55)]" />
-            {/* Centred copy */}
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", color: "#ffffff", zIndex: 2, width: "100%", padding: "0 24px" }}>
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3vw, 2.8rem)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "12px" }}>
-                {agent.name}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "20px" }}>
-                {agent.role}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(255,255,255,0.7)", letterSpacing: "0.04em" }}>
-                {agent.phone}
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
 
       {/* ── LIGHTBOX ─────────────────────────────────────────── */}
       {lightboxImg && (
