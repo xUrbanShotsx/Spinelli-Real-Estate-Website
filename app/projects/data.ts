@@ -31,7 +31,7 @@ export const projects: Project[] = [
     units: "77 Apartments · 7 Commercial",
     status: "Sold Out",
     image: "/Elevation.jpg",
-    gallery: ["/2.jpg", "/3.jpg", "/4.jpg", "/5.jpg", "/6.jpg"],
+    gallery: ["/Elevation.jpg", "/2.jpg", "/3.jpg", "/4.jpg", "/5.jpg", "/6.jpg"],
     description: "A landmark mixed-use tower delivering 77 architecturally designed apartments and 7 ground-floor commercial tenancies in the heart of Shellharbour City Centre. Every residence features premium finishes, generous balconies and secure parking.",
     longDescription: "Elevation 77 set a new standard for inner-city living on the Illawarra coast. Developed in partnership with a leading Sydney-based architectural firm, the building's distinctive facade draws on the natural textures of the sandstone escarpment, creating a silhouette that defines the Shellharbour skyline. Residents enjoy access to a rooftop terrace, secure basement parking, and a ground-floor retail and café precinct that activated the street within months of opening. The project sold out in under eight weeks through Spinelli's pre-qualified buyer database, with 60% of buyers sourced from outside the Illawarra — a testament to the region's growing appeal for owner-occupiers and investors alike.",
     timeline: [
