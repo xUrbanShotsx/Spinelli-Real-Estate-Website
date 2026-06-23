@@ -109,17 +109,6 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           {/* Dark shader */}
           <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)" }} />
 
-          {/* Back link — top left */}
-          <div className="max-w-screen-2xl mx-auto px-6 sm:px-10" style={{ position: "absolute", top: 0, left: 0, right: 0, paddingTop: "112px" }}>
-            <Link
-              href="/projects"
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none" }}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
-              All Projects
-            </Link>
-          </div>
-
           {/* Project name — centred over image */}
           <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 24px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
@@ -136,44 +125,11 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           </div>
         </div>
 
-        {/* Bottom 1/3: project brief — no name, just details + CTA */}
-        <div style={{ backgroundColor: "#0a172d", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
-
-          <div />
-
-          {/* Bottom: key facts + CTA */}
-          <div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0", borderTop: "1px solid rgba(255,255,255,0.1)", marginBottom: "32px" }}>
-              {[
-                { label: "Type",    value: project.category },
-                { label: "Scale",   value: project.units },
-                { label: "Address", value: project.suburb },
-                { label: "Status",  value: project.status },
-              ].map((item) => (
-                <div key={item.label} style={{ padding: "14px 0", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingRight: "12px" }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "8px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>{item.value}</p>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: "flex", gap: "10px" }}>
-              <Link
-                href={`/contact?project=${project.id}`}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", backgroundColor: "#5BC2E7", color: "#ffffff", padding: "13px 24px", textDecoration: "none", display: "inline-block" }}
-              >
-                Make an Enquiry
-              </Link>
-              {project.status !== "Sold Out" && (
-                <Link
-                  href="/contact"
-                  style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.15)", padding: "13px 24px", textDecoration: "none", display: "inline-block" }}
-                >
-                  Register Interest
-                </Link>
-              )}
-            </div>
-          </div>
+        {/* Bottom 1/3: brief description */}
+        <div style={{ backgroundColor: "#0a172d", display: "flex", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(255,255,255,0.5)", lineHeight: 1.9, maxWidth: "72ch", letterSpacing: "0.01em" }}>
+            {project.description}
+          </p>
         </div>
       </section>
 
