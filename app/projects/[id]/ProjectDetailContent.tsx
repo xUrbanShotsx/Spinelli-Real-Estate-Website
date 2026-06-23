@@ -260,29 +260,15 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
       {/* ── MAP ─────────────────────────────────────────────── */}
       {project.mapQuery && (
         <div style={{ backgroundColor: "#ffffff" }}>
-          <div className="max-w-screen-2xl mx-auto px-6 sm:px-10" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "4fr 8fr", gap: "60px", alignItems: "start" }}>
-              <div>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3vw, 3rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "20px" }}>
-                  Location.
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(0,0,0,0.45)", letterSpacing: "0.04em", lineHeight: 1.7 }}>
-                  {project.address}
-                </p>
-              </div>
-              <div style={{ position: "relative", width: "100%", height: "420px", overflow: "hidden" }}>
-                <iframe
-                  title="Project location"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, display: "block" }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://maps.google.com/maps?q=${encodeURIComponent(project.mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                />
-              </div>
-            </div>
-          </div>
+          <iframe
+            title="Project location"
+            width="100%"
+            height="520"
+            style={{ border: 0, display: "block", filter: "grayscale(100%)" }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(project.mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+          />
         </div>
       )}
 
