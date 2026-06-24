@@ -162,7 +162,7 @@ export default function ProjectsContent() {
       </div>
 
       {/* ── Development types ── */}
-      <section style={{ backgroundColor: "#FBF9F3", padding: "80px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
           <FadeUp>
             <span className="label-tag">What We Deliver</span>
@@ -170,18 +170,22 @@ export default function ProjectsContent() {
               Development Expertise
             </h2>
           </FadeUp>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px" }}>
             {[
-              { label: "Duplex",                  desc: "Side-by-side and attached dual occupancy developments across the Illawarra, from concept to sell-out." },
-              { label: "Townhouse",               desc: "Boutique townhouse communities of 4–20 homes with full sales, marketing and VIP buyer access." },
-              { label: "Multi-Level Residential", desc: "Apartment towers and mid-rise residential — off-the-plan sales campaigns, presales and settlement management." },
-              { label: "Commercial",              desc: "Commercial and mixed-use developments, from ground-floor retail to standalone office and retail buildings." },
+              { label: "Duplex",                  image: "/Dapto.jpg" },
+              { label: "Townhouse",               image: "/Rooftop.jpg" },
+              { label: "Multi-Level Residential", image: "/droneshot.jpg" },
+              { label: "Commercial",              image: "/commercial box.jpg" },
             ].map((item, i) => (
               <FadeUp key={item.label} delay={i * 80}>
-                <div style={{ padding: "36px 28px", borderLeft: i > 0 ? "1px solid #DAD7CE" : "none" }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "16px" }}>0{i + 1}</p>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "12px" }}>{item.label}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>{item.desc}</p>
+                <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={item.image} alt={item.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                  <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.42)" }} />
+                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#5BC2E7", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "14px" }}>0{i + 1}</p>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 1.5vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", textAlign: "center", lineHeight: 1.2 }}>{item.label}</p>
+                  </div>
                 </div>
               </FadeUp>
             ))}
