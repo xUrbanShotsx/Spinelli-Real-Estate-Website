@@ -62,7 +62,7 @@ export const projects: Project[] = [
     image: "/bluewater.jpg",
     gallery: ["/bluewater.jpg", "/Kiama.jpg", "/Gerringong.jpg", "/Austinmer.jpg"],
     description: "A boutique coastal apartment building capturing panoramic ocean and harbour views across Kiama's iconic blowhole headland. 23 residences designed for the discerning coastal buyer.",
-    longDescription: "Bluewater was conceived as a response to the scarcity of premium coastal product in Kiama — a tightly held market where genuine sea-view apartments rarely come to market. Each of the 23 residences was individually oriented to maximise ocean outlook, with full-width glazing, north-facing terraces and bespoke stone joinery throughout. The building's low-rise scale was deliberately chosen to respect the existing streetscape while delivering the kind of luxury finish typically reserved for Sydney's eastern suburbs. All 23 homes were sold off-the-plan in a single launch weekend, with a waitlist of over 60 registered buyers.",
+    longDescription: "Kiama is a town that gets under your skin. The sound of the blowhole on a still morning. The smell of salt in the air as you walk to the farmers market. The way the light sits on the harbour at dusk — golden, unhurried, entirely its own. Bluewater was designed for those who have found this place and decided they never want to leave. Each residence opens to the ocean through full-width glazing and north-facing terraces, so that the sea is never a backdrop — it is the view you wake up to, the one you come home to. This is coastal life lived without compromise.",
     timeline: [
       { label: "Site Acquired", date: "Jun 2019", done: true },
       { label: "DA Approved", date: "Feb 2020", done: true },
