@@ -74,8 +74,11 @@ export const projects: Project[] = [
   {
     id: "the-outlook",
     name: "Greenacre",
-    suburb: "Kiama",
-    address: "32 Bong Bong Street, Kiama NSW",
+    suburb: "Wollongong",
+    address: "16a Greenacre Road, Wollongong NSW",
+    mapQuery: "16a Greenacre Road, Wollongong NSW 2500",
+    mapLat: -34.4205,
+    mapLng: 150.8798,
     category: "Multi-Level Residential",
     units: "18 Apartments",
     status: "Sold Out",
