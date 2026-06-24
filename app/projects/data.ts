@@ -60,7 +60,7 @@ export const projects: Project[] = [
     units: "23 Apartments",
     status: "Sold Out",
     image: "/bluewater.jpg",
-    gallery: ["/bluewater.jpg", "/BlueWaterImg/7.jpg", "/BlueWaterImg/8.jpg", "/BlueWaterImg/9.jpg", "/BlueWaterImg/10.jpg", "/BlueWaterImg/11.jpg"],
+    gallery: ["/bluewater.jpg", "/BlueWaterImg/11.jpg", "/BlueWaterImg/7.jpg", "/BlueWaterImg/8.jpg", "/BlueWaterImg/9.jpg", "/BlueWaterImg/10.jpg"],
     description: "A boutique coastal apartment building capturing panoramic ocean and harbour views across Kiama's iconic blowhole headland. 23 residences designed for the discerning coastal buyer.",
     longDescription: "Kiama is a town that gets under your skin. The sound of the blowhole on a still morning. The smell of salt in the air as you walk to the farmers market. The way the light sits on the harbour at dusk — golden, unhurried, entirely its own. Bluewater was designed for those who have found this place and decided they never want to leave. Each residence opens to the ocean through full-width glazing and north-facing terraces, so that the sea is never a backdrop — it is the view you wake up to, the one you come home to. This is coastal life lived without compromise.",
     timeline: [

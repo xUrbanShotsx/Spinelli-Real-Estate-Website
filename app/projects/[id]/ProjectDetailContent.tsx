@@ -92,7 +92,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
     project.gallery[2] ?? project.image,
     project.gallery[3] ?? project.image,
     project.gallery[4] ?? project.gallery[0] ?? project.image,
-    project.gallery[1] ?? project.image,
+    project.gallery[5] ?? project.gallery[1] ?? project.image,
   ];
 
   // Triple the images for seamless looping
