@@ -197,26 +197,15 @@ export default function ProjectsContent() {
       <MarketingSection />
 
       {/* ── CTA ── */}
-      <section style={{ backgroundColor: "#0D3348", padding: "100px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "64px 0", borderTop: "1px solid #E8E5DF" }}>
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 text-center">
           <FadeUp>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.16em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
-              Work With Us
-            </span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 6vw, 5.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.95, marginBottom: "40px" }}>
-              Have a Project<br />In Mind?
-            </h2>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 40px" }}>
-              Talk to our projects team about your development — whether it&apos;s a duplex in Dapto or a multi-level tower in Wollongong CBD.
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px" }}>
+              Have a development in mind? We&apos;d love to hear about it.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-80" style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}>
-                Talk to Our Team
-              </Link>
-              <a href="tel:0242960047" className="inline-block px-8 py-4 text-[13px] font-medium tracking-wide transition-opacity hover:opacity-60" style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-sans)" }}>
-                02 4296 0047
-              </a>
-            </div>
+            <Link href="/contact" className="inline-block transition-opacity hover:opacity-70" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#0D3348", padding: "14px 32px", textDecoration: "none" }}>
+              Get In Touch
+            </Link>
           </FadeUp>
         </div>
       </section>
