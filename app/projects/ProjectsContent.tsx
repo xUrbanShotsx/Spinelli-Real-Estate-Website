@@ -194,35 +194,7 @@ export default function ProjectsContent() {
       </section>
 
       {/* ── Marketing ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <FadeUp>
-              <span className="label-tag">How We Sell</span>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "40px" }}>
-                In-House<br />Marketing
-              </h2>
-              <MarketingTabs />
-            </FadeUp>
-
-            <FadeUp delay={100}>
-              <div className="flex flex-col gap-0 lg:pt-16">
-                {[
-                  { label: "Projects Delivered",   value: "50+" },
-                  { label: "In Project Sales",      value: "$380M+" },
-                  { label: "Average Sell-Out Time", value: "6 Weeks" },
-                  { label: "Years Illawarra Focus", value: "12+" },
-                ].map((s) => (
-                  <div key={s.label} className="flex items-center justify-between py-6" style={{ borderTop: "1px solid #E8E5DF" }}>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265" }}>{s.label}</p>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em" }}>{s.value}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
+      <MarketingSection />
 
       {/* ── CTA ── */}
       <section style={{ backgroundColor: "#0D3348", padding: "100px 0" }}>
@@ -256,87 +228,101 @@ const MARKETING_ITEMS = [
   {
     title: "Project Landing Pages",
     desc: "Every development gets a custom-built landing page — designed to capture buyer interest, showcase the project and convert registrations from day one. We build, host and manage it end-to-end.",
+    image: "/Elevation.jpg",
   },
   {
     title: "Paid Digital Marketing",
     desc: "In-house Meta, Google and YouTube campaigns targeted at qualified Illawarra buyers. We run the ads, optimise weekly and report on every lead — no agency middleman, no mark-up.",
+    image: "/droneshot.jpg",
   },
   {
     title: "Buyer Funnel & CRM",
     desc: "Buyers are funnelled from ad to landing page to our CRM, where they're nurtured through automated sequences and followed up by our project sales team before launch day.",
+    image: "/bluewater.jpg",
   },
   {
     title: "Photography & Creative",
     desc: "Architectural photography, drone, renders, floorplan graphics and all print collateral produced in-house. One consistent visual identity from hoarding to handover.",
+    image: "/Rooftop.jpg",
   },
 ];
 
-function MarketingTabs() {
+function MarketingSection() {
   const [active, setActive] = useState(0);
   return (
-    <div>
-      {MARKETING_ITEMS.map((item, i) => (
-        <div
-          key={item.title}
-          onClick={() => setActive(i)}
-          style={{
-            borderTop: "1px solid #E8E5DF",
-            cursor: "pointer",
-            overflow: "hidden",
-          }}
-        >
-          <div style={{ padding: "22px 0", display: "flex", gap: "20px", alignItems: "flex-start" }}>
-            <span style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "10px",
-              color: active === i ? "#5BC2E7" : "rgba(91,194,231,0.4)",
-              letterSpacing: "0.12em",
-              minWidth: "28px",
-              marginTop: "3px",
-              transition: "color 0.2s ease",
-            }}>
-              0{i + 1}
-            </span>
-            <div style={{ flex: 1 }}>
-              <p style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "1.1rem",
-                color: active === i ? "#0D3348" : "#7a7265",
-                fontWeight: 300,
-                letterSpacing: "-0.02em",
-                marginBottom: active === i ? "10px" : "0",
-                transition: "color 0.2s ease, margin 0.3s ease",
-              }}>
-                {item.title}
-              </p>
-              <div style={{
-                maxHeight: active === i ? "120px" : "0",
-                opacity: active === i ? 1 : 0,
-                overflow: "hidden",
-                transition: "max-height 0.4s ease, opacity 0.3s ease",
-              }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
-                  {item.desc}
-                </p>
+    <section style={{ backgroundColor: "#ffffff" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "560px" }}>
+        {/* Left — text + accordion */}
+        <div style={{ padding: "80px clamp(32px, 5vw, 80px)" }}>
+          <FadeUp>
+            <span className="label-tag">How We Sell</span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "40px" }}>
+              In-House<br />Marketing
+            </h2>
+          </FadeUp>
+          <div>
+            {MARKETING_ITEMS.map((item, i) => (
+              <div
+                key={item.title}
+                onClick={() => setActive(i)}
+                style={{ borderTop: "1px solid #E8E5DF", cursor: "pointer" }}
+              >
+                <div style={{ padding: "22px 0", display: "flex", gap: "20px", alignItems: "flex-start" }}>
+                  <span style={{
+                    fontFamily: "var(--font-sans)", fontSize: "10px",
+                    color: active === i ? "#5BC2E7" : "rgba(91,194,231,0.4)",
+                    letterSpacing: "0.12em", minWidth: "28px", marginTop: "3px",
+                    transition: "color 0.2s ease",
+                  }}>0{i + 1}</span>
+                  <div style={{ flex: 1 }}>
+                    <p style={{
+                      fontFamily: "var(--font-display)", fontSize: "1.1rem",
+                      color: active === i ? "#0D3348" : "#7a7265",
+                      fontWeight: 300, letterSpacing: "-0.02em",
+                      marginBottom: active === i ? "10px" : "0",
+                      transition: "color 0.2s ease, margin 0.3s ease",
+                    }}>{item.title}</p>
+                    <div style={{
+                      maxHeight: active === i ? "120px" : "0",
+                      opacity: active === i ? 1 : 0,
+                      overflow: "hidden",
+                      transition: "max-height 0.4s ease, opacity 0.3s ease",
+                    }}>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                  <span style={{
+                    fontFamily: "var(--font-sans)", fontSize: "18px", color: "#5BC2E7",
+                    lineHeight: 1, marginTop: "2px", display: "inline-block",
+                    transform: active === i ? "rotate(45deg)" : "rotate(0deg)",
+                    transition: "transform 0.3s ease",
+                  }}>+</span>
+                </div>
               </div>
-            </div>
-            <span style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              color: "#5BC2E7",
-              lineHeight: 1,
-              marginTop: "2px",
-              transform: active === i ? "rotate(45deg)" : "rotate(0deg)",
-              transition: "transform 0.3s ease",
-              display: "inline-block",
-            }}>
-              +
-            </span>
+            ))}
+            <div style={{ borderTop: "1px solid #E8E5DF" }} />
           </div>
         </div>
-      ))}
-      <div style={{ borderTop: "1px solid #E8E5DF" }} />
-    </div>
+
+        {/* Right — swapping image */}
+        <div style={{ position: "relative", overflow: "hidden" }}>
+          {MARKETING_ITEMS.map((item, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={item.image}
+              src={item.image}
+              alt={item.title}
+              style={{
+                position: "absolute", inset: 0, width: "100%", height: "100%",
+                objectFit: "cover",
+                opacity: active === i ? 1 : 0,
+                transition: "opacity 0.6s ease",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
