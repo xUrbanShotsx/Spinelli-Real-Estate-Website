@@ -85,7 +85,7 @@ export const projects: Project[] = [
     image: "/12.jpg",
     gallery: ["/12.jpg", "/13.jpg", "/14.jpg", "/15.jpg", "/16.jpg", "/17.jpg"],
     description: "Luxury apartment living with elevated escarpment and ocean vistas, designed by award-winning architects for the discerning buyer seeking the best of Kiama living.",
-    longDescription: "The Outlook occupies one of Kiama's most coveted ridge-top positions, with sweeping views from the escarpment to the Pacific. The building's tiered form steps down the hillside, ensuring every apartment captures an uninterrupted outlook without compromising its neighbour. Interiors feature hand-selected European oak flooring, integrated Miele appliances and custom stone benchtops throughout. Spinelli managed the off-the-plan sales campaign from inception, securing presales that enabled construction financing within six weeks of public launch — an outcome made possible by more than a decade of relationships with the region's high-net-worth buyer pool.",
+    longDescription: "Wollongong is a city that has quietly become one of the most compelling places to live on the east coast. The ocean is minutes away. The escarpment rises behind you. The food scene has arrived, the arts precinct is alive, and the train to Sydney means you can have it all without sacrificing any of it. Greenacre places you at the heart of this — on a tree-lined street where the pace slows and the city noise fades, but everything you need is still within reach. This is Wollongong living at its most considered: space, light, and a neighbourhood that actually feels like one.",
     timeline: [
       { label: "Site Acquired", date: "Jan 2020", done: true },
       { label: "DA Approved", date: "Sep 2020", done: true },
