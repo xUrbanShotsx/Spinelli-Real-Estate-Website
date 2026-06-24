@@ -201,7 +201,7 @@ export default function ProjectsContent() {
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 text-center">
           <FadeUp>
             <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px" }}>
-              Have a development in mind? We&apos;d love to hear about it.
+              Whether it&apos;s a duplex in Dapto or a landmark tower in Wollongong CBD — our projects team brings the market knowledge, buyer database and in-house marketing to take your development from site to sell-out.
             </p>
             <Link href="/contact" className="inline-block transition-opacity hover:opacity-70" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", textDecoration: "none" }}>
               Get In Touch
