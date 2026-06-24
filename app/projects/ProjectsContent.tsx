@@ -170,7 +170,7 @@ export default function ProjectsContent() {
               Development Expertise
             </h2>
           </FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Duplex",                  image: "/duplex.jpg" },
               { label: "Townhouse",               image: "/townhouse.jpg" },
@@ -240,9 +240,9 @@ function MarketingSection() {
   const [active, setActive] = useState(0);
   return (
     <section style={{ backgroundColor: "#ffffff" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "560px" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "560px" }}>
         {/* Left — text + accordion */}
-        <div style={{ padding: "80px clamp(32px, 5vw, 80px)" }}>
+        <div style={{ padding: "60px clamp(24px, 5vw, 80px)" }}>
           <FadeUp>
             <span className="label-tag">How We Sell</span>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "40px" }}>
@@ -293,8 +293,8 @@ function MarketingSection() {
           </div>
         </div>
 
-        {/* Right — swapping image */}
-        <div style={{ position: "relative", overflow: "hidden" }}>
+        {/* Right — swapping image (hidden on mobile) */}
+        <div className="hidden lg:block" style={{ position: "relative", overflow: "hidden", minHeight: "400px" }}>
           {MARKETING_ITEMS.map((item, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img

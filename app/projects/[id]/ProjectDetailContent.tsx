@@ -46,10 +46,10 @@ function TextBlock({ heading, children, headingSize = "2.6rem" }: {
     <div style={{ marginTop: "0", marginBottom: "0", backgroundColor: "#ffffff", padding: "80px 0" }}>
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
         <Reveal>
-          {/* 4 – 6 – 2 column grid, exact Boston layout */}
-          <div style={{ display: "grid", gridTemplateColumns: "4fr 6fr 2fr", gap: "0 30px", alignItems: "start" }}>
-            {/* Left col (4/12) – heading */}
-            <div style={{ paddingRight: "42px" }}>
+          {/* Responsive: single col on mobile, 4-6-2 grid on md+ */}
+          <div className="grid grid-cols-1 md:grid-cols-[4fr_6fr_2fr]" style={{ gap: "0 30px", alignItems: "start" }}>
+            {/* Left col – heading */}
+            <div className="mb-8 md:mb-0" style={{ paddingRight: "0" }}>
               <p style={{
                 fontFamily: "var(--font-display)",
                 fontSize: headingSize,
@@ -61,12 +61,12 @@ function TextBlock({ heading, children, headingSize = "2.6rem" }: {
                 {heading}
               </p>
             </div>
-            {/* Centre col (6/12) – body */}
-            <div style={{ paddingRight: "30px" }}>
+            {/* Centre col – body */}
+            <div>
               {children}
             </div>
-            {/* Right col (2/12) – intentional whitespace */}
-            <div />
+            {/* Right col – whitespace (hidden on mobile) */}
+            <div className="hidden md:block" />
           </div>
         </Reveal>
       </div>
@@ -162,25 +162,24 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
           </div>
         </div>
 
-        {/* Bottom 1/3: title left, description right */}
-        <div style={{ backgroundColor: "#ffffff", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", padding: "clamp(20px, 2.5vw, 36px) clamp(32px, 4vw, 64px)", overflow: "hidden", gap: "20px" }}>
+        {/* Bottom 1/3: title left, description right — stacks on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4" style={{ backgroundColor: "#ffffff", padding: "clamp(20px, 2.5vw, 36px) clamp(24px, 4vw, 64px)", overflow: "hidden" }}>
           <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2.4rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             {project.name}
           </p>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(0,0,0,0.6)", lineHeight: 1.9, letterSpacing: "0.01em" }}>
+          <p className="hidden md:block" style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(0,0,0,0.6)", lineHeight: 1.9, letterSpacing: "0.01em" }}>
             {project.description}
           </p>
         </div>
       </section>
 
-      {/* ── FULL-WIDTH PARALLAX IMAGE ────────────────────────── */}
+      {/* ── FULL-WIDTH IMAGE ─────────────────────────────────── */}
       <div
         style={{
-          height: "600px",
+          height: "clamp(300px, 55vw, 600px)",
           backgroundImage: `url(${wideImg})`,
           backgroundSize: "cover",
           backgroundPosition: "50% 50%",
-          backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           cursor: "zoom-in",
         }}
@@ -217,10 +216,10 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
             <div
               key={i}
               style={{
-                flex: "0 0 76vw",
+                flex: "0 0 clamp(280px, 76vw, 76vw)",
                 scrollSnapAlign: "center",
                 position: "relative",
-                height: "72vh",
+                height: "clamp(220px, 60vw, 72vh)",
                 overflow: "hidden",
                 borderRadius: "2px",
               }}
@@ -275,12 +274,12 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         const related = projects.filter(p => p.id !== project.id).slice(0, 2);
         return (
           <div style={{ backgroundColor: "#ffffff", paddingTop: "60px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "16px" }}>
             {related.map((p) => (
               <Link
                 key={p.id}
                 href={`/projects/${p.id}`}
-                style={{ position: "relative", height: "55vh", overflow: "hidden", display: "block", textDecoration: "none" }}
+                style={{ position: "relative", height: "clamp(260px, 45vw, 55vh)", overflow: "hidden", display: "block", textDecoration: "none" }}
                 className="group"
               >
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
