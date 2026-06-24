@@ -172,10 +172,10 @@ export default function ProjectsContent() {
           </FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px" }}>
             {[
-              { label: "Duplex",                  image: "/Dapto.jpg" },
-              { label: "Townhouse",               image: "/Rooftop.jpg" },
-              { label: "Multi-Level Residential", image: "/droneshot.jpg" },
-              { label: "Commercial",              image: "/commercial box.jpg" },
+              { label: "Duplex",                  image: "/duplex.jpg" },
+              { label: "Townhouse",               image: "/townhouse.jpg" },
+              { label: "Multi-Level Residential", image: "/apartment.jpg" },
+              { label: "Commercial",              image: "/commercial.jpg" },
             ].map((item, i) => (
               <FadeUp key={item.label} delay={i * 80}>
                 <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
