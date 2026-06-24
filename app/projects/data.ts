@@ -73,14 +73,14 @@ export const projects: Project[] = [
   },
   {
     id: "the-outlook",
-    name: "The Outlook",
+    name: "Greenacre",
     suburb: "Kiama",
     address: "32 Bong Bong Street, Kiama NSW",
     category: "Multi-Level Residential",
     units: "18 Apartments",
     status: "Sold Out",
-    image: "/Kiama.jpg",
-    gallery: ["/Kiama.jpg", "/bluewater.jpg", "/Gerringong.jpg", "/Austinmer.jpg"],
+    image: "/12.jpg",
+    gallery: ["/12.jpg", "/13.jpg", "/14.jpg", "/15.jpg", "/16.jpg", "/17.jpg"],
     description: "Luxury apartment living with elevated escarpment and ocean vistas, designed by award-winning architects for the discerning buyer seeking the best of Kiama living.",
     longDescription: "The Outlook occupies one of Kiama's most coveted ridge-top positions, with sweeping views from the escarpment to the Pacific. The building's tiered form steps down the hillside, ensuring every apartment captures an uninterrupted outlook without compromising its neighbour. Interiors feature hand-selected European oak flooring, integrated Miele appliances and custom stone benchtops throughout. Spinelli managed the off-the-plan sales campaign from inception, securing presales that enabled construction financing within six weeks of public launch — an outcome made possible by more than a decade of relationships with the region's high-net-worth buyer pool.",
     timeline: [
