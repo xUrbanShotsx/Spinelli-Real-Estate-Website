@@ -203,7 +203,7 @@ export default function ProjectsContent() {
             <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px" }}>
               Have a development in mind? We&apos;d love to hear about it.
             </p>
-            <Link href="/contact" className="inline-block transition-opacity hover:opacity-70" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#0D3348", padding: "14px 32px", textDecoration: "none" }}>
+            <Link href="/contact" className="inline-block transition-opacity hover:opacity-70" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", textDecoration: "none" }}>
               Get In Touch
             </Link>
           </FadeUp>
