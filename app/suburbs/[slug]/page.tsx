@@ -290,12 +290,12 @@ export default async function SuburbPage({ params }: Props) {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               {nearby.map((s) => {
-                const img = suburbImages[s.slug] ?? fallbackImage;
                 return (
                   <Link key={s.slug} href={`/suburbs/${s.slug}`} className="group block">
-                    <div className="overflow-hidden" style={{ aspectRatio: "4/3", border: "1px solid #E8E5DF" }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={img} alt={s.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div style={{ position: "relative", aspectRatio: "4/3", border: "1px solid #5BC2E7", overflow: "hidden", backgroundColor: "#5BC2E7", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "64px", height: "64px", opacity: 0.25 }}>
+                        <path d="M40 4L2 36h10v32h20V48h16v20h20V36h10L40 4z" fill="#ffffff" />
+                      </svg>
                     </div>
                     <div className="pt-3">
                       <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "2px" }}>
