@@ -345,7 +345,7 @@ function DeveloperCTA() {
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 text-center" style={{ padding: "64px clamp(24px, 5vw, 80px)" }}>
         <FadeUp>
           <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px", maxWidth: "680px", margin: "0 auto 28px" }}>
-            Whether it&apos;s a duplex in Dapto or a landmark tower in Wollongong CBD — our projects team brings the market knowledge, buyer database and in-house marketing to take your development from site to sell-out.
+            Bring your development to life and market it the way it deserves. From the first render to the final settlement, we handle everything in-house — so your project is positioned perfectly, reaches the right buyers, and sells the way it should.
           </p>
 
           {!open && status !== "success" && (
