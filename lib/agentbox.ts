@@ -285,8 +285,8 @@ export function listingImage(l: ABListing): string {
 }
 
 export function listingTag(l: ABListing): string | undefined {
-  if (l.status === "Under Offer" || l.status === "Unconditional") return "Under Offer";
-  if (l.status === "Sold" || l.status === "Settled") return "Sold";
+  if (l.status === "Under Offer") return "Under Offer";
+  if (l.status === "Sold" || l.status === "Settled" || l.status === "Unconditional") return "Sold";
   if (l.status === "Leased") return "Leased";
   if (l.auctionDate) return "Auction";
   if (l.method === "Auction") return "Auction";
