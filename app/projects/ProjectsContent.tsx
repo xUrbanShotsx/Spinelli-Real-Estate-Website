@@ -206,7 +206,7 @@ const MARKETING_ITEMS = [
   {
     title: "Project Landing Pages",
     desc: "Every development gets a custom-built landing page — designed to capture buyer interest, showcase the project and convert registrations from day one. We build, host and manage it end-to-end.",
-    image: "/Elevation.jpg",
+    image: "/Projectlanding.jpg",
   },
   {
     title: "Paid Digital Marketing",
@@ -221,7 +221,7 @@ const MARKETING_ITEMS = [
   {
     title: "Photography & Creative",
     desc: "Architectural photography, drone, renders, floorplan graphics and all print collateral produced in-house. One consistent visual identity from hoarding to handover.",
-    image: "/Rooftop.jpg",
+    image: "/Renders.webp",
   },
 ];
 
