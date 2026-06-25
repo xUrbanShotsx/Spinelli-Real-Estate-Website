@@ -332,7 +332,7 @@ function DeveloperCTA() {
     fontFamily: "var(--font-sans)",
     fontSize: "13px",
     color: "#0D3348",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: "#ffffff",
     border: "1px solid #E8E5DF",
     padding: "13px 16px",
     width: "100%",
