@@ -20,6 +20,7 @@ export default async function BusinessPage() {
     if (data.listings?.length) {
       properties = data.listings
         .filter(l => l.property.type === "Business")
+        .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
         .map(mapListing);
     }
   } catch (e) {

@@ -25,6 +25,7 @@ export default async function CommercialPage() {
       ...(leaseData.listings ?? []),
     ]
       .filter(l => l.property.type === "Commercial")
+      .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
       .map(mapListing);
     if (live.length) properties = live;
   } catch (e) {
