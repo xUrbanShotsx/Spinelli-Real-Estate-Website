@@ -88,8 +88,6 @@ const suburbImages: Record<string, string> = {
 const fallbackImage = "/suburb.jpg";
 
 function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
-  const image = suburbImages[suburb.slug] ?? fallbackImage;
-
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="block group">
       <div
@@ -100,16 +98,16 @@ function SuburbCard({ suburb, blurred }: { suburb: Suburb; blurred: boolean }) {
           overflow: "hidden",
           opacity: blurred ? 0.45 : 1,
           transition: "opacity 0.3s ease",
+          backgroundColor: "#5BC2E7",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        {/* Photo */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={image}
-          alt={suburb.name}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 0.4s ease" }}
-          className="group-hover:scale-105"
-        />
+        {/* House icon */}
+        <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "64px", height: "64px", opacity: 0.25 }}>
+          <path d="M40 4L2 36h10v32h20V48h16v20h20V36h10L40 4z" fill="#ffffff" />
+        </svg>
 
         {/* Arrow on hover */}
         <div style={{ position: "absolute", top: "14px", right: "14px", backgroundColor: "rgba(255,255,255,0.9)", padding: "6px", opacity: 0, transition: "opacity 0.2s ease" }} className="group-hover:opacity-100">
