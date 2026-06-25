@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
       `<tr><td style="padding:8px 0;color:#7a7265;font-size:13px;width:180px;">${label}</td><td style="padding:8px 0;font-size:13px;color:#000000;">${value}</td></tr>`;
 
     const { data: emailData, error: emailError } = await resend.emails.send({
-      from: "Spinelli Real Estate <adam@spinellire.com>",
+      from: "Spinelli Real Estate <onboarding@resend.dev>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Offer — ${propertyLine}`,

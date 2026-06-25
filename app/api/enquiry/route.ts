@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       : `Listing ID: ${listingId || "N/A"}`;
 
     const { data, error } = await resend.emails.send({
-      from: "Spinelli Real Estate <adam@spinellire.com>",
+      from: "Spinelli Real Estate <onboarding@resend.dev>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Enquiry — ${propertyLine}`,

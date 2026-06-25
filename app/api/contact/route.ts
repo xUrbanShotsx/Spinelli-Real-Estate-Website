@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
 
     // Send notification email
     const { error: emailError } = await resend.emails.send({
-      from: "Spinelli Real Estate <adam@spinellire.com>",
+      from: "Spinelli Real Estate <onboarding@resend.dev>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Enquiry — ${enquiryType} — ${firstName} ${lastName}`,
