@@ -258,29 +258,6 @@ export default function OfferPage({ property }: { property: Property }) {
                   </div>
                 </div>
 
-                {/* ── Second Purchaser ── */}
-                <div>
-                  <label style={{ ...labelStyle, marginBottom: "12px" }}>Would you like to add a second purchaser?</label>
-                  <RadioGroup
-                    name="secondPurchaser"
-                    options={[{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]}
-                    value={secondPurchaser}
-                    onChange={setSecondPurchaser}
-                  />
-                  {secondPurchaser === "yes" && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
-                      <div>
-                        <label style={labelStyle}>Second Purchaser First Name</label>
-                        <input type="text" placeholder="Jane" value={secondFirstName} onChange={e => setSecondFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
-                      </div>
-                      <div>
-                        <label style={labelStyle}>Second Purchaser Last Name</label>
-                        <input type="text" placeholder="Smith" value={secondLastName} onChange={e => setSecondLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
                 {/* ── Offer Price ── */}
                 <div>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000000", fontWeight: 600, marginBottom: "24px", paddingBottom: "10px", borderBottom: "1px solid #E8E5DF" }}>
