@@ -40,7 +40,6 @@ export async function POST(req: NextRequest) {
               lastName,
               email,
               phone,
-              address: { streetAddress: address },
               contactClasses: [{ name: "Prospective Vendor" }],
               actions: {
                 attachListingAgents: false,
@@ -55,6 +54,8 @@ export async function POST(req: NextRequest) {
       if (!crmRes.ok) {
         const text = await crmRes.text();
         console.error("AgentBox appraisal error:", crmRes.status, text);
+      } else {
+        console.log("AgentBox appraisal contact created successfully");
       }
     } catch (crmErr) {
       console.error("AgentBox appraisal error:", crmErr);
