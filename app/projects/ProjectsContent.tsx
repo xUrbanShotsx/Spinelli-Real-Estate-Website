@@ -211,7 +211,7 @@ const MARKETING_ITEMS = [
   {
     title: "Paid Digital Marketing",
     desc: "In-house Meta, Google and YouTube campaigns targeted at qualified Illawarra buyers. We run the ads, optimise weekly and report on every lead — no agency middleman, no mark-up.",
-    image: "/droneshot.jpg",
+    image: "/socialmarketing.jpg",
   },
   {
     title: "Buyer Funnel & CRM",
