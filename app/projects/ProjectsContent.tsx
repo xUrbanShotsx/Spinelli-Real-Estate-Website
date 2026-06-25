@@ -197,18 +197,7 @@ export default function ProjectsContent() {
       <MarketingSection />
 
       {/* ── CTA ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "64px 0", borderTop: "1px solid #E8E5DF" }}>
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10 text-center">
-          <FadeUp>
-            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px" }}>
-              Whether it&apos;s a duplex in Dapto or a landmark tower in Wollongong CBD — our projects team brings the market knowledge, buyer database and in-house marketing to take your development from site to sell-out.
-            </p>
-            <Link href="/contact" className="inline-block transition-opacity hover:opacity-70" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", textDecoration: "none" }}>
-              Get In Touch
-            </Link>
-          </FadeUp>
-        </div>
-      </section>
+      <DeveloperCTA />
     </>
   );
 }
@@ -310,6 +299,145 @@ function MarketingSection() {
             />
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function DeveloperCTA() {
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  function set(field: string, value: string) {
+    setForm(f => ({ ...f, [field]: value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/developer-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  const inputStyle: React.CSSProperties = {
+    fontFamily: "var(--font-sans)",
+    fontSize: "13px",
+    color: "#0D3348",
+    backgroundColor: "#F8F9FA",
+    border: "1px solid #E8E5DF",
+    padding: "13px 16px",
+    width: "100%",
+    boxSizing: "border-box",
+    outline: "none",
+  };
+
+  return (
+    <section style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF" }}>
+      <div className="max-w-screen-xl mx-auto px-6 sm:px-10" style={{ padding: "64px clamp(24px, 5vw, 80px)" }}>
+        <FadeUp>
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px", maxWidth: "680px" }}>
+            Whether it&apos;s a duplex in Dapto or a landmark tower in Wollongong CBD — our projects team brings the market knowledge, buyer database and in-house marketing to take your development from site to sell-out.
+          </p>
+
+          {!open && status !== "success" && (
+            <button
+              onClick={() => setOpen(true)}
+              style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", border: "none", cursor: "pointer" }}
+            >
+              Get In Touch
+            </button>
+          )}
+
+          {/* Inline form */}
+          <div style={{
+            maxHeight: open && status !== "success" ? "600px" : "0",
+            overflow: "hidden",
+            transition: "max-height 0.5s ease",
+          }}>
+            <form onSubmit={handleSubmit} style={{ marginTop: "32px", display: "flex", flexDirection: "column", gap: "0" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "12px", marginBottom: "12px" }}>
+                <input
+                  required
+                  placeholder="First name"
+                  value={form.firstName}
+                  onChange={e => set("firstName", e.target.value)}
+                  style={inputStyle}
+                />
+                <input
+                  required
+                  placeholder="Last name"
+                  value={form.lastName}
+                  onChange={e => set("lastName", e.target.value)}
+                  style={inputStyle}
+                />
+                <input
+                  required
+                  type="email"
+                  placeholder="Email address"
+                  value={form.email}
+                  onChange={e => set("email", e.target.value)}
+                  style={inputStyle}
+                />
+                <input
+                  placeholder="Phone (optional)"
+                  value={form.phone}
+                  onChange={e => set("phone", e.target.value)}
+                  style={inputStyle}
+                />
+              </div>
+              <textarea
+                required
+                placeholder="Tell us about your development — location, type, timeline…"
+                value={form.message}
+                onChange={e => set("message", e.target.value)}
+                rows={4}
+                style={{ ...inputStyle, resize: "vertical", marginBottom: "16px" }}
+              />
+              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", border: "none", cursor: status === "submitting" ? "wait" : "pointer", opacity: status === "submitting" ? 0.6 : 1 }}
+                >
+                  {status === "submitting" ? "Sending…" : "Send Enquiry"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setOpen(false); setStatus("idle"); }}
+                  style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#7a7265", background: "none", border: "none", cursor: "pointer", padding: "14px 0" }}
+                >
+                  Cancel
+                </button>
+                {status === "error" && (
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#c0392b" }}>
+                    Something went wrong — please try again.
+                  </p>
+                )}
+              </div>
+            </form>
+          </div>
+
+          {/* Success state */}
+          {status === "success" && (
+            <div style={{ marginTop: "8px" }}>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "8px" }}>
+                Thanks — we&apos;ll be in touch shortly.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265" }}>
+                One of our projects team will reach out within one business day.
+              </p>
+            </div>
+          )}
+        </FadeUp>
       </div>
     </section>
   );
