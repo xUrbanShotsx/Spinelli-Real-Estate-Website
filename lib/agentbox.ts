@@ -229,17 +229,20 @@ export function mapListing(l: ABListing): Property {
   const buildUnit = l.property.buildingArea?.unit || "m²";
   const buildingSize = buildVal && buildVal !== "0" ? `${buildVal}${buildUnit}` : undefined;
 
-  const typeMap: Record<string, Property["type"]> = {
-    Sale: "residential-sale",
-    Lease: "residential-rent",
-    "Commercial Sale": "commercial-sale",
-    "Commercial Lease": "commercial-lease",
-    Business: "business",
-  };
+  // Derive the correct property type using both listing type and property.type
+  function resolveType(): Property["type"] {
+    const propType = l.property.type; // "Residential" | "Commercial" | "Business" | "Rural"
+    if (propType === "Commercial") {
+      return l.type === "Lease" ? "commercial-lease" : "commercial-sale";
+    }
+    if (propType === "Business") return "business";
+    if (l.type === "Lease") return "residential-rent";
+    return "residential-sale";
+  }
 
   return {
     id: l.id,
-    type: typeMap[l.type] ?? "residential-sale",
+    type: resolveType(),
     title: l.mainHeadline || address,
     address,
     suburb: addr.suburb,
