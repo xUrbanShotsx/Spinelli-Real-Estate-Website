@@ -16,14 +16,16 @@ export const revalidate = 300;
 export default async function SoldPage() {
   let properties: Property[] = soldProperties;
   try {
-    const [settledData, unconditionalData] = await Promise.all([
-      fetchSold(1, 500),
+    const [settledData, soldData, unconditionalData] = await Promise.all([
+      fetchListings({ "filter[type]": "Sale", "filter[status]": "Settled", "sort[listedDate]": "desc", limit: "500" }),
+      fetchListings({ "filter[type]": "Sale", "filter[status]": "Sold", "sort[listedDate]": "desc", limit: "500" }),
       fetchListings({ "filter[type]": "Sale", "filter[status]": "Unconditional", "sort[listedDate]": "desc", limit: "500" }),
     ]);
     const combined = [
       ...(settledData.listings ?? []),
+      ...(soldData.listings ?? []),
       ...(unconditionalData.listings ?? []),
-    ].filter(l => l.property.type === "Residential");
+    ];
     // Deduplicate by id and sort most recent first
     const seen = new Set<string>();
     const unique = combined.filter(l => { if (seen.has(l.id)) return false; seen.add(l.id); return true; });
