@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ResidentialListings from "@/components/ResidentialListings";
 import Link from "next/link";
-import { fetchForSale, mapListing } from "@/lib/agentbox";
+import { fetchForSale, fetchListings, mapListing } from "@/lib/agentbox";
 import { residentialSaleProperties } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -16,10 +16,18 @@ export default async function BuyPage() {
   // Fetch live listings from AgentBox, fall back to static data on error
   let properties = residentialSaleProperties;
   try {
-    const data = await fetchForSale(1, 50);
-    if (data.listings?.length) {
-      properties = data.listings
-        .filter(l => l.property.type === "Residential")
+    const [availableData, unconditionalData] = await Promise.all([
+      fetchForSale(1, 50),
+      fetchListings({ "filter[type]": "Sale", "filter[status]": "Unconditional", "sort[listedDate]": "desc", limit: "50" }),
+    ]);
+    const combined = [
+      ...(availableData.listings ?? []),
+      ...(unconditionalData.listings ?? []),
+    ].filter(l => l.property.type === "Residential");
+    if (combined.length) {
+      const seen = new Set<string>();
+      properties = combined
+        .filter(l => { if (seen.has(l.id)) return false; seen.add(l.id); return true; })
         .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
         .map(mapListing);
     }
