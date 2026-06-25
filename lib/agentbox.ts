@@ -196,6 +196,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<boolean> {
       lastName: payload.lastName,
       email: payload.email,
       phone: payload.phone,
+      contactClasses: [{ name: "Prospective Buyer" }],
       actions: {
         attachListingAgents: true,
         addDefaultContactClasses: true,

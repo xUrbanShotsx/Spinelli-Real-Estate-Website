@@ -20,6 +20,12 @@ export default function EnquiryPage({ property }: { property: Property }) {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -164,15 +170,42 @@ export default function EnquiryPage({ property }: { property: Property }) {
                 </p>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-9">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  setError("");
+                  try {
+                    const res = await fetch("/api/enquiry", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        message,
+                        listingId: property.id,
+                      }),
+                    });
+                    if (!res.ok) throw new Error("Failed");
+                    setSubmitted(true);
+                  } catch {
+                    setError("Something went wrong. Please try again or call us on 02 4296 0047.");
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-9"
+              >
                 <div className="grid grid-cols-2 gap-4">
-                  <input type="text" placeholder="FIRST NAME" required style={inputStyle} className="placeholder:text-black/40" />
-                  <input type="text" placeholder="LAST NAME" required style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="text" placeholder="FIRST NAME" required value={firstName} onChange={e => setFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="text" placeholder="LAST NAME" required value={lastName} onChange={e => setLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <input type="email" placeholder="EMAIL ADDRESS" required style={inputStyle} className="placeholder:text-black/40" />
-                  <input type="tel" placeholder="PHONE NUMBER" style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="email" placeholder="EMAIL ADDRESS" required value={email} onChange={e => setEmail(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+                  <input type="tel" placeholder="PHONE NUMBER" value={phone} onChange={e => setPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
                 </div>
 
                 <textarea
@@ -190,12 +223,17 @@ export default function EnquiryPage({ property }: { property: Property }) {
                   }}
                 />
 
+                {error && (
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#c0392b" }}>{error}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
+                  disabled={loading}
+                  className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85 disabled:opacity-50"
                   style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
                 >
-                  SUBMIT
+                  {loading ? "SENDING..." : "SUBMIT"}
                 </button>
               </form>
             )}
