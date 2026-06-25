@@ -16,8 +16,12 @@ export const revalidate = 300;
 export default async function BusinessPage() {
   let properties: Property[] = businessListings;
   try {
-    const data = await fetchBusiness();
-    if (data.listings?.length) properties = data.listings.map(mapListing);
+    const data = await fetchBusiness(1, 200);
+    if (data.listings?.length) {
+      properties = data.listings
+        .filter(l => l.type === "Business")
+        .map(mapListing);
+    }
   } catch (e) {
     console.error("AgentBox business fetch failed, using static data:", e);
   }
