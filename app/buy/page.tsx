@@ -18,7 +18,9 @@ export default async function BuyPage() {
   try {
     const data = await fetchForSale(1, 50);
     if (data.listings?.length) {
-      properties = data.listings.map(mapListing);
+      properties = data.listings
+        .filter(l => l.property.type === "Residential")
+        .map(mapListing);
     }
   } catch (e) {
     console.error("AgentBox fetch failed, using static data:", e);
