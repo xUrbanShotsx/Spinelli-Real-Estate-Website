@@ -27,10 +27,10 @@ export async function POST(req: NextRequest) {
       // Non-fatal — still send the email
     }
 
-    // 2. Email info@spinellirealestate.com.au
+    // 2. Email adam@spinellire.com
     const { error } = await resend.emails.send({
       from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
-      to: ["info@spinellirealestate.com.au"],
+      to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Enquiry — ${enquiryType} — ${firstName} ${lastName}`,
       html: `

@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
-      to: ["info@spinellirealestate.com.au"],
+      to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `Free Appraisal Request — ${address}`,
       html: `

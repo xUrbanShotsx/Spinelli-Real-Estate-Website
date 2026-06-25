@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
-      to: ["info@spinellirealestate.com.au"],
+      to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Offer — ${propertyLine}`,
       html: `

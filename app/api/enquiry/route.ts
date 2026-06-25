@@ -18,14 +18,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Failed to submit enquiry" }, { status: 502 });
     }
 
-    // Send notification email
+    // Send notification email (non-fatal — CRM already saved it)
     const propertyLine = propertyAddress
       ? `${propertyAddress}${propertySuburb ? `, ${propertySuburb}` : ""}`
       : `Listing ID: ${listingId || "N/A"}`;
 
     await resend.emails.send({
       from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
-      to: ["info@spinellirealestate.com.au"],
+      to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Enquiry — ${propertyLine}`,
       html: `
