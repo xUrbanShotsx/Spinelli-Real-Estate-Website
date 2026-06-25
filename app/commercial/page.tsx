@@ -23,7 +23,9 @@ export default async function CommercialPage() {
     const live = [
       ...(saleData.listings ?? []),
       ...(leaseData.listings ?? []),
-    ].map(mapListing);
+    ]
+      .filter(l => l.property.type === "Commercial")
+      .map(mapListing);
     if (live.length) properties = live;
   } catch (e) {
     console.error("AgentBox commercial fetch failed, using static data:", e);

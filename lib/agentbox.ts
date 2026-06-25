@@ -130,18 +130,20 @@ export async function fetchForLease(page = 1, limit = 20): Promise<ABListingsRes
   });
 }
 
-export async function fetchCommercialSale(page = 1, limit = 50): Promise<ABListingsResponse> {
+export async function fetchCommercialSale(page = 1, limit = 200): Promise<ABListingsResponse> {
+  // Commercial sales in AgentBox are type=Sale with property.type=Commercial
   return fetchListings({
-    "filter[type]": "Commercial Sale",
+    "filter[type]": "Sale",
     "filter[status]": "Available",
     page: String(page),
     limit: String(limit),
   });
 }
 
-export async function fetchCommercialLease(page = 1, limit = 50): Promise<ABListingsResponse> {
+export async function fetchCommercialLease(page = 1, limit = 200): Promise<ABListingsResponse> {
+  // Commercial leases in AgentBox are type=Lease with property.type=Commercial
   return fetchListings({
-    "filter[type]": "Commercial Lease",
+    "filter[type]": "Lease",
     "filter[status]": "Available",
     page: String(page),
     limit: String(limit),
