@@ -195,6 +195,25 @@ export default function PropertyCard({
             {property.price}
           </p>
         )}
+
+        {property.description && (
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "12px",
+              color: "#6b7280",
+              fontWeight: 400,
+              lineHeight: 1.55,
+              marginTop: "8px",
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {property.description}
+          </p>
+        )}
       </div>
     </Link>
   );

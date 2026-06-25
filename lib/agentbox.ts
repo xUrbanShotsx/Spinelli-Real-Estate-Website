@@ -93,7 +93,7 @@ export async function fetchListings(
   revalidate = 300
 ): Promise<ABListingsResponse> {
   // mainImage is the correct include for list endpoint (images only works on detail)
-  const res = await fetch(url("/listings", { include: "mainImage", ...params }), {
+  const res = await fetch(url("/listings", { include: "mainImage,description", ...params }), {
     headers: headers(),
     next: { revalidate },
   });
@@ -254,7 +254,7 @@ export function mapListing(l: ABListing): Property {
     cars: l.property.totalParking ? parseInt(l.property.totalParking) : undefined,
     landSize,
     buildingSize,
-    description: l.mainHeadline || "",
+    description: l.description || l.mainHeadline || "",
     image: l.mainImage?.url ?? l.images?.[0]?.url ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     photos: l.images?.map((i) => i.url),
     floorPlan: l.floorPlans?.[0]?.url,
