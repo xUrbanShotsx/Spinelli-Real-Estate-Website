@@ -28,11 +28,11 @@ async function submitDeveloperEnquiry(payload: {
         lastName: payload.lastName,
         email: payload.email,
         phone: payload.phone,
-        // Tag the contact as a Developer in AgentBox
+        mobile: payload.phone,
         contactClasses: [{ name: "Developer" }],
         actions: {
           attachListingAgents: false,
-          addDefaultContactClasses: false,
+          addDefaultContactClasses: true,
           addDefaultSubscriptions: false,
           addDefaultRequirements: false,
         },
@@ -60,15 +60,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Submit to AgentBox tagged as Developer
+    // Submit to AgentBox tagged as Developer (non-fatal)
     try {
-      await submitDeveloperEnquiry({ firstName, lastName, email, phone, message });
+      const ok = await submitDeveloperEnquiry({ firstName, lastName, email, phone, message });
+      if (!ok) console.error("AgentBox developer enquiry: non-200 response");
+      else console.log("AgentBox developer enquiry: contact created");
     } catch (err) {
       console.error("AgentBox developer enquiry error:", err);
     }
 
-    // Email the team
-    await resend.emails.send({
+    // Email the team (non-fatal)
+    const { error: emailError } = await resend.emails.send({
       from: "Spinelli Real Estate <onboarding@resend.dev>",
       to: ["adam@spinellire.com"],
       replyTo: email,
@@ -125,6 +127,8 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
+
+    if (emailError) console.error("Resend developer enquiry error:", JSON.stringify(emailError));
 
     return NextResponse.json({ success: true });
   } catch (err) {
