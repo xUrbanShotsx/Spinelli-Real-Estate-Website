@@ -53,7 +53,9 @@ export default async function HomePage() {
   let featuredSale: Property[] = residentialSaleProperties.filter((p) => p.featured).slice(0, 3);
   try {
     const data = await fetchForSale(1, 50);
-    const residential = (data.listings ?? []).filter(l => l.property.type === "Residential");
+    const residential = (data.listings ?? [])
+      .filter(l => l.property.type === "Residential")
+      .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime());
     if (residential.length) {
       featuredSale = residential.slice(0, 3).map(mapListing);
     }
