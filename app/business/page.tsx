@@ -18,7 +18,9 @@ export default async function BusinessPage() {
   try {
     const data = await fetchBusiness(1, 200);
     if (data.listings?.length) {
-      properties = data.listings.map(mapListing);
+      properties = data.listings
+        .filter(l => l.property.type === "Commercial")
+        .map(mapListing);
     }
   } catch (e) {
     console.error("AgentBox business fetch failed, using static data:", e);
