@@ -216,7 +216,7 @@ const MARKETING_ITEMS = [
   {
     title: "Buyer Funnel & CRM",
     desc: "Buyers are funnelled from ad to landing page to our CRM, where they're nurtured through automated sequences and followed up by our project sales team before launch day.",
-    image: "/bluewater.jpg",
+    image: "/crm.jpg",
   },
   {
     title: "Photography & Creative",
