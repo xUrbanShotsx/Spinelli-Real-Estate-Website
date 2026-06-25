@@ -221,7 +221,7 @@ const MARKETING_ITEMS = [
   {
     title: "Photography & Creative",
     desc: "Architectural photography, drone, renders, floorplan graphics and all print collateral produced in-house. One consistent visual identity from hoarding to handover.",
-    image: "/Renders.webp",
+    image: "/renderr.jpg",
   },
 ];
 
