@@ -148,10 +148,10 @@ export async function fetchCommercialLease(page = 1, limit = 50): Promise<ABList
   });
 }
 
-export async function fetchBusiness(page = 1, limit = 50): Promise<ABListingsResponse> {
+export async function fetchBusiness(page = 1, limit = 200): Promise<ABListingsResponse> {
+  // No status filter — business listings use varied status values in AgentBox
   return fetchListings({
     "filter[type]": "Business",
-    "filter[status]": "Available",
     page: String(page),
     limit: String(limit),
   });
