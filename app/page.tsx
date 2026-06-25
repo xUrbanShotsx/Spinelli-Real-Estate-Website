@@ -19,7 +19,7 @@ const services = [
   {
     title: "Sales",
     href: "/buy",
-    image: "/saleslearnmore.png",
+    image: "/saleslearnmore.jpg",
   },
   {
     title: "Commercial",
