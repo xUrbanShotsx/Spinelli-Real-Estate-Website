@@ -102,6 +102,22 @@ export async function fetchListings(
   return data.response as ABListingsResponse;
 }
 
+export async function fetchAllListings(
+  params: Record<string, string> = {},
+  revalidate = 300
+): Promise<ABListing[]> {
+  const all: ABListing[] = [];
+  let page = 1;
+  let lastPage = 1;
+  do {
+    const data = await fetchListings({ ...params, page: String(page), limit: "100" }, revalidate);
+    if (data.listings?.length) all.push(...data.listings);
+    lastPage = parseInt(data.last ?? "1", 10) || 1;
+    page++;
+  } while (page <= lastPage);
+  return all;
+}
+
 export async function fetchListing(id: string, revalidate = 300): Promise<ABListing> {
   const res = await fetch(
     url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription" }),

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { team } from "@/lib/data";
-import { fetchListings, mapListing } from "@/lib/agentbox";
+import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
 export const revalidate = 300;
@@ -49,27 +49,22 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
     const lastName = rest.join(" ");
     const memberEmail = member.email?.toLowerCase();
 
-    const [settledData, leasedData] = await Promise.all([
-      fetchListings({
+    const [settledListings, leasedListings] = await Promise.all([
+      fetchAllListings({
         "filter[type]": "Sale",
         "filter[status]": "Settled",
         "sort[listedDate]": "desc",
-        limit: "500",
         include: "mainImage,description,relatedStaffMembers",
       }),
-      fetchListings({
+      fetchAllListings({
         "filter[type]": "Lease",
         "filter[status]": "Leased",
         "sort[listedDate]": "desc",
-        limit: "200",
         include: "mainImage,description,relatedStaffMembers",
       }),
     ]);
 
-    const allListings = [
-      ...(settledData.listings ?? []),
-      ...(leasedData.listings ?? []),
-    ];
+    const allListings = [...settledListings, ...leasedListings];
 
     const matched = allListings.filter((l) =>
       l.staff?.some((s) => {

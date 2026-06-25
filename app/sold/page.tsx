@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SoldListings from "@/components/SoldListings";
 import Link from "next/link";
 import { soldProperties } from "@/lib/data";
-import { fetchSold, fetchListings, mapListing } from "@/lib/agentbox";
+import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -16,16 +16,12 @@ export const revalidate = 300;
 export default async function SoldPage() {
   let properties: Property[] = soldProperties;
   try {
-    const [settledData, soldData, unconditionalData] = await Promise.all([
-      fetchListings({ "filter[type]": "Sale", "filter[status]": "Settled", "sort[listedDate]": "desc", limit: "500" }),
-      fetchListings({ "filter[type]": "Sale", "filter[status]": "Sold", "sort[listedDate]": "desc", limit: "500" }),
-      fetchListings({ "filter[type]": "Sale", "filter[status]": "Unconditional", "sort[listedDate]": "desc", limit: "500" }),
+    const [settled, sold, unconditional] = await Promise.all([
+      fetchAllListings({ "filter[type]": "Sale", "filter[status]": "Settled", "sort[listedDate]": "desc" }),
+      fetchAllListings({ "filter[type]": "Sale", "filter[status]": "Sold", "sort[listedDate]": "desc" }),
+      fetchAllListings({ "filter[type]": "Sale", "filter[status]": "Unconditional", "sort[listedDate]": "desc" }),
     ]);
-    const combined = [
-      ...(settledData.listings ?? []),
-      ...(soldData.listings ?? []),
-      ...(unconditionalData.listings ?? []),
-    ];
+    const combined = [...settled, ...sold, ...unconditional];
     // Deduplicate by id and sort most recent first
     const seen = new Set<string>();
     const unique = combined.filter(l => { if (seen.has(l.id)) return false; seen.add(l.id); return true; });
