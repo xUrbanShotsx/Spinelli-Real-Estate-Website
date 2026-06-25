@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SoldListings from "@/components/SoldListings";
 import Link from "next/link";
 import { soldProperties } from "@/lib/data";
-import { fetchSold, mapListing } from "@/lib/agentbox";
+import { fetchSold, fetchListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -16,12 +16,19 @@ export const revalidate = 300;
 export default async function SoldPage() {
   let properties: Property[] = soldProperties;
   try {
-    const data = await fetchSold(1, 500);
-    if (data.listings?.length) {
-      properties = data.listings
-        .filter(l => l.property.type === "Residential")
-        .map(mapListing);
-    }
+    const [settledData, unconditionalData] = await Promise.all([
+      fetchSold(1, 500),
+      fetchListings({ "filter[type]": "Sale", "filter[status]": "Unconditional", "sort[listedDate]": "desc", limit: "500" }),
+    ]);
+    const combined = [
+      ...(settledData.listings ?? []),
+      ...(unconditionalData.listings ?? []),
+    ].filter(l => l.property.type === "Residential");
+    // Deduplicate by id and sort most recent first
+    const seen = new Set<string>();
+    const unique = combined.filter(l => { if (seen.has(l.id)) return false; seen.add(l.id); return true; });
+    unique.sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime());
+    if (unique.length) properties = unique.map(mapListing);
   } catch (e) {
     console.error("AgentBox sold fetch failed, using static data:", e);
   }
