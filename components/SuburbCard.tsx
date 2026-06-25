@@ -12,9 +12,11 @@ export default function SuburbCard({ suburb }: { suburb: Suburb }) {
   return (
     <Link href={`/suburbs/${suburb.slug}`} className="group block">
       <div className="overflow-hidden border transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 h-full flex flex-col" style={{ borderColor: "#DAD7CE", backgroundColor: "#FBF9F3" }}>
-        <div className="relative overflow-hidden" style={{ height: "190px" }}>
-          <img src={suburb.image} alt={suburb.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,51,72,0.75) 35%, transparent 100%)" }} />
+        <div className="relative overflow-hidden flex items-center justify-center" style={{ height: "190px", backgroundColor: "#5BC2E7" }}>
+          <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "72px", height: "72px", opacity: 0.25 }}>
+            <path d="M40 4L2 36h10v32h20V48h16v20h20V36h10L40 4z" fill="#ffffff" />
+          </svg>
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,51,72,0.55) 35%, transparent 100%)" }} />
           <div className="absolute bottom-0 left-0 right-0 p-4">
             <h3 className="text-xl text-white" style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}>{suburb.name}</h3>
             <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-medium tracking-wide" style={{ backgroundColor: dc.bg, color: dc.text }}>
