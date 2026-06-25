@@ -277,11 +277,14 @@ export function listingImage(l: ABListing): string {
   return l.images?.[0]?.url ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80";
 }
 
-export function listingTag(l: ABListing): string {
+export function listingTag(l: ABListing): string | undefined {
   if (l.status === "Under Offer") return "Under Offer";
   if (l.status === "Sold" || l.status === "Settled") return "Sold";
   if (l.status === "Leased") return "Leased";
   if (l.auctionDate) return "Auction";
   if (l.method === "Auction") return "Auction";
-  return "New Listing";
+  const listedMs = l.listedDate ? new Date(l.listedDate).getTime() : 0;
+  const ageMs = Date.now() - listedMs;
+  if (ageMs <= 7 * 24 * 60 * 60 * 1000) return "New Listing";
+  return undefined;
 }
