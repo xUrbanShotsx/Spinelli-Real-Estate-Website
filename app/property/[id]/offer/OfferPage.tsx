@@ -69,11 +69,37 @@ export default function OfferPage({ property }: { property: Property }) {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Buyer details
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [buyerAddress, setBuyerAddress] = useState("");
+
+  // Second purchaser
   const [secondPurchaser, setSecondPurchaser] = useState("no");
+  const [secondFirstName, setSecondFirstName] = useState("");
+  const [secondLastName, setSecondLastName] = useState("");
+
+  // Offer details
+  const [offerPrice, setOfferPrice] = useState("");
+  const [deposit, setDeposit] = useState("");
+
+  // Conditions
   const [finance, setFinance] = useState("");
   const [inspection, setInspection] = useState("");
   const [purpose, setPurpose] = useState("");
+
+  // Solicitor
   const [solicitor, setSolicitor] = useState("");
+  const [solicitorName, setSolicitorName] = useState("");
+  const [solicitorPhone, setSolicitorPhone] = useState("");
+
+  // Comments
+  const [comments, setComments] = useState("");
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 10);
@@ -171,7 +197,35 @@ export default function OfferPage({ property }: { property: Property }) {
                 Submit Your Offer
               </h1>
 
-              <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-10">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  setError("");
+                  try {
+                    const res = await fetch("/api/offer", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        firstName, lastName, email, phone, buyerAddress,
+                        secondFirstName, secondLastName,
+                        offerPrice, deposit,
+                        finance, inspection, purpose,
+                        solicitorName, solicitorPhone,
+                        comments,
+                        listingId: property.id,
+                      }),
+                    });
+                    if (!res.ok) throw new Error("Failed");
+                    setSubmitted(true);
+                  } catch {
+                    setError("Something went wrong. Please try again or call us on 02 4296 0047.");
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-10"
+              >
 
                 {/* ── Buyer Details ── */}
                 <div>
@@ -181,23 +235,23 @@ export default function OfferPage({ property }: { property: Property }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
                       <label style={labelStyle}>First Name *</label>
-                      <input type="text" required placeholder="John" style={inputStyle} className="placeholder:text-black/25" />
+                      <input type="text" required placeholder="John" value={firstName} onChange={e => setFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                     </div>
                     <div>
                       <label style={labelStyle}>Last Name *</label>
-                      <input type="text" required placeholder="Smith" style={inputStyle} className="placeholder:text-black/25" />
+                      <input type="text" required placeholder="Smith" value={lastName} onChange={e => setLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                     </div>
                     <div>
                       <label style={labelStyle}>Email Address *</label>
-                      <input type="email" required placeholder="john@example.com" style={inputStyle} className="placeholder:text-black/25" />
+                      <input type="email" required placeholder="john@example.com" value={email} onChange={e => setEmail(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                     </div>
                     <div>
                       <label style={labelStyle}>Phone Number *</label>
-                      <input type="tel" required placeholder="04XX XXX XXX" style={inputStyle} className="placeholder:text-black/25" />
+                      <input type="tel" required placeholder="04XX XXX XXX" value={phone} onChange={e => setPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                     </div>
                     <div className="sm:col-span-2">
                       <label style={labelStyle}>Buyer&apos;s Contact Address</label>
-                      <input type="text" placeholder="123 Example Street, Suburb NSW 2000" style={inputStyle} className="placeholder:text-black/25" />
+                      <input type="text" placeholder="123 Example Street, Suburb NSW 2000" value={buyerAddress} onChange={e => setBuyerAddress(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                     </div>
                   </div>
                 </div>
@@ -215,11 +269,11 @@ export default function OfferPage({ property }: { property: Property }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
                       <div>
                         <label style={labelStyle}>Second Purchaser First Name</label>
-                        <input type="text" placeholder="Jane" style={inputStyle} className="placeholder:text-black/25" />
+                        <input type="text" placeholder="Jane" value={secondFirstName} onChange={e => setSecondFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                       </div>
                       <div>
                         <label style={labelStyle}>Second Purchaser Last Name</label>
-                        <input type="text" placeholder="Smith" style={inputStyle} className="placeholder:text-black/25" />
+                        <input type="text" placeholder="Smith" value={secondLastName} onChange={e => setSecondLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                       </div>
                     </div>
                   )}
@@ -238,6 +292,8 @@ export default function OfferPage({ property }: { property: Property }) {
                         type="text"
                         required
                         placeholder="0"
+                        value={offerPrice}
+                        onChange={e => setOfferPrice(e.target.value)}
                         style={{ ...inputStyle, flex: 1 }}
                         className="placeholder:text-black/25"
                       />
@@ -258,6 +314,8 @@ export default function OfferPage({ property }: { property: Property }) {
                         type="text"
                         required
                         placeholder="0"
+                        value={deposit}
+                        onChange={e => setDeposit(e.target.value)}
                         style={{ ...inputStyle, flex: 1 }}
                         className="placeholder:text-black/25"
                       />
@@ -319,11 +377,11 @@ export default function OfferPage({ property }: { property: Property }) {
                     <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
                       <div>
                         <label style={labelStyle}>Solicitor Name</label>
-                        <input type="text" placeholder="Firm or solicitor name" style={inputStyle} className="placeholder:text-black/25" />
+                        <input type="text" placeholder="Firm or solicitor name" value={solicitorName} onChange={e => setSolicitorName(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                       </div>
                       <div>
                         <label style={labelStyle}>Solicitor Phone</label>
-                        <input type="tel" placeholder="02 XXXX XXXX" style={inputStyle} className="placeholder:text-black/25" />
+                        <input type="tel" placeholder="02 XXXX XXXX" value={solicitorPhone} onChange={e => setSolicitorPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/25" />
                       </div>
                     </div>
                   )}
@@ -335,6 +393,8 @@ export default function OfferPage({ property }: { property: Property }) {
                   <textarea
                     rows={5}
                     placeholder="YOUR MESSAGE"
+                    value={comments}
+                    onChange={e => setComments(e.target.value)}
                     className="placeholder:text-black/25"
                     style={{
                       ...inputStyle,
@@ -346,12 +406,17 @@ export default function OfferPage({ property }: { property: Property }) {
                   />
                 </div>
 
+                {error && (
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#c0392b" }}>{error}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="inline-block px-8 py-3.5 text-[12px] tracking-widest uppercase transition-opacity hover:opacity-85"
+                  disabled={loading}
+                  className="inline-block px-8 py-3.5 text-[12px] tracking-widest uppercase transition-opacity hover:opacity-85 disabled:opacity-50"
                   style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 600, letterSpacing: "0.1em" }}
                 >
-                  Submit Offer
+                  {loading ? "Submitting..." : "Submit Offer"}
                 </button>
               </form>
             </div>
