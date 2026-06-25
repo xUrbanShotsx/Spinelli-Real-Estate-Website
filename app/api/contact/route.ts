@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
             lastName,
             email,
             phone,
+            mobile: phone,
             ...(contactClass ? { contactClasses: [{ name: contactClass }] } : {}),
             actions: {
               attachListingAgents: false,

@@ -76,6 +76,7 @@ export async function POST(req: NextRequest) {
           lastName,
           email,
           phone,
+          mobile: phone,
           ...(buyerAddress ? { address: { streetAddress: buyerAddress } } : {}),
           contactClasses: [{ name: "Prospective Buyer" }],
           actions: {
