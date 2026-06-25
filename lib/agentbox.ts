@@ -149,9 +149,10 @@ export async function fetchCommercialLease(page = 1, limit = 50): Promise<ABList
 }
 
 export async function fetchBusiness(page = 1, limit = 200): Promise<ABListingsResponse> {
-  // In AgentBox, business/commercial sales are stored as type=Sale with property.type=Commercial
+  // Business listings in AgentBox are type=Sale, property.type=Business, status=Available
   return fetchListings({
     "filter[type]": "Sale",
+    "filter[status]": "Available",
     page: String(page),
     limit: String(limit),
   });

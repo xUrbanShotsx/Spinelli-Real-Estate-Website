@@ -19,7 +19,7 @@ export default async function BusinessPage() {
     const data = await fetchBusiness(1, 200);
     if (data.listings?.length) {
       properties = data.listings
-        .filter(l => l.property.type === "Commercial")
+        .filter(l => l.property.type === "Business")
         .map(mapListing);
     }
   } catch (e) {
