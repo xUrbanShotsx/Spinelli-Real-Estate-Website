@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { team, soldProperties, residentialRentProperties } from "@/lib/data";
+import { fetchListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
+
+export const revalidate = 300;
 
 export function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
@@ -28,8 +31,9 @@ function tagColour(_tag: string | undefined, _type: string): string {
 
 function tagLabel(tag: string | undefined, type: string): string {
   if (tag === "Sold") return "Sold";
-  if (type === "residential-rent") return "Leased";
-  return tag ?? "";
+  if (tag === "Leased" || type === "residential-rent") return "Leased";
+  if (tag) return tag;
+  return "For Sale";
 }
 
 export default async function TeamMemberPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -37,11 +41,60 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
   const member = team.find((m) => toSlug(m.name) === slug);
   if (!member) notFound();
 
-  // Gather this agent's sold sales + managed rentals
-  const agentProperties: Property[] = [
+  // Fetch live listings from AgentBox filtered by this agent's name
+  let agentProperties: Property[] = [
     ...soldProperties.filter((p) => p.agent === member.name),
     ...residentialRentProperties.filter((p) => p.agent === member.name),
   ];
+
+  try {
+    const [settledData, activeData] = await Promise.all([
+      fetchListings({
+        "filter[type]": "Sale",
+        "filter[status]": "Settled",
+        "sort[listedDate]": "desc",
+        limit: "500",
+        include: "mainImage,description,relatedStaffMembers",
+      }),
+      fetchListings({
+        "filter[status]": "Available",
+        "sort[listedDate]": "desc",
+        limit: "200",
+        include: "mainImage,description,relatedStaffMembers",
+      }),
+    ]);
+
+    const allListings = [
+      ...(settledData.listings ?? []),
+      ...(activeData.listings ?? []),
+    ];
+
+    // Match any listing where this agent appears in the staff list
+    const [firstName, ...rest] = member.name.split(" ");
+    const lastName = rest.join(" ");
+
+    const matched = allListings.filter((l) =>
+      l.staff?.some(
+        (s) =>
+          s.firstName.toLowerCase() === firstName.toLowerCase() &&
+          s.lastName.toLowerCase() === lastName.toLowerCase()
+      )
+    );
+
+    // Deduplicate by id
+    const seen = new Set<string>();
+    const unique = matched.filter((l) => {
+      if (seen.has(l.id)) return false;
+      seen.add(l.id);
+      return true;
+    });
+
+    if (unique.length) {
+      agentProperties = unique.map(mapListing);
+    }
+  } catch (e) {
+    console.error("AgentBox team member fetch failed:", e);
+  }
 
   return (
     <>
@@ -171,7 +224,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {agentProperties.map((p) => (
-                  <div key={p.id} className="group">
+                  <Link key={p.id} href={`/property/${p.id}`} className="group block">
                     {/* Image */}
                     <div
                       className="relative overflow-hidden group-hover:scale-105 transition-transform duration-500"
@@ -225,7 +278,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                         )}
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
