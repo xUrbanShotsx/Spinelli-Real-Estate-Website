@@ -214,6 +214,8 @@ export default function OfferPage({ property }: { property: Property }) {
                         solicitorName, solicitorPhone,
                         comments,
                         listingId: property.id,
+                        propertyAddress: property.address,
+                        propertySuburb: property.suburb,
                       }),
                     });
                     if (!res.ok) throw new Error("Failed");

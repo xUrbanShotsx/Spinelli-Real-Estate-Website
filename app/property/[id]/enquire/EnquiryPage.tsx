@@ -186,6 +186,8 @@ export default function EnquiryPage({ property }: { property: Property }) {
                         phone,
                         message,
                         listingId: property.id,
+                        propertyAddress: property.address,
+                        propertySuburb: property.suburb,
                       }),
                     });
                     if (!res.ok) throw new Error("Failed");
