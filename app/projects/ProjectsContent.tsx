@@ -342,19 +342,21 @@ function DeveloperCTA() {
 
   return (
     <section style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF" }}>
-      <div className="max-w-screen-xl mx-auto px-6 sm:px-10" style={{ padding: "64px clamp(24px, 5vw, 80px)" }}>
+      <div className="max-w-screen-xl mx-auto px-6 sm:px-10 text-center" style={{ padding: "64px clamp(24px, 5vw, 80px)" }}>
         <FadeUp>
-          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px", maxWidth: "680px" }}>
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "28px", maxWidth: "680px", margin: "0 auto 28px" }}>
             Whether it&apos;s a duplex in Dapto or a landmark tower in Wollongong CBD — our projects team brings the market knowledge, buyer database and in-house marketing to take your development from site to sell-out.
           </p>
 
           {!open && status !== "success" && (
-            <button
-              onClick={() => setOpen(true)}
-              style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", border: "none", cursor: "pointer" }}
-            >
-              Get In Touch
-            </button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button
+                onClick={() => setOpen(true)}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#ffffff", backgroundColor: "#5BC2E7", padding: "14px 32px", border: "none", cursor: "pointer" }}
+              >
+                Get In Touch
+              </button>
+            </div>
           )}
 
           {/* Inline form */}
@@ -363,7 +365,7 @@ function DeveloperCTA() {
             overflow: "hidden",
             transition: "max-height 0.5s ease",
           }}>
-            <form onSubmit={handleSubmit} style={{ marginTop: "32px", display: "flex", flexDirection: "column", gap: "0" }}>
+            <form onSubmit={handleSubmit} style={{ marginTop: "32px", display: "flex", flexDirection: "column", gap: "0", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "12px", marginBottom: "12px" }}>
                 <input
                   required
@@ -402,7 +404,7 @@ function DeveloperCTA() {
                 rows={4}
                 style={{ ...inputStyle, resize: "vertical", marginBottom: "16px" }}
               />
-              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: "12px", alignItems: "center", justifyContent: "center" }}>
                 <button
                   type="submit"
                   disabled={status === "submitting"}
@@ -428,7 +430,7 @@ function DeveloperCTA() {
 
           {/* Success state */}
           {status === "success" && (
-            <div style={{ marginTop: "8px" }}>
+            <div style={{ marginTop: "8px", textAlign: "center" }}>
               <p style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "8px" }}>
                 Thanks — we&apos;ll be in touch shortly.
               </p>
