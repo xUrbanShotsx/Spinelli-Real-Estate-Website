@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { team, soldProperties, residentialRentProperties } from "@/lib/data";
+import { team } from "@/lib/data";
 import { fetchListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
@@ -41,14 +41,15 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
   const member = team.find((m) => toSlug(m.name) === slug);
   if (!member) notFound();
 
-  // Fetch live listings from AgentBox filtered by this agent's name
-  let agentProperties: Property[] = [
-    ...soldProperties.filter((p) => p.agent === member.name),
-    ...residentialRentProperties.filter((p) => p.agent === member.name),
-  ];
+  // Fetch sold/leased results for this agent from AgentBox
+  let agentProperties: Property[] = [];
 
   try {
-    const [settledData, activeData] = await Promise.all([
+    const [firstName, ...rest] = member.name.split(" ");
+    const lastName = rest.join(" ");
+    const memberEmail = member.email?.toLowerCase();
+
+    const [settledData, leasedData] = await Promise.all([
       fetchListings({
         "filter[type]": "Sale",
         "filter[status]": "Settled",
@@ -57,7 +58,8 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
         include: "mainImage,description,relatedStaffMembers",
       }),
       fetchListings({
-        "filter[status]": "Available",
+        "filter[type]": "Lease",
+        "filter[status]": "Leased",
         "sort[listedDate]": "desc",
         limit: "200",
         include: "mainImage,description,relatedStaffMembers",
@@ -66,32 +68,27 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
 
     const allListings = [
       ...(settledData.listings ?? []),
-      ...(activeData.listings ?? []),
+      ...(leasedData.listings ?? []),
     ];
 
-    // Match any listing where this agent appears in the staff list
-    const [firstName, ...rest] = member.name.split(" ");
-    const lastName = rest.join(" ");
-
     const matched = allListings.filter((l) =>
-      l.staff?.some(
-        (s) =>
-          s.firstName.toLowerCase() === firstName.toLowerCase() &&
-          s.lastName.toLowerCase() === lastName.toLowerCase()
-      )
+      l.staff?.some((s) => {
+        const nameMatch =
+          s.firstName.toLowerCase().trim() === firstName.toLowerCase().trim() &&
+          s.lastName.toLowerCase().trim() === lastName.toLowerCase().trim();
+        const emailMatch = memberEmail && s.email?.toLowerCase() === memberEmail;
+        return nameMatch || emailMatch;
+      })
     );
 
-    // Deduplicate by id
     const seen = new Set<string>();
-    const unique = matched.filter((l) => {
-      if (seen.has(l.id)) return false;
-      seen.add(l.id);
-      return true;
-    });
-
-    if (unique.length) {
-      agentProperties = unique.map(mapListing);
-    }
+    agentProperties = matched
+      .filter((l) => {
+        if (seen.has(l.id)) return false;
+        seen.add(l.id);
+        return true;
+      })
+      .map(mapListing);
   } catch (e) {
     console.error("AgentBox team member fetch failed:", e);
   }
