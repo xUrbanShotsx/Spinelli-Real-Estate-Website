@@ -58,7 +58,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
   ];
   const heroPhoto = photos[0];
   const galleryPhotos = photos.slice(1);
-  const paragraphs = (property.longDescription ?? property.description).split("\n\n");
+  const fullDescription = property.longDescription ?? property.description;
 
   // Lightbox state — index is relative to galleryPhotos array
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -252,13 +252,18 @@ export default function PropertyDetailClient({ property }: { property: Property 
               {/* Description */}
               <div className="mb-12">
                 <span className="label-tag">About This Property</span>
-                <div className="space-y-4 mt-2">
-                  {paragraphs.map((para, i) => (
-                    <p key={i} style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#58503c", lineHeight: 1.85 }}>
-                      {para}
-                    </p>
-                  ))}
-                </div>
+                <p
+                  className="mt-2"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    color: "#58503c",
+                    lineHeight: 1.85,
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {fullDescription}
+                </p>
               </div>
 
               {/* Features */}

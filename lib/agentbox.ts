@@ -255,6 +255,7 @@ export function mapListing(l: ABListing): Property {
     landSize,
     buildingSize,
     description: l.description || l.mainHeadline || "",
+    longDescription: l.mainDescription || l.description || l.mainHeadline || "",
     image: l.mainImage?.url ?? l.images?.[0]?.url ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     photos: l.images?.map((i) => i.url),
     floorPlan: l.floorPlans?.[0]?.url,
