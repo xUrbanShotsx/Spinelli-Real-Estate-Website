@@ -116,6 +116,7 @@ export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResp
   return fetchListings({
     "filter[type]": "Sale",
     "filter[status]": "Available",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });
@@ -125,6 +126,7 @@ export async function fetchForLease(page = 1, limit = 20): Promise<ABListingsRes
   return fetchListings({
     "filter[type]": "Lease",
     "filter[status]": "Available",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });
@@ -135,6 +137,7 @@ export async function fetchCommercialSale(page = 1, limit = 200): Promise<ABList
   return fetchListings({
     "filter[type]": "Sale",
     "filter[status]": "Available",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });
@@ -145,6 +148,7 @@ export async function fetchCommercialLease(page = 1, limit = 200): Promise<ABLis
   return fetchListings({
     "filter[type]": "Lease",
     "filter[status]": "Available",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });
@@ -155,6 +159,7 @@ export async function fetchBusiness(page = 1, limit = 200): Promise<ABListingsRe
   return fetchListings({
     "filter[type]": "Sale",
     "filter[status]": "Available",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });
