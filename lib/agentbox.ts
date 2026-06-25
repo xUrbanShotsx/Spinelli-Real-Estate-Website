@@ -160,10 +160,12 @@ export async function fetchBusiness(page = 1, limit = 200): Promise<ABListingsRe
   });
 }
 
-export async function fetchSold(page = 1, limit = 50): Promise<ABListingsResponse> {
+export async function fetchSold(page = 1, limit = 500): Promise<ABListingsResponse> {
+  // Sold properties in AgentBox use status=Settled (not "Sold")
   return fetchListings({
     "filter[type]": "Sale",
-    "filter[status]": "Sold",
+    "filter[status]": "Settled",
+    "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
   });

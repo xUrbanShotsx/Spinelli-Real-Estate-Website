@@ -16,8 +16,12 @@ export const revalidate = 300;
 export default async function SoldPage() {
   let properties: Property[] = soldProperties;
   try {
-    const data = await fetchSold(1, 50);
-    if (data.listings?.length) properties = data.listings.map(mapListing);
+    const data = await fetchSold(1, 500);
+    if (data.listings?.length) {
+      properties = data.listings
+        .filter(l => l.property.type === "Residential")
+        .map(mapListing);
+    }
   } catch (e) {
     console.error("AgentBox sold fetch failed, using static data:", e);
   }
