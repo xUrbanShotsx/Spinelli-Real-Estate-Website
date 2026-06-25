@@ -88,16 +88,19 @@ export async function POST(req: NextRequest) {
       },
     };
 
-    const crmRes = await fetch(`${BASE}/enquiries?version=${VERSION}`, {
-      method: "POST",
-      headers: agentboxHeaders(),
-      body: JSON.stringify(enquiryBody),
-    });
-
-    if (!crmRes.ok) {
-      const text = await crmRes.text();
-      console.error("AgentBox offer submission failed:", crmRes.status, text);
-      return NextResponse.json({ error: "Failed to submit offer" }, { status: 502 });
+    // Submit to CRM (non-fatal)
+    try {
+      const crmRes = await fetch(`${BASE}/enquiries?version=${VERSION}`, {
+        method: "POST",
+        headers: agentboxHeaders(),
+        body: JSON.stringify(enquiryBody),
+      });
+      if (!crmRes.ok) {
+        const text = await crmRes.text();
+        console.error("AgentBox offer submission failed:", crmRes.status, text);
+      }
+    } catch (crmErr) {
+      console.error("AgentBox offer error:", crmErr);
     }
 
     // Send notification email
@@ -112,8 +115,8 @@ export async function POST(req: NextRequest) {
     const row = (label: string, value: string) =>
       `<tr><td style="padding:8px 0;color:#7a7265;font-size:13px;width:180px;">${label}</td><td style="padding:8px 0;font-size:13px;color:#000000;">${value}</td></tr>`;
 
-    await resend.emails.send({
-      from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Spinelli Real Estate <adam@spinellire.com>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Offer — ${propertyLine}`,
@@ -160,6 +163,12 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
+
+    if (emailError) {
+      console.error("Resend offer error:", JSON.stringify(emailError));
+    } else {
+      console.log("Resend offer sent, id:", emailData?.id);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

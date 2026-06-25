@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
 
     // Email the team
     await resend.emails.send({
-      from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
+      from: "Spinelli Real Estate <adam@spinellire.com>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `Developer Enquiry — ${firstName} ${lastName}`,

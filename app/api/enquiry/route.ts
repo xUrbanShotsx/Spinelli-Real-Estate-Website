@@ -12,19 +12,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const success = await submitEnquiry({ firstName, lastName, email, phone, message, listingId });
-
-    if (!success) {
-      return NextResponse.json({ error: "Failed to submit enquiry" }, { status: 502 });
+    // Submit to CRM (non-fatal)
+    try {
+      await submitEnquiry({ firstName, lastName, email, phone, message, listingId });
+    } catch (crmErr) {
+      console.error("AgentBox enquiry error:", crmErr);
     }
 
-    // Send notification email (non-fatal — CRM already saved it)
+    // Send notification email
     const propertyLine = propertyAddress
       ? `${propertyAddress}${propertySuburb ? `, ${propertySuburb}` : ""}`
       : `Listing ID: ${listingId || "N/A"}`;
 
-    await resend.emails.send({
-      from: "Spinelli Real Estate <noreply@spinellirealestate.com.au>",
+    const { data, error } = await resend.emails.send({
+      from: "Spinelli Real Estate <adam@spinellire.com>",
       to: ["adam@spinellire.com"],
       replyTo: email,
       subject: `New Enquiry — ${propertyLine}`,
@@ -55,6 +56,12 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
+
+    if (error) {
+      console.error("Resend enquiry error:", JSON.stringify(error));
+    } else {
+      console.log("Resend enquiry sent, id:", data?.id);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
