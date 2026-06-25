@@ -52,9 +52,10 @@ export default async function HomePage() {
   // Fetch the 3 most recent residential sale listings from AgentBox
   let featuredSale: Property[] = residentialSaleProperties.filter((p) => p.featured).slice(0, 3);
   try {
-    const data = await fetchForSale(1, 3);
-    if (data.listings?.length) {
-      featuredSale = data.listings.slice(0, 3).map(mapListing);
+    const data = await fetchForSale(1, 50);
+    const residential = (data.listings ?? []).filter(l => l.property.type === "Residential");
+    if (residential.length) {
+      featuredSale = residential.slice(0, 3).map(mapListing);
     }
   } catch (e) {
     console.error("AgentBox fetch failed, using static data:", e);
