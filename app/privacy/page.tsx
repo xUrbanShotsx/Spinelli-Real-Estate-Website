@@ -19,9 +19,9 @@ We may update this Policy from time to time. The current version will always be 
     title: "2. Who We Are",
     content: `Spinelli Real Estate is a licensed real estate agency operating in New South Wales, Australia. We provide residential and commercial property sales, property management, project marketing and business sales services across the Illawarra region including Wollongong, Shellharbour and Kiama.
 
-Licence No.: [Insert NSW Licence Number]
-ABN: [Insert ABN]
-Office: [Insert Office Address]
+Licence No.: 1516793
+ABN: 42 407 531 447
+Office: 12/2 Memorial Drive, Shellharbour City Centre NSW 2529
 Phone: 02 4296 0047
 Email: info@spinellirealestate.com.au`,
   },
@@ -213,7 +213,7 @@ To make an access or correction request, please contact us at:
 
 Email: info@spinellirealestate.com.au
 Phone: 02 4296 0047
-Post: Spinelli Real Estate, [Insert Office Address]
+Post: Spinelli Real Estate, 12/2 Memorial Drive, Shellharbour City Centre NSW 2529
 
 We will respond to your request within a reasonable timeframe (generally within 30 days). We may need to verify your identity before providing access. In some circumstances, we may be unable to provide access — for example, where doing so would unreasonably impact the privacy of other individuals, or where access is restricted by law. We will explain any refusal in writing.
 
