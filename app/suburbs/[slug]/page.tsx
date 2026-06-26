@@ -57,7 +57,6 @@ export default async function SuburbPage({ params }: Props) {
   const suburb = suburbs.find((s) => s.slug === slug);
   if (!suburb) notFound();
 
-  const nearby = suburbs.filter((s) => s.slug !== suburb.slug).slice(0, 4);
   const heroImage = suburbImages[suburb.slug] ?? fallbackImage;
 
 
@@ -266,48 +265,6 @@ export default async function SuburbPage({ params }: Props) {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Nearby suburbs ── */}
-      <section style={{ backgroundColor: "#FBF9F3", paddingTop: "80px", paddingBottom: "80px" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div style={{ borderTop: "1px solid #E8E5DF", paddingTop: "40px" }}>
-            <div className="flex items-end justify-between mb-10">
-              <div>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "12px" }}>
-                  Explore More
-                </span>
-                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3vw, 2.6rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-                  Other Suburbs
-                </h2>
-              </div>
-              <Link href="/suburbs" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7", letterSpacing: "0.04em" }} className="transition-opacity hover:opacity-60 hidden sm:block">
-                View all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-              {nearby.map((s) => {
-                return (
-                  <Link key={s.slug} href={`/suburbs/${s.slug}`} className="group block">
-                    <div style={{ position: "relative", aspectRatio: "4/3", border: "1px solid #5BC2E7", overflow: "hidden", backgroundColor: "#5BC2E7", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "64px", height: "64px", opacity: 0.25 }}>
-                        <path d="M40 4L2 36h10v32h20V48h16v20h20V36h10L40 4z" fill="#ffffff" />
-                      </svg>
-                    </div>
-                    <div className="pt-3">
-                      <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "2px" }}>
-                        {s.name}
-                      </h3>
-                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#5BC2E7" }}>
-                        {s.medianHouse} median
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
             </div>
           </div>
         </div>
