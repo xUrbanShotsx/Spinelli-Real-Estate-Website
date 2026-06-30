@@ -285,6 +285,7 @@ export function mapListing(l: ABListing): Property {
     tag: listingTag(l),
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
+    openHome: l.openHome || undefined,
   };
 }
 

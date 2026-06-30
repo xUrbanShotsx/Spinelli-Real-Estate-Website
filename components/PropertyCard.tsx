@@ -18,10 +18,7 @@ export default function PropertyCard({
   if (property.baths !== undefined) stats.push(`${property.baths} BATH`);
   if (property.cars !== undefined) stats.push(`${property.cars} CAR`);
 
-  // Shorten open home to "OPEN SAT 24 MAY" format
-  const openHomeShort = property.openHome
-    ? "OPEN " + property.openHome.replace(/,.*$/, "").toUpperCase()
-    : null;
+  const openHomeShort = property.openHome ? property.openHome : null;
 
   /* ── Overlay style (homepage) ── */
   if (overlay) {
@@ -122,10 +119,12 @@ export default function PropertyCard({
                 fontFamily: "var(--font-sans)",
                 fontSize: "10px",
                 fontWeight: 500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.10em",
                 padding: "6px 12px",
+                lineHeight: 1.4,
               }}
             >
+              <span style={{ color: "#5BC2E7", marginRight: "5px" }}>OPEN</span>
               {openHomeShort}
             </span>
           </div>

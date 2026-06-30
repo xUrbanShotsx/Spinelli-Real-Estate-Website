@@ -136,17 +136,6 @@ export default function PropertyDetailClient({ property }: { property: Property 
           </div>
         )}
 
-        {/* Open home badge */}
-        {property.openHome && (
-          <div className="absolute right-6 sm:right-12 lg:right-20" style={{ top: "calc(68px + 2.5rem)" }}>
-            <span className="px-3 py-1.5 text-[11px] font-medium tracking-wide flex items-center gap-2" style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)" }}>
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} style={{ width: "13px", height: "13px" }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Open {property.openHome}
-            </span>
-          </div>
-        )}
 
         {/* Bottom content — address + price + stats */}
         <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-12 lg:px-20 pb-14 max-w-7xl mx-auto">
@@ -264,6 +253,19 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 >
                   {fullDescription}
                 </p>
+
+                {/* Open Home */}
+                {property.openHome && (
+                  <div className="mt-6 inline-flex items-center gap-3 px-4 py-3" style={{ backgroundColor: "#F0F9FD", border: "1px solid #5BC2E7" }}>
+                    <svg fill="none" viewBox="0 0 24 24" stroke="#5BC2E7" strokeWidth={1.5} style={{ width: "16px", height: "16px", flexShrink: 0 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <div>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#5BC2E7", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 500 }}>Open Home</p>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#0D3348", fontWeight: 500, marginTop: "2px" }}>{property.openHome}</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Features */}
