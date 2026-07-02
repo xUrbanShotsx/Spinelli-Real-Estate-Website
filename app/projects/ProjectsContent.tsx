@@ -235,7 +235,7 @@ function MarketingSection() {
           <FadeUp>
             <span className="label-tag">How We Sell</span>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "40px" }}>
-              In-House<br />Marketing
+              Project<br />Marketing
             </h2>
           </FadeUp>
           <div>
