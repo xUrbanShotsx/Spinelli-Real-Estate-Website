@@ -120,7 +120,7 @@ export default function Footer() {
           <div className="flex gap-5 items-center">
             <Link href="/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Privacy Policy</Link>
             <Link href="/disclaimer" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Disclaimer</Link>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa" }}>Built by SanjSTUDIO</span>
+            <a href="https://sanj-studio.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", textDecoration: "none" }} className="hover:opacity-60 transition-opacity">Website by SanjStudio</a>
           </div>
         </div>
 
