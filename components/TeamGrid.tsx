@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useState, useCallback } from "react";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
@@ -9,17 +6,6 @@ function toSlug(name: string) {
 }
 
 export default function TeamGrid({ members }: { members: TeamMember[] }) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const handleTouchStart = useCallback((i: number, e: React.TouchEvent) => {
-    if (activeIndex === i) return; // already active — let Link navigate
-    e.preventDefault();
-    setActiveIndex(i);
-  }, [activeIndex]);
-
-  const handleMouseLeave = useCallback(() => {
-    setActiveIndex(null);
-  }, []);
 
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "80px" }}>
@@ -51,25 +37,13 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
         <div
           className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: "40px" }}
-          onMouseLeave={handleMouseLeave}
         >
-          {members.map((m, i) => {
-            const isActive = activeIndex === i;
-            const isDimmed = activeIndex !== null && !isActive;
-
-            return (
+          {members.map((m) => (
               <Link
                 key={m.name}
                 href={`/team/${toSlug(m.name)}`}
                 className="team-card relative overflow-hidden block"
-                style={{
-                  height: "480px",
-                  backgroundColor: "#E8F6FC",
-                  opacity: isDimmed ? 0.45 : 1,
-                  filter: isDimmed ? "blur(3px)" : "none",
-                  transition: "opacity 0.3s ease, filter 0.3s ease",
-                }}
-                onTouchStart={(e) => handleTouchStart(i, e)}
+                style={{ height: "480px", backgroundColor: "#E8F6FC" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -123,8 +97,7 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
                   </p>
                 </div>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </div>
 
