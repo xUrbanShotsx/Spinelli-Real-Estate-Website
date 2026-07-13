@@ -861,7 +861,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Generous family home on 620m². Sold under the hammer with a competitive auction result.",
     image: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=800&q=80",
-    agent: "Mark Spinelli",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-6",
@@ -874,7 +874,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Luxury coastal living with Werri Beach at your doorstep. Sold to a Sydney buyer within 3 weeks.",
     image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80",
-    agent: "Mark Spinelli",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-7",
@@ -913,7 +913,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Premium waterfront-precinct home with resort amenities and double-glazed windows throughout.",
     image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
-    agent: "Mark Spinelli",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-10",
@@ -965,7 +965,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Main residence plus approved self-contained flat. Sold to an investor — combined rent $1,450pw.",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
-    agent: "Mark Spinelli",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-14",
@@ -1017,7 +1017,7 @@ export const soldProperties: Property[] = [
     tag: "Sold",
     description: "Much-loved village cottage with established gardens. Sold $95,000 above reserve at auction.",
     image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80",
-    agent: "Mark Spinelli",
+    agent: "Adam Spinelli",
   },
   {
     id: "sd-18",
@@ -2719,14 +2719,6 @@ export const team: TeamMember[] = [
     email: "adam@spinellire.com",
     image: "/staff/adam-spinelli.png",
     bio: "Adam Spinelli is a Sales Director at Spinelli Real Estate with a reputation built on strong results, clear communication and genuine care for his clients. Having grown up in the Illawarra, Adam brings an intimate understanding of the local property market and the lifestyle that makes this region so sought after. He is known for his strategic approach to pricing and negotiation, consistently achieving outcomes that exceed expectations. Whether you are buying your first home, upgrading or looking to invest, Adam's straightforward advice and tireless work ethic will ensure you feel confident and supported every step of the way.",
-  },
-  {
-    name: "Mark Spinelli",
-    role: "Sales Director",
-    phone: "0401 385 662",
-    email: "mark@spinellire.com",
-    image: "/staff/mark-spinelli.png",
-    bio: "Mark Spinelli is a Sales Director who brings energy, expertise and a genuine passion for property to every transaction. With years of experience selling across the Illawarra, Mark has developed a sharp eye for matching buyers with the right properties and delivering outstanding results for vendors through targeted marketing and skilled negotiation. His clients appreciate his honesty, his availability and his ability to make what can be a complex process feel straightforward. Mark is committed to building long-term relationships with his clients — many of whom come back to him time and again for trusted advice on their next move.",
   },
   {
     name: "Zoe Porritt",
