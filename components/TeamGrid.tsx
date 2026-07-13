@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useCallback } from "react";
 import type { TeamMember } from "@/lib/types";
 
 function toSlug(name: string) {
@@ -6,6 +9,18 @@ function toSlug(name: string) {
 }
 
 export default function TeamGrid({ members }: { members: TeamMember[] }) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleTouchStart = useCallback((i: number, e: React.TouchEvent) => {
+    if (activeIndex === i) return; // already active — let Link navigate
+    e.preventDefault();
+    setActiveIndex(i);
+  }, [activeIndex]);
+
+  const handleMouseLeave = useCallback(() => {
+    setActiveIndex(null);
+  }, []);
+
   return (
     <section style={{ backgroundColor: "#ffffff", paddingTop: "120px", paddingBottom: "80px" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
@@ -32,80 +47,98 @@ export default function TeamGrid({ members }: { members: TeamMember[] }) {
           </div>
         </div>
 
-        {/* 3-column grid — CSS hover group */}
-        <div className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: "40px" }}>
-          {members.map((m, i) => (
-            <Link
-              key={m.name}
-              href={`/team/${toSlug(m.name)}`}
-              className="team-card relative overflow-hidden block"
-              style={{ height: "480px", backgroundColor: "#E8F6FC" }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={m.image}
-                alt={m.name}
-                loading="eager"
-                decoding="sync"
+        {/* Grid */}
+        <div
+          className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: "40px" }}
+          onMouseLeave={handleMouseLeave}
+        >
+          {members.map((m, i) => {
+            const isActive = activeIndex === i;
+            const isDimmed = activeIndex !== null && !isActive;
+
+            return (
+              <Link
+                key={m.name}
+                href={`/team/${toSlug(m.name)}`}
+                className="team-card relative overflow-hidden block"
                 style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "top center",
+                  height: "480px",
+                  backgroundColor: "#E8F6FC",
+                  opacity: isDimmed ? 0.45 : 1,
+                  filter: isDimmed ? "blur(3px)" : "none",
+                  transition: "opacity 0.3s ease, filter 0.3s ease",
                 }}
-              />
+                onTouchStart={(e) => handleTouchStart(i, e)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  loading="eager"
+                  decoding="sync"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "top center",
+                  }}
+                />
 
-              {/* Dark gradient */}
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.0) 100%)" }}
-              />
+                {/* Dark gradient */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.0) 100%)" }}
+                />
 
-              {/* Role badge */}
-              <div className="absolute top-0 right-0">
-                <span style={{
-                  display: "block",
-                  backgroundColor: "#5BC2E7",
-                  color: "#ffffff",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "10px",
-                  fontWeight: 500,
-                  letterSpacing: "0.14em",
-                  padding: "6px 12px",
-                  textTransform: "uppercase",
-                }}>
-                  {m.role}
-                </span>
-              </div>
+                {/* Role badge */}
+                <div className="absolute top-0 right-0">
+                  <span style={{
+                    display: "block",
+                    backgroundColor: "#5BC2E7",
+                    color: "#ffffff",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    padding: "6px 12px",
+                    textTransform: "uppercase",
+                  }}>
+                    {m.role}
+                  </span>
+                </div>
 
-              {/* Text */}
-              <div className="absolute bottom-0 left-0 right-0 px-5 py-5">
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#ffffff", lineHeight: 1.3, marginBottom: "4px" }}>
-                  {m.name}
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", marginBottom: "2px" }}>
-                  {m.phone}
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
-                  {m.email}
-                </p>
-              </div>
-            </Link>
-          ))}
+                {/* Text */}
+                <div className="absolute bottom-0 left-0 right-0 px-5 py-5">
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#ffffff", lineHeight: 1.3, marginBottom: "4px" }}>
+                    {m.name}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)", marginBottom: "2px" }}>
+                    {m.phone}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
+                    {m.email}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
-      {/* CSS-only hover: dim siblings when one card is hovered */}
+      {/* CSS hover for desktop (pointer devices only) */}
       <style>{`
-        .team-grid:has(.team-card:hover) .team-card:not(:hover) {
-          opacity: 0.45;
-          filter: blur(3px);
-          transition: opacity 0.3s ease, filter 0.3s ease;
-        }
-        .team-grid .team-card {
-          transition: opacity 0.3s ease, filter 0.3s ease;
+        @media (hover: hover) {
+          .team-grid:has(.team-card:hover) .team-card:not(:hover) {
+            opacity: 0.45;
+            filter: blur(3px);
+            transition: opacity 0.3s ease, filter 0.3s ease;
+          }
+          .team-grid .team-card {
+            transition: opacity 0.3s ease, filter 0.3s ease;
+          }
         }
       `}</style>
     </section>
