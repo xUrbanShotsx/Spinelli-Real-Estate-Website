@@ -74,7 +74,7 @@ export default async function HomePage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source src="/WEB HEADER.mp4" type="video/mp4" />
           </video>
           <div
             className="absolute inset-0"
