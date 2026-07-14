@@ -6,6 +6,7 @@ import {
   businessListings,
 } from "@/lib/data";
 import { fetchListing, mapListing } from "@/lib/agentbox";
+import { getOpenHome } from "@/lib/open-homes";
 import PropertyDetailClient from "./PropertyDetailClient";
 import type { Property } from "@/lib/types";
 
@@ -61,6 +62,10 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
   }
 
   if (!property) notFound();
+
+  // Overlay open home time from manual config (AgentBox API doesn't expose OFI times)
+  const openHome = getOpenHome(id);
+  if (openHome) property = { ...property, openHome };
 
   return <PropertyDetailClient property={property} />;
 }
