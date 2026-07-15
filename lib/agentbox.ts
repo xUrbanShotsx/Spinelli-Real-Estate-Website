@@ -51,6 +51,7 @@ export interface ABListing {
   auctionDate: string;
   openHome?: string;
   inspectionType?: string;
+  inspectionDates?: { id: string; startDate: string; endDate: string }[];
   description?: string;
   mainDescription?: string;
   property: {
@@ -93,7 +94,7 @@ export async function fetchListings(
   revalidate = 300
 ): Promise<ABListingsResponse> {
   // mainImage is the correct include for list endpoint (images only works on detail)
-  const res = await fetch(url("/listings", { include: "mainImage,description", ...params }), {
+  const res = await fetch(url("/listings", { include: "mainImage,description,inspectionDates", ...params }), {
     headers: headers(),
     next: { revalidate },
   });
@@ -120,7 +121,7 @@ export async function fetchAllListings(
 
 export async function fetchListing(id: string, revalidate = 300): Promise<ABListing> {
   const res = await fetch(
-    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription" }),
+    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates" }),
     { headers: headers(), next: { revalidate } }
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
@@ -240,6 +241,28 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<boolean> {
 
 import type { Property } from "@/lib/types";
 
+function formatInspectionTime(start: string, end: string): string {
+  const s = new Date(start);
+  const e = new Date(end);
+  const day = s.toLocaleDateString("en-AU", { weekday: "short", timeZone: "Australia/Sydney" });
+  const date = s.toLocaleDateString("en-AU", { day: "numeric", month: "short", timeZone: "Australia/Sydney" });
+  const fmt = (d: Date) => {
+    const h = d.toLocaleString("en-AU", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "Australia/Sydney" });
+    return h.replace(" am", "am").replace(" pm", "pm").replace(":00", "");
+  };
+  return `${day} ${date}, ${fmt(s)}–${fmt(e)}`;
+}
+
+function nextInspection(dates?: ABListing["inspectionDates"]): string | undefined {
+  if (!dates?.length) return undefined;
+  const now = Date.now();
+  const upcoming = dates
+    .filter((d) => new Date(d.startDate).getTime() > now)
+    .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+  if (!upcoming.length) return undefined;
+  return formatInspectionTime(upcoming[0].startDate, upcoming[0].endDate);
+}
+
 export function mapListing(l: ABListing): Property {
   const addr = l.property.address;
   const unit = addr.unitNum ? `${addr.unitNum}/` : "";
@@ -285,7 +308,7 @@ export function mapListing(l: ABListing): Property {
     tag: listingTag(l),
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
-    openHome: l.openHome || undefined,
+    openHome: nextInspection(l.inspectionDates) || l.openHome || undefined,
   };
 }
 

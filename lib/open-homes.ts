@@ -18,3 +18,7 @@ const openHomes: Record<string, string> = {
 export function getOpenHome(listingId: string): string | undefined {
   return openHomes[listingId] || undefined;
 }
+
+export function getAllOpenHomes(): { id: string; time: string }[] {
+  return Object.entries(openHomes).map(([id, time]) => ({ id, time }));
+}
