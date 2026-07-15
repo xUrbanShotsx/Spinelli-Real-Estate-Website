@@ -114,7 +114,7 @@ export default function PropertyCard({
             <span
               style={{
                 display: "block",
-                backgroundColor: "#0D3348",
+                backgroundColor: "#5BC2E7",
                 color: "#ffffff",
                 fontFamily: "var(--font-sans)",
                 fontSize: "10px",
@@ -124,8 +124,7 @@ export default function PropertyCard({
                 lineHeight: 1.4,
               }}
             >
-              <span style={{ color: "#5BC2E7", marginRight: "5px" }}>OPEN</span>
-              {openHomeShort}
+              OPEN · {openHomeShort}
             </span>
           </div>
         )}
