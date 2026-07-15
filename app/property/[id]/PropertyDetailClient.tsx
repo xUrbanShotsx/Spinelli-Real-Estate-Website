@@ -241,6 +241,21 @@ export default function PropertyDetailClient({ property }: { property: Property 
               {/* Description */}
               <div className="mb-12">
                 <span className="label-tag">About This Property</span>
+                {property.title && property.title !== property.address && (
+                  <h2
+                    className="mt-3 mb-4"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
+                      color: "#000000",
+                      fontWeight: 300,
+                      letterSpacing: "-0.03em",
+                      lineHeight: 1.15,
+                    }}
+                  >
+                    {property.title}
+                  </h2>
+                )}
                 <p
                   className="mt-2"
                   style={{
