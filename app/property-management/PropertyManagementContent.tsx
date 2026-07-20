@@ -98,9 +98,6 @@ export default function PropertyManagementContent() {
           style={{ background: "rgba(13,51,72,0.55)" }}
         />
         <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-40">
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
-            Property Management
-          </span>
           <h1
             style={{
               fontFamily: "var(--font-display)",
