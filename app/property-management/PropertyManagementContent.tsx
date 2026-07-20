@@ -82,11 +82,11 @@ export default function PropertyManagementContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex items-end" style={{ minHeight: "100vh" }}>
+      <section className="relative flex items-center justify-center text-center" style={{ minHeight: "100vh" }}>
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/Rentalbackdrop.png"
+          src="/Rentalbackdrop.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 object-cover"
@@ -95,9 +95,9 @@ export default function PropertyManagementContent() {
         {/* Gradient overlay */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(13,51,72,0.85) 0%, rgba(13,51,72,0.4) 55%, rgba(13,51,72,0.1) 100%)" }}
+          style={{ background: "rgba(13,51,72,0.55)" }}
         />
-        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20 pt-40">
+        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-40">
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
             Property Management
           </span>
@@ -110,30 +110,20 @@ export default function PropertyManagementContent() {
               letterSpacing: "-0.03em",
               lineHeight: 1.0,
               marginBottom: "28px",
-              maxWidth: "16ch",
             }}
           >
             Your Investment.<br />Our Priority.
           </h1>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px", margin: "0 auto 36px" }}>
             For over 12 years, Spinelli Real Estate has been the Illawarra&apos;s most trusted property management team. We protect your investment, secure great tenants and maximise your returns.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/appraisal"
-              className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
-              style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
-            >
-              Get a Free Appraisal
-            </Link>
-            <a
-              href="tel:0242960047"
-              className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-              style={{ border: "1px solid rgba(255,255,255,0.35)", color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
-            >
-              02 4296 0047
-            </a>
-          </div>
+          <Link
+            href="/appraisal"
+            className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
+            style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+          >
+            Get a Free Appraisal
+          </Link>
         </div>
       </section>
 
