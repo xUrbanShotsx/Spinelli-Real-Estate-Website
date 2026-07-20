@@ -125,6 +125,47 @@ export default function PropertyManagementContent() {
       </section>
 
 
+      {/* ── Intro split ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left — text */}
+            <div>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
+                Trusted Local Experts
+              </span>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "28px" }}>
+                Managing Your Property<br />the Right Way
+              </h2>
+              <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+                We take the stress out of being a landlord. From finding quality tenants to handling maintenance, rent collection and routine inspections — our team manages every detail so you don't have to.
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9 }}>
+                With deep local knowledge across the Illawarra and a genuine commitment to your investment, Spinelli Property Management delivers results you can count on.
+              </p>
+            </div>
+
+            {/* Right — image */}
+            <div className="flex justify-end">
+              <div
+                className="overflow-hidden"
+                style={{ width: "100%", maxWidth: "520px", height: "600px", marginRight: "0" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/PropertyManage.JPG"
+                  alt="Property management"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── Services ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
