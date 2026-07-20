@@ -8,7 +8,7 @@ const navItems = [
     label: "Buy",
     dropdown: [
       { label: "Residential", href: "/buy", sub: "Browse residential listings" },
-      { label: "Commercial", href: "/commercial", sub: "Office, retail & industrial" },
+      { label: "Commercial", href: "/commercial/buy", sub: "Office, retail & industrial" },
       { label: "Business", href: "/business", sub: "Buy or sell a business" },
     ],
   },
@@ -23,7 +23,7 @@ const navItems = [
     label: "Rent",
     dropdown: [
       { label: "Residential", href: "/rent", sub: "Find your next rental" },
-      { label: "Commercial", href: "/commercial#lease", sub: "Office & retail leasing" },
+      { label: "Commercial", href: "/commercial/lease", sub: "Office & retail leasing" },
       { label: "Property Management", href: "/property-management", sub: "Let us manage your property" },
     ],
   },
@@ -57,7 +57,7 @@ export default function Navbar() {
   // Pages with no hero image — navbar is always solid at the top.
   // Individual project detail pages (/projects/[id]) are excluded so the
   // navbar starts transparent over the dark split hero and goes solid on scroll.
-  const lightPages = ["/sold", "/buy", "/rent", "/sell", "/commercial", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects"];
+  const lightPages = ["/sold", "/buy", "/rent", "/sell", "/commercial", "/commercial/buy", "/commercial/lease", "/business", "/suburbs", "/contact", "/about", "/property-management", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects"];
   const isProjectDetail = /^\/projects\/.+/.test(pathname);
   const isLightPage = !isProjectDetail && lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
