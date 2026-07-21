@@ -151,7 +151,7 @@ export default function PropertyManagementContent() {
         <div className="relative" style={{ minHeight: "600px", paddingRight: "60px", paddingBottom: "80px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/PropertyManage.JPG"
+            src="/pmphoto1.jpg"
             alt="Property management"
             className="absolute object-cover"
             style={{ top: 0, left: 0, right: "60px", bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
@@ -167,7 +167,7 @@ export default function PropertyManagementContent() {
         <div className="relative" style={{ minHeight: "600px", paddingLeft: "60px", paddingBottom: "80px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Rentalbackdrop.jpg"
+            src="/pmphoto2.jpg"
             alt="Property management"
             className="absolute object-cover"
             style={{ top: 0, left: "60px", right: 0, bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
