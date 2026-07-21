@@ -43,29 +43,34 @@ export default function SellContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="flex items-end" style={{ minHeight: "100vh", backgroundColor: "#ffffff" }}>
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-20 pt-40">
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "20px" }}>
-            Sell With Spinelli
-          </span>
+      <section className="relative flex items-center justify-center text-center" style={{ minHeight: "100vh" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/Sellimage.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 object-cover"
+          style={{ width: "100%", height: "100%" }}
+        />
+        <div className="absolute inset-0" style={{ background: "rgba(13,51,72,0.55)" }} />
+        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-40">
           <h1
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(3rem, 7vw, 6.5rem)",
-              color: "#0D3348",
+              color: "#ffffff",
               fontWeight: 300,
               letterSpacing: "-0.03em",
               lineHeight: 1.0,
               marginBottom: "28px",
-              maxWidth: "16ch",
             }}
           >
             Achieve More<br />For Your Home
           </h1>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(88,80,60,0.8)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, maxWidth: "48ch", marginBottom: "36px", margin: "0 auto 36px" }}>
             Selling your home is one of the biggest decisions you&apos;ll make. We bring local expertise, premium marketing and relentless negotiation to make sure you get the result you deserve.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/appraisal"
               className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-85"
@@ -76,7 +81,7 @@ export default function SellContent() {
             <Link
               href="/sold"
               className="inline-block px-7 py-3.5 text-[12px] font-medium tracking-wide transition-opacity hover:opacity-70"
-              style={{ border: "1px solid #DAD7CE", color: "#0D3348", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+              style={{ border: "1px solid rgba(255,255,255,0.4)", color: "#ffffff", fontFamily: "var(--font-sans)", letterSpacing: "0.08em", textTransform: "uppercase" }}
             >
               View Recent Results
             </Link>
