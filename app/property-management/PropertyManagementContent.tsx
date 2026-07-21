@@ -161,7 +161,7 @@ export default function PropertyManagementContent() {
       </section>
 
       {/* ── Flipped split ── */}
-      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff" }}>
+      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff", paddingTop: "80px" }}>
 
         {/* Left — full-height image */}
         <div className="relative" style={{ minHeight: "600px", paddingLeft: "60px", paddingBottom: "80px" }}>
