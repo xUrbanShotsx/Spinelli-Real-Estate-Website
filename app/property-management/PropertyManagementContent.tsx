@@ -148,12 +148,13 @@ export default function PropertyManagementContent() {
         </div>
 
         {/* Right — full-height image */}
-        <div className="relative" style={{ minHeight: "600px" }}>
+        <div className="relative" style={{ minHeight: "600px", paddingRight: "60px", paddingBottom: "80px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/PropertyManage.JPG"
             alt="Property management"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute object-cover"
+            style={{ top: 0, left: 0, right: "60px", bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
           />
         </div>
 
