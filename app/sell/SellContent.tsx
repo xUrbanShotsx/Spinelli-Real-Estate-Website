@@ -3,13 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 /* ── Data ─────────────────────────────────────────────── */
-const process = [
-  { num: "01", title: "Free Appraisal",     desc: "We assess your property against live market conditions and provide an honest, strategic price guide — no obligation, no pressure. We'll tell you exactly what your home is worth and how to maximise it." },
-  { num: "02", title: "Tailored Campaign",   desc: "Premium photography, drone footage, feature listings on realestate.com.au and Domain, plus a bespoke digital marketing strategy built specifically around your home and target buyer." },
-  { num: "03", title: "Expert Negotiation", desc: "We create genuine buyer competition, qualify every enquiry and negotiate hard on your behalf. Our track record speaks for itself — consistently above-reserve results across the Illawarra." },
-  { num: "04", title: "Smooth Settlement",  desc: "From exchange to handover, we coordinate with your solicitor, the buyer's agent and all parties to make sure settlement is stress-free and on time." },
-];
-
 const whyUs = [
   { title: "12+ Years Local Knowledge", desc: "Deep Illawarra expertise across every suburb, price point and property type. We know this market better than anyone." },
   { title: "Premium Marketing",         desc: "Professional photography, drone footage, feature listings and targeted digital campaigns — every property deserves to look its best." },
@@ -29,7 +22,6 @@ const reviews = [
 
 /* ── Main component ───────────────────────────────────── */
 export default function SellContent() {
-  const [activeStep, setActiveStep] = useState(0);
   const [hoveredWhy, setHoveredWhy] = useState<number | null>(null);
   const [activeReview, setActiveReview] = useState(0);
 
@@ -157,63 +149,6 @@ export default function SellContent() {
           </div>
         </div>
 
-      </section>
-
-      {/* ── Process ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div
-            className="flex flex-wrap items-end justify-between gap-4 pb-10 mb-2"
-            style={{ borderBottom: "1px solid #E8E5DF" }}
-          >
-            <div>
-              <span className="label-tag">The Process</span>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-                How We Sell<br />Your Home
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10 mb-8">
-            {process.map((p, i) => (
-              <button
-                key={p.num}
-                onClick={() => setActiveStep(i)}
-                style={{
-                  padding: "24px 20px",
-                  textAlign: "left",
-                  border: activeStep === i ? "1px solid #5BC2E7" : "1px solid #E8E5DF",
-                  backgroundColor: activeStep === i ? "#5BC2E7" : "#ffffff",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", fontWeight: 300, color: activeStep === i ? "rgba(255,255,255,0.35)" : "#E8E5DF", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: "12px" }}>
-                  {p.num}
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: activeStep === i ? "#ffffff" : "#000000", letterSpacing: "0.02em", transition: "color 0.2s" }}>
-                  {p.title}
-                </p>
-              </button>
-            ))}
-          </div>
-
-          <div style={{ backgroundColor: "#ffffff", border: "1px solid #E8E5DF", padding: "40px 44px" }}>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "28px" }}>
-              <span style={{ fontFamily: "var(--font-display)", fontSize: "4rem", fontWeight: 300, color: "#5BC2E7", letterSpacing: "-0.05em", lineHeight: 1, opacity: 0.2, flexShrink: 0 }}>
-                {process[activeStep].num}
-              </span>
-              <div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "12px" }}>
-                  {process[activeStep].title}
-                </h3>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.85, maxWidth: "60ch" }}>
-                  {process[activeStep].desc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ── Why Spinelli ── */}
