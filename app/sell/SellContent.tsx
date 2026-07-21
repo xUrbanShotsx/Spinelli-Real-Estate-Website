@@ -89,6 +89,76 @@ export default function SellContent() {
         </div>
       </section>
 
+      {/* ── Intro split (text left, image right) ── */}
+      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff", paddingTop: "80px" }}>
+
+        {/* Left — text */}
+        <div className="flex items-center px-6 sm:px-12 lg:px-20 py-24">
+          <div style={{ maxWidth: "48ch" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
+              Sell With Confidence
+            </span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "28px" }}>
+              Local Expertise.<br />Premium Results.
+            </h2>
+            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+              With over 12 years in the Illawarra market, we know exactly what buyers are looking for and how to position your home to attract the strongest possible offers.
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9 }}>
+              From your first appraisal to settlement day, our agents handle every detail — so you can focus on your next chapter.
+            </p>
+          </div>
+        </div>
+
+        {/* Right — full-height image */}
+        <div className="relative" style={{ minHeight: "600px", paddingRight: "60px", paddingBottom: "80px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Front shot.jpg"
+            alt="Premium property marketing"
+            className="absolute object-cover"
+            style={{ top: 0, left: 0, right: "60px", bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
+          />
+        </div>
+
+      </section>
+
+      {/* ── Flipped split (image left, text right) ── */}
+      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff", paddingTop: "80px" }}>
+
+        {/* Left — full-height image */}
+        <div className="relative" style={{ minHeight: "600px", paddingLeft: "60px", paddingBottom: "80px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/droneshot.jpg"
+            alt="Aerial property photography"
+            className="absolute object-cover"
+            style={{ top: 0, left: "60px", right: 0, bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
+          />
+        </div>
+
+        {/* Right — text */}
+        <div className="flex items-center px-6 sm:px-12 lg:px-20 py-24">
+          <div style={{ maxWidth: "48ch" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
+              Premium Marketing
+            </span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "28px" }}>
+              Presented to<br />Impress Buyers
+            </h2>
+            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+              Professional photography, drone aerials and cinematic video give your home the presentation it deserves — creating maximum impact online and at inspection.
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9 }}>
+              Feature listings on realestate.com.au and Domain, combined with targeted digital campaigns, ensure your property reaches the right buyers at the right time.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
       {/* ── Process ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
