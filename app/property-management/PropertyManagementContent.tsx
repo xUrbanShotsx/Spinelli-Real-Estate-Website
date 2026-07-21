@@ -126,7 +126,7 @@ export default function PropertyManagementContent() {
 
 
       {/* ── Intro split ── */}
-      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff" }}>
+      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff", marginTop: "80px" }}>
 
         {/* Left — text */}
         <div className="flex items-center px-6 sm:px-12 lg:px-20 py-24">
