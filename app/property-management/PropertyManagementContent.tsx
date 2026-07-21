@@ -160,6 +160,41 @@ export default function PropertyManagementContent() {
 
       </section>
 
+      {/* ── Flipped split ── */}
+      <section className="grid lg:grid-cols-2" style={{ backgroundColor: "#ffffff" }}>
+
+        {/* Left — full-height image */}
+        <div className="relative" style={{ minHeight: "600px", paddingLeft: "60px", paddingBottom: "80px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Rentalbackdrop.jpg"
+            alt="Property management"
+            className="absolute object-cover"
+            style={{ top: 0, left: "60px", right: 0, bottom: "80px", width: "calc(100% - 60px)", height: "100%" }}
+          />
+        </div>
+
+        {/* Right — text */}
+        <div className="flex items-center px-6 sm:px-12 lg:px-20 py-24">
+          <div style={{ maxWidth: "48ch" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "16px" }}>
+              Your Investment
+            </span>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "28px" }}>
+              Maximising Your<br />Rental Returns
+            </h2>
+            <div style={{ width: "40px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "28px" }} />
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9, marginBottom: "20px" }}>
+              We don't just manage your property — we actively work to grow your return. Regular market reviews, strategic rent adjustments and low vacancy rates mean your investment keeps performing.
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#7a7265", lineHeight: 1.9 }}>
+              Our transparent reporting keeps you informed every step of the way, with detailed statements, inspection reports and honest communication you can rely on.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
       {/* ── Services ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
