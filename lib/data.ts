@@ -2723,7 +2723,7 @@ export const team: TeamMember[] = [
   {
     name: "Zoe Porritt",
     role: "Property Manager",
-    phone: "0400 000 000",
+    phone: "02 4296 0047",
     email: "zoe@spinellire.com",
     image: "/staff/zoe-porritt.png",
     bio: "Zoe Porritt is a dedicated Property Manager who takes the stress out of investment property ownership for her clients. With a thorough understanding of the Illawarra rental market, Zoe manages every property as if it were her own — ensuring landlords maximise their returns while tenants enjoy a professional and responsive management experience. Her attention to detail, proactive communication and strong knowledge of tenancy legislation means both owners and tenants are always well looked after. Zoe is passionate about building lasting relationships with her clients and takes genuine pride in the results she achieves for every investor she works with.",
