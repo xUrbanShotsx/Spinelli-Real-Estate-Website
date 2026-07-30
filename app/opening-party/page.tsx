@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -59,28 +58,12 @@ export default function OpeningPartyPage() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#FBF9F3" }}>
 
-      {/* Minimal header */}
-      <header style={{ padding: "28px 32px", borderBottom: "1px solid #E8E5DF", backgroundColor: "#ffffff" }}>
-        <Link href="/" style={{ display: "inline-block" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.png"
-            alt="Spinelli Real Estate"
-            style={{
-              height: "72px",
-              width: "auto",
-              filter: "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)",
-            }}
-          />
-        </Link>
-      </header>
-
       {/* Page body */}
       <div
         style={{
           maxWidth: "560px",
           margin: "0 auto",
-          padding: "80px 24px 100px",
+          padding: "160px 24px 100px",
         }}
       >
         {/* Event details */}
