@@ -47,6 +47,7 @@ export interface ABListing {
   method: string;
   displayPrice: string;
   soldPrice?: number;
+  soldPriceHide?: boolean;
   mainHeadline: string;
   listedDate: string;
   auctionDate: string;
@@ -295,9 +296,14 @@ export function mapListing(l: ABListing): Property {
     title: l.mainHeadline || address,
     address,
     suburb: addr.suburb,
-    price: l.soldPrice
-      ? "$" + l.soldPrice.toLocaleString("en-AU")
-      : l.displayPrice || "Contact Agent",
+    price: (() => {
+      const isSold = ["Settled", "Sold", "Unconditional"].includes(l.status);
+      if (isSold) {
+        if (l.soldPriceHide || !l.soldPrice) return "Contact Agent";
+        return "$" + new Intl.NumberFormat("en-AU").format(l.soldPrice);
+      }
+      return l.displayPrice || "Contact Agent";
+    })(),
     beds: l.property.bedrooms ? parseInt(l.property.bedrooms) : undefined,
     baths: l.property.bathrooms ? parseInt(l.property.bathrooms) : undefined,
     cars: l.property.totalParking ? parseInt(l.property.totalParking) : undefined,
