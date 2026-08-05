@@ -116,11 +116,13 @@ export default function SoldListings({ properties }: { properties: Property[] })
       ) : (
         <div className="py-20 text-center max-w-7xl mx-auto px-6">
           <p style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "10px" }}>
-            No results match your search
+            {properties.length === 0 ? "Check back soon" : "No results match your search"}
           </p>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#a2b0aa" }}>
-            Try adjusting your filters or{" "}
-            <button onClick={clearAll} style={{ color: "#5BC2E7", textDecoration: "underline" }}>clear all</button>.
+            {properties.length === 0
+              ? "Our recent sold results will appear here shortly."
+              : <>Try adjusting your filters or{" "}<button onClick={clearAll} style={{ color: "#5BC2E7", textDecoration: "underline" }}>clear all</button>.</>
+            }
           </p>
         </div>
       )}

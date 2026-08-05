@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import SoldListings from "@/components/SoldListings";
 import Link from "next/link";
-import { soldProperties } from "@/lib/data";
 import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function SoldPage() {
-  let properties: Property[] = soldProperties;
+  let properties: Property[] = [];
   try {
     const [settled, sold, unconditional] = await Promise.all([
       fetchAllListings({ "filter[type]": "Sale", "filter[status]": "Settled", "sort[listedDate]": "desc" }),
@@ -28,7 +27,7 @@ export default async function SoldPage() {
     unique.sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime());
     if (unique.length) properties = unique.map(mapListing);
   } catch (e) {
-    console.error("AgentBox sold fetch failed, using static data:", e);
+    console.error("AgentBox sold fetch failed:", e);
   }
 
   return (
