@@ -48,6 +48,8 @@ export interface ABListing {
   displayPrice: string;
   soldPrice?: number;
   soldPriceHide?: boolean;
+  soldPriceUndisclosed?: boolean;
+  displaySoldPrice?: boolean;
   mainHeadline: string;
   listedDate: string;
   auctionDate: string;
@@ -299,7 +301,9 @@ export function mapListing(l: ABListing): Property {
     price: (() => {
       const isSold = ["Settled", "Sold", "Unconditional"].includes(l.status);
       if (isSold) {
-        if (l.soldPriceHide || !l.soldPrice) return "Contact Agent";
+        const hiddenInAgentBox = l.soldPriceHide || l.soldPriceUndisclosed || (l.displaySoldPrice === false);
+        const manualOverride = ["1P2061"].includes(l.id);
+        if (manualOverride || hiddenInAgentBox || !l.soldPrice) return "Contact Agent";
         return "$" + new Intl.NumberFormat("en-AU").format(l.soldPrice);
       }
       return l.displayPrice || "Contact Agent";
