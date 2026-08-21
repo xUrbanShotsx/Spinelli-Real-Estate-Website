@@ -161,38 +161,6 @@ export default function ProjectsContent() {
         ))}
       </div>
 
-      {/* ── Development types ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
-          <FadeUp>
-            <span className="label-tag">What We Deliver</span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.05, marginBottom: "48px" }}>
-              Development Expertise
-            </h2>
-          </FadeUp>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { label: "Duplex",                  image: "/duplex.jpg" },
-              { label: "Townhouse",               image: "/townhouse.jpg" },
-              { label: "Multi-Level Residential", image: "/apartment.jpg" },
-              { label: "Commercial",              image: "/commercial.jpg" },
-            ].map((item, i) => (
-              <FadeUp key={item.label} delay={i * 80}>
-                <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.image} alt={item.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-                  <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.42)" }} />
-                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px" }}>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#5BC2E7", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "14px" }}>0{i + 1}</p>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 1.5vw, 1.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", textAlign: "center", lineHeight: 1.2 }}>{item.label}</p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ── */}
       <DeveloperCTA />
     </>
