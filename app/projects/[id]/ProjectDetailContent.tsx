@@ -270,7 +270,7 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
 
       {/* ── ADDITIONAL INFORMATION ───────────────────────────── */}
       {project.additionalInfo && (
-        <TextBlock heading={<>Additional<br />Information.</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
+        <TextBlock heading={<>The<br />Details.</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
           <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.55, letterSpacing: "-0.02em" }}>
             {project.additionalInfo}
           </p>
