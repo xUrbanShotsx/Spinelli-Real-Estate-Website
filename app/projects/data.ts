@@ -18,6 +18,7 @@ export interface Project {
   gallery: string[];
   description: string;
   longDescription?: string;
+  additionalInfo?: string;
   mapQuery?: string;
   mapLat?: number;
   mapLng?: number;
@@ -40,6 +41,7 @@ export const projects: Project[] = [
     mapLat: -34.5649,
     mapLng: 150.8367,
     longDescription: "Life at Elevation 77 is defined by the moments between. Morning coffee from the café below, evenings on your balcony as the sun drops behind the escarpment, weekends spent walking to the lake or the village without once touching your car. This is urban living on the Illawarra coast — unhurried, elevated, and entirely your own. Each residence has been designed to bring the outside in, with generous glazing, north-facing aspects and premium finishes that make every room feel like a considered choice. The rooftop terrace becomes a natural extension of your home — a space to entertain, to unwind, or simply to take in the kind of view that reminds you why you chose this life.",
+    additionalInfo: "The 8 remaining apartments at Elevation 77 offer a rare opportunity to secure a residence in one of the Illawarra's most recognised mixed-use developments. Each apartment is move-in ready with completed construction and practical completion achieved in December 2022. Secure basement parking, lift access, and ground-floor retail tenancies complete the offering. Owner-occupier and investor purchasers are welcome. Strata levies, building specifications, and floor plans are available upon request — contact our projects team for a private inspection.",
     timeline: [
       { label: "DA Approved", date: "Nov 2019", done: true },
       { label: "Construction Commenced", date: "Apr 2020", done: true },

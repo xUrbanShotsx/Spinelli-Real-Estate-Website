@@ -8,7 +8,6 @@ import type { ComponentProps } from "react";
 type ProjectMapProps = ComponentProps<typeof import("../../../components/ProjectMap").default>;
 const ProjectMap = dynamic<ProjectMapProps>(() => import("../../../components/ProjectMap"), { ssr: false });
 import type { Project } from "../data";
-import { projects } from "../data";
 
 /* ─── Intersection reveal ─────────────────────────────────── */
 function useReveal(threshold = 0.05) {
@@ -269,43 +268,14 @@ export default function ProjectDetailContent({ project }: { project: Project }) 
         </div>
       )}
 
-      {/* ── RELATED PROJECTS ─────────────────────────────────── */}
-      {(() => {
-        const related = projects.filter(p => p.id !== project.id).slice(0, 2);
-        return (
-          <div style={{ backgroundColor: "#ffffff", paddingTop: "60px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "16px" }}>
-            {related.map((p) => (
-              <Link
-                key={p.id}
-                href={`/projects/${p.id}`}
-                style={{ position: "relative", height: "clamp(260px, 45vw, 55vh)", overflow: "hidden", display: "block", textDecoration: "none" }}
-                className="group"
-              >
-                <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
-                  <Image
-                    src={p.gallery[0] ?? p.image}
-                    alt={p.name}
-                    fill
-                    sizes="50vw"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
-                  />
-                </div>
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)" }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, padding: "28px 32px" }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "8px" }}>
-                    {p.suburb}
-                  </p>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
-                    {p.name}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          </div>
-        );
-      })()}
+      {/* ── ADDITIONAL INFORMATION ───────────────────────────── */}
+      {project.additionalInfo && (
+        <TextBlock heading={<>Additional<br />Information.</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.55, letterSpacing: "-0.02em" }}>
+            {project.additionalInfo}
+          </p>
+        </TextBlock>
+      )}
 
       {/* ── TEXT BLOCK 3: enquiry ───────────────────────────── */}
       <TextBlock heading={<>{project.status === "Sold Out" ? <>This project<br />is sold out.</> : <>Enquire<br />today.</>}</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
