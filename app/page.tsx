@@ -85,13 +85,13 @@ export default async function HomePage() {
 
         <div className="relative max-w-screen-2xl mx-auto px-6 sm:px-10 py-24 w-full" />
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-sans)" }}>
-            Scroll
-          </span>
-          <svg className="w-4 h-4" style={{ color: "rgba(255,255,255,0.45)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        {/* Scroll indicator — arrow with stem */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
+          <svg width="16" height="48" viewBox="0 0 16 48" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "rgba(255,255,255,0.5)" }}>
+            {/* Stem */}
+            <line x1="8" y1="0" x2="8" y2="34" stroke="currentColor" strokeWidth="1.2" />
+            {/* Arrowhead */}
+            <path d="M1 28 L8 40 L15 28" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
         </div>
       </section>
