@@ -87,11 +87,11 @@ export default async function HomePage() {
 
         {/* Scroll indicator — arrow with stem */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-          <svg width="16" height="48" viewBox="0 0 16 48" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "rgba(255,255,255,0.5)" }}>
-            {/* Stem */}
-            <line x1="8" y1="0" x2="8" y2="34" stroke="currentColor" strokeWidth="1.2" />
-            {/* Arrowhead */}
-            <path d="M1 28 L8 40 L15 28" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <svg width="14" height="54" viewBox="0 0 14 54" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "rgba(255,255,255,0.5)" }}>
+            {/* Stem — ends exactly where arrowhead begins */}
+            <line x1="7" y1="0" x2="7" y2="42" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            {/* Arrowhead — small, connects at stem tip */}
+            <path d="M3 42 L7 50 L11 42" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
         </div>
       </section>
