@@ -89,7 +89,7 @@ export default async function HomePage() {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
           <svg width="14" height="54" viewBox="0 0 14 54" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "rgba(255,255,255,0.5)" }}>
             {/* Stem extends past arrowhead top so they visually merge */}
-            <line x1="7" y1="0" x2="7" y2="46" stroke="currentColor" strokeWidth="1.2" strokeLinecap="butt" />
+            <line x1="7" y1="0" x2="7" y2="50" stroke="currentColor" strokeWidth="1.2" strokeLinecap="butt" />
             {/* Arrowhead wings start above stem tip — overlap ensures connection */}
             <path d="M3 40 L7 50 L11 40" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
