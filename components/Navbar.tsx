@@ -86,7 +86,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{ backgroundColor: navBg, borderBottom: navBorder }}
       >
-        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 h-[90px] grid grid-cols-3 items-center overflow-visible">
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10 h-[110px] grid grid-cols-3 items-center overflow-visible">
 
           {/* Left — Menu button */}
           <div className="flex items-center">
@@ -114,14 +114,14 @@ export default function Navbar() {
           </div>
 
           {/* Centre — Logo */}
-          <div className="flex justify-center items-center" style={{ height: "90px", overflow: "visible" }}>
-            <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center justify-center" style={{ height: "130px" }}>
+          <div className="flex justify-center items-center" style={{ height: "110px", overflow: "visible" }}>
+            <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center justify-center" style={{ height: "160px" }}>
               <img
                 src="/logo.png"
                 alt="Spinelli Real Estate"
                 className="transition-all duration-300"
                 style={{
-                  height: "130px",
+                  height: "160px",
                   width: "auto",
                   maxWidth: "none",
                   objectFit: "contain",
@@ -179,7 +179,7 @@ export default function Navbar() {
         }}
       >
         {/* Sidebar header spacer (aligns with nav bar height) */}
-        <div className="h-[90px] flex-shrink-0 border-b" style={{ borderColor: "#DAD7CE" }} />
+        <div className="h-[110px] flex-shrink-0 border-b" style={{ borderColor: "#DAD7CE" }} />
 
         {/* Nav items */}
         <nav className="flex-1 px-8 py-8">

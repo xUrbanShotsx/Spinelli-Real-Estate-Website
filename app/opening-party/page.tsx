@@ -64,7 +64,7 @@ export default function OpeningPartyPage() {
       justifyContent: "center",
       paddingTop: "90px",
       boxSizing: "border-box",
-      padding: "90px 24px 0",
+      padding: "110px 24px 0",
     }}>
       <div style={{ width: "100%", maxWidth: "480px" }}>
 
