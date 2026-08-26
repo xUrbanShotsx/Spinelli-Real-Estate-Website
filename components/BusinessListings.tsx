@@ -55,7 +55,7 @@ export default function BusinessListings({ properties }: { properties: Property[
   const clearAll = () => setIndustry("All Industries");
 
   return (
-    <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
+    <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "60px" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 pb-8 mb-8" style={{ borderBottom: "1px solid #E8E5DF" }}>
           <div>

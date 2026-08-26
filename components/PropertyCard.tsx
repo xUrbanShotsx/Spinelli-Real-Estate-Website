@@ -12,11 +12,11 @@ export default function PropertyCard({
   blurred?: boolean;
   overlay?: boolean;
 }) {
-  // Build stats string like "3 BED — 2 BATH — 2 CAR"
+  // Build stats string like "3 BED — 2 BATH — 2 CAR" — skip zeros
   const stats: string[] = [];
-  if (property.beds !== undefined) stats.push(`${property.beds} BED`);
-  if (property.baths !== undefined) stats.push(`${property.baths} BATH`);
-  if (property.cars !== undefined) stats.push(`${property.cars} CAR`);
+  if (property.beds) stats.push(`${property.beds} BED`);
+  if (property.baths) stats.push(`${property.baths} BATH`);
+  if (property.cars) stats.push(`${property.cars} CAR`);
 
   const openHomeShort = property.openHome ? property.openHome : null;
 
@@ -53,7 +53,7 @@ export default function PropertyCard({
             {property.address}
           </p>
           <div className="flex items-center gap-4">
-            {property.beds !== undefined && (
+            {!!property.beds && (
               <span className="flex items-center gap-1.5 text-[13px] text-white/90">
                 <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9-4 9 4" />
@@ -61,7 +61,7 @@ export default function PropertyCard({
                 {property.beds}
               </span>
             )}
-            {property.baths !== undefined && (
+            {!!property.baths && (
               <span className="flex items-center gap-1.5 text-[13px] text-white/90">
                 <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M4 12V8a2 2 0 012-2h12a2 2 0 012 2v4M4 12v4a2 2 0 002 2h12a2 2 0 002-2v-4" />
@@ -69,7 +69,7 @@ export default function PropertyCard({
                 {property.baths}
               </span>
             )}
-            {property.cars !== undefined && (
+            {!!property.cars && (
               <span className="flex items-center gap-1.5 text-[13px] text-white/90">
                 <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H4a1 1 0 01-1-1v-5l2-5h14l2 5v5a1 1 0 01-1 1h-4" />

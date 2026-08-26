@@ -75,7 +75,7 @@ export default function SoldListings({ properties }: { properties: Property[] })
   const clearAll = () => setType("All");
 
   return (
-    <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
+    <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "60px" }}>
 
       {/* Header + filters */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8">

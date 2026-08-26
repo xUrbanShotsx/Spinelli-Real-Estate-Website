@@ -13,7 +13,7 @@ export default function CommercialListings({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section style={{ backgroundColor: "#ffffff", paddingTop: "60px", paddingBottom: "60px" }}>
+    <section style={{ backgroundColor: "#ffffff", paddingTop: "140px", paddingBottom: "60px" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="pb-8 mb-8" style={{ borderBottom: "1px solid #E8E5DF" }}>
           <span className="label-tag">Current Listings</span>
