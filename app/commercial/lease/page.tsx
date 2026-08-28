@@ -6,9 +6,20 @@ import { commercialProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Commercial Property For Lease | Spinelli Real Estate",
+  title: "Commercial Property For Lease Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "Commercial property for lease across the Illawarra — retail, office, industrial and specialty spaces. Spinelli Real Estate.",
+    "Commercial property for lease across the Illawarra — retail, office, industrial and specialty spaces in Wollongong, Kiama and Shellharbour. Spinelli Real Estate.",
+  keywords: [
+    "commercial property for lease Wollongong", "office space for lease Illawarra",
+    "retail space for lease Wollongong", "industrial lease Illawarra",
+    "commercial rent Wollongong", "business premises for lease Illawarra",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/commercial/lease" },
+  openGraph: {
+    title: "Commercial Property For Lease | Wollongong & Illawarra",
+    description: "Retail, office, industrial and specialty spaces for lease across the Illawarra.",
+    url: "https://www.spinellirealestate.com.au/commercial/lease",
+  },
 };
 
 export const revalidate = 300;

@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Investing Guide | Spinelli Real Estate",
+  title: "Property Investment Guide Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "How to build a successful property portfolio in the Illawarra. Investment advice from the Spinelli Real Estate team.",
+    "How to build a successful property portfolio in Wollongong, Kiama and the Illawarra. Rental yield, capital growth and market timing advice from Spinelli Real Estate.",
+  keywords: [
+    "property investment Wollongong", "investment property Illawarra", "buy investment property Wollongong",
+    "rental yield Illawarra", "property portfolio Wollongong", "best suburbs to invest Illawarra",
+    "investment property guide NSW",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/investing-guide" },
+  openGraph: {
+    title: "Property Investment in the Illawarra | Spinelli Guide",
+    description: "Build your property portfolio in the Illawarra. Rental yield, growth suburbs and timing tips.",
+    url: "https://www.spinellirealestate.com.au/investing-guide",
+  },
 };
 
 const steps = [

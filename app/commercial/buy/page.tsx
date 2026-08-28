@@ -6,9 +6,20 @@ import { commercialProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Commercial Property For Sale | Spinelli Real Estate",
+  title: "Commercial Property For Sale Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "Commercial property for sale across the Illawarra — retail, office, industrial and development sites. Spinelli Real Estate.",
+    "Commercial property for sale across the Illawarra — retail, office, industrial and development sites in Wollongong, Kiama and Shellharbour. Spinelli Real Estate.",
+  keywords: [
+    "commercial property for sale Wollongong", "commercial real estate Illawarra",
+    "office for sale Wollongong", "industrial property Illawarra", "retail space for sale Wollongong",
+    "commercial investment property Illawarra",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/commercial/buy" },
+  openGraph: {
+    title: "Commercial Property For Sale | Wollongong & Illawarra",
+    description: "Retail, office, industrial and development sites for sale across the Illawarra.",
+    url: "https://www.spinellirealestate.com.au/commercial/buy",
+  },
 };
 
 export const revalidate = 300;

@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large video/media files — serve from public dir but don't track in git
+public/*.mp4
+public/*.mov
+public/*.webm

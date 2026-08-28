@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Selling Guide | Spinelli Real Estate",
+  title: "Illawarra Property Selling Guide | Spinelli Real Estate",
   description:
-    "How to get the best result when selling your property in the Illawarra. Expert advice from the Spinelli Real Estate team.",
+    "How to get the best price when selling your home in Wollongong, Kiama or the Illawarra. Expert selling advice from Spinelli Real Estate — pricing, marketing, negotiation and settlement.",
+  keywords: [
+    "how to sell property Wollongong", "selling a house Illawarra", "property selling guide Wollongong",
+    "sell house Kiama tips", "property marketing Illawarra", "auction vs private sale Wollongong",
+    "best time to sell property Illawarra",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/selling-guide" },
+  openGraph: {
+    title: "Selling a Property in the Illawarra | Spinelli Guide",
+    description: "Get the best price for your home. Pricing, marketing, and negotiation tips from the experts.",
+    url: "https://www.spinellirealestate.com.au/selling-guide",
+  },
 };
 
 const steps = [

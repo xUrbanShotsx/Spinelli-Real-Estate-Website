@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Buying Guide | Spinelli Real Estate",
+  title: "Illawarra Property Buying Guide | Spinelli Real Estate",
   description:
-    "Everything you need to know about buying property in the Illawarra. Step-by-step guidance from the Spinelli Real Estate team.",
+    "Everything you need to know about buying property in Wollongong, Kiama and the Illawarra. Step-by-step guidance from Spinelli Real Estate — from pre-approval to settlement.",
+  keywords: [
+    "how to buy property Wollongong", "first home buyer Illawarra", "property buying guide Wollongong",
+    "buying a house Kiama", "property purchase guide Illawarra", "home loan Wollongong",
+    "first home buyer guide NSW",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/buying-guide" },
+  openGraph: {
+    title: "Buying a Property in the Illawarra | Spinelli Guide",
+    description: "Step-by-step buying guide from pre-approval to settlement. Illawarra's property experts.",
+    url: "https://www.spinellirealestate.com.au/buying-guide",
+  },
 };
 
 const steps = [

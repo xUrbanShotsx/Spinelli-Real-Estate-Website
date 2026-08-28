@@ -5,9 +5,19 @@ import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Sold Properties | Spinelli Real Estate",
+  title: "Recently Sold Properties Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "Browse recently sold properties across the Illawarra. See what homes are achieving in Wollongong, Kiama, Shellharbour and surrounds.",
+    "See what properties are selling for across the Illawarra. Browse recently sold homes in Wollongong, Kiama, Shellharbour and surrounds — real results from Spinelli Real Estate.",
+  keywords: [
+    "sold properties Wollongong", "recent sales Illawarra", "house sold Kiama",
+    "property sold prices Wollongong", "Illawarra sold results", "sold homes Shellharbour",
+  ],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/sold" },
+  openGraph: {
+    title: "Recently Sold Properties | Wollongong & Illawarra",
+    description: "See what Illawarra homes are achieving. Real results from Spinelli Real Estate.",
+    url: "https://www.spinellirealestate.com.au/sold",
+  },
 };
 
 export const revalidate = 300;
