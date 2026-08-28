@@ -5,9 +5,12 @@ import { fetchForSale, mapListing } from "@/lib/agentbox";
 import { residentialSaleProperties } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Properties For Sale | Spinelli Real Estate",
+  title: "Properties For Sale in Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "Browse residential properties for sale across the Illawarra — Wollongong, Kiama, Shellharbour, Thirroul and surrounds. Expert guidance from Spinelli Real Estate.",
+    "Browse houses, apartments and land for sale across Wollongong, Kiama, Shellharbour, Thirroul and the Illawarra. Real results from Spinelli Real Estate — the Illawarra's premier agency.",
+  keywords: ["houses for sale Wollongong", "property for sale Illawarra", "real estate Wollongong", "homes for sale Kiama", "property for sale Shellharbour", "Illawarra real estate listings"],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/buy" },
+  openGraph: { title: "Properties For Sale | Illawarra", description: "Houses, apartments and land for sale in Wollongong, Kiama and Shellharbour.", url: "https://www.spinellirealestate.com.au/buy" },
 };
 
 export const revalidate = 300; // refresh every 5 minutes

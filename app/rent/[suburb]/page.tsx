@@ -22,6 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Properties for Rent in ${suburb.name} | Spinelli Real Estate`,
     description: `Find rental properties in ${suburb.name}. Median weekly rent ${suburb.medianRent}. Houses, apartments and townhouses — managed by Spinelli Real Estate.`,
+    keywords: [`rental properties ${suburb.name}`, `houses for rent ${suburb.name}`, `${suburb.name} rentals`, `property management ${suburb.name}`, `apartments for rent ${suburb.name}`],
+    alternates: { canonical: `https://www.spinellirealestate.com.au/rent/${slug}` },
+    openGraph: { title: `Rental Properties in ${suburb.name}`, description: `Find rentals in ${suburb.name} — median ${suburb.medianRent}/wk. Spinelli Real Estate.`, url: `https://www.spinellirealestate.com.au/rent/${slug}` },
   };
 }
 

@@ -47,8 +47,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const suburb = suburbs.find((s) => s.slug === slug);
   if (!suburb) return {};
   return {
-    title: `${suburb.name} Property Guide | Spinelli Real Estate`,
-    description: `${suburb.name} suburb guide — median house ${suburb.medianHouse}, annual growth ${suburb.annualGrowth}. ${suburb.description}`,
+    title: `${suburb.name} Real Estate & Property Guide | Spinelli`,
+    description: `${suburb.name} property guide — median house price ${suburb.medianHouse}, annual growth ${suburb.annualGrowth}. Find houses for sale and rent in ${suburb.name} with Spinelli Real Estate.`,
+    keywords: [
+      `real estate ${suburb.name}`,
+      `property for sale ${suburb.name}`,
+      `houses for sale ${suburb.name}`,
+      `${suburb.name} real estate agent`,
+      `${suburb.name} property prices`,
+      `${suburb.name} median house price`,
+      `rent ${suburb.name}`,
+      `property management ${suburb.name}`,
+      `Spinelli Real Estate ${suburb.name}`,
+    ],
+    alternates: { canonical: `https://www.spinellirealestate.com.au/suburbs/${slug}` },
+    openGraph: {
+      title: `${suburb.name} Real Estate | Spinelli`,
+      description: `Median house ${suburb.medianHouse} · Annual growth ${suburb.annualGrowth} · ${suburb.description}`,
+      url: `https://www.spinellirealestate.com.au/suburbs/${slug}`,
+    },
   };
 }
 
@@ -60,8 +77,47 @@ export default async function SuburbPage({ params }: Props) {
   const heroImage = suburbImages[suburb.slug] ?? fallbackImage;
 
 
+  const schemaData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.spinellirealestate.com.au" },
+        { "@type": "ListItem", "position": 2, "name": "Suburbs", "item": "https://www.spinellirealestate.com.au/suburbs" },
+        { "@type": "ListItem", "position": 3, "name": suburb.name, "item": `https://www.spinellirealestate.com.au/suburbs/${suburb.slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": `What is the median house price in ${suburb.name}?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `The median house price in ${suburb.name} is ${suburb.medianHouse}, with annual growth of ${suburb.annualGrowth}.` },
+        },
+        {
+          "@type": "Question",
+          "name": `What is the median rental price in ${suburb.name}?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `The median rental price in ${suburb.name} is ${suburb.medianRent} per week.` },
+        },
+        {
+          "@type": "Question",
+          "name": `How far is ${suburb.name} from Sydney?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `${suburb.name} is approximately ${suburb.distanceFromSydney} from Sydney.` },
+        },
+        {
+          "@type": "Question",
+          "name": `Is Spinelli Real Estate the best agent in ${suburb.name}?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `Spinelli Real Estate is a leading boutique agency in the Illawarra region, specialising in ${suburb.name} and surrounding suburbs. Contact us for a free property appraisal.` },
+        },
+      ],
+    },
+  ];
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       {/* ── Hero ── */}
       <section className="relative" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
 

@@ -5,9 +5,12 @@ import { fetchForLease, mapListing } from "@/lib/agentbox";
 import { residentialRentProperties } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Properties For Rent | Illawarra Rentals",
+  title: "Rental Properties Wollongong & Illawarra | Spinelli Real Estate",
   description:
-    "Search rental properties across the Illawarra — houses, apartments and townhouses for rent in Wollongong, Kiama, Shellharbour and surrounds.",
+    "Find houses, apartments and townhouses for rent in Wollongong, Kiama, Shellharbour and across the Illawarra. Managed by Spinelli Real Estate — Illawarra's trusted property managers.",
+  keywords: ["rental properties Wollongong", "houses for rent Illawarra", "property for rent Kiama", "Wollongong rentals", "Shellharbour rentals", "Illawarra property management"],
+  alternates: { canonical: "https://www.spinellirealestate.com.au/rent" },
+  openGraph: { title: "Rental Properties | Illawarra", description: "Houses, apartments and townhouses for rent in Wollongong, Kiama and Shellharbour.", url: "https://www.spinellirealestate.com.au/rent" },
 };
 
 export const revalidate = 300;
