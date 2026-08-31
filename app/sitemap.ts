@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Core pages ────────────────────────────────────────────
     url("/", 1.0, "daily"),
     url("/buy", 0.95, "hourly"),
+    url("/prestige", 0.9, "weekly"),
     url("/rent", 0.95, "hourly"),
     url("/sell", 0.9, "weekly"),
     url("/sold", 0.85, "daily"),

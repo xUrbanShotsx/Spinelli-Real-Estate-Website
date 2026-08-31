@@ -8,6 +8,7 @@ const navItems = [
     label: "Buy",
     dropdown: [
       { label: "Residential", href: "/buy", sub: "Browse residential listings" },
+      { label: "Prestige", href: "/prestige", sub: "Exceptional homes & estates" },
       { label: "Commercial", href: "/commercial/buy", sub: "Office, retail & industrial" },
       { label: "Business", href: "/business", sub: "Buy or sell a business" },
     ],
@@ -57,7 +58,7 @@ export default function Navbar() {
   // Pages with no hero image — navbar is always solid at the top.
   // Individual project detail pages (/projects/[id]) are excluded so the
   // navbar starts transparent over the dark split hero and goes solid on scroll.
-  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/commercial/buy", "/commercial/lease", "/business", "/suburbs", "/contact", "/about", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects", "/opening-party"];
+  const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/commercial/buy", "/commercial/lease", "/business", "/suburbs", "/contact", "/about", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects", "/opening-party", "/prestige"];
   const isProjectDetail = /^\/projects\/.+/.test(pathname);
   const isLightPage = !isProjectDetail && lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
