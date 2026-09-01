@@ -13,6 +13,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.spinellirealestate.com.au"),
+  verification: {
+    google: "-ug82KyStzhXT8bLbAQoIlydQnVJH6K7eZBq3Lz_DUc",
+  },
   title: {
     default: "Spinelli Real Estate | Illawarra's Premier Agency",
     template: "%s | Spinelli Real Estate",
