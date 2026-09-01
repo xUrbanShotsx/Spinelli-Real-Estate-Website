@@ -140,10 +140,10 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
                   borderLeft: i === 0 ? "none" : "1px solid #E8E5DF",
                 }}
               >
-                <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(1rem, 1.6vw, 1.5rem)" : "clamp(1.4rem, 2.4vw, 2.4rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1, marginBottom: "6px", whiteSpace: "nowrap" }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(1.2rem, 2vw, 2rem)" : "clamp(2rem, 3.5vw, 3.5rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1, marginBottom: "8px", whiteSpace: "nowrap" }}>
                   {s.v}
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#a2b0aa", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.16em", textTransform: "uppercase" }}>
                   {s.l}
                 </p>
               </div>
