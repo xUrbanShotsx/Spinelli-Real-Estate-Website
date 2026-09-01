@@ -40,6 +40,7 @@ export default function PrestigeContent() {
           <HeroText />
         </div>
 
+
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "32px" }}>
           <div style={{ width: "1px", flex: 1, backgroundColor: "rgba(13,51,72,0.15)" }} />
         </div>
@@ -208,6 +209,27 @@ export default function PrestigeContent() {
         </div>
       </section>
     </>
+  );
+}
+
+function HeroText() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setVisible(true), 150); return () => clearTimeout(t); }, []);
+  return (
+    <p style={{
+      fontFamily: "var(--font-display)",
+      fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)",
+      color: "#0D3348",
+      fontWeight: 300,
+      lineHeight: 1.55,
+      letterSpacing: "-0.01em",
+      textAlign: "center",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(16px)",
+      transition: "opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s",
+    }}>
+      An exclusive collection of the Illawarra&apos;s finest homes — curated for those who demand the exceptional.
+    </p>
   );
 }
 
