@@ -12,5 +12,16 @@ export interface PrestigeListing {
 }
 
 export const prestigeListings: PrestigeListing[] = [
-  // Add listings here — each card links to /property/[id]
+  {
+    id: "1P0000",               // ← replace with the AgentBox listing ID
+    name: "32 Larkins Lane",
+    suburb: "Yallah",
+    address: "32 Larkins Lane, Yallah NSW 2530",
+    price: "Contact Agent",
+    beds: 4,
+    baths: 2,
+    cars: 2,
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1800&h=1200&fit=crop&q=80",
+    tag: "For Sale",
+  },
 ];
