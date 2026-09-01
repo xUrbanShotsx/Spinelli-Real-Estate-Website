@@ -154,9 +154,11 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
 
       {/* ── FULL-WIDTH IMAGE ── */}
       <div
-        style={{ height: "clamp(300px, 55vw, 600px)", backgroundImage: `url(${wideImg})`, backgroundSize: "cover", backgroundPosition: "50% 50%", cursor: "zoom-in" }}
+        style={{ position: "relative", height: "clamp(300px, 55vw, 600px)", cursor: "zoom-in", overflow: "hidden" }}
         onClick={() => setLightboxImg(wideImg)}
-      />
+      >
+        <Image src={wideImg} alt={listing.name} fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+      </div>
 
       {/* ── DESCRIPTION ── */}
       {listing.longDescription && (
