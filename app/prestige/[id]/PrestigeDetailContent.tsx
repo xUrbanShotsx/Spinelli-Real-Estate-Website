@@ -119,26 +119,29 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
         </div>
 
         {/* Bottom panel */}
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4" style={{ backgroundColor: "#ffffff", padding: "clamp(20px, 2.5vw, 36px) clamp(24px, 4vw, 64px)", overflow: "hidden" }}>
-          <div>
-            <Link href="/prestige" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", marginBottom: "12px" }}>
+        <div style={{ backgroundColor: "#ffffff", padding: "0 clamp(24px, 4vw, 64px)", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+          {/* Row 1: back link + address */}
+          <div style={{ display: "flex", alignItems: "baseline", gap: "20px", paddingTop: "clamp(16px, 2vw, 28px)", paddingBottom: "clamp(14px, 1.8vw, 22px)", borderBottom: "1px solid #E8E5DF" }}>
+            <Link href="/prestige" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}>
               ← Prestige
             </Link>
-            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2.4rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 1.8vw, 2rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {listing.address}
             </p>
           </div>
-          <div className="hidden md:flex" style={{ gap: "32px", flexWrap: "wrap" }}>
+
+          {/* Row 2: stats */}
+          <div style={{ display: "flex", alignItems: "stretch", paddingTop: "clamp(14px, 1.8vw, 22px)", paddingBottom: "clamp(16px, 2vw, 28px)", gap: "0", overflowX: "auto" }}>
             {[
               { v: listing.price, l: "Price Guide" },
-              { v: `${listing.beds} Bed`, l: "Bedrooms" },
-              { v: `${listing.baths} Bath`, l: "Bathrooms" },
-              { v: `${listing.cars} Car`, l: "Garage" },
-              ...(listing.landSize ? [{ v: listing.landSize, l: "Land Size" }] : []),
-            ].map((s) => (
-              <div key={s.l}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 1.5vw, 1.3rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "2px" }}>{s.v}</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase" }}>{s.l}</p>
+              { v: `${listing.beds}`, l: "Bed" },
+              { v: `${listing.baths}`, l: "Bath" },
+              { v: `${listing.cars}`, l: "Car" },
+              ...(listing.landSize ? [{ v: listing.landSize, l: "Land" }] : []),
+            ].map((s, i) => (
+              <div key={s.l} style={{ paddingRight: "clamp(20px, 3vw, 40px)", paddingLeft: i === 0 ? 0 : "clamp(20px, 3vw, 40px)", borderLeft: i === 0 ? "none" : "1px solid #E8E5DF", flexShrink: 0 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(0.95rem, 1.4vw, 1.25rem)" : "clamp(1.1rem, 1.6vw, 1.5rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "5px", whiteSpace: "nowrap" }}>{s.v}</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#a2b0aa", letterSpacing: "0.14em", textTransform: "uppercase" }}>{s.l}</p>
               </div>
             ))}
           </div>
