@@ -154,9 +154,11 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
       {/* ── DESCRIPTION ── */}
       {listing.longDescription && (
         <TextBlock heading={<>The<br />Property.</>}>
-          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.45, letterSpacing: "-0.02em" }}>
-            {listing.longDescription}
-          </p>
+          {listing.longDescription.split("\n\n").map((para, i) => (
+            <p key={i} style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 2.2vw, 2rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.45, letterSpacing: "-0.02em", marginBottom: i < listing.longDescription!.split("\n\n").length - 1 ? "1.4em" : 0 }}>
+              {para}
+            </p>
+          ))}
         </TextBlock>
       )}
 
@@ -193,9 +195,16 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
       {/* ── ADDITIONAL INFO ── */}
       {listing.additionalInfo && (
         <TextBlock heading={<>The<br />Details.</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
-          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.55, letterSpacing: "-0.02em" }}>
-            {listing.additionalInfo}
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "24px" }}>
+            Highlights
           </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+            {listing.additionalInfo.split("\n").filter(Boolean).map((line, i) => (
+              <p key={i} style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.2vw, 14px)", color: "#0a172d", fontWeight: 400, lineHeight: 1.7, letterSpacing: "0.01em", paddingBottom: "14px", borderBottom: "1px solid #E8E5DF" }}>
+                {line}
+              </p>
+            ))}
+          </div>
         </TextBlock>
       )}
 
