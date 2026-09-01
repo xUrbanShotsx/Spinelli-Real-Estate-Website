@@ -118,20 +118,20 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
           </div>
         </div>
 
-        {/* Bottom panel */}
-        <div style={{ backgroundColor: "#ffffff", padding: "0 clamp(24px, 4vw, 64px)", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
-          {/* Row 1: back link + address */}
-          <div style={{ display: "flex", alignItems: "baseline", gap: "20px", paddingTop: "clamp(16px, 2vw, 28px)", paddingBottom: "clamp(14px, 1.8vw, 22px)", borderBottom: "1px solid #E8E5DF" }}>
-            <Link href="/prestige" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "#a2b0aa", letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}>
-              ← Prestige
+        {/* Bottom panel — dark prestige */}
+        <div style={{ backgroundColor: "#0D3348", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(20px, 2.5vw, 36px) clamp(24px, 4vw, 64px)" }}>
+          {/* Back + address */}
+          <div>
+            <Link href="/prestige" style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", display: "inline-block", marginBottom: "14px" }}>
+              ← Prestige Collection
             </Link>
-            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 1.8vw, 2rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 1.8vw, 2.2rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
               {listing.address}
             </p>
           </div>
 
-          {/* Row 2: stats */}
-          <div style={{ display: "flex", alignItems: "stretch", paddingTop: "clamp(14px, 1.8vw, 22px)", paddingBottom: "clamp(16px, 2vw, 28px)", gap: "0", overflowX: "auto" }}>
+          {/* Stats row */}
+          <div style={{ display: "flex", gap: "0", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "clamp(14px, 1.8vw, 22px)", overflowX: "auto" }}>
             {[
               { v: listing.price, l: "Price Guide" },
               { v: `${listing.beds}`, l: "Bed" },
@@ -139,9 +139,9 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
               { v: `${listing.cars}`, l: "Car" },
               ...(listing.landSize ? [{ v: listing.landSize, l: "Land" }] : []),
             ].map((s, i) => (
-              <div key={s.l} style={{ paddingRight: "clamp(20px, 3vw, 40px)", paddingLeft: i === 0 ? 0 : "clamp(20px, 3vw, 40px)", borderLeft: i === 0 ? "none" : "1px solid #E8E5DF", flexShrink: 0 }}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(0.95rem, 1.4vw, 1.25rem)" : "clamp(1.1rem, 1.6vw, 1.5rem)", color: "#0a172d", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "5px", whiteSpace: "nowrap" }}>{s.v}</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "#a2b0aa", letterSpacing: "0.14em", textTransform: "uppercase" }}>{s.l}</p>
+              <div key={s.l} style={{ paddingRight: "clamp(16px, 2.5vw, 36px)", paddingLeft: i === 0 ? 0 : "clamp(16px, 2.5vw, 36px)", borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,255,0.12)", flexShrink: 0 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(0.85rem, 1.2vw, 1.1rem)" : "clamp(1rem, 1.4vw, 1.35rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "5px", whiteSpace: "nowrap" }}>{s.v}</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "8px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.16em", textTransform: "uppercase" }}>{s.l}</p>
               </div>
             ))}
           </div>
