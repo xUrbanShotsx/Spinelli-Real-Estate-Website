@@ -99,43 +99,9 @@ export default function PrestigeContent() {
 
                   {/* Centred content */}
                   <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 clamp(24px, 8vw, 120px)" }}>
-                    {listing.tag && (
-                      <span style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "9px",
-                        fontWeight: 600,
-                        letterSpacing: "0.18em",
-                        textTransform: "uppercase",
-                        color: "#ffffff",
-                        backgroundColor: "#5BC2E7",
-                        padding: "5px 16px",
-                        marginBottom: "28px",
-                        display: "inline-block",
-                      }}>
-                        {listing.tag}
-                      </span>
-                    )}
-
-                    <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 7vw, 7.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.92, marginBottom: "20px" }}>
+                    <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 7vw, 7.5rem)", color: "#ffffff", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.92, marginBottom: "36px" }}>
                       {listing.name}
                     </h2>
-
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.2vw, 12px)", color: "rgba(255,255,255,0.5)", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "12px" }}>
-                      {listing.suburb}
-                    </p>
-
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.1vw, 11px)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "8px" }}>
-                      {listing.address}
-                    </p>
-
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 1.8vw, 1.5rem)", color: "rgba(255,255,255,0.85)", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "12px" }}>
-                      {listing.price}
-                    </p>
-
-                    {/* Bed / Bath / Car / Land */}
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.1vw, 11px)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "36px" }}>
-                      {listing.beds} BED · {listing.baths} BATH · {listing.cars} CAR{listing.landSize ? ` · ${listing.landSize}` : ""}
-                    </p>
 
                     <Link
                       href={`/prestige/${listing.id}`}
