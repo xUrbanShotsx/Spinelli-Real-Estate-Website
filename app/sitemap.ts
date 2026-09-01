@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { suburbs } from "@/lib/data";
 import { projects } from "@/app/projects/data";
+import { prestigeListings } from "@/app/prestige/data";
 
 const BASE = "https://www.spinellirealestate.com.au";
 
@@ -57,5 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // ── Projects ──────────────────────────────────────────────
     ...projects.map((p) => url(`/projects/${p.id}`, 0.8, "monthly")),
+
+    // ── Prestige ──────────────────────────────────────────────
+    ...prestigeListings.map((p) => url(`/prestige/${p.id}`, 0.85, "weekly")),
   ];
 }

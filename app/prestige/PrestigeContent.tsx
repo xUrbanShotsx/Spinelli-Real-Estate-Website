@@ -132,13 +132,13 @@ export default function PrestigeContent() {
                       {listing.price}
                     </p>
 
-                    {/* Bed / Bath / Car */}
+                    {/* Bed / Bath / Car / Land */}
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(10px, 1.1vw, 11px)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "36px" }}>
-                      {listing.beds} BED · {listing.baths} BATH · {listing.cars} CAR
+                      {listing.beds} BED · {listing.baths} BATH · {listing.cars} CAR{listing.landSize ? ` · ${listing.landSize}` : ""}
                     </p>
 
                     <Link
-                      href={`/property/${listing.id}`}
+                      href={`/prestige/${listing.id}`}
                       style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0D3348", backgroundColor: "#ffffff", padding: "13px 28px", textDecoration: "none" }}
                     >
                       View Property
