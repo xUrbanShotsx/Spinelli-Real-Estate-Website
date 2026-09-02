@@ -16,6 +16,7 @@ export interface PrestigeListing {
   tag?: string;
   mapLat?: number;
   mapLng?: number;
+  enquireUrl?: string;
 }
 
 export const prestigeListings: PrestigeListing[] = [
@@ -45,5 +46,6 @@ export const prestigeListings: PrestigeListing[] = [
     tag: "For Sale",
     mapLat: -34.5426,
     mapLng: 150.7799,
+    enquireUrl: "https://www.spinellirealestate.com.au/property/1P1984/enquire",
   },
 ];

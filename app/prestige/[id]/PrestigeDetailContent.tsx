@@ -223,7 +223,7 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
           Contact our prestige team for a private inspection, detailed information pack, or to make an offer.
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <Link href={`/contact?property=${listing.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}>
+          <Link href={listing.enquireUrl ?? `/contact?property=${listing.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}>
             Make an Enquiry
             <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
           </Link>
