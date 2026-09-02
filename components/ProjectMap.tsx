@@ -41,9 +41,15 @@ export default function ProjectMap({ lat, lng, zoom = 15 }: Props) {
         doubleClickZoom: true,
       });
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 20,
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      // Base: light grey canvas (Esri — free, no API key)
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 16,
+        attribution: "Tiles © Esri",
+      }).addTo(map);
+
+      // Labels layer
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 16,
       }).addTo(map);
 
       L.marker([lat, lng], { icon: blueIcon }).addTo(map);
