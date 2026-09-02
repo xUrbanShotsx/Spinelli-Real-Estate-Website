@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Core pages ────────────────────────────────────────────
     url("/", 1.0, "daily"),
     url("/buy", 0.95, "hourly"),
-    url("/prestige", 0.9, "weekly"),
+    url("/prestige", 0.95, "daily"),
     url("/rent", 0.95, "hourly"),
     url("/sell", 0.9, "weekly"),
     url("/sold", 0.85, "daily"),
@@ -60,6 +60,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...projects.map((p) => url(`/projects/${p.id}`, 0.8, "monthly")),
 
     // ── Prestige ──────────────────────────────────────────────
-    ...prestigeListings.map((p) => url(`/prestige/${p.id}`, 0.85, "weekly")),
+    ...prestigeListings.map((p) => url(`/prestige/${p.id}`, 0.9, "daily")),
   ];
 }
