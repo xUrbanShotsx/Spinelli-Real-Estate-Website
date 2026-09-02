@@ -36,21 +36,14 @@ export default function ProjectMap({ lat, lng, zoom = 15 }: Props) {
         zoom,
         zoomControl: false,
         scrollWheelZoom: false,
-        attributionControl: false,
+        attributionControl: true,
         dragging: true,
         doubleClickZoom: true,
       });
 
-      // Base: clean streets, no labels
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-        subdomains: "abcd",
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 20,
-      }).addTo(map);
-
-      // Labels only (suburb + place names from tile server — accurate positions)
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png", {
-        subdomains: "abcd",
-        maxZoom: 20,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
       L.marker([lat, lng], { icon: blueIcon }).addTo(map);
