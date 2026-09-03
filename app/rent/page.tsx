@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Rental Properties | Illawarra", description: "Houses, apartments and townhouses for rent in Wollongong, Kiama and Shellharbour.", url: "https://www.spinellirealestate.com.au/rent" },
 };
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export default async function RentPage() {
   let properties = residentialRentProperties;

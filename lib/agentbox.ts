@@ -95,7 +95,7 @@ export interface ABListingsResponse {
 
 export async function fetchListings(
   params: Record<string, string> = {},
-  revalidate = 300
+  revalidate = 60
 ): Promise<ABListingsResponse> {
   // mainImage is the correct include for list endpoint (images only works on detail)
   const res = await fetch(url("/listings", { include: "mainImage,description,inspectionDates", ...params }), {
@@ -109,7 +109,7 @@ export async function fetchListings(
 
 export async function fetchAllListings(
   params: Record<string, string> = {},
-  revalidate = 300
+  revalidate = 60
 ): Promise<ABListing[]> {
   const all: ABListing[] = [];
   let page = 1;
@@ -123,7 +123,7 @@ export async function fetchAllListings(
   return all;
 }
 
-export async function fetchListing(id: string, revalidate = 300): Promise<ABListing> {
+export async function fetchListing(id: string, revalidate = 60): Promise<ABListing> {
   const res = await fetch(
     url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates" }),
     { headers: headers(), next: { revalidate } }
