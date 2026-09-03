@@ -62,13 +62,6 @@ export default function PrestigeContent() {
         </div>
       </section>
 
-      {/* SEO content block — visually subtle, crawlable */}
-      <div style={{ backgroundColor: "#ffffff", padding: "0 clamp(24px, 8vw, 120px) 80px", maxWidth: "900px", margin: "0 auto" }}>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(10,23,45,0.35)", lineHeight: 1.9, letterSpacing: "0.03em", textAlign: "center" }}>
-          Spinelli Real Estate presents an exclusive collection of prestige properties across the Illawarra and South Coast — including luxury homes, acreage estates, and multi-million dollar residences in Wollongong, Kiama, Shellharbour, Dapto, and surrounding suburbs. Our prestige division specialises in exceptional homes that are rarely offered to the open market, delivering discreet and tailored service to buyers and vendors of high-value property in NSW.
-        </p>
-      </div>
-
       {hasListings ? (
         <>
           {/* ── Scroll counter ── */}
