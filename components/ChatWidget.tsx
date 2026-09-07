@@ -85,6 +85,7 @@ export default function ChatWidget() {
           flexDirection: "column",
           zIndex: 9998,
           border: "1px solid #e4f4fb",
+          borderRadius: "20px",
           overflow: "hidden",
         }}>
 
@@ -183,7 +184,7 @@ export default function ChatWidget() {
           {/* Disclaimer */}
           <div style={{ padding: "6px 14px 10px", backgroundColor: "#ffffff" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "9.5px", color: "#94b8c6", textAlign: "center", lineHeight: 1.5, letterSpacing: "0.02em" }}>
-              AI responses are for general guidance only and do not constitute professional real estate advice. Always consult a licensed agent for specific property decisions.
+              AI responses are for general guidance only — consult a licensed agent for specific advice.
             </p>
           </div>
         </div>
