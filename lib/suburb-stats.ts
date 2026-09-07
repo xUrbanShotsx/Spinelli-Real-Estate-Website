@@ -178,43 +178,75 @@ function parseNextData(data: unknown, suburb: string, postcode: string, url: str
   };
 }
 
+const SCRAPE_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+  "Accept-Language": "en-AU,en;q=0.9",
+  "Cache-Control": "no-cache",
+  Pragma: "no-cache",
+};
+
+/** Try Domain.com.au suburb profile */
+async function tryDomain(slug: string, postcode: string, suburbKey: string): Promise<SuburbStats | null> {
+  const url = `https://www.domain.com.au/suburb-profile/${slug}-nsw-${postcode}`;
+  try {
+    const res = await fetch(url, { headers: SCRAPE_HEADERS, signal: AbortSignal.timeout(8_000), cache: "no-store" });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const match = html.match(/<script[^>]*id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+    if (!match?.[1]) return null;
+    return parseNextData(JSON.parse(match[1]), suburbKey, postcode, url);
+  } catch {
+    return null;
+  }
+}
+
+/** Try realestate.com.au neighbourhood profile */
+async function tryREA(slug: string, postcode: string, suburbKey: string): Promise<SuburbStats | null> {
+  const reaSlug = `${slug}-${postcode}-nsw`;
+  const url = `https://www.realestate.com.au/neighbourhoods/${reaSlug}`;
+  try {
+    const res = await fetch(url, { headers: SCRAPE_HEADERS, signal: AbortSignal.timeout(8_000), cache: "no-store" });
+    if (!res.ok) return null;
+    const html = await res.text();
+    // REA embeds __NEXT_DATA__ as well
+    const match = html.match(/<script[^>]*id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+    if (!match?.[1]) return null;
+    const nextData = JSON.parse(match[1]);
+    // REA uses different key paths — try common ones
+    const props = (nextData.props as Record<string, unknown>)?.pageProps as Record<string, unknown> | undefined;
+    const profile = props?.neighbourhoodProfile ?? props?.suburbProfile ?? props;
+    const medianHousePrice = deepFind(profile, "medianSalePrice", "medianPrice", "medianHousePrice");
+    const avgDaysOnMarket = deepFind(profile, "daysOnMarket", "medianDaysOnMarket");
+    const soldLast12Months = deepFind(profile, "numberSold", "soldCount", "salesVolume");
+    const medianWeeklyRent = deepFind(profile, "medianRentListingPrice", "medianWeeklyRent");
+    if (!medianHousePrice && !avgDaysOnMarket) return null;
+    return {
+      suburb: suburbKey,
+      postcode,
+      medianHousePrice,
+      medianUnitPrice: deepFind(profile, "medianUnitPrice", "medianApartmentPrice"),
+      medianWeeklyRent,
+      avgDaysOnMarket: avgDaysOnMarket ? Math.round(avgDaysOnMarket) : null,
+      soldLast12Months: soldLast12Months ? Math.round(soldLast12Months) : null,
+      source: "realestate.com.au",
+      sourceUrl: url,
+      asOf: new Date().toLocaleDateString("en-AU"),
+    };
+  } catch {
+    return null;
+  }
+}
+
 async function fetchStats(suburbKey: string): Promise<SuburbStats | null> {
   const normalised = suburbKey.toLowerCase().trim();
   const postcode = POSTCODES[normalised];
   if (!postcode) return null;
-
   const slug = normalised.replace(/\s+/g, "-");
-  const url = `https://www.domain.com.au/suburb-profile/${slug}-nsw-${postcode}`;
 
-  try {
-    const res = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-AU,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        "Sec-Fetch-Dest": "document",
-        "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "none",
-      },
-      signal: AbortSignal.timeout(10_000),
-      cache: "no-store",
-    });
-
-    if (!res.ok) return null;
-    const html = await res.text();
-
-    // Extract __NEXT_DATA__ JSON blob
-    const match = html.match(/<script[^>]*id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-    if (!match?.[1]) return null;
-
-    const nextData = JSON.parse(match[1]);
-    return parseNextData(nextData, suburbKey, postcode, url);
-  } catch {
-    return null;
-  }
+  // Try Domain first, fall back to REA
+  const result = await tryDomain(slug, postcode, normalised) ?? await tryREA(slug, postcode, normalised);
+  return result;
 }
 
 /** Get suburb stats with 24-hour in-memory cache */
