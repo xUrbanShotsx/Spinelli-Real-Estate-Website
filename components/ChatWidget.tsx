@@ -1,7 +1,11 @@
 "use client";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+
+// useLayoutEffect fires synchronously before paint — prevents any flash.
+// Falls back to useEffect on the server (SSR) where window doesn't exist.
+const useSyncEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface PropertyCard {
@@ -392,14 +396,16 @@ export default function ChatWidget() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Hero hide logic — only wires up scroll listener on home page
-  useEffect(() => {
+  // Hero hide logic — runs before paint to prevent any visible flash
+  useSyncEffect(() => {
     if (!isHome) {
-      setScrolledPastHero(false); // reset for next visit to home
+      setScrolledPastHero(false);
       return;
     }
-    function onScroll() { setScrolledPastHero(window.scrollY >= window.innerHeight); }
-    onScroll(); // check immediately on mount / navigation
+    // Capture hero height once so mobile browser-chrome resize can't shift the threshold
+    const heroHeight = window.innerHeight;
+    function onScroll() { setScrolledPastHero(window.scrollY >= heroHeight); }
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
