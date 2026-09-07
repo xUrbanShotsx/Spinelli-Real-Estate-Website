@@ -296,7 +296,7 @@ export default function ChatWidget() {
   // Hero hide logic
   useEffect(() => {
     if (!isHome) { setHidden(false); return; }
-    function onScroll() { setHidden(window.scrollY < window.innerHeight * 0.85); }
+    function onScroll() { setHidden(window.scrollY < window.innerHeight); }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
