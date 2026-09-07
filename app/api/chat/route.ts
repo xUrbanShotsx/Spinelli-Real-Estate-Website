@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SYSTEM_PROMPT, CHAT_CONFIG } from "@/lib/chat-config";
 import { searchProperties, getPropertyById, getPropertyInspections, OFFICE_INFO } from "@/lib/property-search";
-import { calculateDuty, calculateDeposit, calculateRepayment, formatAUD } from "@/lib/stamp-duty";
+import { calculateDuty, calculateDeposit, calculateRepayment, calculateRentalYield, formatAUD } from "@/lib/stamp-duty";
 import { submitLead, type LeadData, type LeadType, type LeadScore } from "@/lib/lead-service";
+import { getSuburbStats, formatPrice } from "@/lib/suburb-stats";
+import { lookupAgent } from "@/lib/agents";
 
 // ─── Rate limiting (in-memory, per serverless instance) ───────────────────────
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -164,6 +166,50 @@ const TOOLS = [
       parameters: { type: "object", properties: {}, required: [] },
     },
   },
+  {
+    type: "function",
+    function: {
+      name: "calculate_rental_yield",
+      description: "Calculate gross and net rental yield for an investment property. Use when someone asks about yield, rental return, investment potential, or cash flow.",
+      parameters: {
+        type: "object",
+        properties: {
+          purchasePrice: { type: "number", description: "Purchase price of the property in AUD" },
+          weeklyRent: { type: "number", description: "Expected weekly rent in AUD" },
+        },
+        required: ["purchasePrice", "weeklyRent"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "get_suburb_stats",
+      description: "Get live suburb market stats: median house price, median unit price, average days on market, and number of properties sold in the past 12 months. Use when someone asks about a suburb's market, property values, or how long homes take to sell.",
+      parameters: {
+        type: "object",
+        properties: {
+          suburb: { type: "string", description: "Suburb name (e.g. Shell Cove, Warilla, Kiama)" },
+        },
+        required: ["suburb"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "get_agent",
+      description: "Get the Spinelli agent best suited for an enquiry, or find a specific agent by name. Use when someone asks 'who handles X', 'who's the agent for Y suburb', 'can I speak to someone about property management', or mentions an agent's name.",
+      parameters: {
+        type: "object",
+        properties: {
+          enquiryType: { type: "string", enum: ["sales", "buy", "sell", "rent", "property-management", "commercial", "general"], description: "Type of enquiry" },
+          nameQuery: { type: "string", description: "Agent name to search for (partial match)" },
+        },
+        required: [],
+      },
+    },
+  },
 ];
 
 // ─── Execute a tool call ───────────────────────────────────────────────────────
@@ -288,6 +334,69 @@ async function executeTool(name: string, args: Record<string, unknown>, pageCont
     case "get_office_info":
       return { result: OFFICE_INFO };
 
+    case "calculate_rental_yield": {
+      const price = Number(args.purchasePrice);
+      const rent = Number(args.weeklyRent);
+      const r = calculateRentalYield(price, rent);
+      const comp: ChatComponent = {
+        type: "calculator_result",
+        data: {
+          title: "Rental Yield Estimate",
+          rows: [
+            { label: "Purchase price", value: formatAUD(r.purchasePrice) },
+            { label: "Weekly rent", value: formatAUD(r.weeklyRent) },
+            { label: "Annual rent", value: formatAUD(r.annualRent) },
+            { label: "Gross yield", value: `${r.grossYieldPct}% p.a.`, highlight: true },
+            { label: "Net yield (est.)", value: `${r.netYieldPct}% p.a.` },
+            { label: "Weekly cash flow (80% LVR @ 6.5%)", value: `${r.cashflowWeekly >= 0 ? "+" : ""}${formatAUD(r.cashflowWeekly)}` },
+          ],
+          disclaimer: "Net yield assumes ~25% of gross rent for expenses. Cash flow is indicative at 80% LVR, 6.5% p.a., 30-year term. Not financial advice — confirm with your accountant and lender.",
+        },
+      };
+      return { result: r, component: comp };
+    }
+
+    case "get_suburb_stats": {
+      const suburb = String(args.suburb ?? "");
+      const stats = await getSuburbStats(suburb);
+      if (!stats) {
+        return { result: { error: `No suburb stats found for ${suburb}. It may not be in our coverage area.` } };
+      }
+      const comp: ChatComponent = {
+        type: "suburb_stats",
+        data: {
+          suburb: stats.suburb,
+          postcode: stats.postcode,
+          medianHousePrice: stats.medianHousePrice,
+          medianUnitPrice: stats.medianUnitPrice,
+          medianWeeklyRent: stats.medianWeeklyRent,
+          avgDaysOnMarket: stats.avgDaysOnMarket,
+          soldLast12Months: stats.soldLast12Months,
+          source: stats.source,
+          sourceUrl: stats.sourceUrl,
+          asOf: stats.asOf,
+          formattedHousePrice: formatPrice(stats.medianHousePrice),
+          formattedUnitPrice: formatPrice(stats.medianUnitPrice),
+        },
+      };
+      return { result: stats, component: comp };
+    }
+
+    case "get_agent": {
+      const agents = lookupAgent({
+        enquiryType: args.enquiryType as "sales" | "buy" | "sell" | "rent" | "property-management" | "commercial" | "general" | undefined,
+        nameQuery: args.nameQuery as string | undefined,
+      });
+      if (!agents.length) {
+        return { result: { agents: [], message: "No agents found matching that query." } };
+      }
+      const comp: ChatComponent = {
+        type: "agent_cards",
+        agents,
+      };
+      return { result: { agents: agents.map(a => ({ name: a.name, role: a.role, phone: a.phone })) }, component: comp };
+    }
+
     default:
       return { result: { error: `Unknown tool: ${name}` } };
   }
@@ -304,9 +413,10 @@ interface PageContext {
 }
 
 interface ChatComponent {
-  type: "property_cards" | "calculator_result" | "inspection_times" | "quick_replies";
+  type: "property_cards" | "calculator_result" | "inspection_times" | "quick_replies" | "suburb_stats" | "agent_cards";
   properties?: unknown[];
   inspections?: unknown[];
+  agents?: unknown[];
   data?: Record<string, unknown>;
   items?: string[];
 }

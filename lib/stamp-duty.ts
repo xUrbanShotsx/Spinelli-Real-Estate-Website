@@ -123,6 +123,38 @@ export function calculateDeposit(purchasePrice: number): { p5: number; p10: numb
   };
 }
 
+export interface RentalYieldResult {
+  purchasePrice: number;
+  weeklyRent: number;
+  annualRent: number;
+  grossYieldPct: number;
+  /** Rough net yield after ~25% allowance for rates, insurance, management, maintenance */
+  netYieldPct: number;
+  cashflowWeekly: number; // rough cash flow after mortgage (at 6.5%, 30yr, 80% LVR)
+}
+
+/** Calculate gross and rough net rental yield */
+export function calculateRentalYield(purchasePrice: number, weeklyRent: number): RentalYieldResult {
+  const annualRent = weeklyRent * 52;
+  const grossYieldPct = (annualRent / purchasePrice) * 100;
+  // Approximate: 25% of gross rent for expenses (rates, insurance, management ~8.8%, maintenance)
+  const netYieldPct = grossYieldPct * 0.75;
+  // Rough cash flow: annual rent minus mortgage payments (80% LVR, 6.5%, 30yr)
+  const loanAmount = purchasePrice * 0.8;
+  const r = 0.065 / 52;
+  const n = 30 * 52;
+  const weeklyMortgage = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const cashflowWeekly = weeklyRent - weeklyMortgage;
+  return {
+    purchasePrice,
+    weeklyRent,
+    annualRent,
+    grossYieldPct: Math.round(grossYieldPct * 100) / 100,
+    netYieldPct: Math.round(netYieldPct * 100) / 100,
+    cashflowWeekly: Math.round(cashflowWeekly),
+  };
+}
+
 /** Calculate indicative monthly/fortnightly/weekly repayments */
 export function calculateRepayment(input: {
   loanAmount: number;

@@ -44,11 +44,36 @@ interface Inspection {
   end: string;
 }
 
+interface AgentInfo {
+  name: string;
+  role: string;
+  phone: string;
+  email: string;
+  image: string;
+  profileUrl: string;
+}
+
+interface SuburbStatsData {
+  suburb: string;
+  postcode: string;
+  medianHousePrice: number | null;
+  medianUnitPrice: number | null;
+  medianWeeklyRent: number | null;
+  avgDaysOnMarket: number | null;
+  soldLast12Months: number | null;
+  formattedHousePrice: string;
+  formattedUnitPrice: string;
+  source: string;
+  sourceUrl: string;
+  asOf: string;
+}
+
 interface ChatComponent {
-  type: "property_cards" | "calculator_result" | "inspection_times" | "quick_replies";
+  type: "property_cards" | "calculator_result" | "inspection_times" | "quick_replies" | "suburb_stats" | "agent_cards";
   properties?: PropertyCard[];
   inspections?: Inspection[];
-  data?: CalcData;
+  agents?: AgentInfo[];
+  data?: CalcData | SuburbStatsData;
   items?: string[];
 }
 
@@ -235,6 +260,68 @@ function InspectionTimes({ inspections }: { inspections: Inspection[] }) {
   );
 }
 
+function AgentCards({ agents }: { agents: AgentInfo[] }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "6px" }}>
+      {agents.map(a => (
+        <div key={a.email} style={{ display: "flex", gap: "12px", alignItems: "center", backgroundColor: "#ffffff", border: "1px solid #e4f4fb", borderRadius: "10px", padding: "10px 12px" }}>
+          <div style={{ position: "relative", width: "46px", height: "46px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, backgroundColor: "#d0ecf7" }}>
+            <Image src={a.image} alt={a.name} fill style={{ objectFit: "cover" }} sizes="46px" />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p style={{ fontSize: "12.5px", fontWeight: 700, color: "#1a2d3d", margin: "0 0 1px" }}>{a.name}</p>
+            <p style={{ fontSize: "10.5px", color: "#5a7a8a", margin: "0 0 6px" }}>{a.role}</p>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <a href={`tel:${a.phone.replace(/\s/g, "")}`} style={{ fontSize: "11px", color: BLUE, fontWeight: 600, textDecoration: "none" }}>
+                📞 {a.phone}
+              </a>
+              <a href={`mailto:${a.email}`} style={{ fontSize: "11px", color: "#5a7a8a", textDecoration: "none" }}>
+                ✉ {a.email}
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SuburbStatsCard({ data }: { data: SuburbStatsData }) {
+  const rows = [
+    { label: "Median house price", value: data.formattedHousePrice },
+    data.medianUnitPrice ? { label: "Median unit price", value: data.formattedUnitPrice } : null,
+    data.medianWeeklyRent ? { label: "Median weekly rent", value: `$${data.medianWeeklyRent}/wk` } : null,
+    data.avgDaysOnMarket ? { label: "Avg days on market", value: `${data.avgDaysOnMarket} days` } : null,
+    data.soldLast12Months ? { label: "Sold (last 12 months)", value: `${data.soldLast12Months} properties` } : null,
+  ].filter(Boolean) as { label: string; value: string }[];
+
+  return (
+    <div style={{ backgroundColor: "#ffffff", border: "1px solid #e4f4fb", borderRadius: "10px", overflow: "hidden", marginTop: "6px" }}>
+      <div style={{ backgroundColor: "#f0f9fd", borderBottom: "1px solid #e4f4fb", padding: "8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <p style={{ fontSize: "11px", fontWeight: 700, color: "#1a2d3d", margin: 0, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+          {data.suburb} Market Stats
+        </p>
+        <span style={{ fontSize: "9.5px", color: "#94b8c6" }}>{data.asOf}</span>
+      </div>
+      <div style={{ padding: "10px 12px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr key={i}>
+                <td style={{ fontSize: "11.5px", color: "#5a7a8a", padding: "3px 0" }}>{row.label}</td>
+                <td style={{ fontSize: "12px", fontWeight: 600, color: "#1a2d3d", padding: "3px 0", textAlign: "right" }}>{row.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p style={{ fontSize: "9.5px", color: "#94b8c6", margin: "8px 0 0", lineHeight: 1.5 }}>
+          Source: <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#94b8c6" }}>{data.source}</a> · Data is indicative only.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function MessageBubble({ msg }: { msg: Message }) {
   const isUser = msg.role === "user";
   return (
@@ -264,6 +351,12 @@ function MessageBubble({ msg }: { msg: Message }) {
         }
         if (comp.type === "inspection_times" && comp.inspections?.length) {
           return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><InspectionTimes inspections={comp.inspections} /></div>;
+        }
+        if (comp.type === "agent_cards" && comp.agents?.length) {
+          return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><AgentCards agents={comp.agents as AgentInfo[]} /></div>;
+        }
+        if (comp.type === "suburb_stats" && comp.data) {
+          return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><SuburbStatsCard data={comp.data as SuburbStatsData} /></div>;
         }
         return null;
       })}
