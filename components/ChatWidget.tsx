@@ -347,7 +347,7 @@ function MessageBubble({ msg }: { msg: Message }) {
           return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><PropertyCards properties={comp.properties} /></div>;
         }
         if (comp.type === "calculator_result" && comp.data) {
-          return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><CalculatorResult data={comp.data} /></div>;
+          return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><CalculatorResult data={comp.data as CalcData} /></div>;
         }
         if (comp.type === "inspection_times" && comp.inspections?.length) {
           return <div key={i} style={{ maxWidth: "96%", width: "100%" }}><InspectionTimes inspections={comp.inspections} /></div>;
