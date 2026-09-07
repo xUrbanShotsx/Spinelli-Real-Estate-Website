@@ -531,8 +531,20 @@ export async function POST(req: NextRequest) {
 
     const reply = choice?.message?.content ?? "I'm having trouble responding right now. Please try again or contact our office directly.";
 
-    // Log analytics event (server-side only, no PII)
-    console.log("spinelli-ai:message", { pageType: pageContext?.pageType, hasPropertyId: !!pageContext?.propertyId, componentsReturned: components.map(c => c.type) });
+    // Structured log — visible in Vercel dashboard under project → Logs
+    // Search for "spinelli-ai" to filter these entries
+    const userMessage = sanitised[sanitised.length - 1]?.content ?? "";
+    console.log(JSON.stringify({
+      event: "spinelli-ai:chat",
+      ts: new Date().toISOString(),
+      page: pageContext?.pageType ?? "unknown",
+      url: pageContext?.url ?? "",
+      propertyId: pageContext?.propertyId ?? null,
+      userMessage,
+      aiReply: reply.slice(0, 300), // truncate long replies
+      toolsUsed: components.map(c => c.type),
+      messageCount: sanitised.length,
+    }));
 
     return NextResponse.json({ reply, components });
 
