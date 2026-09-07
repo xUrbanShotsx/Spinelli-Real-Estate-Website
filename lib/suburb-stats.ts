@@ -1,9 +1,9 @@
 /**
- * Suburb market stats scraper.
- * Fetches median price, days on market, and sales volume from Domain.com.au
- * suburb profile pages by parsing the embedded __NEXT_DATA__ JSON.
+ * Suburb market stats.
+ * Priority: Domain.com.au → realestate.com.au → Spinelli suburb guide data.
  * Results are cached in-memory for 24 hours.
  */
+import { suburbs } from "./data";
 
 // Illawarra & South Coast suburb → postcode mapping
 const POSTCODES: Record<string, string> = {
@@ -238,15 +238,55 @@ async function tryREA(slug: string, postcode: string, suburbKey: string): Promis
   }
 }
 
+/** Parse a price string like "$1,300,000" or "$630 pw" into a number */
+function parseLocalPrice(s: string): number | null {
+  const match = s.match(/\$([\d,]+)/);
+  if (!match) return null;
+  const n = parseInt(match[1].replace(/,/g, ""), 10);
+  return isNaN(n) || n === 0 ? null : n;
+}
+
+/** Fall back to Spinelli's own suburb guide data */
+function tryLocalGuide(suburbKey: string, postcode: string): SuburbStats | null {
+  const normalised = suburbKey.toLowerCase().trim();
+  const match = suburbs.find(s =>
+    s.slug === normalised.replace(/\s+/g, "-") ||
+    s.name.toLowerCase() === normalised
+  );
+  if (!match) return null;
+
+  const medianHousePrice = parseLocalPrice(match.medianHouse);
+  const medianUnitPrice  = parseLocalPrice(match.medianUnit);
+  // medianRent is weekly ("$630 pw")
+  const medianWeeklyRent = parseLocalPrice(match.medianRent);
+
+  return {
+    suburb: match.name,
+    postcode,
+    medianHousePrice,
+    medianUnitPrice,
+    medianWeeklyRent,
+    avgDaysOnMarket: match.daysOnMarket ?? null,
+    soldLast12Months: null,
+    source: "Spinelli Suburb Guide",
+    sourceUrl: `https://www.spinellirealestate.com.au/suburbs/${match.slug}`,
+    asOf: "2025",
+  };
+}
+
 async function fetchStats(suburbKey: string): Promise<SuburbStats | null> {
   const normalised = suburbKey.toLowerCase().trim();
   const postcode = POSTCODES[normalised];
-  if (!postcode) return null;
   const slug = normalised.replace(/\s+/g, "-");
 
-  // Try Domain first, fall back to REA
-  const result = await tryDomain(slug, postcode, normalised) ?? await tryREA(slug, postcode, normalised);
-  return result;
+  // 1. Live scrape: Domain → REA
+  if (postcode) {
+    const live = await tryDomain(slug, postcode, normalised) ?? await tryREA(slug, postcode, normalised);
+    if (live) return live;
+  }
+
+  // 2. Fallback: Spinelli suburb guide
+  return tryLocalGuide(normalised, postcode ?? "");
 }
 
 /** Get suburb stats with 24-hour in-memory cache */
