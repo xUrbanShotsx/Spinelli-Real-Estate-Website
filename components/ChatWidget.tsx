@@ -392,7 +392,7 @@ export default function ChatWidget() {
     ? { position: "fixed", inset: 0, zIndex: 9998, display: "flex", flexDirection: "column", backgroundColor: "#ffffff" }
     : {
         position: "fixed",
-        bottom: "84px",
+        bottom: "100px",
         right: "clamp(16px, 3vw, 32px)",
         width: "clamp(300px, 90vw, 376px)",
         height: "clamp(460px, 65vh, 580px)",
