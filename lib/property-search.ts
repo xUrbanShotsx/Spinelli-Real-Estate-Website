@@ -88,6 +88,7 @@ export async function searchProperties(params: SearchParams): Promise<SearchResu
   };
 
   if (params.suburb) {
+    // Pass to AgentBox for server-side filtering; also do client-side below for case tolerance
     filters["filter[suburb]"] = params.suburb;
   }
   if (params.minBedrooms) {
@@ -105,7 +106,16 @@ export async function searchProperties(params: SearchParams): Promise<SearchResu
     return { properties: [], total: 0, message: "Unable to retrieve listings at this time." };
   }
 
-  // Client-side price filtering (AgentBox doesn't always support price ranges cleanly)
+  // Client-side suburb re-filter (AgentBox matching can be case-sensitive or partial)
+  if (params.suburb) {
+    const sub = params.suburb.toLowerCase();
+    listings = listings.filter(l => {
+      const s = (l.property?.address?.suburb ?? "").toLowerCase();
+      return s.includes(sub) || sub.includes(s);
+    });
+  }
+
+  // Client-side price filtering — use lower bound of ranges to avoid "$750k–$800k" being excluded
   if (params.minPrice || params.maxPrice) {
     listings = listings.filter(l => {
       const raw = l.displayPrice ?? "";
@@ -155,10 +165,12 @@ export async function getPropertyById(id: string): Promise<PropertyCard | null> 
   }
 }
 
-/** Extract a numeric price from display strings like "$1,200,000", "$650 per week" */
+/** Extract a numeric price from display strings like "$1,200,000", "$750,000 – $800,000", "$650 per week" */
 function extractPrice(display: string): number | null {
-  const cleaned = display.replace(/[^0-9]/g, "");
-  const n = parseInt(cleaned, 10);
+  // For ranges, take the lower bound (first number found)
+  const match = display.match(/\$?([\d,]+)/);
+  if (!match) return null;
+  const n = parseInt(match[1].replace(/,/g, ""), 10);
   return isNaN(n) || n === 0 ? null : n;
 }
 
