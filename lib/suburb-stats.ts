@@ -47,7 +47,6 @@ const POSTCODES: Record<string, string> = {
   "yallah": "2530",
   "marshall mount": "2530",
   "unanderra": "2526",
-  "mount kembla": "2526",
   "lake heights": "2502",
   "primbee": "2502",
   "shellharbour": "2529",
