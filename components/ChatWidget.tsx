@@ -12,6 +12,9 @@ const WELCOME: Message = {
   content: "Hi! I'm the Spinelli Real Estate assistant. I can help you find properties, answer questions about buying or renting in the Illawarra, or connect you with our team. How can I help?",
 };
 
+const BLUE = "#5BC2E7";
+const BLUE_DARK = "#3aafd6";
+
 export default function ChatWidget() {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -24,23 +27,18 @@ export default function ChatWidget() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // On home page: hide widget while hero video is visible
   useEffect(() => {
     if (!isHome) { setHidden(false); return; }
-    function onScroll() {
-      setHidden(window.scrollY < window.innerHeight * 0.85);
-    }
+    function onScroll() { setHidden(window.scrollY < window.innerHeight * 0.85); }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
 
-  // Scroll to latest message
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
-  // Focus input when opening
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 80);
   }, [open]);
@@ -52,7 +50,6 @@ export default function ChatWidget() {
     const next: Message[] = [...messages, { role: "user", content: text }];
     setMessages(next);
     setLoading(true);
-
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -60,7 +57,7 @@ export default function ChatWidget() {
         body: JSON.stringify({ messages: next }),
       });
       const data = await res.json();
-      setMessages([...next, { role: "assistant", content: data.reply ?? "I'm unable to respond right now. Please call our office or send us an enquiry and we'll get back to you shortly." }]);
+      setMessages([...next, { role: "assistant", content: data.reply ?? "I'm unable to respond right now. Please call our office or send us an enquiry." }]);
     } catch {
       setMessages([...next, { role: "assistant", content: "Sorry, something went wrong. Please try again or contact our office directly." }]);
     } finally {
@@ -70,64 +67,69 @@ export default function ChatWidget() {
 
   if (hidden) return null;
 
+  const sendActive = !loading && input.trim().length > 0;
+
   return (
     <>
       {/* ── Chat panel ── */}
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: "88px",
-            right: "clamp(16px, 3vw, 32px)",
-            width: "clamp(300px, 90vw, 380px)",
-            height: "clamp(420px, 60vh, 560px)",
-            backgroundColor: "#ffffff",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.18)",
-            display: "flex",
-            flexDirection: "column",
-            zIndex: 9998,
-            border: "1px solid #E8E5DF",
-          }}
-        >
+        <div style={{
+          position: "fixed",
+          bottom: "84px",
+          right: "clamp(16px, 3vw, 32px)",
+          width: "clamp(300px, 90vw, 370px)",
+          height: "clamp(440px, 62vh, 560px)",
+          backgroundColor: "#ffffff",
+          boxShadow: "0 12px 56px rgba(0,0,0,0.15), 0 2px 12px rgba(0,0,0,0.08)",
+          display: "flex",
+          flexDirection: "column",
+          zIndex: 9998,
+          border: "1px solid #e4f4fb",
+          overflow: "hidden",
+        }}>
+
           {/* Header */}
-          <div style={{ backgroundColor: "#0a172d", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
+          <div style={{ backgroundColor: BLUE, padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div style={{ width: "32px", height: "32px", backgroundColor: "#5BC2E7", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z" fill="#ffffff" /></svg>
+              <div style={{ width: "34px", height: "34px", backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="#ffffff" />
+                </svg>
               </div>
               <div>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: "#ffffff", letterSpacing: "0.06em", textTransform: "uppercase" }}>Spinelli Assistant</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>Online · AI Powered</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: "#ffffff", letterSpacing: "0.05em", textTransform: "uppercase", lineHeight: 1.2 }}>Spinelli Assistant</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(255,255,255,0.75)", letterSpacing: "0.03em", lineHeight: 1.4 }}>AI Powered · Here to help</p>
               </div>
             </div>
-            <button onClick={() => setOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.4)", fontSize: "18px", lineHeight: 1, padding: "4px" }} aria-label="Close chat">✕</button>
+            <button onClick={() => setOpen(false)} aria-label="Close chat" style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.7)", fontSize: "20px", lineHeight: 1, padding: "4px", display: "flex" }}>✕</button>
           </div>
 
           {/* Messages */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "20px 16px", display: "flex", flexDirection: "column", gap: "12px", scrollbarWidth: "none" }} className="[&::-webkit-scrollbar]:hidden">
+          <div style={{ flex: 1, overflowY: "auto", padding: "18px 14px 8px", display: "flex", flexDirection: "column", gap: "10px", scrollbarWidth: "none", backgroundColor: "#f8fcfe" }} className="[&::-webkit-scrollbar]:hidden">
             {messages.map((m, i) => (
               <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start" }}>
-                <div
-                  style={{
-                    maxWidth: "82%",
-                    padding: "10px 14px",
-                    backgroundColor: m.role === "user" ? "#0a172d" : "#F4F2EE",
-                    color: m.role === "user" ? "#ffffff" : "#0a172d",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
-                    lineHeight: 1.6,
-                    letterSpacing: "0.01em",
-                  }}
-                >
+                <div style={{
+                  maxWidth: "84%",
+                  padding: "9px 13px",
+                  backgroundColor: m.role === "user" ? BLUE : "#ffffff",
+                  color: m.role === "user" ? "#ffffff" : "#1a2d3d",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  lineHeight: 1.6,
+                  letterSpacing: "0.01em",
+                  boxShadow: m.role === "user" ? "none" : "0 1px 4px rgba(91,194,231,0.12)",
+                  border: m.role === "user" ? "none" : "1px solid #e4f4fb",
+                  borderRadius: m.role === "user" ? "12px 12px 2px 12px" : "12px 12px 12px 2px",
+                }}>
                   {m.content}
                 </div>
               </div>
             ))}
             {loading && (
               <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                <div style={{ padding: "10px 14px", backgroundColor: "#F4F2EE", display: "flex", gap: "4px", alignItems: "center" }}>
+                <div style={{ padding: "9px 13px", backgroundColor: "#ffffff", border: "1px solid #e4f4fb", borderRadius: "12px 12px 12px 2px", display: "flex", gap: "4px", alignItems: "center" }}>
                   {[0, 1, 2].map(i => (
-                    <span key={i} style={{ width: "6px", height: "6px", backgroundColor: "#a2b0aa", borderRadius: "50%", display: "inline-block", animation: `bounce 1.2s ease ${i * 0.2}s infinite` }} />
+                    <span key={i} style={{ width: "6px", height: "6px", backgroundColor: BLUE, borderRadius: "50%", display: "inline-block", animation: `chatbounce 1.2s ease ${i * 0.2}s infinite` }} />
                   ))}
                 </div>
               </div>
@@ -135,8 +137,8 @@ export default function ChatWidget() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
-          <div style={{ padding: "12px 16px", borderTop: "1px solid #E8E5DF", display: "flex", gap: "8px", flexShrink: 0 }}>
+          {/* Input row */}
+          <div style={{ padding: "10px 12px 6px", borderTop: "1px solid #e4f4fb", display: "flex", gap: "8px", flexShrink: 0, backgroundColor: "#ffffff" }}>
             <input
               ref={inputRef}
               value={input}
@@ -148,23 +150,25 @@ export default function ChatWidget() {
                 flex: 1,
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
-                color: "#0a172d",
-                backgroundColor: "#F4F2EE",
-                border: "none",
+                color: "#1a2d3d",
+                backgroundColor: "#f0f9fd",
+                border: "1px solid #d0ecf7",
                 outline: "none",
-                padding: "10px 12px",
+                padding: "9px 12px",
                 letterSpacing: "0.01em",
+                borderRadius: "6px",
               }}
             />
             <button
               onClick={send}
-              disabled={loading || !input.trim()}
+              disabled={!sendActive}
               aria-label="Send"
               style={{
-                backgroundColor: loading || !input.trim() ? "#E8E5DF" : "#0a172d",
+                backgroundColor: sendActive ? BLUE : "#d0ecf7",
                 border: "none",
-                cursor: loading || !input.trim() ? "default" : "pointer",
-                padding: "0 14px",
+                cursor: sendActive ? "pointer" : "default",
+                padding: "0 13px",
+                borderRadius: "6px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -172,8 +176,15 @@ export default function ChatWidget() {
                 flexShrink: 0,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M2 21L23 12 2 3v7l15 2-15 2v7z" fill={loading || !input.trim() ? "#a2b0aa" : "#ffffff"} /></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M2 21L23 12 2 3v7l15 2-15 2v7z" fill={sendActive ? "#ffffff" : "#8acfe6"} /></svg>
             </button>
+          </div>
+
+          {/* Disclaimer */}
+          <div style={{ padding: "6px 14px 10px", backgroundColor: "#ffffff" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "9.5px", color: "#94b8c6", textAlign: "center", lineHeight: 1.5, letterSpacing: "0.02em" }}>
+              AI responses are for general guidance only and do not constitute professional real estate advice. Always consult a licensed agent for specific property decisions.
+            </p>
           </div>
         </div>
       )}
@@ -186,32 +197,33 @@ export default function ChatWidget() {
           position: "fixed",
           bottom: "clamp(20px, 3vw, 32px)",
           right: "clamp(16px, 3vw, 32px)",
-          width: "56px",
-          height: "56px",
-          backgroundColor: "#0a172d",
+          width: "54px",
+          height: "54px",
+          backgroundColor: BLUE,
           border: "none",
           cursor: "pointer",
           zIndex: 9999,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.22)",
-          transition: "background-color 0.2s, transform 0.2s",
+          boxShadow: "0 4px 20px rgba(91,194,231,0.45)",
+          borderRadius: "50%",
+          transition: "background-color 0.2s, transform 0.15s",
         }}
-        onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#1a2d4d")}
-        onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#0a172d")}
+        onMouseEnter={e => { e.currentTarget.style.backgroundColor = BLUE_DARK; e.currentTarget.style.transform = "scale(1.07)"; }}
+        onMouseLeave={e => { e.currentTarget.style.backgroundColor = BLUE; e.currentTarget.style.transform = "scale(1)"; }}
       >
         {open ? (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" /></svg>
         ) : (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round" /><circle cx="8.5" cy="10" r="1" fill="#ffffff" /><circle cx="12" cy="10" r="1" fill="#ffffff" /><circle cx="15.5" cy="10" r="1" fill="#ffffff" /></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="#ffffff" /><circle cx="8.5" cy="10" r="1.1" fill={BLUE} /><circle cx="12" cy="10" r="1.1" fill={BLUE} /><circle cx="15.5" cy="10" r="1.1" fill={BLUE} /></svg>
         )}
       </button>
 
       <style>{`
-        @keyframes bounce {
+        @keyframes chatbounce {
           0%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-6px); }
+          40% { transform: translateY(-5px); }
         }
       `}</style>
     </>
