@@ -276,7 +276,13 @@ export default function ChatWidget() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  const [hidden, setHidden] = useState(isHome);
+  // scrolledPastHero tracks whether the hero is out of view.
+  // Deriving visibility as (isHome && !scrolledPastHero) means the
+  // correct value is computed in the same render that isHome changes —
+  // no one-frame flash when navigating to/from the home page.
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const hidden = isHome && !scrolledPastHero;
+
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -293,11 +299,14 @@ export default function ChatWidget() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Hero hide logic
+  // Hero hide logic — only wires up scroll listener on home page
   useEffect(() => {
-    if (!isHome) { setHidden(false); return; }
-    function onScroll() { setHidden(window.scrollY < window.innerHeight); }
-    onScroll();
+    if (!isHome) {
+      setScrolledPastHero(false); // reset for next visit to home
+      return;
+    }
+    function onScroll() { setScrolledPastHero(window.scrollY >= window.innerHeight); }
+    onScroll(); // check immediately on mount / navigation
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
