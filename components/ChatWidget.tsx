@@ -505,7 +505,7 @@ export default function ChatWidget() {
 
   return (
     <>
-      {open && !hidden && (
+      {open && (
         <div style={panelStyle}>
           {/* Header */}
           <div style={{ backgroundColor: BLUE, padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
