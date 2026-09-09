@@ -482,8 +482,6 @@ export default function ChatWidget() {
     }
   }, [input, loading, messages, pathname]);
 
-  if (hidden) return null;
-
   const sendActive = !loading && input.trim().length > 0;
 
   // Mobile: full screen; desktop: popup
@@ -507,7 +505,7 @@ export default function ChatWidget() {
 
   return (
     <>
-      {open && (
+      {open && !hidden && (
         <div style={panelStyle}>
           {/* Header */}
           <div style={{ backgroundColor: BLUE, padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
