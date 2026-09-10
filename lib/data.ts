@@ -2717,7 +2717,7 @@ export const team: TeamMember[] = [
     role: "Managing Director",
     phone: "02 4296 0047",
     email: "mark@spinellire.com",
-    image: "/Staff/mark-spinelli.jpg",
+    image: "/staff/mark-spinelli.jpg",
     bio: "Mark Spinelli is a Managing Director at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the founding Spinelli family, Mark plays a pivotal role in shaping the direction of the agency and ensuring every client receives the highest level of service. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors across the region. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
   },
   {
