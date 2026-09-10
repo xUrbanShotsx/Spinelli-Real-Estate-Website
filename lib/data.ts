@@ -2713,6 +2713,14 @@ export const team: TeamMember[] = [
     bio: "Paul Spinelli is the founder and Managing Director of Spinelli Real Estate, bringing over two decades of deep Illawarra market knowledge to every client relationship. Paul built this agency on a simple but powerful belief — that every client deserves honest advice, premium marketing and a relentless commitment to achieving the best possible outcome. His hands-on approach means clients deal directly with him from first meeting to settlement, backed by the full weight of his experience and local network. Outside of real estate, Paul is a proud Illawarra local who is deeply invested in the community and the people who call this coast home.",
   },
   {
+    name: "Mark Spinelli",
+    role: "Managing Director",
+    phone: "02 4296 0047",
+    email: "mark@spinellire.com",
+    image: "/staff/mark-spinelli.png",
+    bio: "Mark Spinelli is a Managing Director at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the founding Spinelli family, Mark plays a pivotal role in shaping the direction of the agency and ensuring every client receives the highest level of service. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors across the region. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
+  },
+  {
     name: "Adam Spinelli",
     role: "Sales Director",
     phone: "0447 771 445",
