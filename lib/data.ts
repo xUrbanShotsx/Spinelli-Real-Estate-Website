@@ -2706,7 +2706,7 @@ export const suburbs: Suburb[] = [
 export const team: TeamMember[] = [
   {
     name: "Paul Spinelli",
-    role: "Principal",
+    role: "Licensee in Charge",
     phone: "0415 112 702",
     email: "paul@spinellire.com",
     image: "/staff/paul-spinelli.png",
@@ -2722,7 +2722,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Mark Spinelli",
-    role: "Sales Agent",
+    role: "Licensee",
     phone: "0401 385 662",
     email: "mark@spinellire.com",
     image: "/staff/mark-spinelli.jpg",
@@ -2754,7 +2754,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Lilly Ashton",
-    role: "Property Officer",
+    role: "Assistant Property Manager",
     phone: "0419 233 657",
     email: "lilly@spinellire.com",
     image: "/staff/lilly-ashton.png",
