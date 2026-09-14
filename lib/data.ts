@@ -2726,7 +2726,7 @@ export const team: TeamMember[] = [
     phone: "0401 385 662",
     email: "mark@spinellire.com",
     image: "/staff/mark-spinelli.jpg",
-    bio: "Mark Spinelli is a Sales Agent at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the founding Spinelli family, Mark plays a pivotal role in delivering exceptional results for his clients across the region. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors alike. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
+    bio: "Mark Spinelli is a Director at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the Spinelli family, Mark plays a key role in driving the agency forward and ensuring every client receives the highest standard of service. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors across the region. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
   },
   {
     name: "Zoe Porritt",
@@ -2758,7 +2758,7 @@ export const team: TeamMember[] = [
     phone: "0419 233 657",
     email: "lilly@spinellire.com",
     image: "/staff/lilly-ashton.png",
-    bio: "Lilly Ashton is a Property Officer who plays an essential role in the day-to-day operations of Spinelli Real Estate's property management division. Lilly assists with lease administration, tenant liaison, maintenance requests and inspection scheduling, ensuring the smooth running of the portfolio and a high standard of service for every client. She is organised, approachable and always willing to help — qualities that make her a valued point of contact for both landlords and tenants. Lilly is passionate about property management and is committed to growing her expertise while contributing to the exceptional team culture at Spinelli Real Estate.",
+    bio: "Lilly Ashton is an Assistant Property Manager at Spinelli Real Estate, playing an essential role in the day-to-day operations of the property management division. Lilly assists with lease administration, tenant liaison, maintenance requests and inspection scheduling, ensuring the smooth running of the portfolio and a high standard of service for every client. She is organised, approachable and always willing to help — qualities that make her a valued point of contact for both landlords and tenants. Lilly is passionate about property management and is committed to growing her expertise while contributing to the exceptional team culture at Spinelli Real Estate.",
   },
   {
     name: "Tahlia Spinelli",
