@@ -2722,11 +2722,11 @@ export const team: TeamMember[] = [
   },
   {
     name: "Mark Spinelli",
-    role: "Real Estate Agent",
+    role: "Sales Agent",
     phone: "0401 385 662",
     email: "mark@spinellire.com",
     image: "/staff/mark-spinelli.jpg",
-    bio: "Mark Spinelli is a Real Estate Agent at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the founding Spinelli family, Mark plays a pivotal role in delivering exceptional results for his clients across the region. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors alike. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
+    bio: "Mark Spinelli is a Sales Agent at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the founding Spinelli family, Mark plays a pivotal role in delivering exceptional results for his clients across the region. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors alike. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
   },
   {
     name: "Zoe Porritt",
