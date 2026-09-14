@@ -2722,7 +2722,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Mark Spinelli",
-    role: "Licensee",
+    role: "Director",
     phone: "0401 385 662",
     email: "mark@spinellire.com",
     image: "/staff/mark-spinelli.jpg",
