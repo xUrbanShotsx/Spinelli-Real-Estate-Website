@@ -152,7 +152,7 @@ export default function SellContent() {
       </section>
 
       {/* ── Why Spinelli ── */}
-      <section style={{ backgroundColor: "#F8F9FA", padding: "100px 0" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "100px 0" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div
             className="flex flex-wrap items-end justify-between gap-4 pb-10 mb-12"
