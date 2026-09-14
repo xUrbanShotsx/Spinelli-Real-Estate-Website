@@ -2710,7 +2710,7 @@ export const team: TeamMember[] = [
     phone: "0415 112 702",
     email: "paul@spinellire.com",
     image: "/staff/paul-spinelli.png",
-    bio: "Paul Spinelli is the founder and Principal of Spinelli Real Estate, bringing over two decades of deep Illawarra market knowledge to every client relationship. Paul built this agency on a simple but powerful belief — that every client deserves honest advice, premium marketing and a relentless commitment to achieving the best possible outcome. His hands-on approach means clients deal directly with him from first meeting to settlement, backed by the full weight of his experience and local network. Outside of real estate, Paul is a proud Illawarra local who is deeply invested in the community and the people who call this coast home.",
+    bio: "Paul Spinelli is the Principal of Spinelli Real Estate, bringing over two decades of deep Illawarra market knowledge to every client relationship. Paul has built this agency on a simple but powerful belief — that every client deserves honest advice, premium marketing and a relentless commitment to achieving the best possible outcome. His hands-on approach means clients deal directly with him from first meeting to settlement, backed by the full weight of his experience and local network. Outside of real estate, Paul is a proud Illawarra local who is deeply invested in the community and the people who call this coast home.",
   },
   {
     name: "Adam Spinelli",
