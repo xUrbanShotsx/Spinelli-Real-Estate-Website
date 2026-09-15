@@ -217,7 +217,7 @@ async function executeTool(name: string, args: Record<string, unknown>, pageCont
   switch (name) {
     case "search_properties": {
       const res = await searchProperties({
-        listingType: args.listingType as "sale" | "rent" | undefined,
+        listingType: args.listingType as "sale" | "rent" | "sold" | "commercial-sale" | "commercial-lease" | "business" | undefined,
         suburb: args.suburb as string | undefined,
         minPrice: args.minPrice as number | undefined,
         maxPrice: args.maxPrice as number | undefined,
