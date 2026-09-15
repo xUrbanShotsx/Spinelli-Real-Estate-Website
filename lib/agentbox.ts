@@ -299,6 +299,10 @@ export function mapListing(l: ABListing): Property {
     address,
     suburb: addr.suburb,
     price: (() => {
+      // Manual price overrides — set to "Contact Agent" regardless of CRM value
+      const contactAgentIds = ["1P1952"];
+      if (contactAgentIds.includes(l.id)) return "Contact Agent";
+
       const isSold = ["Settled", "Sold", "Unconditional"].includes(l.status);
       if (isSold) {
         const hiddenInAgentBox = l.soldPriceHide || l.soldPriceUndisclosed || (l.displaySoldPrice === false);
