@@ -13,7 +13,7 @@ export interface Project {
   address: string;
   category: ProjectCategory;
   units: string;
-  status: "Now Selling" | "Coming Soon" | "Sold Out";
+  status: "Now Selling" | "Coming Soon" | "Sold Out" | "Under Management";
   image: string;
   gallery: string[];
   description: string;
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     mapLng: 150.8798,
     category: "Duplex",
     units: "Duplex",
-    status: "Sold Out",
+    status: "Under Management",
     image: "/12.jpg",
     gallery: ["/12.jpg", "/13.jpg", "/14.jpg", "/15.jpg", "/16.jpg", "/17.jpg"],
     description: "Luxury apartment living with elevated escarpment and ocean vistas, designed by award-winning architects for the discerning buyer seeking the best of Kiama living.",

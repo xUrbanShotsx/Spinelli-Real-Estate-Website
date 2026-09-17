@@ -140,7 +140,7 @@ export default function ProjectsContent() {
 
                 {/* Actions */}
                 <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
-                  {project.status !== "Sold Out" && (
+                  {project.status !== "Sold Out" && project.status !== "Under Management" && (
                     <Link
                       href="/contact"
                       style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0D3348", backgroundColor: "#ffffff", padding: "13px 28px", textDecoration: "none" }}
