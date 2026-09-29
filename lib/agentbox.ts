@@ -2,6 +2,7 @@
  * AgentBox / Reapit Sales API client
  * Docs: https://api.agentboxcrm.com.au/docs
  */
+import { team } from "./data";
 
 const BASE = "https://api.agentboxcrm.com.au";
 const VERSION = "2";
@@ -325,6 +326,17 @@ export function mapListing(l: ABListing): Property {
     tag: listingTag(l),
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
+    agents: l.staff?.map((s) => {
+      const fullName = `${s.firstName} ${s.lastName}`.trim();
+      const member = team.find((t) => t.name.toLowerCase() === fullName.toLowerCase());
+      return {
+        name: fullName,
+        role: member?.role ?? "Sales Agent",
+        phone: s.phone || member?.phone || "02 4296 0047",
+        email: s.email || member?.email || "info@spinellirealestate.com.au",
+        image: member?.image ?? "/staff/placeholder.png",
+      };
+    }),
     openHome: nextInspection(l.inspectionDates) || l.openHome || undefined,
   };
 }
