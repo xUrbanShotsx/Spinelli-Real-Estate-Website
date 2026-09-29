@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function CommercialPage() {
-  let properties: Property[] = commercialProperties;
+  let properties: Property[] = [];
   try {
     const [saleData, leaseData] = await Promise.all([
       fetchCommercialSale(),
@@ -29,7 +29,7 @@ export default async function CommercialPage() {
       .map(mapListing);
     if (live.length) properties = live;
   } catch (e) {
-    console.error("AgentBox commercial fetch failed, using static data:", e);
+    console.error("AgentBox commercial fetch failed:", e);
   }
 
   return (

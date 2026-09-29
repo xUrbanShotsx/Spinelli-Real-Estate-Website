@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function RentPage() {
-  let properties = residentialRentProperties;
+  let properties: typeof residentialRentProperties = [];
   try {
     const data = await fetchForLease(1, 50);
     if (data.listings?.length) {
@@ -26,7 +26,7 @@ export default async function RentPage() {
         .map(mapListing);
     }
   } catch (e) {
-    console.error("AgentBox fetch failed, using static data:", e);
+    console.error("AgentBox fetch failed:", e);
   }
 
   return (

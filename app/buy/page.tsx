@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 export const revalidate = 60; // refresh every 5 minutes
 
 export default async function BuyPage() {
-  // Fetch live listings from AgentBox, fall back to static data on error
-  let properties = residentialSaleProperties;
+  let properties: typeof residentialSaleProperties = [];
   try {
     const data = await fetchForSale(1, 100);
     if (data.listings?.length) {
@@ -27,7 +26,7 @@ export default async function BuyPage() {
         .map(mapListing);
     }
   } catch (e) {
-    console.error("AgentBox fetch failed, using static data:", e);
+    console.error("AgentBox fetch failed:", e);
   }
 
   return (

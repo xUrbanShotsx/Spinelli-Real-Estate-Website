@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function BusinessPage() {
-  let properties: Property[] = businessListings;
+  let properties: Property[] = [];
   try {
     const data = await fetchBusiness(1, 200);
     if (data.listings?.length) {
@@ -24,7 +24,7 @@ export default async function BusinessPage() {
         .map(mapListing);
     }
   } catch (e) {
-    console.error("AgentBox business fetch failed, using static data:", e);
+    console.error("AgentBox business fetch failed:", e);
   }
 
   return (
