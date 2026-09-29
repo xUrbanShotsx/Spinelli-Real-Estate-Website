@@ -239,8 +239,13 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
               "/32 Larkins Lane/32larkinframe3.jpeg",
               "/32 Larkins Lane/32larkinframe4.jpg",
             ].map((src, i) => (
-              <div key={i} style={{ aspectRatio: "2/3", backgroundColor: "#E8E5DF", overflow: "hidden" }}>
-                {src && <img src={src} alt={`32 Larkins Lane ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />}
+              <div key={i}>
+                <div style={{ aspectRatio: "2/3", backgroundColor: "#E8E5DF", overflow: "hidden" }}>
+                  {src && <img src={src} alt={`32 Larkins Lane ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />}
+                </div>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#a2b0aa", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: "10px" }}>
+                  {["The Woolshed", "Escarpment", "Lake Illawarra", "The Grange Golf Course"][i]}
+                </p>
               </div>
             ))}
           </div>
