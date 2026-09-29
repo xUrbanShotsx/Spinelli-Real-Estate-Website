@@ -133,12 +133,11 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
   const listing = data.response.listing;
-  // DEBUG: log staff fields to diagnose which key AgentBox uses
-  console.log("[AgentBox] listing staff keys:", JSON.stringify({
-    id: listing?.id,
-    staff: listing?.staff,
-    relatedStaffMembers: listing?.relatedStaffMembers,
-  }));
+  // DEBUG: log response keys to identify where staff data lives
+  console.log("[AgentBox] response keys:", Object.keys(data.response ?? {}));
+  console.log("[AgentBox] listing.staff:", JSON.stringify(listing?.staff));
+  console.log("[AgentBox] listing.relatedStaffMembers:", JSON.stringify(listing?.relatedStaffMembers));
+  console.log("[AgentBox] response.relatedStaffMembers:", JSON.stringify(data.response?.relatedStaffMembers));
   return listing as ABListing;
 }
 
