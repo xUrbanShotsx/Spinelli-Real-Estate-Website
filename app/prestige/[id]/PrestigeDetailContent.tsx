@@ -230,49 +230,43 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
       )}
 
       {/* ── BUYER QUALIFICATION ── */}
-      <div style={{ backgroundColor: "#0a172d", padding: "80px 0" }}>
+      <div style={{ backgroundColor: "#ffffff", padding: "80px 0", borderTop: "1px solid #E8E5DF" }}>
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
           <Reveal>
-            <div className="grid grid-cols-1 md:grid-cols-[4fr_6fr_2fr]" style={{ gap: "0 30px", alignItems: "start" }}>
-              <div className="mb-8 md:mb-0">
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#ffffff", fontWeight: 300, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
-                  Is this<br />your home?
-                </p>
-              </div>
-              <div>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "32px" }}>
-                  Buyer Checklist
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                  {[
-                    { q: "Are you ready to move quickly?", a: "This property is in a tightly held estate. Serious buyers should have finance pre-approved and be in a position to act." },
-                    { q: "Have you considered the land size?", a: "At 1.24 hectares, this is a genuine lifestyle property. Consider your plans for the land — horses, agriculture, recreation — before inspecting." },
-                    { q: "What is your finance position?", a: "Properties in this price range require a minimum 20% deposit. Confirm your borrowing capacity with your broker before enquiring." },
-                    { q: "Have you spoken to a solicitor?", a: "We recommend engaging a conveyancer prior to making an offer so you can move immediately when you find the right property." },
-                    { q: "Are you buying alone or with a partner?", a: "All decision-makers should attend the inspection together to avoid delays — we can accommodate private viewings at times that suit you." },
-                  ].map((item, i) => (
-                    <div key={i} style={{ paddingTop: "20px", paddingBottom: "20px", borderTop: "1px solid rgba(255,255,255,0.1)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", alignItems: "start" }}>
-                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.1vw, 13px)", color: "#ffffff", fontWeight: 500, lineHeight: 1.5, letterSpacing: "0.01em" }}>
-                        {item.q}
-                      </p>
-                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.1vw, 13px)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, letterSpacing: "0.01em" }}>
-                        {item.a}
-                      </p>
-                    </div>
-                  ))}
-                  <div style={{ paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.1)" }} />
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "16px" }}>
+              Buyer Checklist
+            </p>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.15, letterSpacing: "-0.03em", marginBottom: "48px" }}>
+              Is this<br />your home?
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "1px", backgroundColor: "#E8E5DF" }}>
+              {[
+                { n: "01", q: "Finance ready?", a: "Have pre-approval in place before enquiring. Properties at this level move quickly and vendors favour buyers who can act without delay." },
+                { n: "02", q: "Plans for the land?", a: "At 1.24 hectares, this is a genuine lifestyle holding. Consider how you'll use the land — horses, agriculture, or simply the privacy it provides." },
+                { n: "03", q: "Solicitor engaged?", a: "We recommend having a conveyancer ready before you inspect. When you find the right property, you'll want to be in a position to move immediately." },
+                { n: "04", q: "All buyers attending?", a: "Bring every decision-maker to the inspection. We offer private viewings at times that suit you — just ask when you enquire." },
+              ].map((item) => (
+                <div key={item.n} style={{ backgroundColor: "#ffffff", padding: "36px 28px", display: "flex", flexDirection: "column", gap: "16px" }}>
+                  <p style={{ fontFamily: "var(--font-display)", fontSize: "3.5rem", color: "#E8E5DF", fontWeight: 300, lineHeight: 1, letterSpacing: "-0.04em" }}>
+                    {item.n}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)", color: "#0a172d", fontWeight: 300, lineHeight: 1.2, letterSpacing: "-0.02em" }}>
+                    {item.q}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#58503c", lineHeight: 1.75, letterSpacing: "0.01em" }}>
+                    {item.a}
+                  </p>
                 </div>
-                <div style={{ marginTop: "36px" }}>
-                  <Link
-                    href={listing.enquireUrl ?? `/contact?property=${listing.id}`}
-                    style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#ffffff", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}
-                  >
-                    I&apos;m ready — request a private inspection
-                    <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#ffffff" strokeWidth="1" /></svg>
-                  </Link>
-                </div>
-              </div>
-              <div className="hidden md:block" />
+              ))}
+            </div>
+            <div style={{ marginTop: "40px" }}>
+              <Link
+                href={listing.enquireUrl ?? `/contact?property=${listing.id}`}
+                style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#0a172d", letterSpacing: "-0.01em", textDecoration: "none" }}
+              >
+                I&apos;m ready — request a private inspection
+                <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#0a172d" strokeWidth="1" /></svg>
+              </Link>
             </div>
           </Reveal>
         </div>
