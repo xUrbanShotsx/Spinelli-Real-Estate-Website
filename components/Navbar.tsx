@@ -60,7 +60,8 @@ export default function Navbar() {
   // navbar starts transparent over the dark split hero and goes solid on scroll.
   const lightPages = ["/sold", "/buy", "/rent", "/commercial", "/commercial/buy", "/commercial/lease", "/business", "/suburbs", "/contact", "/about", "/team", "/careers", "/buying-guide", "/selling-guide", "/investing-guide", "/projects", "/opening-party", "/prestige"];
   const isProjectDetail = /^\/projects\/.+/.test(pathname);
-  const isLightPage = !isProjectDetail && lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  const isPrestigeDetail = /^\/prestige\/.+/.test(pathname);
+  const isLightPage = !isProjectDetail && !isPrestigeDetail && lightPages.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
