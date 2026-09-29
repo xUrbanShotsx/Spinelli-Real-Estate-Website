@@ -99,7 +99,19 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
       {/* ── HERO ── */}
       <section style={{ height: "100svh", display: "grid", gridTemplateRows: "2fr 1fr" }}>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <Image src={heroImg} alt={listing.name} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+          {listing.heroVideo ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+            >
+              <source src={listing.heroVideo} type="video/mp4" />
+            </video>
+          ) : (
+            <Image src={heroImg} alt={listing.name} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+          )}
           <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.42)" }} />
           <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 24px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
@@ -216,6 +228,55 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
           </div>
         </TextBlock>
       )}
+
+      {/* ── BUYER QUALIFICATION ── */}
+      <div style={{ backgroundColor: "#0a172d", padding: "80px 0" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
+          <Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-[4fr_6fr_2fr]" style={{ gap: "0 30px", alignItems: "start" }}>
+              <div className="mb-8 md:mb-0">
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#ffffff", fontWeight: 300, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
+                  Is this<br />your home?
+                </p>
+              </div>
+              <div>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "32px" }}>
+                  Buyer Checklist
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+                  {[
+                    { q: "Are you ready to move quickly?", a: "This property is in a tightly held estate. Serious buyers should have finance pre-approved and be in a position to act." },
+                    { q: "Have you considered the land size?", a: "At 1.24 hectares, this is a genuine lifestyle property. Consider your plans for the land — horses, agriculture, recreation — before inspecting." },
+                    { q: "What is your finance position?", a: "Properties in this price range require a minimum 20% deposit. Confirm your borrowing capacity with your broker before enquiring." },
+                    { q: "Have you spoken to a solicitor?", a: "We recommend engaging a conveyancer prior to making an offer so you can move immediately when you find the right property." },
+                    { q: "Are you buying alone or with a partner?", a: "All decision-makers should attend the inspection together to avoid delays — we can accommodate private viewings at times that suit you." },
+                  ].map((item, i) => (
+                    <div key={i} style={{ paddingTop: "20px", paddingBottom: "20px", borderTop: "1px solid rgba(255,255,255,0.1)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", alignItems: "start" }}>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.1vw, 13px)", color: "#ffffff", fontWeight: 500, lineHeight: 1.5, letterSpacing: "0.01em" }}>
+                        {item.q}
+                      </p>
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.1vw, 13px)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, letterSpacing: "0.01em" }}>
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                  <div style={{ paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.1)" }} />
+                </div>
+                <div style={{ marginTop: "36px" }}>
+                  <Link
+                    href={listing.enquireUrl ?? `/contact?property=${listing.id}`}
+                    style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "#ffffff", letterSpacing: "-0.01em", textDecoration: "none", alignSelf: "flex-start" }}
+                  >
+                    I&apos;m ready — request a private inspection
+                    <svg width="20" height="1" viewBox="0 0 20 1" style={{ overflow: "visible" }}><line x1="0" y1="0.5" x2="20" y2="0.5" stroke="#ffffff" strokeWidth="1" /></svg>
+                  </Link>
+                </div>
+              </div>
+              <div className="hidden md:block" />
+            </div>
+          </Reveal>
+        </div>
+      </div>
 
       {/* ── ENQUIRE ── */}
       <TextBlock heading={<>Enquire<br />today.</>} headingSize="clamp(2rem, 3.5vw, 3.2rem)">
