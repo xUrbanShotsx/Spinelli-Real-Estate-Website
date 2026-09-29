@@ -232,14 +232,14 @@ export default function PrestigeDetailContent({ listing }: { listing: PrestigeLi
       {/* ── PHOTO GRID ── */}
       <div style={{ backgroundColor: "#ffffff", padding: "80px 0" }}>
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: "12px" }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: "20px" }}>
             {[
               "/32 Larkins Lane/32larkinframe1.jpg",
               "/32 Larkins Lane/32larkinframe2.jpeg",
               "/32 Larkins Lane/32larkinframe3.jpeg",
               "/32 Larkins Lane/32larkinframe4.jpg",
             ].map((src, i) => (
-              <div key={i} style={{ aspectRatio: "3/4", backgroundColor: "#E8E5DF", overflow: "hidden" }}>
+              <div key={i} style={{ aspectRatio: "2/3", backgroundColor: "#E8E5DF", overflow: "hidden" }}>
                 {src && <img src={src} alt={`32 Larkins Lane ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />}
               </div>
             ))}
