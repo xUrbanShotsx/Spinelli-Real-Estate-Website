@@ -37,13 +37,6 @@ export interface Property {
   virtualTour?: boolean;
   agent?: string;
   agentPhone?: string;
-  agents?: Array<{
-    name: string;
-    role: string;
-    phone: string;
-    email: string;
-    image: string;
-  }>;
 }
 
 export interface Project {

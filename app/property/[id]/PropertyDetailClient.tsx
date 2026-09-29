@@ -443,53 +443,6 @@ export default function PropertyDetailClient({ property }: { property: Property 
         </div>
       )}
 
-      {/* ── Listing agents ── */}
-      {property.agents && property.agents.length > 0 && (
-        <section style={{ backgroundColor: "#f8f9fa", borderTop: "1px solid #E8E5DF", borderBottom: "1px solid #E8E5DF", padding: "48px 0" }}>
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#5BC2E7", marginBottom: "24px" }}>
-              Listed By
-            </p>
-            <div className="flex flex-wrap gap-6">
-              {property.agents.map((agent) => (
-                <div
-                  key={agent.email}
-                  className="flex items-center gap-4"
-                  style={{ backgroundColor: "#ffffff", border: "1px solid #E8E5DF", padding: "16px 20px", minWidth: "260px", flex: "1 1 260px", maxWidth: "380px" }}
-                >
-                  <img
-                    src={agent.image}
-                    alt={agent.name}
-                    style={{ width: "56px", height: "56px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
-                    onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&q=80"; }}
-                  />
-                  <div style={{ minWidth: 0 }}>
-                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.05rem", color: "#0D3348", fontWeight: 300, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
-                      {agent.name}
-                    </p>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "#5BC2E7", letterSpacing: "0.06em", marginTop: "3px", marginBottom: "8px" }}>
-                      {agent.role}
-                    </p>
-                    <a
-                      href={`tel:${agent.phone.replace(/\s/g, "")}`}
-                      style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#58503c", textDecoration: "none", display: "block", lineHeight: 1.6 }}
-                    >
-                      {agent.phone}
-                    </a>
-                    <a
-                      href={`mailto:${agent.email}`}
-                      style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#a2b0aa", textDecoration: "none", display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-                    >
-                      {agent.email}
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ── Back to listings ── */}
       <section className="py-12" style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF" }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">

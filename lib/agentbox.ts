@@ -2,7 +2,6 @@
  * AgentBox / Reapit Sales API client
  * Docs: https://api.agentboxcrm.com.au/docs
  */
-import { team } from "./data";
 
 const BASE = "https://api.agentboxcrm.com.au";
 const VERSION = "2";
@@ -83,7 +82,6 @@ export interface ABListing {
   images?: ABImage[];
   floorPlans?: ABFloorPlan[];
   staff?: { firstName: string; lastName: string; phone: string; email: string }[];
-  relatedStaffMembers?: { firstName: string; lastName: string; phone: string; email: string }[];
 }
 
 export interface ABListingsResponse {
@@ -132,13 +130,7 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
-  const listing = data.response.listing;
-  // DEBUG: log response keys to identify where staff data lives
-  console.log("[AgentBox] response keys:", Object.keys(data.response ?? {}));
-  console.log("[AgentBox] listing.staff:", JSON.stringify(listing?.staff));
-  console.log("[AgentBox] listing.relatedStaffMembers:", JSON.stringify(listing?.relatedStaffMembers));
-  console.log("[AgentBox] response.relatedStaffMembers:", JSON.stringify(data.response?.relatedStaffMembers));
-  return listing as ABListing;
+  return data.response.listing as ABListing;
 }
 
 export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResponse> {
@@ -332,21 +324,7 @@ export function mapListing(l: ABListing): Property {
     floorPlan: l.floorPlans?.[0]?.url,
     tag: listingTag(l),
     featured: l.status === "Available",
-    agent: (() => {
-      const s = (l.relatedStaffMembers ?? l.staff)?.[0];
-      return s ? `${s.firstName} ${s.lastName}`.trim() : undefined;
-    })(),
-    agents: (l.relatedStaffMembers ?? l.staff)?.map((s) => {
-      const fullName = `${s.firstName} ${s.lastName}`.trim();
-      const member = team.find((t) => t.name.toLowerCase() === fullName.toLowerCase());
-      return {
-        name: fullName,
-        role: member?.role ?? "Sales Agent",
-        phone: s.phone || member?.phone || "02 4296 0047",
-        email: s.email || member?.email || "info@spinellirealestate.com.au",
-        image: member?.image ?? "/staff/placeholder.png",
-      };
-    }),
+    agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
     openHome: nextInspection(l.inspectionDates) || l.openHome || undefined,
   };
 }
