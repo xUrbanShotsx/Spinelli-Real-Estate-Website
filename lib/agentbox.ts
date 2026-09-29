@@ -83,6 +83,7 @@ export interface ABListing {
   images?: ABImage[];
   floorPlans?: ABFloorPlan[];
   staff?: { firstName: string; lastName: string; phone: string; email: string }[];
+  relatedStaffMembers?: { firstName: string; lastName: string; phone: string; email: string }[];
 }
 
 export interface ABListingsResponse {
@@ -131,7 +132,14 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
-  return data.response.listing as ABListing;
+  const listing = data.response.listing;
+  // DEBUG: log staff fields to diagnose which key AgentBox uses
+  console.log("[AgentBox] listing staff keys:", JSON.stringify({
+    id: listing?.id,
+    staff: listing?.staff,
+    relatedStaffMembers: listing?.relatedStaffMembers,
+  }));
+  return listing as ABListing;
 }
 
 export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResponse> {
@@ -325,8 +333,11 @@ export function mapListing(l: ABListing): Property {
     floorPlan: l.floorPlans?.[0]?.url,
     tag: listingTag(l),
     featured: l.status === "Available",
-    agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
-    agents: l.staff?.map((s) => {
+    agent: (() => {
+      const s = (l.relatedStaffMembers ?? l.staff)?.[0];
+      return s ? `${s.firstName} ${s.lastName}`.trim() : undefined;
+    })(),
+    agents: (l.relatedStaffMembers ?? l.staff)?.map((s) => {
       const fullName = `${s.firstName} ${s.lastName}`.trim();
       const member = team.find((t) => t.name.toLowerCase() === fullName.toLowerCase());
       return {
