@@ -21,7 +21,7 @@ export default async function BuyPage() {
     const data = await fetchForSale(1, 100);
     if (data.listings?.length) {
       properties = data.listings
-        .filter(l => l.property.type === "Residential")
+        .filter(l => ["Residential", "Land"].includes(l.property.type))
         .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
         .map(mapListing);
     }

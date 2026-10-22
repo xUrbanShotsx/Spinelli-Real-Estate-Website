@@ -3,6 +3,16 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import type { Property, PropertyAmenity } from "@/lib/types";
 
+function extractYouTubeId(url: string): string {
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&/\s]+)/);
+  return m?.[1] ?? "";
+}
+
+function extractVimeoId(url: string): string {
+  const m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  return m?.[1] ?? "";
+}
+
 const amenityIcon = (category: PropertyAmenity["category"]) => {
   switch (category) {
     case "school":
@@ -226,6 +236,42 @@ export default function PropertyDetailClient({ property }: { property: Property 
                   />
                 </button>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Video ── */}
+      {property.videoUrl && (
+        <section style={{ backgroundColor: "#f8f6f1", paddingTop: "60px", paddingBottom: "60px" }}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <span className="label-tag">Property Video</span>
+            <div className="mt-6" style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }}>
+              {/youtube\.com|youtu\.be/.test(property.videoUrl) ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${extractYouTubeId(property.videoUrl)}?autoplay=0&rel=0&modestbranding=1`}
+                  title="Property video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                />
+              ) : /vimeo\.com/.test(property.videoUrl) ? (
+                <iframe
+                  src={`https://player.vimeo.com/video/${extractVimeoId(property.videoUrl)}?title=0&byline=0&portrait=0`}
+                  title="Property video"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                />
+              ) : (
+                <video
+                  controls
+                  playsInline
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "#000" }}
+                >
+                  <source src={property.videoUrl} type="video/mp4" />
+                </video>
+              )}
             </div>
           </div>
         </section>
