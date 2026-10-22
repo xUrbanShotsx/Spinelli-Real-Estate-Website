@@ -131,7 +131,10 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
-  return data.response.listing as ABListing;
+  const listing = data.response.listing;
+  console.log("[AgentBox listing keys]", Object.keys(listing));
+  console.log("[AgentBox videos field]", listing.videos, listing.videoLinks, listing.virtualTours);
+  return listing as ABListing;
 }
 
 export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResponse> {
