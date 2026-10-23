@@ -37,7 +37,6 @@ export interface Property {
   virtualTour?: boolean;
   agent?: string;
   agentPhone?: string;
-  videoUrl?: string;
 }
 
 export interface Project {

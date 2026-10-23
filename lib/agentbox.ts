@@ -82,7 +82,6 @@ export interface ABListing {
   images?: ABImage[];
   floorPlans?: ABFloorPlan[];
   staff?: { firstName: string; lastName: string; phone: string; email: string }[];
-  links?: { url: string; label?: string; name?: string }[];
 }
 
 export interface ABListingsResponse {
@@ -131,9 +130,7 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
-  const listing = data.response.listing;
-  console.log("[AgentBox links raw]", JSON.stringify(listing.links ?? listing.externalLinks ?? listing.resources));
-  return listing as ABListing;
+  return data.response.listing as ABListing;
 }
 
 export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResponse> {
@@ -329,7 +326,6 @@ export function mapListing(l: ABListing): Property {
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
     openHome: nextInspection(l.inspectionDates) || l.openHome || undefined,
-    videoUrl: l.links?.find(lnk => /youtu|vimeo/i.test(lnk.url))?.url || undefined,
   };
 }
 
