@@ -82,7 +82,7 @@ export interface ABListing {
   images?: ABImage[];
   floorPlans?: ABFloorPlan[];
   staff?: { firstName: string; lastName: string; phone: string; email: string }[];
-  videos?: { url: string; type?: string }[];
+  links?: { url: string; label?: string; name?: string }[];
 }
 
 export interface ABListingsResponse {
@@ -126,13 +126,13 @@ export async function fetchAllListings(
 
 export async function fetchListing(id: string, revalidate = 60): Promise<ABListing> {
   const res = await fetch(
-    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates,videos" }),
+    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates,links" }),
     { headers: headers(), next: { revalidate } }
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
   const listing = data.response.listing;
-  console.log("[AgentBox webLink]", listing.webLink, listing.links, listing.youtubeLink);
+  console.log("[AgentBox links]", JSON.stringify(listing.links));
   return listing as ABListing;
 }
 
@@ -329,7 +329,7 @@ export function mapListing(l: ABListing): Property {
     featured: l.status === "Available",
     agent: l.staff?.[0] ? `${l.staff[0].firstName} ${l.staff[0].lastName}`.trim() : undefined,
     openHome: nextInspection(l.inspectionDates) || l.openHome || undefined,
-    videoUrl: l.videos?.[0]?.url || undefined,
+    videoUrl: l.links?.find(lnk => /youtu|vimeo/i.test(lnk.url))?.url || undefined,
   };
 }
 
