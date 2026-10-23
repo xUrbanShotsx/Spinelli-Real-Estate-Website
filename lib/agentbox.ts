@@ -132,8 +132,7 @@ export async function fetchListing(id: string, revalidate = 60): Promise<ABListi
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
   const listing = data.response.listing;
-  console.log("[AgentBox listing keys]", Object.keys(listing));
-  console.log("[AgentBox videos field]", listing.videos, listing.videoLinks, listing.virtualTours);
+  console.log("[AgentBox webLink]", listing.webLink, listing.links, listing.youtubeLink);
   return listing as ABListing;
 }
 
