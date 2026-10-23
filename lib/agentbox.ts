@@ -126,13 +126,13 @@ export async function fetchAllListings(
 
 export async function fetchListing(id: string, revalidate = 60): Promise<ABListing> {
   const res = await fetch(
-    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates,links" }),
+    url(`/listings/${id}`, { include: "images,floorPlans,relatedStaffMembers,mainDescription,inspectionDates" }),
     { headers: headers(), next: { revalidate } }
   );
   if (!res.ok) throw new Error(`AgentBox error ${res.status}`);
   const data = await res.json();
   const listing = data.response.listing;
-  console.log("[AgentBox links]", JSON.stringify(listing.links));
+  console.log("[AgentBox links raw]", JSON.stringify(listing.links ?? listing.externalLinks ?? listing.resources));
   return listing as ABListing;
 }
 
