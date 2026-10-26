@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "Spinelli Real Estate <onboarding@resend.dev>",
-      to: ["adam@spinellire.com"],
+      to: ["mark@spinellire.com"],
       replyTo: email,
       subject: `Shell Cove Appraisal Request — ${address || "No address provided"}`,
       html: `
