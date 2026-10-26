@@ -185,10 +185,6 @@ export default function ShellCovePage() {
       {/* ── Footer ── */}
       <footer style={{ borderTop: "1px solid #E8E5DF", padding: "40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "24px" }}>
         <img src="/logo.png" alt="Spinelli Real Estate" style={{ height: "22px", width: "auto" }} />
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", textAlign: "right", fontSize: "13px", color: "#7a7265" }}>
-          <a href="tel:0242960047" style={{ color: "#7a7265", textDecoration: "none" }}>02 4296 0047</a>
-          <a href="https://www.spinellirealestate.com.au" target="_blank" rel="noreferrer" style={{ color: "#7a7265", textDecoration: "none" }}>spinellirealestate.com.au</a>
-        </div>
       </footer>
     </main>
   );
