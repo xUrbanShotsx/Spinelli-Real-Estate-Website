@@ -110,61 +110,28 @@ export default function ShellCovePage() {
           </div>
 
           {/* Right — agent cards */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
 
-            {/* Mark */}
-            <div style={{ backgroundColor: "#0D3348", padding: "36px 40px", display: "flex", flexDirection: "column", gap: "28px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                <div style={{ width: "52px", height: "52px", backgroundColor: "#5BC2E7", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 300, color: "#fff", letterSpacing: "-0.02em" }}>MS</span>
+            {[
+              { initials: "MS", role: "Director", name: "Mark Spinelli", phone: "0401 385 662", tel: "0401385662", email: "mark@spinellire.com" },
+              { initials: "AH", role: "Sales Associate", name: "Aaron Hofman", phone: "0439 555 880", tel: "0439555880", email: "aaron@spinellire.com" },
+            ].map(agent => (
+              <div key={agent.name} style={{ border: "1px solid #E8E5DF", padding: "32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px", backgroundColor: "#ffffff" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                  <div style={{ width: "52px", height: "52px", border: "1px solid #E8E5DF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <span style={{ fontFamily: "var(--font-display)", fontSize: "1rem", fontWeight: 300, color: "#0D3348", letterSpacing: "0.04em" }}>{agent.initials}</span>
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#a2b0aa", margin: "0 0 4px" }}>{agent.role}</p>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", fontWeight: 300, letterSpacing: "-0.02em", color: "#0D3348", margin: 0 }}>{agent.name}</p>
+                  </div>
                 </div>
-                <div>
-                  <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", margin: "0 0 4px" }}>Director</p>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", fontWeight: 300, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>Mark Spinelli</p>
-                </div>
-              </div>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <a href="tel:0401385662" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none", backgroundColor: "#5BC2E7", padding: "10px 20px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#fff" strokeWidth={1.5} style={{ width: "14px", height: "14px", flexShrink: 0 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                  </svg>
-                  <span style={{ fontSize: "13px", fontWeight: 500, color: "#fff", letterSpacing: "0.04em" }}>0401 385 662</span>
-                </a>
-                <a href="mailto:mark@spinellire.com" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", padding: "10px 20px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.6)" strokeWidth={1.5} style={{ width: "14px", height: "14px", flexShrink: 0 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                  </svg>
-                  <span style={{ fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.6)", letterSpacing: "0.04em" }}>Email</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Aaron */}
-            <div style={{ backgroundColor: "#F8F6F1", padding: "36px 40px", display: "flex", flexDirection: "column", gap: "28px", border: "1px solid #E8E5DF" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                <div style={{ width: "52px", height: "52px", backgroundColor: "#0D3348", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 300, color: "#fff", letterSpacing: "-0.02em" }}>AH</span>
-                </div>
-                <div>
-                  <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#a2b0aa", margin: "0 0 4px" }}>Sales Associate</p>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", fontWeight: 300, letterSpacing: "-0.02em", color: "#0D3348", margin: 0 }}>Aaron Hofman</p>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+                  <a href={`tel:${agent.tel}`} style={{ fontSize: "14px", fontWeight: 500, color: "#0D3348", textDecoration: "none" }}>{agent.phone}</a>
+                  <a href={`mailto:${agent.email}`} style={{ fontSize: "13px", color: "#5BC2E7", textDecoration: "none", letterSpacing: "0.02em" }}>Email</a>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <a href="tel:0439555880" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none", backgroundColor: "#0D3348", padding: "10px 20px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#fff" strokeWidth={1.5} style={{ width: "14px", height: "14px", flexShrink: 0 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                  </svg>
-                  <span style={{ fontSize: "13px", fontWeight: 500, color: "#fff", letterSpacing: "0.04em" }}>0439 555 880</span>
-                </a>
-                <a href="mailto:aaron@spinellire.com" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none", border: "1px solid #E8E5DF", padding: "10px 20px" }}>
-                  <svg fill="none" viewBox="0 0 24 24" stroke="#7a7265" strokeWidth={1.5} style={{ width: "14px", height: "14px", flexShrink: 0 }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                  </svg>
-                  <span style={{ fontSize: "13px", fontWeight: 400, color: "#7a7265", letterSpacing: "0.04em" }}>Email</span>
-                </a>
-              </div>
-            </div>
+            ))}
 
           </div>
         </div>
