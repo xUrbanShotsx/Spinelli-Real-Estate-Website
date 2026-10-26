@@ -167,16 +167,6 @@ export default function ShellCovePage() {
               ))}
             </div>
 
-            {/* Agent mini */}
-            <div style={{ display: "flex", gap: "12px", alignItems: "center", padding: "16px", backgroundColor: "#F8F6F1" }}>
-              <div style={{ width: "44px", height: "44px", backgroundColor: "#0D3348", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <span style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 300, color: "#fff" }}>MS</span>
-              </div>
-              <div>
-                <p style={{ fontSize: "13px", fontWeight: 500, margin: "0 0 2px", color: "#000" }}>Mark Spinelli</p>
-                <p style={{ fontSize: "12px", color: "#7a7265", margin: 0 }}>Will personally review your request</p>
-              </div>
-            </div>
           </div>
 
           {/* Right — form */}
