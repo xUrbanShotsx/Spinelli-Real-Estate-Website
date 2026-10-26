@@ -69,15 +69,23 @@ export default function ShellCoveStats() {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: "1px solid #E8E5DF" }}
-    >
-      {STATS.map((s, i) => (
-        <div key={s.label} style={{ borderRight: i < 3 ? "1px solid #E8E5DF" : "none" }}>
-          <Stat {...s} triggered={triggered} delay={i * 120} />
-        </div>
-      ))}
-    </div>
+    <>
+      <style>{`
+        .sc-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #E8E5DF; }
+        .sc-stat-cell-border { border-right: 1px solid #E8E5DF; }
+        @media (max-width: 768px) {
+          .sc-stats-grid { grid-template-columns: repeat(2, 1fr); }
+          .sc-stat-cell:nth-child(even) { border-right: none !important; }
+          .sc-stat-cell:nth-child(1), .sc-stat-cell:nth-child(2) { border-bottom: 1px solid #E8E5DF; }
+        }
+      `}</style>
+      <div ref={ref} className="sc-stats-grid">
+        {STATS.map((s, i) => (
+          <div key={s.label} className={`sc-stat-cell${i < 3 ? " sc-stat-cell-border" : ""}`}>
+            <Stat {...s} triggered={triggered} delay={i * 120} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

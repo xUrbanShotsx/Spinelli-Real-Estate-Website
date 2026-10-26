@@ -103,7 +103,12 @@ export default function ShellCoveForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate style={{ display: "grid", gap: "32px", gridTemplateColumns: "1fr 1fr" }}>
+    <>
+      <style>{`
+        .sc-form-fields { display: grid; gap: 32px; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 768px) { .sc-form-fields { grid-template-columns: 1fr; } }
+      `}</style>
+      <form onSubmit={handleSubmit} noValidate className="sc-form-fields">
       <div>
         <label style={labelStyle}>First name</label>
         <input name="firstName" autoComplete="given-name" style={inputStyle} />
@@ -171,5 +176,6 @@ export default function ShellCoveForm() {
         </button>
       </div>
     </form>
+    </>
   );
 }

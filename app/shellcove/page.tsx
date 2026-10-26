@@ -11,6 +11,32 @@ export const metadata: Metadata = {
 export default function ShellCovePage() {
   return (
     <main style={{ overflow: "hidden", backgroundColor: "#ffffff", fontFamily: "var(--font-sans)" }}>
+      <style>{`
+        .sc-pad { padding: 0 40px; }
+        .sc-section { padding: 96px 0; }
+        .sc-snapshot-header { display: grid; gap: 32px; grid-template-columns: 1fr 1.4fr; align-items: end; margin-bottom: 64px; }
+        .sc-selling-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .sc-form-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+        .sc-form-box { padding: 48px; }
+        .sc-section-inner { max-width: 1400px; margin: 0 auto; }
+        .sc-agent-card { border: 1px solid #E8E5DF; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #fff; }
+        .sc-agent-contact { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+        .sc-hero-pad { padding: 0 40px; }
+        @media (max-width: 768px) {
+          .sc-pad { padding: 0 20px; }
+          .sc-section { padding: 64px 0; }
+          .sc-snapshot-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+          .sc-snapshot-header p { justify-self: start; max-width: none; }
+          .sc-selling-grid { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+          .sc-form-grid { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+          .sc-form-box { padding: 24px; }
+          .sc-agent-card { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+          .sc-agent-contact { align-items: flex-start; flex-direction: row; gap: 16px; }
+          .sc-hero-pad { padding: 0 20px; }
+          .sc-selling-minheight { min-height: unset !important; }
+          .sc-form-minheight { min-height: unset !important; }
+        }
+      `}</style>
 
       {/* ── Hero ── */}
       <section style={{ position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#ffffff", textAlign: "center" }}>
@@ -20,21 +46,21 @@ export default function ShellCovePage() {
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 65%" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(13,51,72,0.45) 0%, rgba(13,51,72,0.20) 40%, rgba(13,51,72,0.35) 70%, rgba(13,51,72,0.65) 100%)" }} />
-        <div style={{ position: "relative", zIndex: 10, padding: "0 40px" }}>
+        <div className="sc-hero-pad" style={{ position: "relative", zIndex: 10 }}>
           <p style={{ fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.2em", opacity: 0.85, margin: "0 0 24px", color: "#ffffff" }}>
             Your local property experts
           </p>
           <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 600, lineHeight: 0.95, letterSpacing: "-0.03em", margin: "0 0 20px", color: "#ffffff" }}>
-            <span style={{ display: "block", fontSize: "clamp(4rem, 12vw, 10rem)" }}>Shell Cove</span>
+            <span style={{ display: "block", fontSize: "clamp(3.5rem, 12vw, 10rem)" }}>Shell Cove</span>
           </h1>
-          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 4vw, 3rem)", fontWeight: 300, color: "#ffffff", margin: "0 0 48px", letterSpacing: "-0.02em" }}>
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem, 4vw, 3rem)", fontWeight: 300, color: "#ffffff", margin: "0 0 48px", letterSpacing: "-0.02em" }}>
             Market insights
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>
-            <a href="#appraisal" style={{ backgroundColor: "#5BC2E7", color: "#fff", padding: "14px 32px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}>
+            <a href="#appraisal" style={{ backgroundColor: "#5BC2E7", color: "#fff", padding: "14px 28px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}>
               Get a Free Appraisal
             </a>
-            <a href="#snapshot" style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#fff", padding: "14px 32px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}>
+            <a href="#snapshot" style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#fff", padding: "14px 28px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}>
               View the market
             </a>
           </div>
@@ -47,9 +73,9 @@ export default function ShellCovePage() {
       </section>
 
       {/* ── Market snapshot ── */}
-      <section id="snapshot" style={{ padding: "96px 0" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 40px" }}>
-          <div style={{ display: "grid", gap: "32px", gridTemplateColumns: "1fr 1.4fr", alignItems: "end", marginBottom: "64px" }}>
+      <section id="snapshot" className="sc-section">
+        <div className="sc-section-inner sc-pad">
+          <div className="sc-snapshot-header">
             <div>
               <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#a2b0aa", margin: "0 0 16px" }}>
                 Shell Cove · Market snapshot
@@ -67,8 +93,8 @@ export default function ShellCovePage() {
       </section>
 
       {/* ── Thinking of selling — full page ── */}
-      <section style={{ minHeight: "100svh", backgroundColor: "#ffffff", display: "flex", alignItems: "center", borderTop: "1px solid #E8E5DF" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "80px 40px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
+      <section className="sc-selling-minheight" style={{ minHeight: "100svh", backgroundColor: "#ffffff", display: "flex", alignItems: "center", borderTop: "1px solid #E8E5DF" }}>
+        <div className="sc-section-inner sc-selling-grid" style={{ width: "100%", padding: "80px 40px" }}>
 
           {/* Left — copy */}
           <div>
@@ -111,12 +137,11 @@ export default function ShellCovePage() {
 
           {/* Right — agent cards */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-
             {[
               { initials: "MS", role: "Director", name: "Mark Spinelli", phone: "0401 385 662", tel: "0401385662", email: "mark@spinellire.com" },
               { initials: "AH", role: "Sales Associate", name: "Aaron Hofman", phone: "0439 555 880", tel: "0439555880", email: "aaron@spinellire.com" },
             ].map(agent => (
-              <div key={agent.name} style={{ border: "1px solid #E8E5DF", padding: "32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px", backgroundColor: "#ffffff" }}>
+              <div key={agent.name} className="sc-agent-card">
                 <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
                   <div style={{ width: "52px", height: "52px", border: "1px solid #E8E5DF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <span style={{ fontFamily: "var(--font-display)", fontSize: "1rem", fontWeight: 300, color: "#0D3348", letterSpacing: "0.04em" }}>{agent.initials}</span>
@@ -126,20 +151,19 @@ export default function ShellCovePage() {
                     <p style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", fontWeight: 300, letterSpacing: "-0.02em", color: "#0D3348", margin: 0 }}>{agent.name}</p>
                   </div>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+                <div className="sc-agent-contact">
                   <a href={`tel:${agent.tel}`} style={{ fontSize: "14px", fontWeight: 500, color: "#0D3348", textDecoration: "none" }}>{agent.phone}</a>
                   <a href={`mailto:${agent.email}`} style={{ fontSize: "13px", color: "#5BC2E7", textDecoration: "none", letterSpacing: "0.02em" }}>Email</a>
                 </div>
               </div>
             ))}
-
           </div>
         </div>
       </section>
 
       {/* ── Appraisal form — full page ── */}
-      <section id="appraisal" style={{ minHeight: "100svh", backgroundColor: "#ffffff", display: "flex", alignItems: "center", borderTop: "1px solid #E8E5DF" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "80px 40px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "80px", alignItems: "start" }}>
+      <section id="appraisal" className="sc-form-minheight" style={{ minHeight: "100svh", backgroundColor: "#ffffff", display: "flex", alignItems: "center", borderTop: "1px solid #E8E5DF" }}>
+        <div className="sc-section-inner sc-form-grid" style={{ width: "100%", padding: "80px 40px" }}>
 
           {/* Left — trust column */}
           <div style={{ position: "sticky", top: "140px" }}>
@@ -154,7 +178,7 @@ export default function ShellCovePage() {
             </p>
 
             {/* Stats strip */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0", border: "1px solid #E8E5DF", marginBottom: "36px" }}>
+            <div style={{ display: "flex", flexDirection: "column", border: "1px solid #E8E5DF" }}>
               {[
                 { num: "$1.45M", desc: "Median house price in Shell Cove" },
                 { num: "61 days", desc: "Average days on market" },
@@ -166,11 +190,10 @@ export default function ShellCovePage() {
                 </div>
               ))}
             </div>
-
           </div>
 
           {/* Right — form */}
-          <div style={{ backgroundColor: "#ffffff", border: "1px solid #E8E5DF", padding: "48px" }}>
+          <div className="sc-form-box" style={{ backgroundColor: "#ffffff", border: "1px solid #E8E5DF" }}>
             <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 300, letterSpacing: "-0.03em", margin: "0 0 8px", color: "#0D3348" }}>
               Request your appraisal
             </h3>
@@ -183,7 +206,7 @@ export default function ShellCovePage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{ borderTop: "1px solid #E8E5DF", padding: "40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "24px" }}>
+      <footer style={{ borderTop: "1px solid #E8E5DF", padding: "32px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "24px" }}>
         <img src="/logo.png" alt="Spinelli Real Estate" style={{ height: "22px", width: "auto" }} />
       </footer>
     </main>
