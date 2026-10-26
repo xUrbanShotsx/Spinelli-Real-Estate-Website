@@ -1,0 +1,175 @@
+"use client";
+import { useState, type FormEvent } from "react";
+
+const TIMEFRAMES = [
+  { value: "now", label: "Ready to sell now" },
+  { value: "3_months", label: "Within 3 months" },
+  { value: "6_months", label: "Within 6 months" },
+  { value: "12_months", label: "Within 12 months" },
+  { value: "just_looking", label: "Just looking" },
+];
+
+const inputStyle: React.CSSProperties = {
+  display: "block",
+  width: "100%",
+  height: "48px",
+  borderTop: "none",
+  borderLeft: "none",
+  borderRight: "none",
+  borderBottom: "1px solid #c8c4bc",
+  background: "transparent",
+  padding: "0",
+  fontSize: "15px",
+  fontFamily: "var(--font-sans)",
+  color: "#000",
+  outline: "none",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: "11px",
+  fontWeight: 500,
+  textTransform: "uppercase",
+  letterSpacing: "0.14em",
+  color: "#a2b0aa",
+  marginBottom: "6px",
+  fontFamily: "var(--font-sans)",
+};
+
+const errStyle: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#dc2626",
+  marginTop: "6px",
+  fontFamily: "var(--font-sans)",
+};
+
+export default function ShellCoveForm() {
+  const [timeframe, setTimeframe] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const fields = {
+      firstName: (form.get("firstName") as string)?.trim(),
+      lastName: (form.get("lastName") as string)?.trim(),
+      address: (form.get("address") as string)?.trim(),
+      phone: (form.get("phone") as string)?.trim(),
+      email: (form.get("email") as string)?.trim(),
+      timeframe,
+    };
+
+    const next: Record<string, string> = {};
+    if (!fields.firstName) next.firstName = "Required";
+    if (!fields.lastName) next.lastName = "Required";
+    if (!fields.address) next.address = "Required";
+    if (!fields.phone) next.phone = "Required";
+    if (!fields.email || !/\S+@\S+\.\S+/.test(fields.email)) next.email = "Valid email required";
+    if (!fields.timeframe) next.timeframe = "Please select a timeframe";
+
+    if (Object.keys(next).length) { setErrors(next); return; }
+
+    setErrors({});
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/shellcove-appraisal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      if (!res.ok) throw new Error();
+      setDone(true);
+    } catch {
+      setErrors({ form: "Something went wrong. Please call us on 02 4296 0047." });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (done) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", padding: "64px 0", textAlign: "center" }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={1.5} style={{ width: "48px", height: "48px" }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", fontWeight: 300, letterSpacing: "-0.03em", margin: 0 }}>Thank you</h3>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", maxWidth: "36ch", lineHeight: 1.7 }}>
+          Your request has been received. A member of the Spinelli team will be in touch to arrange your market appraisal.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} noValidate style={{ display: "grid", gap: "32px", gridTemplateColumns: "1fr 1fr" }}>
+      <div>
+        <label style={labelStyle}>First name</label>
+        <input name="firstName" autoComplete="given-name" style={inputStyle} />
+        {errors.firstName && <p style={errStyle}>{errors.firstName}</p>}
+      </div>
+      <div>
+        <label style={labelStyle}>Last name</label>
+        <input name="lastName" autoComplete="family-name" style={inputStyle} />
+        {errors.lastName && <p style={errStyle}>{errors.lastName}</p>}
+      </div>
+      <div style={{ gridColumn: "1 / -1" }}>
+        <label style={labelStyle}>Property address</label>
+        <input name="address" autoComplete="street-address" style={inputStyle} />
+        {errors.address && <p style={errStyle}>{errors.address}</p>}
+      </div>
+      <div>
+        <label style={labelStyle}>Phone</label>
+        <input name="phone" type="tel" autoComplete="tel" style={inputStyle} />
+        {errors.phone && <p style={errStyle}>{errors.phone}</p>}
+      </div>
+      <div>
+        <label style={labelStyle}>Email</label>
+        <input name="email" type="email" autoComplete="email" style={inputStyle} />
+        {errors.email && <p style={errStyle}>{errors.email}</p>}
+      </div>
+      <div style={{ gridColumn: "1 / -1" }}>
+        <label style={labelStyle}>Looking to sell</label>
+        <select
+          value={timeframe}
+          onChange={e => setTimeframe(e.target.value)}
+          style={{ ...inputStyle, cursor: "pointer" }}
+        >
+          <option value="">Select a timeframe</option>
+          {TIMEFRAMES.map(t => (
+            <option key={t.value} value={t.value}>{t.label}</option>
+          ))}
+        </select>
+        {errors.timeframe && <p style={errStyle}>{errors.timeframe}</p>}
+      </div>
+      {errors.form && (
+        <div style={{ gridColumn: "1 / -1" }}>
+          <p style={errStyle}>{errors.form}</p>
+        </div>
+      )}
+      <div style={{ gridColumn: "1 / -1" }}>
+        <button
+          type="submit"
+          disabled={submitting}
+          style={{
+            backgroundColor: "#5BC2E7",
+            color: "#fff",
+            border: "none",
+            padding: "14px 32px",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            fontFamily: "var(--font-sans)",
+            cursor: submitting ? "not-allowed" : "pointer",
+            opacity: submitting ? 0.7 : 1,
+            transition: "opacity 0.2s",
+          }}
+        >
+          {submitting ? "Sending…" : "Request my appraisal"}
+        </button>
+      </div>
+    </form>
+  );
+}
