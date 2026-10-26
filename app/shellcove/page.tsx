@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import ShellCoveForm from "./ShellCoveForm";
+import ShellCoveStats from "./ShellCoveStats";
 
 export const metadata: Metadata = {
   title: "Shell Cove Market Insights | Spinelli Real Estate",
   description: "Shell Cove market snapshot from Spinelli — median house price $1.45M, 61 days on market. Book a free 10 minute market appraisal.",
   robots: { index: false, follow: false },
 };
-
-const STATS = [
-  { value: "$1.45M", label: "Median house price" },
-  { value: "1.3%", label: "12 month growth" },
-  { value: "61 days", label: "Median days on market" },
-  { value: "144", label: "Sales (house & unit)" },
-];
 
 const AGENTS = [
   { name: "Mark Spinelli", role: "Director", phone: "0401 385 662", tel: "0401385662" },
@@ -24,66 +18,40 @@ export default function ShellCovePage() {
     <main style={{ overflow: "hidden", backgroundColor: "#ffffff", fontFamily: "var(--font-sans)" }}>
 
       {/* ── Hero ── */}
-      <section style={{ position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column", color: "#ffffff" }}>
+      <section style={{ position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#ffffff", textAlign: "center" }}>
         <img
           src="/shellcove/hero.jpg"
           alt="Shell Cove marina"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 65%" }}
         />
-        {/* Overlays */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(13,51,72,0.55) 0%, rgba(13,51,72,0.25) 40%, rgba(13,51,72,0.30) 70%, rgba(13,51,72,0.70) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(13,51,72,0.45) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(13,51,72,0.45) 0%, rgba(13,51,72,0.20) 40%, rgba(13,51,72,0.35) 70%, rgba(13,51,72,0.65) 100%)" }} />
 
-        {/* Header */}
-        <header style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 40px" }}>
-          <a href="tel:0242960047" style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.04em", color: "#fff", textDecoration: "none", opacity: 0.9 }}>
-            02 4296 0047
-          </a>
-          <img src="/logo.png" alt="Spinelli Real Estate" style={{ height: "22px", width: "auto", filter: "brightness(0) invert(1)" }} />
-          <a
-            href="#appraisal"
-            style={{
-              border: "1px solid rgba(255,255,255,0.5)",
-              color: "#fff",
-              padding: "8px 20px",
-              fontSize: "12px",
-              fontWeight: 500,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "background 0.2s",
-            }}
-          >
-            Free Appraisal
-          </a>
-        </header>
-
-        {/* Hero content */}
-        <div style={{ position: "relative", zIndex: 10, flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 40px 96px" }}>
-          <p style={{ fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.2em", opacity: 0.85, margin: "0 0 20px" }}>
+        <div style={{ position: "relative", zIndex: 10, padding: "0 40px" }}>
+          <p style={{ fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.2em", opacity: 0.85, margin: "0 0 24px", color: "#ffffff" }}>
             Your local property experts
           </p>
-          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 300, lineHeight: 0.95, letterSpacing: "-0.03em", margin: "0 0 40px" }}>
-            <span style={{ display: "block", fontSize: "clamp(3.5rem, 10vw, 9rem)" }}>Shell Cove</span>
-            <span style={{ display: "block", fontSize: "clamp(1.5rem, 4vw, 3.5rem)", opacity: 0.85, marginTop: "12px" }}>Market insights</span>
+          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 600, lineHeight: 0.95, letterSpacing: "-0.03em", margin: "0 0 20px", color: "#ffffff" }}>
+            <span style={{ display: "block", fontSize: "clamp(4rem, 12vw, 10rem)" }}>Shell Cove</span>
           </h1>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 4vw, 3rem)", fontWeight: 300, color: "#ffffff", margin: "0 0 48px", letterSpacing: "-0.02em" }}>
+            Market insights
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>
             <a
               href="#appraisal"
-              style={{ backgroundColor: "#5BC2E7", color: "#fff", padding: "14px 28px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
+              style={{ backgroundColor: "#5BC2E7", color: "#fff", padding: "14px 32px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
             >
               Get a Free Appraisal
             </a>
             <a
               href="#snapshot"
-              style={{ border: "1px solid rgba(255,255,255,0.45)", color: "#fff", padding: "14px 28px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
+              style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#fff", padding: "14px 32px", fontSize: "13px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
             >
               View the market
             </a>
           </div>
         </div>
 
-        {/* Scroll hint */}
         <a href="#snapshot" style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", zIndex: 10, color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1} style={{ width: "28px", height: "28px" }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -109,25 +77,7 @@ export default function ShellCovePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: "1px solid #E8E5DF" }}>
-            {STATS.map(({ value, label }, i) => (
-              <div key={label} style={{
-                padding: "40px 32px",
-                borderBottom: "1px solid #E8E5DF",
-                borderRight: i < 3 ? "1px solid #E8E5DF" : "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                gap: "40px",
-              }}>
-                <div style={{ width: "28px", height: "28px", backgroundColor: "#5BC2E7", borderRadius: "2px" }} />
-                <div>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3vw, 3rem)", fontWeight: 300, letterSpacing: "-0.03em", margin: "0 0 12px" }}>{value}</p>
-                  <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#a2b0aa", margin: 0 }}>{label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ShellCoveStats />
         </div>
       </section>
 
