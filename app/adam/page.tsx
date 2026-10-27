@@ -33,6 +33,8 @@ export default function AdamPage() {
           .adam-card p {
             margin-bottom: 8px !important;
           }
+          header.fixed { display: none !important; }
+          button[aria-label*="chat"], button[aria-label*="Chat"] { display: none !important; }
         }
       `}</style>
       <main style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px", fontFamily: "var(--font-sans)", overflow: "hidden" }}>

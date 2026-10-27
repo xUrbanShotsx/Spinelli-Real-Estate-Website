@@ -38,6 +38,11 @@ export default function AdamForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [appraisalType, setAppraisalType] = useState<string[]>([]);
+
+  function toggleType(val: string) {
+    setAppraisalType(prev => prev.includes(val) ? prev.filter(v => v !== val) : [...prev, val]);
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,6 +52,7 @@ export default function AdamForm() {
       address: (form.get("address") as string)?.trim(),
       email: (form.get("email") as string)?.trim(),
       phone: (form.get("phone") as string)?.trim(),
+      appraisalType: appraisalType.join(", ") || "Not specified",
     };
 
     const next: Record<string, string> = {};
@@ -117,6 +123,57 @@ export default function AdamForm() {
         <input name="phone" type="tel" autoComplete="tel" style={inputStyle} />
         {errors.phone && <p style={errStyle}>{errors.phone}</p>}
       </div>
+
+      {/* Appraisal type */}
+      <div>
+        <p style={{ ...labelStyle, marginBottom: "12px" }}>Appraisal preference</p>
+        <div style={{ display: "flex", gap: "12px" }}>
+          {["In person", "Online"].map(opt => {
+            const active = appraisalType.includes(opt);
+            return (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => toggleType(opt)}
+                style={{
+                  flex: 1,
+                  padding: "12px",
+                  border: active ? "2px solid #5BC2E7" : "1px solid #E8E5DF",
+                  borderRadius: "8px",
+                  backgroundColor: active ? "#EEF9FD" : "#F9F8F6",
+                  color: active ? "#0D3348" : "#7a7265",
+                  fontSize: "13px",
+                  fontWeight: active ? 500 : 400,
+                  fontFamily: "var(--font-sans)",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  transition: "all 0.15s",
+                }}
+              >
+                <span style={{
+                  width: "16px", height: "16px",
+                  border: active ? "2px solid #5BC2E7" : "1.5px solid #c8c4bc",
+                  borderRadius: "4px",
+                  backgroundColor: active ? "#5BC2E7" : "transparent",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}>
+                  {active && (
+                    <svg viewBox="0 0 12 12" fill="none" style={{ width: "8px", height: "8px" }}>
+                      <path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </span>
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {errors.form && <p style={errStyle}>{errors.form}</p>}
       <button
         type="submit"
