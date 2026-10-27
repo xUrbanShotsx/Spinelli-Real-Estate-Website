@@ -91,7 +91,12 @@ export default function AdamForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+    <>
+      <style>{`
+        .adam-form { display: flex; flex-direction: column; gap: 20px; }
+        @media (max-width: 600px) { .adam-form { gap: 14px; } }
+      `}</style>
+      <form onSubmit={handleSubmit} noValidate className="adam-form">
       <div>
         <label style={labelStyle}>Full name</label>
         <input name="fullName" autoComplete="name" style={inputStyle} />
@@ -136,5 +141,6 @@ export default function AdamForm() {
         {submitting ? "Sending…" : "Get my home value"}
       </button>
     </form>
+    </>
   );
 }
