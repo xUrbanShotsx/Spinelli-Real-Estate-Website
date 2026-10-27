@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AdamPage() {
   return (
-    <main style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", justifyContent: "center", padding: "120px 20px 40px", fontFamily: "var(--font-sans)" }}>
+    <main style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px", fontFamily: "var(--font-sans)", overflow: "hidden" }}>
 
       {/* Background image */}
       <img
@@ -47,14 +47,11 @@ export default function AdamPage() {
           letterSpacing: "-0.03em",
           lineHeight: 1.1,
           color: "#0D3348",
-          margin: "0 0 8px",
+          margin: "0 0 32px",
           textAlign: "center",
         }}>
-          What&apos;s your home worth?
+          Learn your home&apos;s new value
         </h1>
-        <p style={{ fontSize: "14px", color: "#7a7265", lineHeight: 1.7, margin: "0 0 32px", textAlign: "center" }}>
-          Get a free, accurate market appraisal from your local Spinelli agent.
-        </p>
 
         <AdamForm />
       </div>

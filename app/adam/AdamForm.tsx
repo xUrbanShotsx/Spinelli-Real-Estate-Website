@@ -117,7 +117,7 @@ export default function AdamForm() {
         type="submit"
         disabled={submitting}
         style={{
-          backgroundColor: "#0D3348",
+          backgroundColor: "#5BC2E7",
           color: "#fff",
           border: "none",
           borderRadius: "8px",
@@ -133,7 +133,7 @@ export default function AdamForm() {
           width: "100%",
         }}
       >
-        {submitting ? "Sending…" : "Request my free appraisal"}
+        {submitting ? "Sending…" : "Get my home value"}
       </button>
     </form>
   );
