@@ -90,7 +90,7 @@ export default function AdamForm() {
           Thank you
         </h3>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#7a7265", maxWidth: "32ch", lineHeight: 1.7, margin: 0 }}>
-          We&apos;ll be in touch shortly to arrange your free appraisal.
+          We will be in touch soon.
         </p>
       </div>
     );
