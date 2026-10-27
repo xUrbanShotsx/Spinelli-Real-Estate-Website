@@ -33,7 +33,7 @@ export default function AdamPage() {
           .adam-card p {
             margin-bottom: 8px !important;
           }
-          header.fixed { display: none !important; }
+          header.fixed, footer { display: none !important; }
           button[aria-label*="chat"], button[aria-label*="Chat"] { display: none !important; }
         }
       `}</style>
