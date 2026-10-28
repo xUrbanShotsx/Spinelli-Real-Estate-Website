@@ -82,7 +82,7 @@ export default function DevelopPage() {
               New South Wales · Development snapshot
             </p>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#0D3348", margin: "0 0 56px" }}>
-              Why developers are winning in NSW
+              NSW homeowners are getting more by selling smart
             </h2>
             <DevelopMarketStats />
           </div>

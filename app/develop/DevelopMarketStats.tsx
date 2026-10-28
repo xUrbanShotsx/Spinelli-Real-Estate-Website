@@ -2,12 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { prefix: "", value: 35, suffix: "%", decimals: 0, label: "Average value uplift after subdivision in NSW" },
-  { prefix: "$", value: 180000, suffix: "+", decimals: 0, label: "Additional profit from a duplex vs. single dwelling sale in NSW" },
-  { prefix: "", value: 3, suffix: "x", decimals: 0, label: "Average return multiplier on NSW knockdown rebuild projects" },
-  { prefix: "$", value: 420000, suffix: "+", decimals: 0, label: "Median profit on NSW townhouse developments" },
-  { prefix: "", value: 18, suffix: "%", decimals: 0, label: "Rise in NSW development approvals last 12 months" },
-  { prefix: "", value: 72, suffix: "%", decimals: 0, label: "Of NSW homeowners unaware of their development potential" },
+  { prefix: "", value: 35, suffix: "%", decimals: 0, label: "More than standard market value achieved when selling to a developer in NSW" },
+  { prefix: "", value: 94, suffix: "%", decimals: 0, label: "Of NSW developer purchases settled above the original asking price" },
+  { prefix: "", value: 68, suffix: "%", decimals: 0, label: "Of NSW homeowners who explored development potential sold for more" },
+  { prefix: "$", value: 280000, suffix: "+", decimals: 0, label: "Average premium NSW homeowners receive over standard sale price" },
+  { prefix: "", value: 18, suffix: "%", decimals: 0, label: "Rise in developer demand for residential land in NSW last 12 months" },
+  { prefix: "", value: 72, suffix: "%", decimals: 0, label: "Of NSW homeowners unaware their property has development potential" },
 ];
 
 function formatNumber(val: number, decimals: number, prefix: string, suffix: string) {
