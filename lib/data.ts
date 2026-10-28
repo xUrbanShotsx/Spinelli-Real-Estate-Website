@@ -2729,6 +2729,14 @@ export const team: TeamMember[] = [
     bio: "Mark Spinelli is a Director at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the Spinelli family, Mark plays a key role in driving the agency forward and ensuring every client receives the highest standard of service. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors across the region. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
   },
   {
+    name: "Aaron Hofman",
+    role: "Associate Agent",
+    phone: "0439 555 880",
+    email: "aaron@spinellire.com",
+    image: "/Staff/Aaron Hofman.jpg",
+    bio: "Aaron Hofman is an Associate Agent at Spinelli Real Estate, bringing energy, local knowledge and a genuine passion for helping people through one of life's biggest decisions. Aaron works closely with the sales team across the Illawarra, supporting buyers and vendors alike with honest advice and a hands-on approach. He is committed to delivering an exceptional experience from first contact through to settlement, and takes real pride in the results he achieves for his clients. Aaron is known for his professionalism, his approachable nature and his dedication to going above and beyond at every opportunity.",
+  },
+  {
     name: "Zoe Porritt",
     role: "Property Manager",
     phone: "02 4296 0047",
