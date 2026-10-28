@@ -2733,8 +2733,8 @@ export const team: TeamMember[] = [
     role: "Associate Agent",
     phone: "0439 555 880",
     email: "aaron@spinellire.com",
-    image: "/Staff/Aaron Hofman.jpg",
-    bio: "Aaron Hofman is an Associate Agent at Spinelli Real Estate, bringing energy, local knowledge and a genuine passion for helping people through one of life's biggest decisions. Aaron works closely with the sales team across the Illawarra, supporting buyers and vendors alike with honest advice and a hands-on approach. He is committed to delivering an exceptional experience from first contact through to settlement, and takes real pride in the results he achieves for his clients. Aaron is known for his professionalism, his approachable nature and his dedication to going above and beyond at every opportunity.",
+    image: "/staff/aaron-hofman.jpg",
+    bio: "Aaron Hofman is an Associate Agent at Spinelli Real Estate, bringing a unique combination of marketing expertise and property knowledge to his clients. Before entering real estate, Aaron built a successful career as a professional marketer working with some of Australia's top brands — experience that gives him a distinct edge when it comes to presenting and positioning properties in the market. Aaron works closely with the sales team across the Illawarra, supporting buyers and vendors alike with honest advice and a hands-on approach. He is committed to delivering an exceptional experience from first contact through to settlement, and takes real pride in the results he achieves for his clients. Aaron is known for his professionalism, his approachable nature and his dedication to going above and beyond at every opportunity.",
   },
   {
     name: "Zoe Porritt",
