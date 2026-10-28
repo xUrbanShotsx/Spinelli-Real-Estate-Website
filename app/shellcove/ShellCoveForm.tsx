@@ -12,17 +12,16 @@ const TIMEFRAMES = [
 const inputStyle: React.CSSProperties = {
   display: "block",
   width: "100%",
-  height: "48px",
-  borderTop: "none",
-  borderLeft: "none",
-  borderRight: "none",
-  borderBottom: "1px solid #c8c4bc",
-  background: "transparent",
-  padding: "0",
+  height: "52px",
+  border: "1px solid #E8E5DF",
+  borderRadius: "8px",
+  background: "#F9F8F6",
+  padding: "0 16px",
   fontSize: "15px",
   fontFamily: "var(--font-sans)",
   color: "#000",
   outline: "none",
+  boxSizing: "border-box",
 };
 
 const labelStyle: React.CSSProperties = {
@@ -105,8 +104,8 @@ export default function ShellCoveForm() {
   return (
     <>
       <style>{`
-        .sc-form-fields { display: grid; gap: 32px; grid-template-columns: 1fr 1fr; }
-        @media (max-width: 768px) { .sc-form-fields { grid-template-columns: 1fr; } }
+        .sc-form-fields { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 768px) { .sc-form-fields { grid-template-columns: 1fr; gap: 14px; } }
       `}</style>
       <form onSubmit={handleSubmit} noValidate className="sc-form-fields">
       <div>
@@ -161,7 +160,9 @@ export default function ShellCoveForm() {
             backgroundColor: "#5BC2E7",
             color: "#fff",
             border: "none",
-            padding: "14px 32px",
+            borderRadius: "8px",
+            padding: "16px",
+            width: "100%",
             fontSize: "13px",
             fontWeight: 500,
             letterSpacing: "0.06em",
