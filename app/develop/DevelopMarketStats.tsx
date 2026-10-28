@@ -1,0 +1,85 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+
+const STATS = [
+  { prefix: "", value: 35, suffix: "%", decimals: 0, label: "Average value uplift after subdivision in NSW" },
+  { prefix: "$", value: 180000, suffix: "+", decimals: 0, label: "Additional profit from a duplex vs. single dwelling sale" },
+  { prefix: "", value: 62, suffix: "%", decimals: 0, label: "Of Illawarra blocks are eligible for subdivision" },
+  { prefix: "", value: 3, suffix: "x", decimals: 0, label: "Average return multiplier on knockdown rebuild projects" },
+  { prefix: "$", value: 420000, suffix: "+", decimals: 0, label: "Median profit on Illawarra townhouse developments" },
+  { prefix: "", value: 18, suffix: "%", decimals: 0, label: "Rise in NSW development approvals last 12 months" },
+];
+
+function formatNumber(val: number, decimals: number, prefix: string, suffix: string) {
+  if (prefix === "$") {
+    return "$" + Math.round(val).toLocaleString("en-AU") + suffix;
+  }
+  return prefix + val.toFixed(decimals) + suffix;
+}
+
+function StatItem({ prefix, value, suffix, decimals, label, triggered, delay }: typeof STATS[0] & { triggered: boolean; delay: number }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!triggered) return;
+    const duration = 1400;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(parseFloat((eased * value).toFixed(decimals)));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    const timer = setTimeout(() => requestAnimationFrame(tick), delay);
+    return () => clearTimeout(timer);
+  }, [triggered, value, decimals, delay]);
+
+  return (
+    <div style={{
+      padding: "40px 24px",
+      textAlign: "center",
+      opacity: triggered ? 1 : 0,
+      transform: triggered ? "translateY(0)" : "translateY(20px)",
+      transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+    }}>
+      <p style={{
+        fontFamily: "var(--font-display)",
+        fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+        fontWeight: 300,
+        letterSpacing: "-0.03em",
+        color: "#5BC2E7",
+        margin: "0 0 10px",
+        lineHeight: 1,
+      }}>
+        {formatNumber(current, decimals, prefix, suffix)}
+      </p>
+      <p style={{ fontSize: "13px", color: "#7a7265", margin: 0, lineHeight: 1.5 }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
+export default function DevelopMarketStats() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [triggered, setTriggered] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }} className="dev-market-stats">
+      {STATS.map((s, i) => (
+        <StatItem key={s.label} {...s} triggered={triggered} delay={i * 100} />
+      ))}
+    </div>
+  );
+}
