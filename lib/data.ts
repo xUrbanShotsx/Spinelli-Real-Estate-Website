@@ -2729,14 +2729,6 @@ export const team: TeamMember[] = [
     bio: "Mark Spinelli is a Director at Spinelli Real Estate, bringing a wealth of industry experience and a deep commitment to the Illawarra community. As part of the Spinelli family, Mark plays a key role in driving the agency forward and ensuring every client receives the highest standard of service. His extensive local knowledge, strong negotiation skills and genuine passion for real estate make him a trusted advisor to buyers, sellers and investors across the region. Mark is dedicated to building lasting relationships with clients and upholding the values of integrity, transparency and excellence that define the Spinelli name.",
   },
   {
-    name: "Aaron Hofman",
-    role: "Associate Agent",
-    phone: "0439 555 880",
-    email: "aaron@spinellire.com",
-    image: "/staff/aaron-hofman.jpg",
-    bio: "Aaron Hofman is an Associate Agent at Spinelli Real Estate, bringing a unique combination of marketing expertise and property knowledge to his clients. Before entering real estate, Aaron built a successful career as a professional marketer working with some of Australia's top brands — experience that gives him a distinct edge when it comes to presenting and positioning properties in the market. Aaron works closely with the sales team across the Illawarra, supporting buyers and vendors alike with honest advice and a hands-on approach. He is committed to delivering an exceptional experience from first contact through to settlement, and takes real pride in the results he achieves for his clients. Aaron is known for his professionalism, his approachable nature and his dedication to going above and beyond at every opportunity.",
-  },
-  {
     name: "Zoe Porritt",
     role: "Property Manager",
     phone: "02 4296 0047",
@@ -2759,6 +2751,14 @@ export const team: TeamMember[] = [
     email: "jye@spinellire.com",
     image: "/staff/jye-sanjurjo.png",
     bio: "Jye Sanjurjo is a Sales Associate who brings enthusiasm, drive and a fresh perspective to the Spinelli Real Estate team. Working closely alongside the Sales Directors, Jye is committed to delivering an outstanding client experience at every stage of the sales process — from the first call through to settlement day. He is passionate about real estate, deeply knowledgeable about the Illawarra market and dedicated to helping buyers find the right property and vendors achieve exceptional results. Clients appreciate Jye's energy, his willingness to go the extra mile and his genuine care for the people he works with.",
+  },
+  {
+    name: "Aaron Hofman",
+    role: "Associate Agent",
+    phone: "0439 555 880",
+    email: "aaron@spinellire.com",
+    image: "/staff/aaron-hofman.jpg",
+    bio: "Aaron Hofman is an Associate Agent at Spinelli Real Estate, bringing a unique combination of marketing expertise and property knowledge to his clients. Before entering real estate, Aaron built a successful career as a professional marketer working with some of Australia's top brands — experience that gives him a distinct edge when it comes to presenting and positioning properties in the market. Aaron works closely with the sales team across the Illawarra, supporting buyers and vendors alike with honest advice and a hands-on approach. He is committed to delivering an exceptional experience from first contact through to settlement, and takes real pride in the results he achieves for his clients. Aaron is known for his professionalism, his approachable nature and his dedication to going above and beyond at every opportunity.",
   },
   {
     name: "Lilly Ashton",
