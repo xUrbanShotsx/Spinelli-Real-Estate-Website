@@ -79,7 +79,7 @@ export default function DevelopPage() {
         <section style={{ backgroundColor: "#ffffff", borderTop: "1px solid #E8E5DF", padding: "80px 20px" }}>
           <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
             <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#a2b0aa", margin: "0 0 14px" }}>
-              NSW · Development snapshot
+              New South Wales · Development snapshot
             </p>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#0D3348", margin: "0 0 56px" }}>
               Why developers are winning in NSW

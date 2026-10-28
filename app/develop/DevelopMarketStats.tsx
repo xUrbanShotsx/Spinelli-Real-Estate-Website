@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 
 const STATS = [
   { prefix: "", value: 35, suffix: "%", decimals: 0, label: "Average value uplift after subdivision in NSW" },
-  { prefix: "$", value: 180000, suffix: "+", decimals: 0, label: "Additional profit from a duplex vs. single dwelling sale" },
-  { prefix: "", value: 62, suffix: "%", decimals: 0, label: "Of Illawarra blocks are eligible for subdivision" },
-  { prefix: "", value: 3, suffix: "x", decimals: 0, label: "Average return multiplier on knockdown rebuild projects" },
-  { prefix: "$", value: 420000, suffix: "+", decimals: 0, label: "Median profit on Illawarra townhouse developments" },
+  { prefix: "$", value: 180000, suffix: "+", decimals: 0, label: "Additional profit from a duplex vs. single dwelling sale in NSW" },
+  { prefix: "", value: 3, suffix: "x", decimals: 0, label: "Average return multiplier on NSW knockdown rebuild projects" },
+  { prefix: "$", value: 420000, suffix: "+", decimals: 0, label: "Median profit on NSW townhouse developments" },
   { prefix: "", value: 18, suffix: "%", decimals: 0, label: "Rise in NSW development approvals last 12 months" },
+  { prefix: "", value: 72, suffix: "%", decimals: 0, label: "Of NSW homeowners unaware of their development potential" },
 ];
 
 function formatNumber(val: number, decimals: number, prefix: string, suffix: string) {
