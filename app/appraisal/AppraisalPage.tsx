@@ -3,39 +3,41 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const inputStyle: React.CSSProperties = {
+  display: "block",
   width: "100%",
-  borderBottom: "1px solid #000000",
-  padding: "5px 0",
+  height: "52px",
+  border: "1px solid #E8E5DF",
+  borderRadius: "8px",
+  background: "#F9F8F6",
+  padding: "0 16px",
+  fontSize: "15px",
   fontFamily: "var(--font-sans)",
-  fontSize: "12px",
-  letterSpacing: "0.12em",
-  fontWeight: 600,
-  color: "#000000",
-  backgroundColor: "transparent",
+  color: "#000",
   outline: "none",
+  boxSizing: "border-box",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: "11px",
+  fontWeight: 500,
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.12em",
+  color: "#a2b0aa",
+  marginBottom: "8px",
+  fontFamily: "var(--font-sans)",
 };
 
 export default function AppraisalPage() {
   const router = useRouter();
-  const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 10);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") router.back(); };
@@ -44,84 +46,82 @@ export default function AppraisalPage() {
   }, [router]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 200,
-        backgroundColor: "#ffffff",
-        overflowY: "auto",
-        opacity: visible ? 1 : 0,
-        transition: "opacity 0.25s ease",
-      }}
-    >
-      {/* Logo */}
-      <div
-        className="fixed left-6 sm:left-12 lg:left-20"
-        style={{ top: "10px", zIndex: 201 }}
-      >
-        <img
-          src="/logo.png"
-          alt="Spinelli Real Estate"
+    <>
+      <style>{`
+        .appraisal-card {
+          position: relative;
+          z-index: 2;
+          background: #fff;
+          border-radius: 24px;
+          padding: 48px;
+          width: 100%;
+          max-width: 520px;
+          box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+          max-height: 90svh;
+          overflow-y: auto;
+        }
+        .appraisal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 600px) {
+          .appraisal-card { padding: 28px 24px; border-radius: 18px; max-height: 85svh; }
+          .appraisal-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
+      <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
+
+        {/* Video background */}
+        <video
+          autoPlay muted loop playsInline
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
+        >
+          <source src="/hero-spinelli.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: "absolute", inset: 0, background: "rgba(13,51,72,0.5)", zIndex: 1 }} />
+
+        {/* Close button */}
+        <button
+          onClick={() => router.back()}
           style={{
-            height: "85px",
-            width: "auto",
-            objectFit: "contain",
-            filter: "brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(692%) hue-rotate(161deg) brightness(98%)",
+            position: "absolute", top: "24px", right: "24px", zIndex: 10,
+            background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)",
+            borderRadius: "50%", width: "40px", height: "40px",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: "pointer", color: "#fff",
           }}
-        />
-      </div>
+          aria-label="Close"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
 
-      {/* Close */}
-      <button
-        onClick={() => router.back()}
-        className="flex items-center gap-2 transition-opacity hover:opacity-50"
-        style={{
-          position: "fixed",
-          top: "24px",
-          right: "28px",
-          zIndex: 201,
-          fontFamily: "var(--font-sans)",
-          fontSize: "11px",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: "#000000",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          padding: "8px",
-        }}
-        aria-label="Close"
-      >
-        <span>Close</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 6L6 18M6 6l12 12" />
-        </svg>
-      </button>
-
-      {/* Content */}
-      <div
-        className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20"
-        style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "80px", paddingBottom: "60px" }}
-      >
-        <div className="w-full max-w-xl mx-auto">
-          <div className="mb-8">
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5BC2E7", display: "block", marginBottom: "10px" }}>
-              Free Appraisal
-            </span>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#5BC2E7", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
-              Let&apos;s Start the Conversation
-            </h1>
-          </div>
+        {/* Card */}
+        <div className="appraisal-card">
+          <p style={{ fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.14em", color: "#5BC2E7", margin: "0 0 12px", textAlign: "center" }}>
+            No obligation · Free
+          </p>
+          <h1 style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.6rem, 4vw, 2.2rem)",
+            fontWeight: 300,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
+            color: "#0D3348",
+            margin: "0 0 28px",
+            textAlign: "center",
+          }}>
+            Let&apos;s Start the Conversation
+          </h1>
 
           {submitted ? (
-            <div className="py-10">
-              <div style={{ width: "32px", height: "1px", backgroundColor: "#5BC2E7", marginBottom: "20px" }} />
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#000000", fontWeight: 300, letterSpacing: "-0.03em", marginBottom: "12px" }}>
-                Message Received
+            <div style={{ textAlign: "center", padding: "24px 0" }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#5BC2E7" strokeWidth={1.5} style={{ width: "48px", height: "48px", margin: "0 auto 16px" }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 300, letterSpacing: "-0.03em", color: "#0D3348", margin: "0 0 8px" }}>
+                Thank you
               </h2>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#7a7265", lineHeight: 1.75 }}>
-                Thank you for reaching out. One of our team will be in touch within one business day.
+              <p style={{ fontSize: "14px", color: "#7a7265", lineHeight: 1.7, margin: 0 }}>
+                We will be in touch within one business day.
               </p>
             </div>
           ) : (
@@ -139,56 +139,67 @@ export default function AppraisalPage() {
                 setLoading(false);
                 setSubmitted(true);
               }}
-              className="space-y-9"
+              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
             >
-              <div className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="FIRST NAME" required value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
-                <input type="text" placeholder="LAST NAME" required value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+              <div className="appraisal-grid">
+                <div>
+                  <label style={labelStyle}>First name</label>
+                  <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)} style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Last name</label>
+                  <input type="text" required value={lastName} onChange={e => setLastName(e.target.value)} style={inputStyle} />
+                </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <input type="email" placeholder="EMAIL ADDRESS" required value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
-                <input type="tel" placeholder="PHONE NUMBER" value={phone} onChange={(e) => setPhone(e.target.value)} style={inputStyle} className="placeholder:text-black/40" />
+              <div className="appraisal-grid">
+                <div>
+                  <label style={labelStyle}>Email</label>
+                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Phone</label>
+                  <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} style={inputStyle} />
+                </div>
               </div>
-
-              {/* Property Address */}
-              <input
-                type="text"
-                placeholder="PROPERTY ADDRESS"
-                required
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                style={inputStyle}
-                className="placeholder:text-black/40"
-              />
-
-              <textarea
-                rows={4}
-                placeholder="ADD DETAILS ABOUT YOUR HOME"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="placeholder:text-black/40"
-                style={{
-                  ...inputStyle,
-                  resize: "none",
-                  borderBottom: "none",
-                  border: "1px solid #000000",
-                  padding: "10px 12px",
-                }}
-              />
-
+              <div>
+                <label style={labelStyle}>Property address</label>
+                <input type="text" required value={address} onChange={e => setAddress(e.target.value)} style={inputStyle} />
+              </div>
+              <div>
+                <label style={labelStyle}>Details about your home</label>
+                <textarea
+                  rows={3}
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  style={{ ...inputStyle, height: "auto", padding: "12px 16px", resize: "none" }}
+                />
+              </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-block px-7 py-3 text-[12px] tracking-wide transition-opacity hover:opacity-85"
-                style={{ backgroundColor: "#5BC2E7", color: "#ffffff", fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em" }}
+                style={{
+                  backgroundColor: "#5BC2E7",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "16px",
+                  width: "100%",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-sans)",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  opacity: loading ? 0.7 : 1,
+                  marginTop: "4px",
+                }}
               >
-                {loading ? "SENDING..." : "SUBMIT"}
+                {loading ? "Sending…" : "Get my free appraisal"}
               </button>
             </form>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
