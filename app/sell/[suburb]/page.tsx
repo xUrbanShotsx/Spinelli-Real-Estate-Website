@@ -5,7 +5,7 @@ import { suburbs } from "@/lib/data";
 import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import PropertyCard from "@/components/PropertyCard";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 interface Props {
   params: Promise<{ suburb: string }>;

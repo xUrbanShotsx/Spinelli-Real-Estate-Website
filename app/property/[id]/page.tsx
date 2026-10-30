@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 import {
   residentialSaleProperties,
   residentialRentProperties,

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Upcoming open home inspection times for properties across the Illawarra — Wollongong, Shellharbour, Kiama and surrounds.",
 };
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export default async function OpenHomesPage() {
   let listings: ReturnType<typeof mapListing>[] = [];

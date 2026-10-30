@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Properties For Sale | Illawarra", description: "Houses, apartments and land for sale in Wollongong, Kiama and Shellharbour.", url: "https://www.spinellirealestate.com.au/buy" },
 };
 
-export const revalidate = 60; // refresh every 5 minutes
+export const revalidate = 3600; // refresh every 5 minutes
 
 export default async function BuyPage() {
   let properties: typeof residentialSaleProperties = [];

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Buy or sell a business in the Illawarra with Spinelli Real Estate. Confidential, professional business broking services.",
 };
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export default async function BusinessPage() {
   let properties: Property[] = [];

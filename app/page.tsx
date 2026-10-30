@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Spinelli Real Estate — premium residential sales, commercial, project sales and property management across the Illawarra. Wollongong, Kiama, Shellharbour and surrounds.",
 };
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 const services = [
   {

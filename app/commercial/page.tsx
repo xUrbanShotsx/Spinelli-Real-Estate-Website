@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Commercial property sales, leasing and investment across the Illawarra. Retail, office, industrial and specialty assets — Spinelli Real Estate.",
 };
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export default async function CommercialPage() {
   let properties: Property[] = [];

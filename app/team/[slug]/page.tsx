@@ -5,7 +5,7 @@ import { team } from "@/lib/data";
 import { fetchAllListings, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");

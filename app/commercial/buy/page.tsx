@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function CommercialBuyPage() {
   let properties: Property[] = commercialProperties.filter(p => p.type === "commercial-sale");
