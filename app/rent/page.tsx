@@ -21,7 +21,10 @@ export default async function RentPage() {
     const data = await fetchForLease(1, 50);
     if (data.listings?.length) {
       properties = data.listings
-        .filter(l => l.property.type === "Residential")
+        .filter(l =>
+          l.property.type === "Residential" &&
+          !["Leased", "Withdrawn", "Sold"].includes(l.status)
+        )
         .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
         .map(mapListing);
     }
