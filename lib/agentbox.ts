@@ -144,9 +144,9 @@ export async function fetchForSale(page = 1, limit = 20): Promise<ABListingsResp
 }
 
 export async function fetchForLease(page = 1, limit = 20): Promise<ABListingsResponse> {
-  // Lease listings may use "Current" or "Available" depending on the AgentBox account config
   return fetchListings({
     "filter[type]": "Lease",
+    "filter[status]": "Available",
     "sort[listedDate]": "desc",
     page: String(page),
     limit: String(limit),
