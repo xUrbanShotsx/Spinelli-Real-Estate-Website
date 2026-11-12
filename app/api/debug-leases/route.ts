@@ -1,20 +1,25 @@
 import { NextResponse } from "next/server";
-import { fetchForLease } from "@/lib/agentbox";
+import { fetchAllListings } from "@/lib/agentbox";
 
 export async function GET() {
   try {
-    const data = await fetchForLease(1, 50);
-    const listings = data.listings ?? [];
+    const all = await fetchAllListings({
+      "filter[type]": "Lease",
+      "sort[listedDate]": "desc",
+    }, 0);
+
+    const available = all.filter(
+      l => l.property.type === "Residential" && !["Leased", "Withdrawn", "Sold"].includes(l.status)
+    );
+
     return NextResponse.json({
-      total: listings.length,
-      pagination: { items: data.items, current: data.current, last: data.last },
-      all: listings.map(l => ({
+      totalFetched: all.length,
+      availableCount: available.length,
+      allStatuses: [...new Set(all.map(l => l.status))],
+      available: available.map(l => ({
         id: l.id,
         status: l.status,
         marketingStatus: l.marketingStatus,
-        type: l.type,
-        propertyType: l.property.type,
-        category: l.property.category,
         address: `${l.property.address.streetAddress}, ${l.property.address.suburb}`,
         listedDate: l.listedDate,
       })),
