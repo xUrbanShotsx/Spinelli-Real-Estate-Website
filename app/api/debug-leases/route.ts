@@ -7,7 +7,7 @@ export async function GET() {
     const listings = data.listings ?? [];
     return NextResponse.json({
       total: listings.length,
-      pagination: { page: data.page, last: data.last, count: data.count },
+      pagination: { items: data.items, current: data.current, last: data.last },
       all: listings.map(l => ({
         id: l.id,
         status: l.status,
