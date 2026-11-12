@@ -23,7 +23,7 @@ export default async function RentPage() {
       properties = data.listings
         .filter(l =>
           l.property.type === "Residential" &&
-          !["Leased", "Withdrawn", "Sold"].includes(l.status)
+          !["Leased", "Withdrawn", "Sold", "Rented"].includes(l.status)
         )
         .sort((a, b) => new Date(b.listedDate).getTime() - new Date(a.listedDate).getTime())
         .map(mapListing);
