@@ -291,7 +291,7 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
       </div>
 
       {/* ══ 8 · "ABOUT US" STYLE — text left + image right (sage) */}
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 0, backgroundColor: SAGE }}>
+      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch", gap: 0, backgroundColor: SAGE, minHeight: "clamp(380px,50vw,620px)" }}>
         <div style={{ padding: `${PAD} ${PAD}`, display: "flex", flexDirection: "column", justifyContent: "center", gap: "20px" }}>
           <Reveal>
             <h2 style={{ ...H, color: WARM, marginBottom: "16px" }}>Built to last.</h2>
@@ -301,7 +301,7 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
             <CtaLink href="https://www.sekisuihouse.com.au/shawood/home/" color={DARK} external>More about SHAWOOD</CtaLink>
           </Reveal>
         </div>
-        <div style={{ lineHeight: 0, position: "relative", minHeight: "clamp(300px,45vw,580px)", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(img(7))}>
+        <div style={{ lineHeight: 0, position: "relative", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(img(7))}>
           <Image src={img(7)} alt={`${project.name} aerial view`} fill sizes="50vw" style={{ objectFit: "cover", objectPosition: "center" }} />
         </div>
       </section>
