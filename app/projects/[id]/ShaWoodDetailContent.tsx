@@ -161,16 +161,8 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
         </Reveal>
       </section>
 
-      {/* ══ 5 · TWO IMAGES (flush, terracotta bg) ═══════════ */}
-      <div style={{ lineHeight: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, backgroundColor: TERRA }}>
-        {[img(2), img(3)].map((src, i) => (
-          <div key={i} style={{ position: "relative", height: "clamp(200px,32vw,480px)", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(src)}>
-            <Image src={src} alt={`${project.name} ${i + 1}`} fill sizes="50vw" style={{ objectFit: "cover", objectPosition: "center" }} />
-          </div>
-        ))}
-      </div>
 
-      {/* ══ 6 · TWO-COL CARDS (cream) ═══════════════════════ */}
+{/* ══ 6 · TWO-COL CARDS (cream) ═══════════════════════ */}
       <section style={{ backgroundColor: CREAM, padding: `${PAD} ${PAD}` }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(28px,4vw,56px)" }}>
           {/* Now Selling */}
