@@ -82,17 +82,14 @@ const AGENTS = [
 /* ─── Component ─────────────────────────────────────────────── */
 export default function ProjectDetailContent({ project }: { project: Project }) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-  const [activeIndex, setActiveIndex] = useState(Math.floor(4 / 2));
-  const carouselRef = useRef<HTMLDivElement>(null);
-
   const heroImg   = project.gallery[0] ?? project.image;
   const wideImg   = project.gallery[1] ?? project.image;
-  const galleryImgs = [
-    project.gallery[2] ?? project.image,
-    project.gallery[3] ?? project.image,
-    project.gallery[4] ?? project.gallery[0] ?? project.image,
-    project.gallery[5] ?? project.gallery[1] ?? project.image,
-  ];
+  const galleryImgs = project.gallery.length > 2
+    ? project.gallery.slice(2)
+    : [project.gallery[0] ?? project.image, project.gallery[1] ?? project.image];
+
+  const [activeIndex, setActiveIndex] = useState(Math.floor(galleryImgs.length / 2));
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Triple the images for seamless looping
   const count = galleryImgs.length;

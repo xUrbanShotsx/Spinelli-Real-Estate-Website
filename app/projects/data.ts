@@ -35,11 +35,11 @@ export const projects: Project[] = [
     mapLat: -34.6012,
     mapLng: 150.7891,
     category: "Land & Home",
-    units: "Land & Home and Land Packages",
+    units: "Land from $657,000 · Homes from $1,335,000",
     status: "Now Selling",
     image: "/shawood/2.png",
     gallery: ["/shawood/2.png", "/shawood/3.png", "/shawood/4.png", "/shawood/5.png", "/shawood/6.png", "/shawood/7.png", "/shawood/8.png", "/shawood/9.png", "/shawood/10.png", "/shawood/11.png"],
-    description: "Architecturally crafted homes in the heart of Calderwood Valley. Shawood by Sekisui House brings Japanese precision and sustainable design to Cascadia — elevated lots with escarpment-to-ocean views, surrounded by parks, reserves and tree-lined walks.",
+    description: "Architecturally crafted homes in the heart of Calderwood Valley. Shawood by Sekisui House brings Japanese precision and sustainable design to Cascadia — elevated lots with escarpment-to-ocean views, surrounded by parks, reserves and tree-lined walks. Land from $657,000 · Completed Homes from $1,335,000.",
     longDescription: "Cascadia is Calderwood Valley's newest master-planned community — and one of the Illawarra's most anticipated addresses. Elevated above the valley floor, the first release of generous lots sits against the backdrop of Johnsons Spur, with views stretching from the escarpment all the way to the ocean shore.\n\nShawood homes are built by Sekisui House, one of Australia's most respected residential builders and the holder of a 4 Gold Star iCIRT rating — the industry's highest benchmark for trustworthiness and build quality. Each home is individually crafted, architecturally designed and finished to a standard that reflects decades of Japanese innovation applied to Australian living.\n\nCascadia itself is a true community. Parks and reserves are woven through the estate, schools and a future town centre are walkable from your door, and Shellharbour's beaches and the Royal National Park are a short drive away. It's the kind of address where the land, the landscape and the lifestyle all work together.\n\nLand lots range from 439 to 926 sqm, with both land-only and home and land packages available. First release is now selling.",
     additionalInfo: "Spinelli Real Estate is working with Sekisui House to assist buyers secure their home or lot at Cascadia. Register your interest to receive first-release pricing, lot availability and package information directly from our projects team.",
     timeline: [
