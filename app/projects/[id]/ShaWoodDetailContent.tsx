@@ -142,7 +142,7 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
       </section>
 
       {/* ══ 3 · FRAMED IMAGE (equal side gaps) ══════════════ */}
-      <div style={{ backgroundColor: CREAM, padding: `0 ${PAD}`, lineHeight: 0 }}>
+      <div style={{ backgroundColor: CREAM, padding: `0 ${PAD} ${PAD}`, lineHeight: 0 }}>
         <div style={{ position: "relative", height: "clamp(300px,55vw,680px)", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(img(1))}>
           <Image src={img(1)} alt={`${project.name} aerial`} fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
         </div>
