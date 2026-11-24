@@ -78,7 +78,7 @@ function HorizontalTimeline({ items, pad, dark, cream, warm, p }: {
   }, [items]);
 
   return (
-    <section style={{ backgroundColor: cream, padding: `${pad} ${pad}`, borderTop: `1px solid rgba(56,56,56,0.08)`, overflow: "hidden" }}>
+    <section style={{ backgroundColor: cream, padding: `${pad} ${pad}`, overflow: "hidden" }}>
       <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(56,56,56,0.45)", marginBottom: "clamp(32px,4vw,56px)" }}>
         Project milestones
       </p>
