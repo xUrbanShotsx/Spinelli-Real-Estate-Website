@@ -277,14 +277,14 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
               <p style={{ ...P, color: "rgba(58,19,17,0.5)" }}>{project.address}</p>
             </Reveal>
           </div>
-          <div style={{ lineHeight: 0, height: "420px" }}>
+          <div style={{ position: "relative", height: "420px", overflow: "hidden", zIndex: 0 }}>
             <ProjectMap lat={project.mapLat} lng={project.mapLng} zoom={14} />
           </div>
         </section>
       )}
 
       {/* ══ 12 · ENQUIRY (dark) ════════════════════════════ */}
-      <section style={{ backgroundColor: DARK, padding: `${PAD} ${PAD}` }}>
+      <section style={{ backgroundColor: DARK, padding: `${PAD} ${PAD}`, position: "relative", zIndex: 1 }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(28px,4vw,56px)", alignItems: "start" }}>
           <Reveal>
             <div>
