@@ -42,6 +42,97 @@ function CtaLink({ href, children, color = "#383838", external = false }: { href
   );
 }
 
+/* ─── Horizontal animated timeline ───────────────────────── */
+function HorizontalTimeline({ items, pad, dark, cream, warm, p }: {
+  items: { date: string; label: string; done: boolean }[];
+  pad: string; dark: string; cream: string; warm: string;
+  p: React.CSSProperties;
+}) {
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [lineWidth, setLineWidth] = useState(0);
+  const [dotVis, setDotVis] = useState<boolean[]>(items.map(() => false));
+  const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        // animate the line growing
+        let start: number | null = null;
+        const duration = 1200;
+        const step = (ts: number) => {
+          if (!start) start = ts;
+          const prog = Math.min((ts - start) / duration, 1);
+          setLineWidth(prog * 100);
+          if (prog < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        // stagger dot reveals
+        items.forEach((_, i) => {
+          setTimeout(() => setDotVis(prev => { const n = [...prev]; n[i] = true; return n; }), 200 + i * (1000 / items.length) * 1.1);
+        });
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    if (lineRef.current) obs.observe(lineRef.current);
+    return () => obs.disconnect();
+  }, [items]);
+
+  return (
+    <section style={{ backgroundColor: cream, padding: `${pad} ${pad}`, borderTop: `1px solid rgba(56,56,56,0.08)`, overflow: "hidden" }}>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(56,56,56,0.45)", marginBottom: "clamp(32px,4vw,56px)" }}>
+        Project milestones
+      </p>
+      {/* track */}
+      <div ref={lineRef} style={{ position: "relative", width: "100%", height: "1px", backgroundColor: "rgba(56,56,56,0.1)", marginBottom: "clamp(16px,2vw,24px)" }}>
+        {/* animated fill */}
+        <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${lineWidth}%`, backgroundColor: dark, transition: "none" }} />
+        {/* dots */}
+        {items.map((item, i) => {
+          const pct = items.length === 1 ? 0 : (i / (items.length - 1)) * 100;
+          return (
+            <div
+              key={i}
+              ref={el => { dotRefs.current[i] = el; }}
+              style={{
+                position: "absolute",
+                left: `${pct}%`,
+                top: "50%",
+                transform: `translate(-50%, -50%) scale(${dotVis[i] ? 1 : 0})`,
+                transition: "transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
+                width: item.done ? "10px" : "8px",
+                height: item.done ? "10px" : "8px",
+                borderRadius: "50%",
+                backgroundColor: item.done ? dark : cream,
+                border: `2px solid ${item.done ? dark : "rgba(56,56,56,0.3)"}`,
+                zIndex: 1,
+              }}
+            />
+          );
+        })}
+      </div>
+      {/* labels */}
+      <div style={{ display: "grid", gridTemplateColumns: items.map(() => "1fr").join(" ") }}>
+        {items.map((item, i) => (
+          <div
+            key={i}
+            style={{
+              textAlign: i === 0 ? "left" : i === items.length - 1 ? "right" : "center",
+              opacity: dotVis[i] ? 1 : 0,
+              transform: dotVis[i] ? "none" : "translateY(8px)",
+              transition: `opacity 0.5s ease ${100 + i * 80}ms, transform 0.5s ease ${100 + i * 80}ms`,
+              paddingLeft: i === 0 ? 0 : "4px",
+              paddingRight: i === items.length - 1 ? 0 : "4px",
+            }}
+          >
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, color: "rgba(56,56,56,0.4)", letterSpacing: "0.08em", marginBottom: "4px" }}>{item.date}</p>
+            <p style={{ ...p, fontSize: "clamp(0.75rem,1vw,0.875rem)", color: item.done ? dark : "rgba(56,56,56,0.4)", lineHeight: 1.4 }}>{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function ShaWoodDetailContent({ project }: { project: Project }) {
   const [showVideo, setShowVideo] = useState(false);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
@@ -236,37 +327,19 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
         </div>
       </section>
 
-      {/* ══ 10 · TIMELINE (cream) ════════════════════════════ */}
+      {/* ══ 10 · TIMELINE horizontal animated ═══════════════ */}
       {project.timeline && project.timeline.length > 0 && (
-        <section style={{ backgroundColor: CREAM, padding: `${PAD} ${PAD}`, borderTop: `1px solid rgba(56,56,56,0.08)` }}>
-          <Reveal>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(56,56,56,0.45)", marginBottom: "40px" }}>
-              Project milestones
-            </p>
-            {project.timeline.map((item, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "clamp(70px,10vw,120px) 1px 1fr", gap: "0 20px", alignItems: "start" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(56,56,56,0.4)", letterSpacing: "0.06em", paddingTop: "2px", textAlign: "right" }}>{item.date}</p>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <div style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: item.done ? DARK : "rgba(56,56,56,0.2)", marginTop: "3px", flexShrink: 0 }} />
-                  {i < project.timeline.length - 1 && <div style={{ width: "1px", flex: 1, minHeight: "40px", backgroundColor: "rgba(56,56,56,0.1)", marginTop: "4px" }} />}
-                </div>
-                <p style={{ ...P, color: item.done ? DARK : "rgba(56,56,56,0.4)", paddingBottom: "40px" }}>{item.label}</p>
-              </div>
-            ))}
-          </Reveal>
-        </section>
+        <HorizontalTimeline items={project.timeline} pad={PAD} dark={DARK} cream={CREAM} warm={WARM} p={P} />
       )}
 
       {/* ══ 11 · MAP (cream) ════════════════════════════════ */}
       {project.mapLat && project.mapLng && (
-        <section style={{ backgroundColor: CREAM, borderTop: `1px solid rgba(56,56,56,0.08)` }}>
-          <div style={{ padding: `${PAD} ${PAD}`, paddingBottom: "20px" }}>
-            <Reveal>
-              <h2 style={{ ...H, color: WARM, marginBottom: "8px" }}>Where we are.</h2>
-              <p style={{ ...P, color: "rgba(58,19,17,0.5)" }}>{project.address}</p>
-            </Reveal>
-          </div>
-          <div style={{ position: "relative", height: "420px", overflow: "hidden", zIndex: 0 }}>
+        <section style={{ backgroundColor: CREAM, borderTop: `1px solid rgba(56,56,56,0.08)`, padding: `${PAD} ${PAD}` }}>
+          <Reveal>
+            <h2 style={{ ...H, color: WARM, marginBottom: "8px" }}>Where we are.</h2>
+            <p style={{ ...P, color: "rgba(58,19,17,0.5)", marginBottom: "24px" }}>{project.address}</p>
+          </Reveal>
+          <div style={{ position: "relative", height: "420px", overflow: "hidden", zIndex: 0, borderRadius: "2px" }}>
             <ProjectMap lat={project.mapLat} lng={project.mapLng} zoom={14} />
           </div>
         </section>
