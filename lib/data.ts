@@ -2792,6 +2792,14 @@ export const team: TeamMember[] = [
     image: "/staff/vicki-taddeo.png",
     bio: "Vicki Taddeo is an experienced Accounts Manager who brings years of financial expertise and a meticulous eye for detail to the Spinelli Real Estate team. Working alongside Kellie, Vicki helps manage the agency's trust accounting, owner payments and financial administration — ensuring everything runs smoothly and accurately behind the scenes. She is highly organised, trustworthy and takes genuine pride in the accuracy of her work. Vicki's professionalism and calm demeanour make her a reliable and respected member of the team, and her contribution is central to the seamless experience Spinelli clients enjoy.",
   },
+  {
+    name: "Alison Jessup",
+    role: "Accounts Manager",
+    phone: "0434 686 384",
+    email: "info@spinellire.com",
+    image: "/staff/alison-jessup.jpg",
+    bio: "Alison Jessup is an Accounts Manager at Spinelli Real Estate, bringing a wealth of financial experience and an exceptional eye for detail to the team. Alison plays a vital role in the day-to-day financial operations of the agency, managing trust accounting, owner disbursements and financial administration with accuracy and care. Her meticulous approach ensures every transaction is handled with complete professionalism and transparency — giving clients and the wider team full confidence in the integrity of the agency's financial processes. Alison is a warm, reliable and highly capable member of the Spinelli team.",
+  },
 ];
 
 export const testimonials: Testimonial[] = [
