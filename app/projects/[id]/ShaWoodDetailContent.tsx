@@ -109,9 +109,8 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
 
   return (
     <>
-      {/* ══ 1 · HERO — fixed-cover, full-viewport ════════════ */}
-      {/* position:absolute wrapper breaks free from flex-1 height */}
-      <div style={{ position: "relative", width: "100%", height: "100vh", minHeight: "500px", overflow: "hidden", backgroundColor: "#16120e" }}>
+      {/* ══ 1 · HERO — ~700px, NOT full-viewport (matches Sekisui) */}
+      <div style={{ position: "relative", width: "100%", height: "min(700px, 92vh)", minHeight: "460px", overflow: "hidden", backgroundColor: "#16120e" }}>
         <Image src={img(0)} alt={project.name} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center 35%" }} />
         {/* vignette */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 60%)" }} />
@@ -133,10 +132,10 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
         </div>
       </div>
 
-      {/* ══ 2 · INTRO TEXT (cream) ═══════════════════════════ */}
+      {/* ══ 2 · INTRO TEXT (cream) — matches Sekisui body text style */}
       <section style={{ backgroundColor: CREAM, padding: `${PAD} ${PAD}` }}>
         <Reveal>
-          <p style={{ ...H, color: DARK, fontSize: "clamp(1.1rem,2.2vw,1.75rem)", maxWidth: "680px", lineHeight: 1.45, fontWeight: 300 }}>
+          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem,1.6vw,1.35rem)", fontWeight: 300, lineHeight: 1.65, color: DARK, maxWidth: "760px", margin: 0 }}>
             In beautifully crafted homes and a meticulously masterplanned community, Shawood at Cascadia brings together the best of Australian living with the precision and innovation of Japanese design. Calderwood Valley&rsquo;s most anticipated address is now selling.
           </p>
         </Reveal>
