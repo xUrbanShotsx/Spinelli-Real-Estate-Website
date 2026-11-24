@@ -217,11 +217,6 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
 
       {/* ══ 9 · GALLERY CAROUSEL (cream) — all 10 images ════ */}
       <section style={{ backgroundColor: CREAM, paddingTop: PAD, paddingBottom: PAD }}>
-        <Reveal>
-          <div style={{ padding: `0 ${PAD}`, marginBottom: "20px" }}>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(56,56,56,0.45)" }}>Gallery</p>
-          </div>
-        </Reveal>
         <div
           ref={carRef}
           style={{ display: "flex", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", gap: "20px", paddingLeft: "calc(50% - 38vw)", paddingRight: "calc(50% - 38vw)", scrollbarWidth: "none" }}
