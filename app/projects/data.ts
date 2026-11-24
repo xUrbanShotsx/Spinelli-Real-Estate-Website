@@ -1,4 +1,4 @@
-export type ProjectCategory = "Duplex" | "Townhouse" | "Multi-Level Residential" | "Commercial";
+export type ProjectCategory = "Duplex" | "Townhouse" | "Multi-Level Residential" | "Commercial" | "Land & Home";
 
 export interface ProjectTimeline {
   label: string;
@@ -26,6 +26,30 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "shawood-cascadia",
+    name: "Shawood",
+    suburb: "Calderwood",
+    address: "Cascadia, Calderwood Valley NSW",
+    mapQuery: "Cascadia Calderwood Valley NSW",
+    mapLat: -34.6012,
+    mapLng: 150.7891,
+    category: "Land & Home",
+    units: "Land & Home and Land Packages",
+    status: "Now Selling",
+    image: "/shawood/2.png",
+    gallery: ["/shawood/2.png", "/shawood/3.png", "/shawood/4.png", "/shawood/5.png", "/shawood/6.png", "/shawood/7.png"],
+    description: "Architecturally crafted homes in the heart of Calderwood Valley. Shawood by Sekisui House brings Japanese precision and sustainable design to Cascadia — elevated lots with escarpment-to-ocean views, surrounded by parks, reserves and tree-lined walks.",
+    longDescription: "Cascadia is Calderwood Valley's newest master-planned community — and one of the Illawarra's most anticipated addresses. Elevated above the valley floor, the first release of generous lots sits against the backdrop of Johnsons Spur, with views stretching from the escarpment all the way to the ocean shore.\n\nShawood homes are built by Sekisui House, one of Australia's most respected residential builders and the holder of a 4 Gold Star iCIRT rating — the industry's highest benchmark for trustworthiness and build quality. Each home is individually crafted, architecturally designed and finished to a standard that reflects decades of Japanese innovation applied to Australian living.\n\nCascadia itself is a true community. Parks and reserves are woven through the estate, schools and a future town centre are walkable from your door, and Shellharbour's beaches and the Royal National Park are a short drive away. It's the kind of address where the land, the landscape and the lifestyle all work together.\n\nLand lots range from 439 to 926 sqm, with both land-only and home and land packages available. First release is now selling.",
+    additionalInfo: "Shawood Cascadia is exclusively marketed by Spinelli Real Estate. Register your interest to receive first-release pricing, lot availability and package information directly from our projects team.",
+    timeline: [
+      { label: "First Release Now Selling", date: "2025", done: true },
+      { label: "Early Works Underway", date: "2025", done: true },
+      { label: "First Residents", date: "2026", done: false },
+      { label: "Community Park Open", date: "2026", done: false },
+      { label: "Town Centre", date: "TBC", done: false },
+    ],
+  },
   {
     id: "elevation-77",
     name: "Elevation 77",
