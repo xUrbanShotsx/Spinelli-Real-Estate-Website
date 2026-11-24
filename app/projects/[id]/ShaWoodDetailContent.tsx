@@ -188,7 +188,7 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
               <p style={{ ...P, color: WARM, opacity: 0.8, marginBottom: "20px" }}>
                 Calderwood Valley, Shellharbour — 10 minutes from the beach, 90 minutes from Sydney. Schools, parks and a future town centre all within walking distance.
               </p>
-              <CtaLink href="https://www.sekisuihouse.com.au/shawood/our-locations/calderwood/home/" color={DARK} external>Explore the location</CtaLink>
+              <CtaLink href="https://www.sekisuihouse.com.au/shawood/our-locations/calderwood/location/" color={DARK} external>Explore the location</CtaLink>
             </div>
           </Reveal>
         </div>
