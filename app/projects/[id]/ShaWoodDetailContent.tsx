@@ -141,9 +141,11 @@ export default function ShaWoodDetailContent({ project }: { project: Project }) 
         </Reveal>
       </section>
 
-      {/* ══ 3 · FULL-BLEED IMAGE ═════════════════════════════ */}
-      <div style={{ lineHeight: 0, position: "relative", height: "clamp(300px,55vw,680px)", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(img(1))}>
-        <Image src={img(1)} alt={`${project.name} aerial`} fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+      {/* ══ 3 · FRAMED IMAGE (equal side gaps) ══════════════ */}
+      <div style={{ backgroundColor: CREAM, padding: `0 ${PAD}`, lineHeight: 0 }}>
+        <div style={{ position: "relative", height: "clamp(300px,55vw,680px)", overflow: "hidden", cursor: "zoom-in" }} onClick={() => setLightboxImg(img(1))}>
+          <Image src={img(1)} alt={`${project.name} aerial`} fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+        </div>
       </div>
 
       {/* ══ 4 · "DESIGNED FOR LIFE" (terracotta) ════════════ */}
