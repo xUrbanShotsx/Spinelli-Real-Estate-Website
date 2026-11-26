@@ -8,9 +8,15 @@ import { fetchForSale, mapListing } from "@/lib/agentbox";
 import type { Property } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Spinelli Real Estate | Illawarra's Premier Agency",
+  title: "Real Estate Agents Shellharbour & Wollongong | Spinelli Real Estate",
   description:
-    "Spinelli Real Estate — premium residential sales, commercial, project sales and property management across the Illawarra. Wollongong, Kiama, Shellharbour and surrounds.",
+    "Spinelli Real Estate is an independent Illawarra agency specialising in property sales, property management, commercial and prestige real estate across Shellharbour, Wollongong and Kiama. Request your free appraisal.",
+  alternates: { canonical: "https://www.spinellirealestate.com.au" },
+  openGraph: {
+    title: "Real Estate Agents Shellharbour & Wollongong | Spinelli Real Estate",
+    description: "Independent boutique agency — residential sales, rentals, commercial property and project marketing across the Illawarra.",
+    url: "https://www.spinellirealestate.com.au",
+  },
 };
 
 export const revalidate = 3600;

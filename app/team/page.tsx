@@ -4,9 +4,11 @@ import TeamGrid from "@/components/TeamGrid";
 import { team } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Meet the Team | Spinelli Real Estate",
+  title: "Our Real Estate Agents Shellharbour & Wollongong | Spinelli Real Estate",
   description:
-    "Meet the Spinelli Real Estate team — experienced, passionate Illawarra property professionals dedicated to delivering exceptional results for every client.",
+    "Meet the Spinelli Real Estate team — Paul Spinelli and Adam Spinelli are experienced, local property professionals serving Shellharbour, Wollongong, Kiama and the Illawarra.",
+  alternates: { canonical: "https://www.spinellirealestate.com.au/team" },
+  keywords: ["best real estate agent Shellharbour", "real estate agent Wollongong", "Paul Spinelli", "Adam Spinelli", "Spinelli Real Estate agents"],
 };
 
 export default function TeamPage() {
